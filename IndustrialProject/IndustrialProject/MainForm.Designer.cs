@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,6 +52,13 @@
             this.packetCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.useManualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadDevice2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadDevice3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadDevice4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -62,7 +69,8 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1026, 24);
@@ -73,6 +81,9 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.loadToolStripMenuItem,
+            this.loadDevice2ToolStripMenuItem,
+            this.loadDevice3ToolStripMenuItem,
+            this.loadDevice4ToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
@@ -81,8 +92,8 @@
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.loadToolStripMenuItem.Text = "Load";
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadToolStripMenuItem.Text = "Load Device 1";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
@@ -96,6 +107,9 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(83, 27);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -126,7 +140,7 @@
             this.errorRate.AutoSize = true;
             this.errorRate.Location = new System.Drawing.Point(690, 392);
             this.errorRate.Name = "errorRate";
-            this.errorRate.Size = new System.Drawing.Size(29, 13);
+            this.errorRate.Size = new System.Drawing.Size(30, 13);
             this.errorRate.TabIndex = 8;
             this.errorRate.Text = "err/s";
             // 
@@ -135,7 +149,7 @@
             this.ErrorRatelbl.AutoSize = true;
             this.ErrorRatelbl.Location = new System.Drawing.Point(631, 392);
             this.ErrorRatelbl.Name = "ErrorRatelbl";
-            this.ErrorRatelbl.Size = new System.Drawing.Size(53, 13);
+            this.ErrorRatelbl.Size = new System.Drawing.Size(58, 13);
             this.ErrorRatelbl.TabIndex = 7;
             this.ErrorRatelbl.Text = "Error rate:";
             // 
@@ -144,7 +158,7 @@
             this.packetRate.AutoSize = true;
             this.packetRate.Location = new System.Drawing.Point(491, 392);
             this.packetRate.Name = "packetRate";
-            this.packetRate.Size = new System.Drawing.Size(50, 13);
+            this.packetRate.Size = new System.Drawing.Size(48, 13);
             this.packetRate.TabIndex = 6;
             this.packetRate.Text = "packet/s";
             // 
@@ -153,7 +167,7 @@
             this.PacketRatelbl.AutoSize = true;
             this.PacketRatelbl.Location = new System.Drawing.Point(420, 392);
             this.PacketRatelbl.Name = "PacketRatelbl";
-            this.PacketRatelbl.Size = new System.Drawing.Size(65, 13);
+            this.PacketRatelbl.Size = new System.Drawing.Size(66, 13);
             this.PacketRatelbl.TabIndex = 5;
             this.PacketRatelbl.Text = "Packet rate:";
             // 
@@ -162,7 +176,7 @@
             this.dataRate.AutoSize = true;
             this.dataRate.Location = new System.Drawing.Point(311, 392);
             this.dataRate.Name = "dataRate";
-            this.dataRate.Size = new System.Drawing.Size(31, 13);
+            this.dataRate.Size = new System.Drawing.Size(30, 13);
             this.dataRate.TabIndex = 4;
             this.dataRate.Text = "mb/s";
             // 
@@ -171,7 +185,7 @@
             this.DataRatelbl.AutoSize = true;
             this.DataRatelbl.Location = new System.Drawing.Point(251, 392);
             this.DataRatelbl.Name = "DataRatelbl";
-            this.DataRatelbl.Size = new System.Drawing.Size(54, 13);
+            this.DataRatelbl.Size = new System.Drawing.Size(57, 13);
             this.DataRatelbl.TabIndex = 3;
             this.DataRatelbl.Text = "Data rate:";
             // 
@@ -187,7 +201,7 @@
             "EPPs and timeout"});
             this.checkedListBox1.Location = new System.Drawing.Point(757, 71);
             this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(111, 79);
+            this.checkedListBox1.Size = new System.Drawing.Size(111, 84);
             this.checkedListBox1.TabIndex = 2;
             // 
             // dataGridView1
@@ -231,20 +245,20 @@
             // 
             // chart1
             // 
-            chartArea1.AlignmentOrientation = ((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations)((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Vertical | System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Horizontal)));
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            chartArea5.AlignmentOrientation = ((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations)((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Vertical | System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Horizontal)));
+            chartArea5.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea5);
+            legend5.Name = "Legend1";
+            this.chart1.Legends.Add(legend5);
             this.chart1.Location = new System.Drawing.Point(49, 20);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea;
-            series1.Legend = "Legend1";
-            series1.Name = "Data";
-            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time;
-            series1.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
-            this.chart1.Series.Add(series1);
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea;
+            series5.Legend = "Legend1";
+            series5.Name = "Data";
+            series5.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time;
+            series5.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
+            this.chart1.Series.Add(series5);
             this.chart1.Size = new System.Drawing.Size(705, 130);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
@@ -258,6 +272,56 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Device 2";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.useManualToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // useManualToolStripMenuItem
+            // 
+            this.useManualToolStripMenuItem.Name = "useManualToolStripMenuItem";
+            this.useManualToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.useManualToolStripMenuItem.Text = "Use Manual?";
+            // 
+            // loadDevice2ToolStripMenuItem
+            // 
+            this.loadDevice2ToolStripMenuItem.Name = "loadDevice2ToolStripMenuItem";
+            this.loadDevice2ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadDevice2ToolStripMenuItem.Text = "Load Device 2";
+            // 
+            // loadDevice3ToolStripMenuItem
+            // 
+            this.loadDevice3ToolStripMenuItem.Name = "loadDevice3ToolStripMenuItem";
+            this.loadDevice3ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadDevice3ToolStripMenuItem.Text = "Load Device 3";
+            // 
+            // loadDevice4ToolStripMenuItem
+            // 
+            this.loadDevice4ToolStripMenuItem.Name = "loadDevice4ToolStripMenuItem";
+            this.loadDevice4ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadDevice4ToolStripMenuItem.Text = "Load Device 4";
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(874, 428);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Device 3";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(874, 428);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Device 4";
+            this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -304,6 +368,13 @@
         private System.Windows.Forms.Label dataRate;
         private System.Windows.Forms.Label packetRate;
         private System.Windows.Forms.Label errorRate;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem useManualToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loadDevice2ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loadDevice3ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loadDevice4ToolStripMenuItem;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabPage4;
     }
 }
 
