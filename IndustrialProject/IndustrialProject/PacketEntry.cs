@@ -5,7 +5,7 @@ using System.Text;
 
 namespace IndustrialProject
 {
-    public class PacketEntry //: Entry
+    public class PacketEntry : Entry
     {
         
     }
