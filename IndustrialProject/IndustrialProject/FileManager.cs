@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace IndustrialProject
 {
+    //Manages file handling
     class FileManager
     {
 
@@ -14,6 +15,7 @@ namespace IndustrialProject
         {
             List<string> packets = new List<String>();
             string errorFound = null;
+            ErrorChecker ec = new ErrorChecker();
 
             try
             {
@@ -29,6 +31,23 @@ namespace IndustrialProject
                     Console.WriteLine("Interested: " + lines[x + 1]);
 
                     //check error @ lines[x+1]
+
+                    //Need to check data for errors such as crc
+
+                    if (ec.errorMarker(lines[x + 1]))
+                    {
+                        //lines[x] = timestamp
+                      
+                        //string errorType = ... Pass last packet
+                        if (lines[x + 2].Equals("Parity"))
+                        {
+                            //Parity error
+                        }
+                        else if (lines[x + 2].Equals("Disconnect"))
+                        {
+                            //Disconnect
+                        }
+                    }
 
                     Console.WriteLine("Interested: " + lines[x + 2]);
                     Console.WriteLine("Interested: " + lines[x + 3]);

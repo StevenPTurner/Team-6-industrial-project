@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entry.cs" />
+    <Compile Include="ErrorChecker.cs" />
     <Compile Include="ErrorEntry.cs" />
     <Compile Include="FileManager.cs" />
     <Compile Include="MainForm.cs">
