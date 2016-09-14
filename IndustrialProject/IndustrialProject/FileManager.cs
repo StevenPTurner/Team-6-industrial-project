@@ -10,20 +10,45 @@ namespace IndustrialProject
     {
 
         //Returns list of packets
-        List<String> loadFile(string fileName)
+        List<string> loadFile(string fileName) //Note: Set as string temporarily until Packet class is built.
         {
-            List<String> packets = new List<String>();
+            List<string> packets = new List<String>();
+            string errorFound = null;
 
-            string[] lines = System.IO.File.ReadAllLines(fileName);
-
-            for(int x = 0; x < lines.Length; x++)
+            try
             {
-                //Build packet, add to list
-            }
-     
-            return packets;
-        }
-       
-    }
+                string[] lines = System.IO.File.ReadAllLines(fileName);
 
+                Console.WriteLine("Date: " + lines[0]);
+                Console.WriteLine("Port No: " + lines[1]);
+
+                for (int x = 3; x < lines.Length; x = x + 5)
+                {
+                    //Build packet, add to list
+                    Console.WriteLine("Interested: " + lines[x]);
+                    Console.WriteLine("Interested: " + lines[x + 1]);
+
+                    //check error @ lines[x+1]
+
+                    Console.WriteLine("Interested: " + lines[x + 2]);
+                    Console.WriteLine("Interested: " + lines[x + 3]);
+                }
+            }
+            catch (Exception E)
+            {
+                errorFound = E.ToString();
+            }
+
+            if (errorFound == null)
+            {
+                Console.WriteLine("File found");
+            }
+            else
+            {
+                Console.WriteLine("File not found");
+            }
+
+            return packets;
+        }  
+    }
 }
