@@ -11,9 +11,9 @@ namespace IndustrialProject
         // consts taken from: https://github.com/yuasatakayuki/SpaceWireRMAPLibrary/blob/8c67dcab8f6884834ec0df8e136f957c2b3cacfb/includes/RMAPPacket.hh
         const byte BitMaskForReserved = 0x80;
         const byte BitMaskForCommandReply = 0x40;
-        const byte BitMaskForWriteRead = 0x20;
+        const byte BitMaskForWriteRead = 0x20; // set = write
         const byte BitMaskForVerifyFlag = 0x10;
-        const byte BitMaskForReplyFlag = 0x08;
+        const byte BitMaskForReplyFlag = 0x08; // think this means: plz reply
         const byte BitMaskForIncrementFlag = 0x04;
         const byte BitMaskForReplyPathAddressLength = 0x3;
 
@@ -27,6 +27,9 @@ namespace IndustrialProject
         public int address;
         public int dataLength;
         public byte crc;
+
+        public byte dataCrc;
+        public byte[] data;
 
         /*
 
@@ -77,9 +80,29 @@ namespace IndustrialProject
                 if(this.calculateCRC(header) != crc)
                 {
                     // error ...
+                    throw new Exception("crc doesn't match");
                 }
 
                 // if write, read data ...
+                if((this.instruction & BitMaskForWriteRead) > 0)
+                {
+                    if(stream.Position + this.dataLength + 1 > stream.Length)
+                    {
+                        // error ...
+                        throw new Exception("not enough bytes for data length");
+                    }
+
+                    this.data = new byte[this.dataLength];
+                    stream.Read(this.data, 0, this.dataLength);
+
+                    this.dataCrc = (byte)stream.ReadByte();
+
+                    if (this.calculateCRC(this.data) != this.dataCrc)
+                    {
+                        // error ...
+                        throw new Exception("data crc doesn't match");
+                    }
+                }
             } else
             {
                 this.status = (byte)stream.ReadByte();
@@ -88,6 +111,7 @@ namespace IndustrialProject
                 
                 if((this.instruction & BitMaskForWriteRead) == 0)
                 {
+                    stream.ReadByte(); // reserved
                     this.dataLength = (stream.ReadByte() << 16) | (stream.ReadByte() << 8) | stream.ReadByte();
                 }
 
@@ -101,9 +125,34 @@ namespace IndustrialProject
                 if (this.calculateCRC(header) != crc)
                 {
                     // error ...
+                    throw new Exception("crc doesn't match");
                 }
 
                 // if read, read data ...
+                if((this.instruction & BitMaskForWriteRead) == 0)
+                {
+                    if (stream.Position + this.dataLength + 1 > stream.Length)
+                    {
+                        // error ...
+                        throw new Exception("not enough bytes for data length");
+                    }
+
+                    this.data = new byte[this.dataLength];
+                    stream.Read(this.data, 0, this.dataLength);
+
+                    this.dataCrc = (byte)stream.ReadByte();
+
+                    if (this.calculateCRC(this.data) != this.dataCrc)
+                    {
+                        // error ...
+                        throw new Exception("data crc doesn't match");
+                    }
+                }
+            }
+
+            if(stream.Position != stream.Length)
+            {
+                throw new Exception("extraneous bytes");
             }
         }
 
