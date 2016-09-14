@@ -18,14 +18,24 @@ namespace IndustrialProject
             InitializeComponent();
         }
 
-        /*private void MainForm_Load(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
         {
-   
-        }*/
+
+        }
 
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //dataGrid1.DataSource = ;
+            OpenFileDialog ofd = new OpenFileDialog();
+
+            ofd.InitialDirectory = "c:\\";
+            ofd.Filter = "txt files (*.txt)|*.txt|rec files (*.rec)|*.rec|all files (*.*)|*.*";
+            ofd.FilterIndex = 2;
+            ofd.RestoreDirectory = true;
+
+            if(ofd.ShowDialog() == DialogResult.OK)
+            {
+                // feed into data table presumably 
+            }
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
