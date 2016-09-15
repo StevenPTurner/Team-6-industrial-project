@@ -25,7 +25,7 @@ namespace IndustrialProject
 
         public Packet.ErrorType determineError()//pass file as a parameter - need the list of packets?
         {
-            
+            //Could do it with one packet if we store previous seq no in a packet
             return Packet.ErrorType.NO_ERROR;
         }
     }
