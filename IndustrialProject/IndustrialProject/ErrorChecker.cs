@@ -23,10 +23,10 @@ namespace IndustrialProject
             return false;
         }
 
-        public string determineError()//pass file as a parameter - need the list of packets?
+        public Packet.ErrorType determineError()//pass file as a parameter - need the list of packets?
         {
-            //Work on packet.
-            return null;
+            
+            return Packet.ErrorType.NO_ERROR;
         }
     }
 }
