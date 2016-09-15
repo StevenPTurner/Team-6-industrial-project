@@ -28,6 +28,9 @@ namespace IndustrialProject
             errorHighlight();
             chart1.Series[2].Enabled = false;
 
+            FileManager fm = new FileManager();
+            fm.loadFile();
+
         }
 
         private void MainForm_Load(object sender, EventArgs e)
