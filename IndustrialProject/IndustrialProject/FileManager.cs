@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,46 +12,47 @@ namespace IndustrialProject
     {
 
         //Returns list of packets
-        List<string> loadFile(string fileName) //Note: Set as string temporarily until Packet class is built.
+        public string loadFile() //Note: Set as string temporarily until File class is built.
         {
+            
             List<string> packets = new List<String>();
             string errorFound = null;
             ErrorChecker ec = new ErrorChecker();
-
             try
             {
-                string[] lines = System.IO.File.ReadAllLines(fileName);
-
-                Console.WriteLine("Date: " + lines[0]);
-                Console.WriteLine("Port No: " + lines[1]);
-
-                for (int x = 3; x < lines.Length; x = x + 5)
+                using (StreamReader sr = new StreamReader(@"C:\Users\Connor\Desktop\team_project_example_files\test1_link1.REC"))
                 {
-                    //Build packet, add to list
-                    Console.WriteLine("Interested: " + lines[x]);
-                    Console.WriteLine("Interested: " + lines[x + 1]);
-
-                    //check error @ lines[x+1]
-
-                    //Need to check data for errors such as crc
-
-                    if (ec.errorMarker(lines[x + 1]))
+                    while (sr.Peek() >= 0)
                     {
-                        //lines[x] = timestamp
-                      
-                        //string errorType = ... Pass last packet
-                        if (lines[x + 2].Equals("Parity"))
-                        {
-                            //Parity error
-                        }
-                        else if (lines[x + 2].Equals("Disconnect"))
-                        {
-                            //Disconnect
-                        }
-                    }
+                        Console.WriteLine(sr.ReadLine());
 
-                    Console.WriteLine("Interested: " + lines[x + 2]);
-                    Console.WriteLine("Interested: " + lines[x + 3]);
+                        if (sr.ReadLine().Equals("P"))
+                        {
+                            //sr.ReadLine() --- Add packet
+                            string[] stringBytes = sr.ReadLine().Split(' ');
+                            List<byte> byteList = new List<byte>();
+
+                            for (int i = 0; i < stringBytes.Length; i++)
+                            {
+                                byteList.Add(Convert.ToByte(stringBytes[i], 16));
+                            }
+
+                            byte[] byteArray = byteList.ToArray();
+
+                            if (sr.ReadLine().Equals("None"))
+                            {
+
+                            }
+
+                            sr.ReadLine(); //Skip blank line
+                        }
+
+                        if (sr.ReadLine().Equals("E"))
+                        {
+
+                        }
+
+                    }
                 }
             }
             catch (Exception E)
@@ -67,7 +69,7 @@ namespace IndustrialProject
                 Console.WriteLine("File not found");
             }
 
-            return packets;
-        }  
+            return null;
+        }
     }
 }
