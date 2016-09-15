@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,6 +46,15 @@
             this.useManualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.chartDropdown = new System.Windows.Forms.ComboBox();
+            this.linkblbl = new System.Windows.Forms.Label();
+            this.linkalbl = new System.Windows.Forms.Label();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.errorRate = new System.Windows.Forms.Label();
             this.ErrorRatelbl = new System.Windows.Forms.Label();
             this.packetRate = new System.Windows.Forms.Label();
@@ -62,21 +72,12 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.linkalbl = new System.Windows.Forms.Label();
-            this.linkblbl = new System.Windows.Forms.Label();
-            this.chartDropdown = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -184,6 +185,85 @@
             this.tabPage1.Text = "Device 1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // chartDropdown
+            // 
+            this.chartDropdown.FormattingEnabled = true;
+            this.chartDropdown.Items.AddRange(new object[] {
+            "Line",
+            "Bar",
+            "Area"});
+            this.chartDropdown.Location = new System.Drawing.Point(757, 20);
+            this.chartDropdown.Name = "chartDropdown";
+            this.chartDropdown.Size = new System.Drawing.Size(121, 21);
+            this.chartDropdown.TabIndex = 12;
+            this.chartDropdown.Text = "Chart mode";
+            this.chartDropdown.SelectedIndexChanged += new System.EventHandler(this.chartDropdown_SelectedIndexChanged);
+            // 
+            // linkblbl
+            // 
+            this.linkblbl.AutoSize = true;
+            this.linkblbl.Location = new System.Drawing.Point(690, 171);
+            this.linkblbl.Name = "linkblbl";
+            this.linkblbl.Size = new System.Drawing.Size(13, 13);
+            this.linkblbl.TabIndex = 11;
+            this.linkblbl.Text = "B";
+            // 
+            // linkalbl
+            // 
+            this.linkalbl.AutoSize = true;
+            this.linkalbl.Location = new System.Drawing.Point(238, 171);
+            this.linkalbl.Name = "linkalbl";
+            this.linkalbl.Size = new System.Drawing.Size(14, 13);
+            this.linkalbl.TabIndex = 10;
+            this.linkalbl.Text = "A";
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5});
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView2.Location = new System.Drawing.Point(501, 187);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(446, 156);
+            this.dataGridView2.TabIndex = 9;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Time";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Data";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "No. errors";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "No. chars";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "No. packets";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            // 
             // errorRate
             // 
             this.errorRate.AutoSize = true;
@@ -252,6 +332,7 @@
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.Size = new System.Drawing.Size(111, 84);
             this.checkedListBox1.TabIndex = 2;
+            this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
             // dataGridView1
             // 
@@ -320,8 +401,14 @@
             series2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             series2.Legend = "Legend1";
             series2.Name = "B";
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series3.Color = System.Drawing.Color.Red;
+            series3.Legend = "Legend1";
+            series3.Name = "error";
             this.chart1.Series.Add(series1);
             this.chart1.Series.Add(series2);
+            this.chart1.Series.Add(series3);
             this.chart1.Size = new System.Drawing.Size(705, 130);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
@@ -331,7 +418,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(874, 428);
+            this.tabPage2.Size = new System.Drawing.Size(971, 484);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Device 2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -340,7 +427,7 @@
             // 
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(874, 428);
+            this.tabPage3.Size = new System.Drawing.Size(971, 484);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Device 3";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -349,89 +436,10 @@
             // 
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(874, 428);
+            this.tabPage4.Size = new System.Drawing.Size(971, 484);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Device 4";
             this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView2.Location = new System.Drawing.Point(501, 187);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(446, 156);
-            this.dataGridView2.TabIndex = 9;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Time";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Data";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "No. errors";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "No. chars";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "No. packets";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            // 
-            // linkalbl
-            // 
-            this.linkalbl.AutoSize = true;
-            this.linkalbl.Location = new System.Drawing.Point(238, 171);
-            this.linkalbl.Name = "linkalbl";
-            this.linkalbl.Size = new System.Drawing.Size(14, 13);
-            this.linkalbl.TabIndex = 10;
-            this.linkalbl.Text = "A";
-            // 
-            // linkblbl
-            // 
-            this.linkblbl.AutoSize = true;
-            this.linkblbl.Location = new System.Drawing.Point(690, 171);
-            this.linkblbl.Name = "linkblbl";
-            this.linkblbl.Size = new System.Drawing.Size(13, 13);
-            this.linkblbl.TabIndex = 11;
-            this.linkblbl.Text = "B";
-            // 
-            // chartDropdown
-            // 
-            this.chartDropdown.FormattingEnabled = true;
-            this.chartDropdown.Items.AddRange(new object[] {
-            "Line",
-            "Bar",
-            "Area"});
-            this.chartDropdown.Location = new System.Drawing.Point(757, 20);
-            this.chartDropdown.Name = "chartDropdown";
-            this.chartDropdown.Size = new System.Drawing.Size(121, 21);
-            this.chartDropdown.TabIndex = 12;
-            this.chartDropdown.Text = "Chart mode";
-            this.chartDropdown.SelectedIndexChanged += new System.EventHandler(this.chartDropdown_SelectedIndexChanged);
             // 
             // MainForm
             // 
@@ -449,9 +457,9 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
