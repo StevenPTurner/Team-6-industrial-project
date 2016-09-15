@@ -48,7 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ErrorChecker.cs" />
-    <Compile Include="ErrorEntry.cs" />
+    <Compile Include="Error.cs" />
     <Compile Include="FileManager.cs" />
     <Compile Include="InnerType.cs" />
     <Compile Include="MainForm.cs">
@@ -58,7 +58,6 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Packet.cs" />
-    <Compile Include="PacketEntry.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RMAP.cs" />
