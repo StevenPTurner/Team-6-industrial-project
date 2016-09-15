@@ -11,17 +11,18 @@ namespace IndustrialProject
         String filename { set; get; }
         DateTime startDate { set; get; }
         int port { set; get; }
-        List<Packet> packet;
+        public List<Packet> packets { get; private set; }
         Stats stats;
 
         public File()
         {
-            packet = new List<Packet>();
+            this.packets = new List<Packet>();
+            this.stats = new Stats(this);
         }
 
         public void addPacket(Packet packetToAdd)
         {
-            packet.Add(packetToAdd);
+            this.packets.Add(packetToAdd);
         }
     }
 }
