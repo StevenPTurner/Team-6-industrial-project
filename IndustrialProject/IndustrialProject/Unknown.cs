@@ -25,7 +25,7 @@ namespace IndustrialProject
             this.data = new byte[stream.Length - 1];
             stream.Read(this.data, 0, (int)stream.Length);
 
-            return Packet.ErrorType.ERROR_NONE;
+            return Packet.ErrorType.NO_ERROR;
         }
     }
 }

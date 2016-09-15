@@ -11,7 +11,8 @@ namespace IndustrialProject
     {
         public enum ErrorType
         {
-            ERROR_NONE,
+            //XXX: Is this a good place for this enum - define it in File instead?
+            NO_ERROR,
             ERROR_DISCONNECT,
             ERROR_PARITY,
             ERROR_HEADER_CRC,
@@ -32,7 +33,8 @@ namespace IndustrialProject
         public DateTime timestamp;
         public byte[] data;
         public InnerType innerPacket;
-        public List<Error> errors;
+        //public List<Error> errors;
+        ErrorType error;
         public List<byte> pathAddress;
         public byte logicalAddress;
         public byte protocolId;
@@ -69,7 +71,7 @@ namespace IndustrialProject
             }
 
             // unknown packet type, so can't check for errors - ignore
-            return ErrorType.ERROR_NONE;
+            return ErrorType.NO_ERROR;
         }
     }
 }

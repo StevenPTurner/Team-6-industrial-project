@@ -167,7 +167,7 @@ namespace IndustrialProject
                 return Packet.ErrorType.ERROR_TOO_MANY_BYTES;
             }
 
-            return Packet.ErrorType.ERROR_NONE;
+            return Packet.ErrorType.NO_ERROR;
         }
 
         private byte calculateCRC(byte[] bytes)
