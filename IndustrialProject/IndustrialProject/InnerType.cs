@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace IndustrialProject
 {
-    public class Entry
+    public abstract class InnerType
     {
-        public DateTime timestamp;
     }
 }

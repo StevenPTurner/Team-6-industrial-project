@@ -6,7 +6,7 @@ using System.IO;
 
 namespace IndustrialProject
 {
-    public class Unknown 
+    public class Unknown : InnerType
     {
         // protocol id: 0xfa
 
@@ -18,7 +18,7 @@ namespace IndustrialProject
         {
             this.sequenceNumber = (byte)stream.ReadByte();
             this.data = new byte[stream.Length - 1];
-            stream.Read(this.data, 0, stream.Length);
+            stream.Read(this.data, 0, (int)stream.Length);
         }
     }
 }

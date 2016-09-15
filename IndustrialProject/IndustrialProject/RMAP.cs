@@ -6,7 +6,7 @@ using System.IO;
 
 namespace IndustrialProject
 {
-    public class RMAP
+    public class RMAP : InnerType
     {
         // consts taken from: https://github.com/yuasatakayuki/SpaceWireRMAPLibrary/blob/8c67dcab8f6884834ec0df8e136f957c2b3cacfb/includes/RMAPPacket.hh
         const byte BitMaskForReserved = 0x80;
