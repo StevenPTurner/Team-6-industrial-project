@@ -5,7 +5,7 @@ using System.Text;
 
 namespace IndustrialProject
 {
-    public class ErrorEntry : Entry
+    public class Error
     {
 
     }
