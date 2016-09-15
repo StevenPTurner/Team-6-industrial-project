@@ -27,5 +27,9 @@ namespace IndustrialProject
 
             return Packet.ErrorType.NO_ERROR;
         }
+        public override byte getSeqNo()
+        {
+            return sequenceNumber;
+        }
     }
 }

@@ -170,6 +170,12 @@ namespace IndustrialProject
             return Packet.ErrorType.NO_ERROR;
         }
 
+        public override byte getSeqNo()
+        {
+            //TODO: need to know which parts of the packet are to be used as sequence number
+            throw new NotImplementedException();
+        }
+
         private byte calculateCRC(byte[] bytes)
         {
             byte[] crcTable = {
