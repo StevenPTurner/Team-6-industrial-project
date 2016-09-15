@@ -5,7 +5,11 @@ using System.Text;
 
 namespace IndustrialProject
 {
+<<<<<<< HEAD:IndustrialProject/IndustrialProject/Error.cs
+    public class Error
+=======
     public class ErrorEntry 
+>>>>>>> mantas:IndustrialProject/IndustrialProject/ErrorEntry.cs
     {
 
     }

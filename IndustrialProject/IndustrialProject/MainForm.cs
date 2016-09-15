@@ -17,6 +17,7 @@ namespace IndustrialProject
 
         int[] test = new int[6] { 1, 3, 5, 2, 7, 9 };
         int[] test1 = new int[6] { 5, 3, 7, 8, 2, 0 };
+        int[] errorTest = new int[2] { 1, 3 };
 
         public MainForm()
         {
@@ -24,6 +25,9 @@ namespace IndustrialProject
             chart1.Series[1].Color = Color.FromArgb(127, 255, 0, 0);
             chart1.Series[0].Points.DataBindY(test);
             chart1.Series[1].Points.DataBindY(test1);
+            errorHighlight();
+            chart1.Series[2].Enabled = false;
+
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -68,6 +72,23 @@ namespace IndustrialProject
             {
                 chart1.Series[0].ChartType = SeriesChartType.SplineArea;
                 chart1.Series[1].ChartType = SeriesChartType.SplineArea; 
+            }
+        }
+
+        public void errorHighlight()
+        {
+            chart1.Series[2].Points.DataBindY(errorTest);
+        }
+
+        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (checkedListBox1.GetItemCheckState(0) == CheckState.Checked)
+            {
+                chart1.Series[2].Enabled = true;
+            }
+            else
+            {
+                chart1.Series[2].Enabled = false;
             }
         }
     }
