@@ -54,7 +54,7 @@ namespace IndustrialProject
                 this.pathAddress.Add((byte)stream.ReadByte());
                 this.logicalAddress = this.pathAddress[this.pathAddress.Count - 1];
                 this.pathAddress.RemoveAt(this.pathAddress.Count - 1);
-            } while (logicalAddress < 32);
+            } while (this.logicalAddress < 32);
 
             this.protocolId = (byte)stream.ReadByte();
 
