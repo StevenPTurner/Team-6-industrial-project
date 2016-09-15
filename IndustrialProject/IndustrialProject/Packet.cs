@@ -11,7 +11,7 @@ namespace IndustrialProject
     {
         public enum ErrorType
         {
-            ERROR_NONE,
+            NO_ERROR,
             ERROR_DISCONNECT,
             ERROR_PARITY,
             ERROR_HEADER_CRC,
@@ -69,7 +69,7 @@ namespace IndustrialProject
             }
 
             // unknown packet type, so can't check for errors - ignore
-            return ErrorType.ERROR_NONE;
+            return ErrorType.NO_ERROR;
         }
     }
 }
