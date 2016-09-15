@@ -43,17 +43,25 @@ namespace IndustrialProject
         */
 
         // parses the RMAP data after the protocol id
-        public void parse(MemoryStream stream)
+        public override Packet.ErrorType parseAndCheck(MemoryStream stream)
         {
-            // XXX: check enough bytes for header
-
             long headerStartPos = stream.Position - 2;
+
+            if(stream.Position + 1 > stream.Length)
+            {
+                return Packet.ErrorType.ERROR_NOT_ENOUGH_BYTES;
+            }
 
             this.instruction = (byte)stream.ReadByte();
             int replyPathAddressSize = instruction & BitMaskForReplyPathAddressLength;
 
             if((this.instruction & BitMaskForCommandReply) > 0)
             {
+                if (stream.Position + replyPathAddressSize + 13 > stream.Length)
+                {
+                    return Packet.ErrorType.ERROR_NOT_ENOUGH_BYTES;
+                }
+
                 this.key = (byte)stream.ReadByte();
 
                 this.replyAddress = new byte[replyPathAddressSize];
@@ -79,8 +87,7 @@ namespace IndustrialProject
 
                 if(this.calculateCRC(header) != crc)
                 {
-                    // error ...
-                    throw new Exception("crc doesn't match");
+                    return Packet.ErrorType.ERROR_HEADER_CRC;
                 }
 
                 // if write, read data ...
@@ -88,8 +95,7 @@ namespace IndustrialProject
                 {
                     if(stream.Position + this.dataLength + 1 > stream.Length)
                     {
-                        // error ...
-                        throw new Exception("not enough bytes for data length");
+                        return Packet.ErrorType.ERROR_NOT_ENOUGH_BYTES;
                     }
 
                     this.data = new byte[this.dataLength];
@@ -99,18 +105,27 @@ namespace IndustrialProject
 
                     if (this.calculateCRC(this.data) != this.dataCrc)
                     {
-                        // error ...
-                        throw new Exception("data crc doesn't match");
+                        return Packet.ErrorType.ERROR_BODY_CRC;
                     }
                 }
             } else
             {
+                if (stream.Position + 5 > stream.Length)
+                {
+                    return Packet.ErrorType.ERROR_NOT_ENOUGH_BYTES;
+                }
+
                 this.status = (byte)stream.ReadByte();
                 this.otherLogical = (byte)stream.ReadByte();
                 this.transactionId = (short)((stream.ReadByte() << 8) | stream.ReadByte());
                 
                 if((this.instruction & BitMaskForWriteRead) == 0)
                 {
+                    if (stream.Position + 5 > stream.Length)
+                    {
+                        return Packet.ErrorType.ERROR_NOT_ENOUGH_BYTES;
+                    }
+
                     stream.ReadByte(); // reserved
                     this.dataLength = (stream.ReadByte() << 16) | (stream.ReadByte() << 8) | stream.ReadByte();
                 }
@@ -124,8 +139,7 @@ namespace IndustrialProject
 
                 if (this.calculateCRC(header) != crc)
                 {
-                    // error ...
-                    throw new Exception("crc doesn't match");
+                    return Packet.ErrorType.ERROR_HEADER_CRC;
                 }
 
                 // if read, read data ...
@@ -133,8 +147,7 @@ namespace IndustrialProject
                 {
                     if (stream.Position + this.dataLength + 1 > stream.Length)
                     {
-                        // error ...
-                        throw new Exception("not enough bytes for data length");
+                        return Packet.ErrorType.ERROR_NOT_ENOUGH_BYTES;
                     }
 
                     this.data = new byte[this.dataLength];
@@ -144,16 +157,17 @@ namespace IndustrialProject
 
                     if (this.calculateCRC(this.data) != this.dataCrc)
                     {
-                        // error ...
-                        throw new Exception("data crc doesn't match");
+                        return Packet.ErrorType.ERROR_BODY_CRC;
                     }
                 }
             }
 
             if(stream.Position != stream.Length)
             {
-                throw new Exception("extraneous bytes");
+                return Packet.ErrorType.ERROR_TOO_MANY_BYTES;
             }
+
+            return Packet.ErrorType.ERROR_NONE;
         }
 
         private byte calculateCRC(byte[] bytes)
