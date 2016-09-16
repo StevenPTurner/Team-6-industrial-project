@@ -8,26 +8,28 @@ namespace IndustrialProject
 {
     class Stats
     {
-        private File file;
+        public List<Packet> packets { get; set; }
 
-        public Stats(File file)
+        public Stats()
         {
-            this.file = file;
+            //this.packets = packets;
         }
 
-        int getNumberOfPackets()
+        
+
+        public int getNumberOfPackets()
         {
-            return this.file.packets.Count;
+            return this.packets.Count;
         }
 
-        int getNumberOfDataCharacters()
+        public int getNumberOfDataCharacters()
         {
-            return this.file.packets.Select(pkt => pkt.data.Length).Sum();
+            return this.packets.Select(pkt => pkt.data.Length).Sum();
         }
 
-        double getAvgDataRate()
+        public double getAvgDataRate()
         {
-            IEnumerable<DateTime> e = this.file.packets.Select(pkt => pkt.timestamp);
+            IEnumerable<DateTime> e = this.packets.Select(pkt => pkt.timestamp);
             return e.Count() / (e.Last() - e.First()).TotalSeconds;
         }
     }

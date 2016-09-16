@@ -13,6 +13,7 @@ namespace IndustrialProject
         {
             //XXX: Is this a good place for this enum - define it in File instead?
             NO_ERROR,
+            ERROR_TRUNCATED,
             ERROR_DISCONNECT,
             ERROR_PARITY,
             ERROR_HEADER_CRC,
@@ -37,7 +38,7 @@ namespace IndustrialProject
         public byte[] data;
         public InnerType innerPacket;
 
-        ErrorType error;
+        public ErrorType error;
         public List<byte> pathAddress;
         public byte logicalAddress;
         public byte protocolId;
@@ -89,21 +90,6 @@ namespace IndustrialProject
             return ErrorType.NO_ERROR;
         }
 
-        public void checkNoneErrors(string fileLine)
-        {
-            if(fileLine.Equals("None"))
-            {
-
-            }
-        }
-
-        public void checkEEPErrors(string fileLine)
-        {
-            if (fileLine.Equals("EEP"))
-            {
-
-            }
-        }
 
         public void checkDisconnectErrors(string fileLine)
         {
