@@ -38,5 +38,26 @@ namespace IndustrialProject
             IEnumerable<DateTime> e = this.packets.Select(pkt => pkt.timestamp);
             return this.getNumberOfDataCharacters() / (e.Last() - e.First()).TotalSeconds;
         }
+
+        public int getTotalNoOfErrors()
+        {
+            int totalErrors = 0;
+
+            for(int i = 0; i < this.packets.Count; i++)
+            {
+                if(!this.packets[i].error.Equals("NO_ERROR"))
+                {
+                    totalErrors++;
+                }
+            }
+
+            return totalErrors;
+        }
+
+        public double getAvgErrorRate()
+        {
+            double avgErrorRate = 0.00;
+            return avgErrorRate;
+        }
     }
 }
