@@ -60,6 +60,7 @@ namespace IndustrialProject
             
             if (chartDropdown.SelectedItem.Equals("Bar"))
             {
+                chart1.Series[2].Enabled = false;
                 chart1.Series[0].ChartType = SeriesChartType.Bar;
                 chart1.Series[1].ChartType = SeriesChartType.Bar;
             }
@@ -82,7 +83,7 @@ namespace IndustrialProject
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (checkedListBox1.GetItemCheckState(0) == CheckState.Checked)
+            if (checkedListBox1.GetItemCheckState(0) == CheckState.Checked && !chartDropdown.SelectedItem.Equals("Bar"))
             {
                 chart1.Series[2].Enabled = true;
             }
@@ -91,5 +92,6 @@ namespace IndustrialProject
                 chart1.Series[2].Enabled = false;
             }
         }
+ 
     }
 }
