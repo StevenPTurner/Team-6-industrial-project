@@ -28,11 +28,64 @@ namespace IndustrialProject
             errorHighlight();
             chart1.Series[2].Enabled = false;
 
+            this.chart1.MouseMove += new MouseEventHandler(chart1_MouseMove);
+            this.tooltip.AutomaticDelay = 10;
+
+            this.dataGridView1.Rows.Add(DateTime.Now, "f0bff0a0fb0");
+            this.dataGridView1.Rows.Add(DateTime.Now, "f1bbfif0fd0");
+            this.dataGridView1.Rows.Add(DateTime.Now, "f0hb0x0x0x0");
+            this.dataGridView1.Rows.Add(DateTime.Now, "0xfb0xbfb00");
+            this.dataGridView2.Rows.Add(DateTime.Now, "asjhfgasfad");
+            this.dataGridView2.Rows.Add(DateTime.Now, "asffasfasda");
+            this.dataGridView2.Rows.Add(DateTime.Now, "f0bff0a0fb0");
+            this.dataGridView2.Rows.Add(DateTime.Now, "f0bff0a0fb0");
+
+            chartDropdown.SelectedIndex = 0;
+
+            var seriesPoints = this.chart1.Series[2];
+            seriesPoints.XValueMember = "X";
+            seriesPoints.YValueMembers = "Y";
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        //http://pastebin.com/PzhHtfMu 
+
+        Point? prevPosition = null;
+        ToolTip tooltip = new ToolTip();
+
+        void chart1_MouseMove(object sender, MouseEventArgs e)
+        {
+            var pos = e.Location;
+            if (prevPosition.HasValue && pos == prevPosition.Value)
+                return;
+            tooltip.RemoveAll();
+            prevPosition = pos;
+            var results = chart1.HitTest(pos.X, pos.Y, false,
+                                            ChartElementType.DataPoint);
+            foreach (var result in results)
+            {
+                if (result.ChartElementType == ChartElementType.DataPoint)
+                {
+                    var prop = result.Object as DataPoint;
+                    if (prop != null)
+                    {
+                        var pointXPixel = result.ChartArea.AxisX.ValueToPixelPosition(prop.XValue);
+                        var pointYPixel = result.ChartArea.AxisY.ValueToPixelPosition(prop.YValues[0]);
+
+                        // check if the cursor is really close to the point (2 pixels around)
+                        if (Math.Abs(pos.X - pointXPixel) < 2 &&
+                            Math.Abs(pos.Y - pointYPixel) < 2)
+                        {
+                            tooltip.Show("X=" + prop.XValue + ", Y=" + prop.YValues[0], this.chart1,
+                                            pos.X, pos.Y - 15);
+                        }
+                    }
+                }
+            }
         }
 
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
@@ -83,15 +136,22 @@ namespace IndustrialProject
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (checkedListBox1.GetItemCheckState(0) == CheckState.Checked && !chartDropdown.SelectedItem.Equals("Bar"))
+            if (chartDropdown != null)
             {
-                chart1.Series[2].Enabled = true;
+                if (checkedListBox1.GetItemCheckState(0) == CheckState.Checked && !chartDropdown.SelectedItem.Equals("Bar"))
+                {
+                    chart1.Series[2].Enabled = true;
+                }
+                else
+                {
+                    chart1.Series[2].Enabled = false;
+                }
             }
             else
             {
-                chart1.Series[2].Enabled = false;
+                return;
             }
         }
- 
+
     }
 }
