@@ -30,6 +30,11 @@ namespace IndustrialProject
             errorHighlight();
             chart1.Series[2].Enabled = false;
 
+<<<<<<< HEAD
+            //FileManager fm = new FileManager();
+            //fm.load();
+
+=======
             this.chart1.MouseMove += new MouseEventHandler(chart1_MouseMove);
             this.tooltip.AutomaticDelay = 10;
 
@@ -47,6 +52,7 @@ namespace IndustrialProject
             var seriesPoints = this.chart1.Series[2];
             seriesPoints.XValueMember = "X";
             seriesPoints.YValueMembers = "Y";
+>>>>>>> mantas
         }
 
         private void MainForm_Load(object sender, EventArgs e)
