@@ -28,32 +28,25 @@ namespace IndustrialProject
         {
             // XXX: is this class needed?
 
+            public string rawError;
             public ErrorType errorType;
-
-
+            public DateTime timestamp;
         }
 
         public DateTime timestamp;
         public byte[] data;
         public InnerType innerPacket;
 
-        ErrorType error;
+        Error error;
         public List<byte> pathAddress;
         public byte logicalAddress;
         public byte protocolId;
 
-        //Sets logical or path address depending on first byte
-        public void setLogicalOrPathAddress()
+        public void load(byte[] data)
         {
-            if(data[0] <= 31 && data[0] >= 0)
-            {
-                
-            }
-            else if(data[0] >= 32 & data[0] <= 255)
-            {
-                logicalAddress = data[0];
-            }
+            this.error.
         }
+
         // loads and parses the packet bytes
         public ErrorType loadAndCheck(byte[] data)
         {

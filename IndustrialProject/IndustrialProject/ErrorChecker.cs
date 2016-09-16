@@ -36,9 +36,17 @@ namespace IndustrialProject
             if(seqDist > packets.Item2.innerPacket.getMaxSeqNo() - WRAP_THRESHOLD && prevSeqNo > seqNo)
             {
                 // WRAPPED
+                return Packet.ErrorType.NO_ERROR;
             } else if(prevSeqNo > seqNo)
             {
                 // ERROR
+                return Packet.ErrorType.ERROR_OUT_OF_ORDER;
+            }
+
+            if(seqDist == 0)
+            {
+                // DUPLICATE
+                return Packet.ErrorType.ERROR_DUPLICATE;
             }
 
             //Could do it with one packet if we store previous seq no in a packet
