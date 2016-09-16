@@ -21,6 +21,7 @@ namespace IndustrialProject
             ERROR_BAD_PATH,
             ERROR_TOO_MANY_BYTES,
             ERROR_NOT_ENOUGH_BYTES,
+            ERROR_DUPLICATE,
         }
 
         public class Error
