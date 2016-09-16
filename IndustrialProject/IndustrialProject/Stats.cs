@@ -32,5 +32,11 @@ namespace IndustrialProject
             IEnumerable<DateTime> e = this.packets.Select(pkt => pkt.timestamp);
             return e.Count() / (e.Last() - e.First()).TotalSeconds;
         }
+
+        public double getAvgDataRate()
+        {
+            IEnumerable<DateTime> e = this.packets.Select(pkt => pkt.timestamp);
+            return this.getNumberOfDataCharacters() / (e.Last() - e.First()).TotalSeconds;
+        }
     }
 }
