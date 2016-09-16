@@ -24,21 +24,27 @@ namespace IndustrialProject
             DateTime date = new DateTime();
             int port;
 
+            Console.WriteLine("");
+
             try
             {
                 using (StreamReader sr = new StreamReader(fname))
                 {
                     date = DateTime.Parse(sr.ReadLine());
                     //date = Convert.ToDateTime(sr.ReadLine());
-                    Console.WriteLine(date);
+                   // Console.WriteLine(date);
 
                     //Console.WriteLine(date.ToString("dd-MM-yyyy hh:mm:ss.fff"));
                     file.startDate = date;
+                    Console.WriteLine("File: " + fname);
+                    Console.WriteLine("File Start Date: " + date);
 
                     port = Convert.ToInt32(sr.ReadLine());
                     file.port = port;
 
-                    Console.WriteLine("The port is: " + port);
+                    Console.WriteLine("Port: " + port);
+
+                    Console.WriteLine("");
                     
                     sr.ReadLine();
 
@@ -49,7 +55,7 @@ namespace IndustrialProject
                         Packet packet = new Packet();
 
                         date = DateTime.Parse(sr.ReadLine());
-                        Console.WriteLine("Date is:" + date);
+                        Console.WriteLine("Packet Date: " + date);
                         // date = Convert.ToDateTime(sr.ReadLine());
 
                         // Console.WriteLine(date.ToString("dd-MM-yyyy hh:mm:ss.fff"));
@@ -69,7 +75,7 @@ namespace IndustrialProject
                                 string[] stringBytes = sr.ReadLine().Split(' ');
                                 //List<byte> byteList = new List<byte>();
 
-                                Console.WriteLine("P found");
+                                //Console.WriteLine("P found");
 
                                 byte[] byteArray = new byte[stringBytes.Length];
 
@@ -79,6 +85,14 @@ namespace IndustrialProject
                                     byteArray[i] = Convert.ToByte(stringBytes[i], 16);
                                 }
 
+                                Console.Write("Packet: ");
+                                for (int i = 0; i < byteArray.Length; i++)
+                                {
+                                    Console.Write(byteArray[i] + " ");
+                                }
+
+                                Console.WriteLine("");
+                                Console.WriteLine("");
                                 //Handling logical address/path address in packet class?
 
                                 packet.data = byteArray; //Set packet bytes
@@ -87,6 +101,7 @@ namespace IndustrialProject
 
                                 if (temp.Equals("None") || temp.Equals("EEP"))
                                 {
+                                    Console.WriteLine("None or EEP error detected");
                                     packet.error = Packet.ErrorType.ERROR_TRUNCATED; //Adding error to packet
                                 }
 
@@ -97,31 +112,37 @@ namespace IndustrialProject
                             case "E":
                                 //sr.ReadLine(); // Will show us whether disconnect or parity error
                                 temp = sr.ReadLine();
-
+                                Console.WriteLine("");
                                 if (temp.Equals("Disconnect"))
                                 {
                                     //Add disconnect to last packet 
                                     packet.error = Packet.ErrorType.ERROR_DISCONNECT;
+                                    Console.WriteLine("Disconnect detected");
                                 }
                                 else if (temp.Equals("Parity"))
                                 {
                                     //Add parity to last packet 
                                     packet.error = Packet.ErrorType.ERROR_PARITY;
+                                    Console.WriteLine("Parity detected");
                                 }
 
                                 sr.ReadLine(); //Skips empty line
                                 date = Convert.ToDateTime(sr.ReadLine());
                                 //date.AddMilliseconds();
-                                Console.WriteLine("E was found");
-                                Console.WriteLine("End of file: " + date);
-                                file.endDate = date;
+                                //Console.WriteLine("End of file: " + date);
+                                //Console.WriteLine("Error was found (E)");
+                                //file.endDate = date;
                                 //Add error.
                                 break;
                             default:
                                 break;
                         }
                     }
+
+                    Console.WriteLine("");
+                    Console.WriteLine("File end date: " + date);
                 }
+
             }
             catch (Exception E)
             {
@@ -130,7 +151,7 @@ namespace IndustrialProject
 
             if (errorFound == null)
             {
-                Console.WriteLine("File found");
+               // Console.WriteLine("File found");
             }
             else
             {
@@ -140,10 +161,11 @@ namespace IndustrialProject
             Stats stats = new Stats();
             stats.packets = file.packets;
 
-           
+            Console.WriteLine("");           
             Console.WriteLine("No of packets: " + stats.getNumberOfPackets());
             Console.WriteLine("No. of data chars: " + stats.getNumberOfDataCharacters());
             Console.WriteLine("Avg. Packet Rate: " + stats.getAvgPacketRate());
+            Console.WriteLine("Avg. Data Rate: " + stats.getAvgDataRate());
 
             return file;
         }
