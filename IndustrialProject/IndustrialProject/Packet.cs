@@ -33,9 +33,7 @@ namespace IndustrialProject
         public DateTime timestamp;
         public byte[] data;
         public InnerType innerPacket;
-        public byte prevSeqNo; //Dunno how to get that, but would be helpful to sort the sequence errors
-        public byte seqNo;
-        //public List<Error> errors;
+
         ErrorType error;
         public List<byte> pathAddress;
         public byte logicalAddress;
@@ -66,11 +64,9 @@ namespace IndustrialProject
             {
                 case 0x01:
                     this.innerPacket = new RMAP();
-                    this.seqNo = this.innerPacket.getSeqNo();
                     return this.innerPacket.parseAndCheck(stream);
                 case 0xFA:
                     this.innerPacket = new Unknown();
-                    this.seqNo = this.innerPacket.getSeqNo();
                     return this.innerPacket.parseAndCheck(stream);
             }
 

@@ -10,6 +10,8 @@ namespace IndustrialProject
     public abstract class InnerType
     {
         public abstract Packet.ErrorType parseAndCheck(MemoryStream stream);
-        public abstract byte getSeqNo();
+
+        public abstract int getSeqNo();
+        public abstract int getMaxSeqNo();
     }
 }

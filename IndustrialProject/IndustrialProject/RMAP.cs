@@ -170,10 +170,15 @@ namespace IndustrialProject
             return Packet.ErrorType.NO_ERROR;
         }
 
-        public override byte getSeqNo()
+        public override int getSeqNo()
         {
-            //TODO: need to know which parts of the packet are to be used as sequence number
-            throw new NotImplementedException();
+            // client said this would be the best idea
+            return this.transactionId;
+        }
+
+        public override int getMaxSeqNo()
+        {
+            return 0xFFFF;
         }
 
         private byte calculateCRC(byte[] bytes)
