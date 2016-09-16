@@ -28,6 +28,8 @@ namespace IndustrialProject
             // XXX: is this class needed?
 
             public ErrorType errorType;
+
+
         }
 
         public DateTime timestamp;
@@ -39,6 +41,18 @@ namespace IndustrialProject
         public byte logicalAddress;
         public byte protocolId;
 
+        //Sets logical or path address depending on first byte
+        public void setLogicalOrPathAddress()
+        {
+            if(data[0] <= 31 && data[0] >= 0)
+            {
+                
+            }
+            else if(data[0] >= 32 & data[0] <= 255)
+            {
+                logicalAddress = data[0];
+            }
+        }
         // loads and parses the packet bytes
         public ErrorType loadAndCheck(byte[] data)
         {
@@ -73,5 +87,37 @@ namespace IndustrialProject
             // unknown packet type, so can't check for errors - ignore
             return ErrorType.NO_ERROR;
         }
+
+        public void checkNoneErrors(string fileLine)
+        {
+            if(fileLine.Equals("None"))
+            {
+
+            }
+        }
+
+        public void checkEEPErrors(string fileLine)
+        {
+            if (fileLine.Equals("EEP"))
+            {
+
+            }
+        }
+
+        public void checkDisconnectErrors(string fileLine)
+        {
+            if (fileLine.Equals("Disconnect"))
+            {
+
+            }
+        }
+
+        public void checkParityErrors(string fileLine)
+        {
+            if (fileLine.Equals("Parity"))
+            {
+
+            }
+        }  
     }
 }

@@ -8,11 +8,12 @@ namespace IndustrialProject
 {
     class File
     {
-        String filename { set; get; }
-        DateTime startDate { set; get; }
-        int port { set; get; }
+        public String filename { set; get; }
+        public DateTime endDate { set; get;  }
+        public DateTime startDate { set; get; }
+        public int port { set; get; }
         public List<Packet> packets { get; private set; }
-        Stats stats;
+        public Stats stats;
 
         public File()
         {

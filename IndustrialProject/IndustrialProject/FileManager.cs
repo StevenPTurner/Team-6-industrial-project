@@ -12,10 +12,10 @@ namespace IndustrialProject
     {
 
         //Returns list of packets
-        public string loadFile() //Note: Set as string temporarily until File class is built.
+        public File loadAndParseFile(string fname) //Note: Set as string temporarily until File class is built.
         {
 
-            Console.WriteLine("This happened");
+            File file = new IndustrialProject.File();
             
             List<string> packets = new List<String>();
             string errorFound = null;
@@ -27,24 +27,29 @@ namespace IndustrialProject
             {
                 using (StreamReader sr = new StreamReader(@"C:\Users\Connor\Desktop\team_project_example_files\test1_link1.REC"))
                 {
+                    date = DateTime.Parse(sr.ReadLine());
+                    //date = Convert.ToDateTime(sr.ReadLine());
+                    Console.WriteLine(date);
 
-                    date = Convert.ToDateTime(sr.ReadLine());
-                    //Add date (file start date)
+                    //Console.WriteLine(date.ToString("dd-MM-yyyy hh:mm:ss.fff"));
+                    file.startDate = date;
 
                     port = Convert.ToInt32(sr.ReadLine());
-                    //Port
+                    file.port = port;
 
+                    Console.WriteLine("The port is: " + port);
+                    
                     sr.ReadLine();
 
                     while (sr.Peek() >= 0)
                     {
                         Packet packet = new Packet();
 
-                        //date = Convert.ToDateTime(sr.ReadLine());
                         date = DateTime.Parse(sr.ReadLine());
-
-                        Console.WriteLine(date.ToString("dd-MM-yyyy hh:mm:ss.fff"));
-                        Console.WriteLine(date);
+                       // date = Convert.ToDateTime(sr.ReadLine());
+                        
+                       // Console.WriteLine(date.ToString("dd-MM-yyyy hh:mm:ss.fff"));
+                        //Console.WriteLine(date);
 
                         packet.timestamp = date; //Set packet timestamp
 
@@ -76,45 +81,32 @@ namespace IndustrialProject
 
                                 temp = sr.ReadLine();
 
-                                switch (temp) //Do this inside ErrorChecker?
-                                {
-                                    case "None":
-                                        //Add 'None' error
-                                        Console.WriteLine("None was found");
-                                        break;
-                                    case "EEP":
-                                        //Add 'EEP' error
-                                        Console.WriteLine("EEP was found");
-                                        break;
-                                    default:
-                                        break;
-                                }
+                                packet.checkEEPErrors(temp);
+                                packet.checkNoneErrors(temp);
+                                
                                 //sr.ReadLine(); //Skip blank line
                                 sr.ReadLine(); //Skips empty line
                                 break;
                             case "E":
                                 //sr.ReadLine(); // Will show us whether disconnect or parity error
                                 temp = sr.ReadLine();
-                                if (temp.Equals("Disconnect"))
-                                {
-                                    //Add disconnect error - Do in packet class
-                                }
-                                else if (temp.Equals("Parity"))
-                                {
-                                    //Add parity error - Do in packet class
-                                }
 
+                                packet.checkDisconnectErrors(temp);
+                                packet.checkParityErrors(temp);
+                               
                                 sr.ReadLine(); //Skips empty line
                                 date = Convert.ToDateTime(sr.ReadLine());
                                 //date.AddMilliseconds();
                                 Console.WriteLine("E was found");
                                 Console.WriteLine("End of file: " + date);
+                                file.endDate = date;
                                 //Add error.
                                 break;
                             default:
                                 break;
                         }
 
+                        file.addPacket(packet);
                    }
 
                     // sr.ReadLine();
@@ -143,7 +135,7 @@ namespace IndustrialProject
                 Console.WriteLine("File not found");
             }
 
-            return null;
+            return file;
         }
     }
 }

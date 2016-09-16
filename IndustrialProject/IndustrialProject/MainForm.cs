@@ -28,8 +28,8 @@ namespace IndustrialProject
             errorHighlight();
             chart1.Series[2].Enabled = false;
 
-            FileManager fm = new FileManager();
-            fm.loadFile();
+            //FileManager fm = new FileManager();
+            //fm.load();
 
         }
 
@@ -50,7 +50,12 @@ namespace IndustrialProject
             if(ofd.ShowDialog() == DialogResult.OK)
             {
                 // parse, feed into datagrid n that
+                FileManager fm = new FileManager();
+                fm.loadAndParseFile(ofd.FileName);
             }
+
+            
+
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
