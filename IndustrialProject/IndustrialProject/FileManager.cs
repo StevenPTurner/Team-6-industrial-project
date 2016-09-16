@@ -32,31 +32,47 @@ namespace IndustrialProject
                     //Add date (file start date)
 
                     port = Convert.ToInt32(sr.ReadLine());
-                    //Add port to file
+                    //Port
 
+                    sr.ReadLine();
 
                     while (sr.Peek() >= 0)
                     {
+                        Packet packet = new Packet();
 
-                        //   date = Convert.ToDateTime(sr.ReadLine());
-                        Console.WriteLine("Was trying to convert...." + sr.ReadLine());
+                        //date = Convert.ToDateTime(sr.ReadLine());
+                        date = DateTime.Parse(sr.ReadLine());
+
+                        Console.WriteLine(date.ToString("dd-MM-yyyy hh:mm:ss.fff"));
+                        Console.WriteLine(date);
+
+                        packet.timestamp = date; //Set packet timestamp
+
+                        //Console.WriteLine("Was trying to convert...." + sr.ReadLine());
                         //Add date (Packet date)
-
                         string temp = sr.ReadLine();
-                  
-                        switch(temp)
+
+                        switch (temp)
                         {
+
                             case "P":
                                 //sr.ReadLine() --- Add packet
                                 string[] stringBytes = sr.ReadLine().Split(' ');
-                                List<byte> byteList = new List<byte>();
+                                //List<byte> byteList = new List<byte>();
+
+                                Console.WriteLine("P found");
+
+                                byte[] byteArray = new byte[stringBytes.Length];
 
                                 for (int i = 0; i < stringBytes.Length; i++)
                                 {
-                                    byteList.Add(Convert.ToByte(stringBytes[i], 16));
+                                    //byteList.Add(Convert.ToByte(stringBytes[i], 16));
+                                    byteArray[i] = Convert.ToByte(stringBytes[i], 16);
                                 }
 
-                                byte[] byteArray = byteList.ToArray();
+                                //Handling logical address/path address in packet class?
+
+                                packet.data = byteArray; //Set packet bytes
 
                                 temp = sr.ReadLine();
 
@@ -77,22 +93,29 @@ namespace IndustrialProject
                                 sr.ReadLine(); //Skips empty line
                                 break;
                             case "E":
-                                sr.ReadLine(); // Will show us whether disconnect or parity error
+                                //sr.ReadLine(); // Will show us whether disconnect or parity error
+                                temp = sr.ReadLine();
+                                if (temp.Equals("Disconnect"))
+                                {
+                                    //Add disconnect error - Do in packet class
+                                }
+                                else if (temp.Equals("Parity"))
+                                {
+                                    //Add parity error - Do in packet class
+                                }
+
                                 sr.ReadLine(); //Skips empty line
                                 date = Convert.ToDateTime(sr.ReadLine());
                                 //date.AddMilliseconds();
                                 Console.WriteLine("E was found");
-                                Console.WriteLine("End of file: " + date + "." + date.Millisecond);
-                                
+                                Console.WriteLine("End of file: " + date);
                                 //Add error.
                                 break;
                             default:
                                 break;
                         }
 
-                       
-
-                    }
+                   }
 
                     // sr.ReadLine();
                     // date = Convert.ToDateTime(sr.ReadLine());

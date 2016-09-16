@@ -45,7 +45,7 @@ namespace IndustrialProject
         public ErrorType loadAndCheck(byte[] data)
         {
             this.data = data;
-
+            
             MemoryStream stream = new MemoryStream(data);
 
             do
