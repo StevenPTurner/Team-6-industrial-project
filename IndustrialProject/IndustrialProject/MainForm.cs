@@ -55,9 +55,21 @@ namespace IndustrialProject
                 FileManager fm = new FileManager();
                 openFiles.Add(fm.loadAndParseFile(ofd.FileName));
 
-                Console.WriteLine("File exists?: " + openFiles.Count);
+                //Console.WriteLine("File exists?: " + openFiles.Count);
 
-                Console.WriteLine(openFiles[0].filename);
+              //  for(int i = 0; i < openFiles.Count; i++)
+              //  {
+              //      for(int y = 0; y < openFiles[i].packets.Count; y++)
+              //      {
+                       // Console.WriteLine(openFiles[i].packets[y].data)
+              //          for(int z = 0; z < openFiles[i].packets[y].data.Length; z++)
+               //         {
+               //             Console.Write(openFiles[i].packets[y].data[z]);
+                //        }
+                 //       Console.WriteLine(" ");
+                //    }
+               // }
+                //Console.WriteLine(openFiles[0].filename);
             }
 
             

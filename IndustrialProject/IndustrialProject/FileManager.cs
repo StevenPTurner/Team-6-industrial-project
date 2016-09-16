@@ -90,6 +90,7 @@ namespace IndustrialProject
                                     packet.error = Packet.ErrorType.ERROR_TRUNCATED; //Adding error to packet
                                 }
 
+                                file.addPacket(packet);
                                 //sr.ReadLine(); //Skip blank line
                                 sr.ReadLine(); //Skips empty line
                                 break;
@@ -120,7 +121,7 @@ namespace IndustrialProject
                                 break;
                         }
 
-                        file.addPacket(packet);
+                       
                    }
 
                     //while(sr.ReadLine() != null)
@@ -146,7 +147,10 @@ namespace IndustrialProject
             Stats stats = new Stats();
             stats.packets = file.packets;
 
-            Console.WriteLine(stats.getNumberOfPackets());
+           
+           Console.WriteLine("No of packets: " + stats.getNumberOfPackets());
+            Console.WriteLine("No. of data chars: " + stats.getNumberOfDataCharacters());
+           // Console.WriteLine("Avg. Data chars: " + stats.getAvgDataRate());
 
             return file;
         }
