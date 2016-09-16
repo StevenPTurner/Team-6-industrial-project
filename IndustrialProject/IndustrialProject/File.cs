@@ -18,7 +18,7 @@ namespace IndustrialProject
         public File()
         {
             this.packets = new List<Packet>();
-            this.stats = new Stats(this);
+            this.stats = new Stats();
         }
 
         public void addPacket(Packet packetToAdd)

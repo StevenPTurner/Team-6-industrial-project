@@ -19,6 +19,8 @@ namespace IndustrialProject
         int[] test1 = new int[6] { 5, 3, 7, 8, 2, 0 };
         int[] errorTest = new int[2] { 1, 3 };
 
+        List<IndustrialProject.File> openFiles = new List<IndustrialProject.File>();
+
         public MainForm()
         {
             InitializeComponent();
@@ -51,7 +53,11 @@ namespace IndustrialProject
             {
                 // parse, feed into datagrid n that
                 FileManager fm = new FileManager();
-                fm.loadAndParseFile(ofd.FileName);
+                openFiles.Add(fm.loadAndParseFile(ofd.FileName));
+
+                Console.WriteLine("File exists?: " + openFiles.Count);
+
+                Console.WriteLine(openFiles[0].filename);
             }
 
             

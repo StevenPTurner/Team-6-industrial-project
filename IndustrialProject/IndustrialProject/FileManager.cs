@@ -16,6 +16,7 @@ namespace IndustrialProject
         {
 
             File file = new IndustrialProject.File();
+            file.filename = fname;
             
             List<string> packets = new List<String>();
             string errorFound = null;
@@ -25,7 +26,7 @@ namespace IndustrialProject
 
             try
             {
-                using (StreamReader sr = new StreamReader(@"C:\Users\Connor\Desktop\team_project_example_files\test1_link1.REC"))
+                using (StreamReader sr = new StreamReader(fname))
                 {
                     date = DateTime.Parse(sr.ReadLine());
                     //date = Convert.ToDateTime(sr.ReadLine());
@@ -43,9 +44,12 @@ namespace IndustrialProject
 
                     while (sr.Peek() >= 0)
                     {
+
+                       // Console.WriteLine("Line: " + sr.ReadLine());
                         Packet packet = new Packet();
 
                         date = DateTime.Parse(sr.ReadLine());
+                        Console.WriteLine("Date is:" + date);
                        // date = Convert.ToDateTime(sr.ReadLine());
                         
                        // Console.WriteLine(date.ToString("dd-MM-yyyy hh:mm:ss.fff"));
@@ -81,9 +85,11 @@ namespace IndustrialProject
 
                                 temp = sr.ReadLine();
 
-                                packet.checkEEPErrors(temp);
-                                packet.checkNoneErrors(temp);
-                                
+                                if (temp.Equals("None") || temp.Equals("EEP"))
+                                {
+                                    packet.error = Packet.ErrorType.ERROR_TRUNCATED; //Adding error to packet
+                                }
+
                                 //sr.ReadLine(); //Skip blank line
                                 sr.ReadLine(); //Skips empty line
                                 break;
@@ -91,9 +97,17 @@ namespace IndustrialProject
                                 //sr.ReadLine(); // Will show us whether disconnect or parity error
                                 temp = sr.ReadLine();
 
-                                packet.checkDisconnectErrors(temp);
-                                packet.checkParityErrors(temp);
-                               
+                                if (temp.Equals("Disconnect"))
+                                {
+                                    //Add disconnect to last packet 
+                                    packet.error = Packet.ErrorType.ERROR_DISCONNECT;
+                                }
+                                else if(temp.Equals("Parity"))
+                                {
+                                    //Add parity to last packet 
+                                    packet.error = Packet.ErrorType.ERROR_PARITY;
+                                }
+
                                 sr.ReadLine(); //Skips empty line
                                 date = Convert.ToDateTime(sr.ReadLine());
                                 //date.AddMilliseconds();
@@ -109,16 +123,10 @@ namespace IndustrialProject
                         file.addPacket(packet);
                    }
 
-                    // sr.ReadLine();
-                    // date = Convert.ToDateTime(sr.ReadLine());
-                    // Console.WriteLine("End of file..." + date);
-                    //End date of file.
-                   // Console.WriteLine(sr.ReadLine());
-
-                while(sr.ReadLine() != null)
-                    {
-                        Console.WriteLine("Line here");
-                    }
+                    //while(sr.ReadLine() != null)
+                    //{
+                    // Console.WriteLine("Line here");
+                    //}
                 }
             }
             catch (Exception E)
@@ -135,7 +143,22 @@ namespace IndustrialProject
                 Console.WriteLine("File not found");
             }
 
+            Stats stats = new Stats();
+            stats.packets = file.packets;
+
+            Console.WriteLine(stats.getNumberOfPackets());
+
             return file;
+        }
+
+        public Packet lastPacket()
+        {
+            Packet packet = new IndustrialProject.Packet();
+
+
+
+
+            return packet;
         }
     }
 }
