@@ -27,7 +27,7 @@ namespace IndustrialProject
             return this.packets.Select(pkt => pkt.data.Length).Sum();
         }
 
-        public double getAvgDataRate()
+        public double getAvgPacketRate()
         {
             IEnumerable<DateTime> e = this.packets.Select(pkt => pkt.timestamp);
             return e.Count() / (e.Last() - e.First()).TotalSeconds;

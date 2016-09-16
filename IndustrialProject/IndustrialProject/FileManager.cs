@@ -45,14 +45,14 @@ namespace IndustrialProject
                     while (sr.Peek() >= 0)
                     {
 
-                       // Console.WriteLine("Line: " + sr.ReadLine());
+                        // Console.WriteLine("Line: " + sr.ReadLine());
                         Packet packet = new Packet();
 
                         date = DateTime.Parse(sr.ReadLine());
                         Console.WriteLine("Date is:" + date);
-                       // date = Convert.ToDateTime(sr.ReadLine());
-                        
-                       // Console.WriteLine(date.ToString("dd-MM-yyyy hh:mm:ss.fff"));
+                        // date = Convert.ToDateTime(sr.ReadLine());
+
+                        // Console.WriteLine(date.ToString("dd-MM-yyyy hh:mm:ss.fff"));
                         //Console.WriteLine(date);
 
                         packet.timestamp = date; //Set packet timestamp
@@ -103,7 +103,7 @@ namespace IndustrialProject
                                     //Add disconnect to last packet 
                                     packet.error = Packet.ErrorType.ERROR_DISCONNECT;
                                 }
-                                else if(temp.Equals("Parity"))
+                                else if (temp.Equals("Parity"))
                                 {
                                     //Add parity to last packet 
                                     packet.error = Packet.ErrorType.ERROR_PARITY;
@@ -120,14 +120,7 @@ namespace IndustrialProject
                             default:
                                 break;
                         }
-
-                       
-                   }
-
-                    //while(sr.ReadLine() != null)
-                    //{
-                    // Console.WriteLine("Line here");
-                    //}
+                    }
                 }
             }
             catch (Exception E)
@@ -148,9 +141,9 @@ namespace IndustrialProject
             stats.packets = file.packets;
 
            
-           Console.WriteLine("No of packets: " + stats.getNumberOfPackets());
+            Console.WriteLine("No of packets: " + stats.getNumberOfPackets());
             Console.WriteLine("No. of data chars: " + stats.getNumberOfDataCharacters());
-           // Console.WriteLine("Avg. Data chars: " + stats.getAvgDataRate());
+            Console.WriteLine("Avg. Packet Rate: " + stats.getAvgPacketRate());
 
             return file;
         }
