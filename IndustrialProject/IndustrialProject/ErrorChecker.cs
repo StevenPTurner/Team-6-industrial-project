@@ -52,5 +52,18 @@ namespace IndustrialProject
             //Could do it with one packet if we store previous seq no in a packet
             return Packet.ErrorType.NO_ERROR;
         }
+
+        public Packet.ErrorType determineFlaggedError(string flaggedError)
+        {
+            if(flaggedError.Equals("Disconnect"))
+            {
+                return Packet.ErrorType.ERROR_DISCONNECT;
+            }
+            else if(flaggedError.Equals("Parity"))
+            {
+                return Packet.ErrorType.ERROR_PARITY;
+            }
+            return Packet.ErrorType.NO_ERROR;
+        }
     }
 }
