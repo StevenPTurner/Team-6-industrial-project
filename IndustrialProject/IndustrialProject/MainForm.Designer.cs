@@ -204,12 +204,13 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1062, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1062, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -222,41 +223,41 @@
             this.loadDevice4ToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
             this.loadToolStripMenuItem.Text = "Load Device 1";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
             // loadDevice2ToolStripMenuItem
             // 
             this.loadDevice2ToolStripMenuItem.Name = "loadDevice2ToolStripMenuItem";
-            this.loadDevice2ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadDevice2ToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
             this.loadDevice2ToolStripMenuItem.Text = "Load Device 2";
             this.loadDevice2ToolStripMenuItem.Click += new System.EventHandler(this.loadDevice2ToolStripMenuItem_Click);
             // 
             // loadDevice3ToolStripMenuItem
             // 
             this.loadDevice3ToolStripMenuItem.Name = "loadDevice3ToolStripMenuItem";
-            this.loadDevice3ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadDevice3ToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
             this.loadDevice3ToolStripMenuItem.Text = "Load Device 3";
             this.loadDevice3ToolStripMenuItem.Click += new System.EventHandler(this.loadDevice3ToolStripMenuItem_Click);
             // 
             // loadDevice4ToolStripMenuItem
             // 
             this.loadDevice4ToolStripMenuItem.Name = "loadDevice4ToolStripMenuItem";
-            this.loadDevice4ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadDevice4ToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
             this.loadDevice4ToolStripMenuItem.Text = "Load Device 4";
             this.loadDevice4ToolStripMenuItem.Click += new System.EventHandler(this.loadDevice4ToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -266,7 +267,7 @@
             this.keyBoardShortcutsMenuItem,
             this.loadHelpMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // keyBoardShortcutsMenuItem
@@ -285,10 +286,10 @@
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(0, 24);
+            this.tabControl1.Location = new System.Drawing.Point(0, 28);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1062, 538);
+            this.tabControl1.Size = new System.Drawing.Size(1062, 534);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -309,10 +310,10 @@
             this.tabPage1.Controls.Add(this.checkedListBox1);
             this.tabPage1.Controls.Add(this.dataGridView1);
             this.tabPage1.Controls.Add(this.chart1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 26);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1054, 512);
+            this.tabPage1.Size = new System.Drawing.Size(1054, 504);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Link 1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -323,7 +324,7 @@
             this.errorCountA.AutoSize = true;
             this.errorCountA.Location = new System.Drawing.Point(394, 318);
             this.errorCountA.Name = "errorCountA";
-            this.errorCountA.Size = new System.Drawing.Size(35, 13);
+            this.errorCountA.Size = new System.Drawing.Size(42, 17);
             this.errorCountA.TabIndex = 21;
             this.errorCountA.Text = "label9";
             // 
@@ -332,7 +333,7 @@
             this.charCountA.AutoSize = true;
             this.charCountA.Location = new System.Drawing.Point(230, 318);
             this.charCountA.Name = "charCountA";
-            this.charCountA.Size = new System.Drawing.Size(35, 13);
+            this.charCountA.Size = new System.Drawing.Size(42, 17);
             this.charCountA.TabIndex = 20;
             this.charCountA.Text = "label8";
             // 
@@ -341,7 +342,7 @@
             this.packetCountA.AutoSize = true;
             this.packetCountA.Location = new System.Drawing.Point(82, 318);
             this.packetCountA.Name = "packetCountA";
-            this.packetCountA.Size = new System.Drawing.Size(35, 13);
+            this.packetCountA.Size = new System.Drawing.Size(42, 17);
             this.packetCountA.TabIndex = 19;
             this.packetCountA.Text = "label7";
             // 
@@ -350,7 +351,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(325, 318);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(63, 13);
+            this.label3.Size = new System.Drawing.Size(79, 17);
             this.label3.TabIndex = 15;
             this.label3.Text = "No. Errors: ";
             // 
@@ -359,7 +360,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(162, 318);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 13);
+            this.label2.Size = new System.Drawing.Size(77, 17);
             this.label2.TabIndex = 14;
             this.label2.Text = "No. Chars: ";
             // 
@@ -368,7 +369,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(8, 318);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(68, 13);
+            this.label1.Size = new System.Drawing.Size(85, 17);
             this.label1.TabIndex = 13;
             this.label1.Text = "No. Packets:";
             // 
@@ -381,7 +382,7 @@
             "Area"});
             this.chartDropdown.Location = new System.Drawing.Point(825, 6);
             this.chartDropdown.Name = "chartDropdown";
-            this.chartDropdown.Size = new System.Drawing.Size(121, 21);
+            this.chartDropdown.Size = new System.Drawing.Size(121, 25);
             this.chartDropdown.TabIndex = 12;
             this.chartDropdown.Text = "Chart mode";
             this.chartDropdown.SelectedIndexChanged += new System.EventHandler(this.chartDropdown_SelectedIndexChanged);
@@ -391,7 +392,7 @@
             this.errorRate.AutoSize = true;
             this.errorRate.Location = new System.Drawing.Point(923, 318);
             this.errorRate.Name = "errorRate";
-            this.errorRate.Size = new System.Drawing.Size(30, 13);
+            this.errorRate.Size = new System.Drawing.Size(36, 17);
             this.errorRate.TabIndex = 8;
             this.errorRate.Text = "err/s";
             // 
@@ -400,7 +401,7 @@
             this.ErrorRatelbl.AutoSize = true;
             this.ErrorRatelbl.Location = new System.Drawing.Point(864, 318);
             this.ErrorRatelbl.Name = "ErrorRatelbl";
-            this.ErrorRatelbl.Size = new System.Drawing.Size(58, 13);
+            this.ErrorRatelbl.Size = new System.Drawing.Size(72, 17);
             this.ErrorRatelbl.TabIndex = 7;
             this.ErrorRatelbl.Text = "Error rate:";
             // 
@@ -409,7 +410,7 @@
             this.packetRate.AutoSize = true;
             this.packetRate.Location = new System.Drawing.Point(724, 318);
             this.packetRate.Name = "packetRate";
-            this.packetRate.Size = new System.Drawing.Size(48, 13);
+            this.packetRate.Size = new System.Drawing.Size(60, 17);
             this.packetRate.TabIndex = 6;
             this.packetRate.Text = "packet/s";
             // 
@@ -418,7 +419,7 @@
             this.PacketRatelbl.AutoSize = true;
             this.PacketRatelbl.Location = new System.Drawing.Point(653, 318);
             this.PacketRatelbl.Name = "PacketRatelbl";
-            this.PacketRatelbl.Size = new System.Drawing.Size(66, 13);
+            this.PacketRatelbl.Size = new System.Drawing.Size(82, 17);
             this.PacketRatelbl.TabIndex = 5;
             this.PacketRatelbl.Text = "Packet rate:";
             // 
@@ -427,7 +428,7 @@
             this.dataRate.AutoSize = true;
             this.dataRate.Location = new System.Drawing.Point(544, 318);
             this.dataRate.Name = "dataRate";
-            this.dataRate.Size = new System.Drawing.Size(30, 13);
+            this.dataRate.Size = new System.Drawing.Size(39, 17);
             this.dataRate.TabIndex = 4;
             this.dataRate.Text = "mb/s";
             // 
@@ -436,7 +437,7 @@
             this.DataRatelbl.AutoSize = true;
             this.DataRatelbl.Location = new System.Drawing.Point(484, 318);
             this.DataRatelbl.Name = "DataRatelbl";
-            this.DataRatelbl.Size = new System.Drawing.Size(57, 13);
+            this.DataRatelbl.Size = new System.Drawing.Size(70, 17);
             this.DataRatelbl.TabIndex = 3;
             this.DataRatelbl.Text = "Data rate:";
             // 
@@ -452,7 +453,7 @@
             "EPPs and timeout"});
             this.checkedListBox1.Location = new System.Drawing.Point(835, 33);
             this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(111, 84);
+            this.checkedListBox1.Size = new System.Drawing.Size(111, 80);
             this.checkedListBox1.TabIndex = 2;
             this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
@@ -477,6 +478,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(940, 156);
             this.dataGridView1.TabIndex = 1;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // timeCol
             // 
@@ -560,10 +562,10 @@
             this.tabPage2.Controls.Add(this.checkedListBox3);
             this.tabPage2.Controls.Add(this.dataGridView2);
             this.tabPage2.Controls.Add(this.chart3);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 26);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1054, 512);
+            this.tabPage2.Size = new System.Drawing.Size(1054, 508);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Link 2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -573,7 +575,7 @@
             this.linkTwoErrorCount.AutoSize = true;
             this.linkTwoErrorCount.Location = new System.Drawing.Point(394, 318);
             this.linkTwoErrorCount.Name = "linkTwoErrorCount";
-            this.linkTwoErrorCount.Size = new System.Drawing.Size(35, 13);
+            this.linkTwoErrorCount.Size = new System.Drawing.Size(42, 17);
             this.linkTwoErrorCount.TabIndex = 37;
             this.linkTwoErrorCount.Text = "label9";
             // 
@@ -582,7 +584,7 @@
             this.linkTwoCharCount.AutoSize = true;
             this.linkTwoCharCount.Location = new System.Drawing.Point(230, 318);
             this.linkTwoCharCount.Name = "linkTwoCharCount";
-            this.linkTwoCharCount.Size = new System.Drawing.Size(35, 13);
+            this.linkTwoCharCount.Size = new System.Drawing.Size(42, 17);
             this.linkTwoCharCount.TabIndex = 36;
             this.linkTwoCharCount.Text = "label8";
             // 
@@ -591,7 +593,7 @@
             this.linkTwoPacketCount.AutoSize = true;
             this.linkTwoPacketCount.Location = new System.Drawing.Point(82, 318);
             this.linkTwoPacketCount.Name = "linkTwoPacketCount";
-            this.linkTwoPacketCount.Size = new System.Drawing.Size(35, 13);
+            this.linkTwoPacketCount.Size = new System.Drawing.Size(42, 17);
             this.linkTwoPacketCount.TabIndex = 35;
             this.linkTwoPacketCount.Text = "label7";
             // 
@@ -600,7 +602,7 @@
             this.label19.AutoSize = true;
             this.label19.Location = new System.Drawing.Point(325, 318);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(63, 13);
+            this.label19.Size = new System.Drawing.Size(79, 17);
             this.label19.TabIndex = 34;
             this.label19.Text = "No. Errors: ";
             // 
@@ -609,7 +611,7 @@
             this.label20.AutoSize = true;
             this.label20.Location = new System.Drawing.Point(162, 318);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(62, 13);
+            this.label20.Size = new System.Drawing.Size(77, 17);
             this.label20.TabIndex = 33;
             this.label20.Text = "No. Chars: ";
             // 
@@ -618,7 +620,7 @@
             this.label21.AutoSize = true;
             this.label21.Location = new System.Drawing.Point(8, 318);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(68, 13);
+            this.label21.Size = new System.Drawing.Size(85, 17);
             this.label21.TabIndex = 32;
             this.label21.Text = "No. Packets:";
             // 
@@ -631,7 +633,7 @@
             "Area"});
             this.comboBox1.Location = new System.Drawing.Point(825, 6);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.Size = new System.Drawing.Size(121, 25);
             this.comboBox1.TabIndex = 31;
             this.comboBox1.Text = "Chart mode";
             // 
@@ -640,7 +642,7 @@
             this.label22.AutoSize = true;
             this.label22.Location = new System.Drawing.Point(923, 318);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(30, 13);
+            this.label22.Size = new System.Drawing.Size(36, 17);
             this.label22.TabIndex = 30;
             this.label22.Text = "err/s";
             // 
@@ -649,7 +651,7 @@
             this.label23.AutoSize = true;
             this.label23.Location = new System.Drawing.Point(864, 318);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(58, 13);
+            this.label23.Size = new System.Drawing.Size(72, 17);
             this.label23.TabIndex = 29;
             this.label23.Text = "Error rate:";
             // 
@@ -658,7 +660,7 @@
             this.linkTwoPacketRate.AutoSize = true;
             this.linkTwoPacketRate.Location = new System.Drawing.Point(724, 318);
             this.linkTwoPacketRate.Name = "linkTwoPacketRate";
-            this.linkTwoPacketRate.Size = new System.Drawing.Size(48, 13);
+            this.linkTwoPacketRate.Size = new System.Drawing.Size(60, 17);
             this.linkTwoPacketRate.TabIndex = 28;
             this.linkTwoPacketRate.Text = "packet/s";
             // 
@@ -667,7 +669,7 @@
             this.label25.AutoSize = true;
             this.label25.Location = new System.Drawing.Point(653, 318);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(66, 13);
+            this.label25.Size = new System.Drawing.Size(82, 17);
             this.label25.TabIndex = 27;
             this.label25.Text = "Packet rate:";
             // 
@@ -676,7 +678,7 @@
             this.linkTwoDataRate.AutoSize = true;
             this.linkTwoDataRate.Location = new System.Drawing.Point(544, 318);
             this.linkTwoDataRate.Name = "linkTwoDataRate";
-            this.linkTwoDataRate.Size = new System.Drawing.Size(30, 13);
+            this.linkTwoDataRate.Size = new System.Drawing.Size(39, 17);
             this.linkTwoDataRate.TabIndex = 26;
             this.linkTwoDataRate.Text = "mb/s";
             // 
@@ -685,7 +687,7 @@
             this.label27.AutoSize = true;
             this.label27.Location = new System.Drawing.Point(484, 318);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(57, 13);
+            this.label27.Size = new System.Drawing.Size(70, 17);
             this.label27.TabIndex = 25;
             this.label27.Text = "Data rate:";
             // 
@@ -701,7 +703,7 @@
             "EPPs and timeout"});
             this.checkedListBox3.Location = new System.Drawing.Point(835, 33);
             this.checkedListBox3.Name = "checkedListBox3";
-            this.checkedListBox3.Size = new System.Drawing.Size(111, 84);
+            this.checkedListBox3.Size = new System.Drawing.Size(111, 80);
             this.checkedListBox3.TabIndex = 24;
             // 
             // dataGridView2
@@ -808,9 +810,9 @@
             this.tabPage3.Controls.Add(this.checkedListBox4);
             this.tabPage3.Controls.Add(this.dataGridView4);
             this.tabPage3.Controls.Add(this.chart4);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Location = new System.Drawing.Point(4, 26);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1054, 512);
+            this.tabPage3.Size = new System.Drawing.Size(1054, 508);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Link 3";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -820,7 +822,7 @@
             this.linkThreeErrorCount.AutoSize = true;
             this.linkThreeErrorCount.Location = new System.Drawing.Point(394, 318);
             this.linkThreeErrorCount.Name = "linkThreeErrorCount";
-            this.linkThreeErrorCount.Size = new System.Drawing.Size(35, 13);
+            this.linkThreeErrorCount.Size = new System.Drawing.Size(42, 17);
             this.linkThreeErrorCount.TabIndex = 37;
             this.linkThreeErrorCount.Text = "label9";
             // 
@@ -829,7 +831,7 @@
             this.linkThreeCharCount.AutoSize = true;
             this.linkThreeCharCount.Location = new System.Drawing.Point(230, 318);
             this.linkThreeCharCount.Name = "linkThreeCharCount";
-            this.linkThreeCharCount.Size = new System.Drawing.Size(35, 13);
+            this.linkThreeCharCount.Size = new System.Drawing.Size(42, 17);
             this.linkThreeCharCount.TabIndex = 36;
             this.linkThreeCharCount.Text = "label8";
             // 
@@ -838,7 +840,7 @@
             this.linkThreePacketCount.AutoSize = true;
             this.linkThreePacketCount.Location = new System.Drawing.Point(82, 318);
             this.linkThreePacketCount.Name = "linkThreePacketCount";
-            this.linkThreePacketCount.Size = new System.Drawing.Size(35, 13);
+            this.linkThreePacketCount.Size = new System.Drawing.Size(42, 17);
             this.linkThreePacketCount.TabIndex = 35;
             this.linkThreePacketCount.Text = "label7";
             // 
@@ -847,7 +849,7 @@
             this.label31.AutoSize = true;
             this.label31.Location = new System.Drawing.Point(325, 318);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(63, 13);
+            this.label31.Size = new System.Drawing.Size(79, 17);
             this.label31.TabIndex = 34;
             this.label31.Text = "No. Errors: ";
             // 
@@ -856,7 +858,7 @@
             this.label32.AutoSize = true;
             this.label32.Location = new System.Drawing.Point(162, 318);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(62, 13);
+            this.label32.Size = new System.Drawing.Size(77, 17);
             this.label32.TabIndex = 33;
             this.label32.Text = "No. Chars: ";
             // 
@@ -865,7 +867,7 @@
             this.label33.AutoSize = true;
             this.label33.Location = new System.Drawing.Point(8, 318);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(68, 13);
+            this.label33.Size = new System.Drawing.Size(85, 17);
             this.label33.TabIndex = 32;
             this.label33.Text = "No. Packets:";
             // 
@@ -878,7 +880,7 @@
             "Area"});
             this.comboBox2.Location = new System.Drawing.Point(825, 6);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
+            this.comboBox2.Size = new System.Drawing.Size(121, 25);
             this.comboBox2.TabIndex = 31;
             this.comboBox2.Text = "Chart mode";
             // 
@@ -887,7 +889,7 @@
             this.label34.AutoSize = true;
             this.label34.Location = new System.Drawing.Point(923, 318);
             this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(30, 13);
+            this.label34.Size = new System.Drawing.Size(36, 17);
             this.label34.TabIndex = 30;
             this.label34.Text = "err/s";
             // 
@@ -896,7 +898,7 @@
             this.label35.AutoSize = true;
             this.label35.Location = new System.Drawing.Point(864, 318);
             this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(58, 13);
+            this.label35.Size = new System.Drawing.Size(72, 17);
             this.label35.TabIndex = 29;
             this.label35.Text = "Error rate:";
             // 
@@ -905,7 +907,7 @@
             this.linkThreePacketRate.AutoSize = true;
             this.linkThreePacketRate.Location = new System.Drawing.Point(724, 318);
             this.linkThreePacketRate.Name = "linkThreePacketRate";
-            this.linkThreePacketRate.Size = new System.Drawing.Size(48, 13);
+            this.linkThreePacketRate.Size = new System.Drawing.Size(60, 17);
             this.linkThreePacketRate.TabIndex = 28;
             this.linkThreePacketRate.Text = "packet/s";
             // 
@@ -914,7 +916,7 @@
             this.label37.AutoSize = true;
             this.label37.Location = new System.Drawing.Point(653, 318);
             this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(66, 13);
+            this.label37.Size = new System.Drawing.Size(82, 17);
             this.label37.TabIndex = 27;
             this.label37.Text = "Packet rate:";
             // 
@@ -923,7 +925,7 @@
             this.linkThreeDataRate.AutoSize = true;
             this.linkThreeDataRate.Location = new System.Drawing.Point(544, 318);
             this.linkThreeDataRate.Name = "linkThreeDataRate";
-            this.linkThreeDataRate.Size = new System.Drawing.Size(30, 13);
+            this.linkThreeDataRate.Size = new System.Drawing.Size(39, 17);
             this.linkThreeDataRate.TabIndex = 26;
             this.linkThreeDataRate.Text = "mb/s";
             // 
@@ -932,7 +934,7 @@
             this.label39.AutoSize = true;
             this.label39.Location = new System.Drawing.Point(484, 318);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(57, 13);
+            this.label39.Size = new System.Drawing.Size(70, 17);
             this.label39.TabIndex = 25;
             this.label39.Text = "Data rate:";
             // 
@@ -948,7 +950,7 @@
             "EPPs and timeout"});
             this.checkedListBox4.Location = new System.Drawing.Point(835, 33);
             this.checkedListBox4.Name = "checkedListBox4";
-            this.checkedListBox4.Size = new System.Drawing.Size(111, 84);
+            this.checkedListBox4.Size = new System.Drawing.Size(111, 80);
             this.checkedListBox4.TabIndex = 24;
             // 
             // dataGridView4
@@ -1055,9 +1057,9 @@
             this.tabPage4.Controls.Add(this.checkedListBox5);
             this.tabPage4.Controls.Add(this.dataGridView5);
             this.tabPage4.Controls.Add(this.chart5);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Location = new System.Drawing.Point(4, 26);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1054, 512);
+            this.tabPage4.Size = new System.Drawing.Size(1054, 508);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Link 4";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1067,7 +1069,7 @@
             this.linkFourErrorCount.AutoSize = true;
             this.linkFourErrorCount.Location = new System.Drawing.Point(394, 318);
             this.linkFourErrorCount.Name = "linkFourErrorCount";
-            this.linkFourErrorCount.Size = new System.Drawing.Size(35, 13);
+            this.linkFourErrorCount.Size = new System.Drawing.Size(42, 17);
             this.linkFourErrorCount.TabIndex = 37;
             this.linkFourErrorCount.Text = "label9";
             // 
@@ -1076,7 +1078,7 @@
             this.linkFourCharCount.AutoSize = true;
             this.linkFourCharCount.Location = new System.Drawing.Point(230, 318);
             this.linkFourCharCount.Name = "linkFourCharCount";
-            this.linkFourCharCount.Size = new System.Drawing.Size(35, 13);
+            this.linkFourCharCount.Size = new System.Drawing.Size(42, 17);
             this.linkFourCharCount.TabIndex = 36;
             this.linkFourCharCount.Text = "label8";
             // 
@@ -1085,7 +1087,7 @@
             this.linkFourPacketCount.AutoSize = true;
             this.linkFourPacketCount.Location = new System.Drawing.Point(82, 318);
             this.linkFourPacketCount.Name = "linkFourPacketCount";
-            this.linkFourPacketCount.Size = new System.Drawing.Size(35, 13);
+            this.linkFourPacketCount.Size = new System.Drawing.Size(42, 17);
             this.linkFourPacketCount.TabIndex = 35;
             this.linkFourPacketCount.Text = "label7";
             // 
@@ -1094,7 +1096,7 @@
             this.label43.AutoSize = true;
             this.label43.Location = new System.Drawing.Point(325, 318);
             this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(63, 13);
+            this.label43.Size = new System.Drawing.Size(79, 17);
             this.label43.TabIndex = 34;
             this.label43.Text = "No. Errors: ";
             // 
@@ -1103,7 +1105,7 @@
             this.label44.AutoSize = true;
             this.label44.Location = new System.Drawing.Point(162, 318);
             this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(62, 13);
+            this.label44.Size = new System.Drawing.Size(77, 17);
             this.label44.TabIndex = 33;
             this.label44.Text = "No. Chars: ";
             // 
@@ -1112,7 +1114,7 @@
             this.label45.AutoSize = true;
             this.label45.Location = new System.Drawing.Point(8, 318);
             this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(68, 13);
+            this.label45.Size = new System.Drawing.Size(85, 17);
             this.label45.TabIndex = 32;
             this.label45.Text = "No. Packets:";
             // 
@@ -1125,7 +1127,7 @@
             "Area"});
             this.comboBox3.Location = new System.Drawing.Point(825, 6);
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(121, 21);
+            this.comboBox3.Size = new System.Drawing.Size(121, 25);
             this.comboBox3.TabIndex = 31;
             this.comboBox3.Text = "Chart mode";
             // 
@@ -1134,7 +1136,7 @@
             this.label46.AutoSize = true;
             this.label46.Location = new System.Drawing.Point(923, 318);
             this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(30, 13);
+            this.label46.Size = new System.Drawing.Size(36, 17);
             this.label46.TabIndex = 30;
             this.label46.Text = "err/s";
             // 
@@ -1143,7 +1145,7 @@
             this.label47.AutoSize = true;
             this.label47.Location = new System.Drawing.Point(864, 318);
             this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(58, 13);
+            this.label47.Size = new System.Drawing.Size(72, 17);
             this.label47.TabIndex = 29;
             this.label47.Text = "Error rate:";
             // 
@@ -1152,7 +1154,7 @@
             this.linkFourPacketRate.AutoSize = true;
             this.linkFourPacketRate.Location = new System.Drawing.Point(724, 318);
             this.linkFourPacketRate.Name = "linkFourPacketRate";
-            this.linkFourPacketRate.Size = new System.Drawing.Size(48, 13);
+            this.linkFourPacketRate.Size = new System.Drawing.Size(60, 17);
             this.linkFourPacketRate.TabIndex = 28;
             this.linkFourPacketRate.Text = "packet/s";
             // 
@@ -1161,7 +1163,7 @@
             this.label49.AutoSize = true;
             this.label49.Location = new System.Drawing.Point(653, 318);
             this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(66, 13);
+            this.label49.Size = new System.Drawing.Size(82, 17);
             this.label49.TabIndex = 27;
             this.label49.Text = "Packet rate:";
             // 
@@ -1170,7 +1172,7 @@
             this.linkFourDataRate.AutoSize = true;
             this.linkFourDataRate.Location = new System.Drawing.Point(544, 318);
             this.linkFourDataRate.Name = "linkFourDataRate";
-            this.linkFourDataRate.Size = new System.Drawing.Size(30, 13);
+            this.linkFourDataRate.Size = new System.Drawing.Size(39, 17);
             this.linkFourDataRate.TabIndex = 26;
             this.linkFourDataRate.Text = "mb/s";
             // 
@@ -1179,7 +1181,7 @@
             this.label51.AutoSize = true;
             this.label51.Location = new System.Drawing.Point(484, 318);
             this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(57, 13);
+            this.label51.Size = new System.Drawing.Size(70, 17);
             this.label51.TabIndex = 25;
             this.label51.Text = "Data rate:";
             // 
@@ -1195,7 +1197,7 @@
             "EPPs and timeout"});
             this.checkedListBox5.Location = new System.Drawing.Point(835, 33);
             this.checkedListBox5.Name = "checkedListBox5";
-            this.checkedListBox5.Size = new System.Drawing.Size(111, 84);
+            this.checkedListBox5.Size = new System.Drawing.Size(111, 80);
             this.checkedListBox5.TabIndex = 24;
             // 
             // dataGridView5
@@ -1301,9 +1303,9 @@
             this.tabPage5.Controls.Add(this.checkedListBox2);
             this.tabPage5.Controls.Add(this.chart2);
             this.tabPage5.Controls.Add(this.dataGridView3);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Location = new System.Drawing.Point(4, 26);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(1054, 512);
+            this.tabPage5.Size = new System.Drawing.Size(1054, 508);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Link 1-4";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -1313,7 +1315,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(430, 200);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
+            this.label4.Size = new System.Drawing.Size(42, 17);
             this.label4.TabIndex = 33;
             this.label4.Text = "label9";
             // 
@@ -1322,7 +1324,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(266, 200);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 13);
+            this.label5.Size = new System.Drawing.Size(42, 17);
             this.label5.TabIndex = 32;
             this.label5.Text = "label8";
             // 
@@ -1331,7 +1333,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(118, 200);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(35, 13);
+            this.label6.Size = new System.Drawing.Size(42, 17);
             this.label6.TabIndex = 31;
             this.label6.Text = "label7";
             // 
@@ -1340,7 +1342,7 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(361, 200);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(63, 13);
+            this.label7.Size = new System.Drawing.Size(79, 17);
             this.label7.TabIndex = 30;
             this.label7.Text = "No. Errors: ";
             // 
@@ -1349,7 +1351,7 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(198, 200);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(62, 13);
+            this.label8.Size = new System.Drawing.Size(77, 17);
             this.label8.TabIndex = 29;
             this.label8.Text = "No. Chars: ";
             // 
@@ -1358,7 +1360,7 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(44, 200);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(68, 13);
+            this.label9.Size = new System.Drawing.Size(85, 17);
             this.label9.TabIndex = 28;
             this.label9.Text = "No. Packets:";
             // 
@@ -1367,7 +1369,7 @@
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(959, 200);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(30, 13);
+            this.label10.Size = new System.Drawing.Size(36, 17);
             this.label10.TabIndex = 27;
             this.label10.Text = "err/s";
             // 
@@ -1376,7 +1378,7 @@
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(900, 200);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(58, 13);
+            this.label11.Size = new System.Drawing.Size(72, 17);
             this.label11.TabIndex = 26;
             this.label11.Text = "Error rate:";
             // 
@@ -1385,7 +1387,7 @@
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(760, 200);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(48, 13);
+            this.label12.Size = new System.Drawing.Size(60, 17);
             this.label12.TabIndex = 25;
             this.label12.Text = "packet/s";
             // 
@@ -1394,7 +1396,7 @@
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(689, 200);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(66, 13);
+            this.label13.Size = new System.Drawing.Size(82, 17);
             this.label13.TabIndex = 24;
             this.label13.Text = "Packet rate:";
             // 
@@ -1403,7 +1405,7 @@
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(580, 200);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(30, 13);
+            this.label14.Size = new System.Drawing.Size(39, 17);
             this.label14.TabIndex = 23;
             this.label14.Text = "mb/s";
             // 
@@ -1412,7 +1414,7 @@
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(520, 200);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(57, 13);
+            this.label15.Size = new System.Drawing.Size(70, 17);
             this.label15.TabIndex = 22;
             this.label15.Text = "Data rate:";
             // 
@@ -1427,7 +1429,7 @@
             "EPPs and timeout"});
             this.checkedListBox2.Location = new System.Drawing.Point(913, 3);
             this.checkedListBox2.Name = "checkedListBox2";
-            this.checkedListBox2.Size = new System.Drawing.Size(120, 84);
+            this.checkedListBox2.Size = new System.Drawing.Size(120, 80);
             this.checkedListBox2.TabIndex = 2;
             // 
             // chart2
@@ -1560,7 +1562,7 @@
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1062, 562);
