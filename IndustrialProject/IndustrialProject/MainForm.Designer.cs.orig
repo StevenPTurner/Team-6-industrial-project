@@ -185,7 +185,6 @@
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.tabPage2.SuspendLayout();
@@ -314,33 +313,6 @@
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
-            // errorCountB
-            // 
-            this.errorCountB.AutoSize = true;
-            this.errorCountB.Location = new System.Drawing.Point(878, 346);
-            this.errorCountB.Name = "errorCountB";
-            this.errorCountB.Size = new System.Drawing.Size(41, 13);
-            this.errorCountB.TabIndex = 24;
-            this.errorCountB.Text = "label12";
-            // 
-            // charCountB
-            // 
-            this.charCountB.AutoSize = true;
-            this.charCountB.Location = new System.Drawing.Point(726, 346);
-            this.charCountB.Name = "charCountB";
-            this.charCountB.Size = new System.Drawing.Size(41, 13);
-            this.charCountB.TabIndex = 23;
-            this.charCountB.Text = "label11";
-            // 
-            // packetCountB
-            // 
-            this.packetCountB.AutoSize = true;
-            this.packetCountB.Location = new System.Drawing.Point(578, 346);
-            this.packetCountB.Name = "packetCountB";
-            this.packetCountB.Size = new System.Drawing.Size(41, 13);
-            this.packetCountB.TabIndex = 22;
-            this.packetCountB.Text = "label10";
-            // 
             // errorCountA
             // 
             this.errorCountA.AutoSize = true;
@@ -367,33 +339,6 @@
             this.packetCountA.Size = new System.Drawing.Size(35, 13);
             this.packetCountA.TabIndex = 19;
             this.packetCountA.Text = "label7";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(821, 346);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(63, 13);
-            this.label4.TabIndex = 18;
-            this.label4.Text = "No. Errors: ";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(658, 346);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(62, 13);
-            this.label5.TabIndex = 17;
-            this.label5.Text = "No. Chars: ";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(504, 346);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(68, 13);
-            this.label6.TabIndex = 16;
-            this.label6.Text = "No. Packets:";
             // 
             // label3
             // 
@@ -436,12 +381,13 @@
             this.chartDropdown.Text = "Chart mode";
             this.chartDropdown.SelectedIndexChanged += new System.EventHandler(this.chartDropdown_SelectedIndexChanged);
             // 
+<<<<<<< HEAD
             // linkblbl
             // 
             this.linkblbl.AutoSize = true;
             this.linkblbl.Location = new System.Drawing.Point(690, 171);
             this.linkblbl.Name = "linkblbl";
-            this.linkblbl.Size = new System.Drawing.Size(13, 13);
+            this.linkblbl.Size = new System.Drawing.Size(16, 17);
             this.linkblbl.TabIndex = 11;
             this.linkblbl.Text = "B";
             // 
@@ -450,7 +396,7 @@
             this.linkalbl.AutoSize = true;
             this.linkalbl.Location = new System.Drawing.Point(238, 171);
             this.linkalbl.Name = "linkalbl";
-            this.linkalbl.Size = new System.Drawing.Size(14, 13);
+            this.linkalbl.Size = new System.Drawing.Size(16, 17);
             this.linkalbl.TabIndex = 10;
             this.linkalbl.Text = "A";
             // 
@@ -485,6 +431,8 @@
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.Width = 150;
             // 
+=======
+>>>>>>> mantas
             // errorRate
             // 
             this.errorRate.AutoSize = true;
@@ -615,7 +563,27 @@
             // 
             // tabPage2
             // 
+<<<<<<< HEAD
+            this.tabPage2.Location = new System.Drawing.Point(4, 26);
+=======
+            this.tabPage2.Controls.Add(this.label16);
+            this.tabPage2.Controls.Add(this.label17);
+            this.tabPage2.Controls.Add(this.label18);
+            this.tabPage2.Controls.Add(this.label19);
+            this.tabPage2.Controls.Add(this.label20);
+            this.tabPage2.Controls.Add(this.label21);
+            this.tabPage2.Controls.Add(this.comboBox1);
+            this.tabPage2.Controls.Add(this.label22);
+            this.tabPage2.Controls.Add(this.label23);
+            this.tabPage2.Controls.Add(this.label24);
+            this.tabPage2.Controls.Add(this.label25);
+            this.tabPage2.Controls.Add(this.label26);
+            this.tabPage2.Controls.Add(this.label27);
+            this.tabPage2.Controls.Add(this.checkedListBox3);
+            this.tabPage2.Controls.Add(this.dataGridView2);
+            this.tabPage2.Controls.Add(this.chart3);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
+>>>>>>> mantas
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(1054, 512);
@@ -625,7 +593,27 @@
             // 
             // tabPage3
             // 
+<<<<<<< HEAD
+            this.tabPage3.Location = new System.Drawing.Point(4, 26);
+=======
+            this.tabPage3.Controls.Add(this.label28);
+            this.tabPage3.Controls.Add(this.label29);
+            this.tabPage3.Controls.Add(this.label30);
+            this.tabPage3.Controls.Add(this.label31);
+            this.tabPage3.Controls.Add(this.label32);
+            this.tabPage3.Controls.Add(this.label33);
+            this.tabPage3.Controls.Add(this.comboBox2);
+            this.tabPage3.Controls.Add(this.label34);
+            this.tabPage3.Controls.Add(this.label35);
+            this.tabPage3.Controls.Add(this.label36);
+            this.tabPage3.Controls.Add(this.label37);
+            this.tabPage3.Controls.Add(this.label38);
+            this.tabPage3.Controls.Add(this.label39);
+            this.tabPage3.Controls.Add(this.checkedListBox4);
+            this.tabPage3.Controls.Add(this.dataGridView4);
+            this.tabPage3.Controls.Add(this.chart4);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
+>>>>>>> mantas
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(1054, 512);
             this.tabPage3.TabIndex = 2;
@@ -634,7 +622,27 @@
             // 
             // tabPage4
             // 
+<<<<<<< HEAD
+            this.tabPage4.Location = new System.Drawing.Point(4, 26);
+=======
+            this.tabPage4.Controls.Add(this.label40);
+            this.tabPage4.Controls.Add(this.label41);
+            this.tabPage4.Controls.Add(this.label42);
+            this.tabPage4.Controls.Add(this.label43);
+            this.tabPage4.Controls.Add(this.label44);
+            this.tabPage4.Controls.Add(this.label45);
+            this.tabPage4.Controls.Add(this.comboBox3);
+            this.tabPage4.Controls.Add(this.label46);
+            this.tabPage4.Controls.Add(this.label47);
+            this.tabPage4.Controls.Add(this.label48);
+            this.tabPage4.Controls.Add(this.label49);
+            this.tabPage4.Controls.Add(this.label50);
+            this.tabPage4.Controls.Add(this.label51);
+            this.tabPage4.Controls.Add(this.checkedListBox5);
+            this.tabPage4.Controls.Add(this.dataGridView5);
+            this.tabPage4.Controls.Add(this.chart5);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
+>>>>>>> mantas
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Size = new System.Drawing.Size(1054, 512);
             this.tabPage4.TabIndex = 3;
