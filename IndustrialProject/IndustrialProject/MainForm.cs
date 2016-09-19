@@ -18,11 +18,8 @@ namespace IndustrialProject
         int[] test;
         DateTime[] dates;
         double[] plotPoints;
-<<<<<<< Updated upstream
-       // List<Tuple<DateTime, double>> timeAxis;
-=======
+
         List<Tuple<DateTime, double>> timeAxis;
->>>>>>> Stashed changes
         int[] test1 = new int[6] { 5, 3, 7, 8, 2, 0 };
         int[] errorTest = new int[2] { 1, 3 };
 
@@ -73,11 +70,8 @@ namespace IndustrialProject
             DateTime date = new DateTime();
             string stringDate;
            
-<<<<<<< Updated upstream
-            //double plotPoint = 0;
-=======
             double plotPoint = 0;
->>>>>>> Stashed changes
+
             this.test = new int[openFiles[0].packets.Count];
             this.dates = new DateTime[openFiles[0].packets.Count];
             this.plotPoints = new double[openFiles[0].packets.Count];
@@ -235,6 +229,20 @@ namespace IndustrialProject
         {
             UpdateUI(1);
         }
+         private void loadDevice2ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UpdateUI(2);
+        }
+
+        private void loadDevice3ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UpdateUI(3);
+        }
+
+        private void loadDevice4ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UpdateUI(4);
+        }
 
         private void LoadFile()
         {
@@ -367,6 +375,20 @@ namespace IndustrialProject
                     //series0_annotation.Text = "[Series 0]:" + chart1.Series[0].Points[chartIdx].YValues[0].ToString();
                 } 
             //}
+        }
+
+        private void keyBoardShortcutsMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("The following shortcuts can be used. \n"
+                            + "CTRL & 1 to Load Device 1.\n"
+                            + "CTRL & 2 to Load Device 2.\n"
+                            + "CTRL & 3 to Load Device 3.\n"
+                            + "CTRL & 4 to Load Device 4.\n");
+        }
+
+        private void loadHelpMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("blahblahblah");
         }
 
         private void chart1_Click(object sender, EventArgs e)

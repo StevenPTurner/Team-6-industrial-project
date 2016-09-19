@@ -276,9 +276,6 @@
             this.keyBoardShortcutsMenuItem.Size = new System.Drawing.Size(177, 22);
             this.keyBoardShortcutsMenuItem.Text = "Keyboard Shortcuts";
             this.keyBoardShortcutsMenuItem.Click += new System.EventHandler(this.keyBoardShortcutsMenuItem_Click);
-            this.useManualToolStripMenuItem.Name = "useManualToolStripMenuItem";
-            this.useManualToolStripMenuItem.Size = new System.Drawing.Size(166, 26);
-            this.useManualToolStripMenuItem.Text = "User Manual";
             // 
             // tabControl1
             // 
