@@ -15,10 +15,12 @@ namespace IndustrialProject
     public partial class MainForm : Form
     {
 
-        int[] test = new int[6] { 1, 3, 5, 2, 7, 9 };
+        /*int[] test = new int[6] { 1, 3, 5, 2, 7, 9 };
         int[] test1 = new int[6] { 5, 3, 7, 8, 2, 0 };
-        int[] errorTest = new int[2] { 1, 3 };
+        int[] errorTest = new int[2] { 1, 3 };*/
 
+        int[] errorsArray;
+        int count = 0;
         List<IndustrialProject.File> openFiles = new List<IndustrialProject.File>();
 
         CalloutAnnotation series0_annotation = new CalloutAnnotation();
@@ -26,16 +28,17 @@ namespace IndustrialProject
         public MainForm()
         {
             InitializeComponent();
+            this.KeyPreview = true;
             chart1.Series[1].Color = Color.FromArgb(127, 255, 0, 0);
-            chart1.Series[0].Points.DataBindY(test);
-            chart1.Series[1].Points.DataBindY(test1);
-            errorHighlight();
+           // chart1.Series[0].Points.DataBindY(test);
+           // chart1.Series[1].Points.DataBindY(test1);
+           // errorHighlight();
             chart1.Series[2].Enabled = false;
 
             series0_annotation.AllowMoving = true;
             series0_annotation.Visible = true;
             series0_annotation.Text = "helloworld";
-            series0_annotation.AnchorDataPoint = chart1.Series[0].Points[0];
+            //series0_annotation.AnchorDataPoint = chart1.Series[0].Points[0];
             chart1.Annotations.Add(series0_annotation);
 
             this.dataGridView1.Rows.Add(DateTime.Now,"", "f0bff0a0fb0", "", "f0bff0a0fb0");
@@ -62,7 +65,120 @@ namespace IndustrialProject
             
         }
 
+        public void UpdateUI(int device)
+        {
+            switch (device)
+            {
+                case 1:
+                    LoadFile();
+                    packetCountA.Text = openFiles[count].stats.noOfPackets.ToString();
+                    charCountA.Text = openFiles[count].stats.noOfDataChars.ToString();
+                    dataRate.Text = openFiles[count].stats.avgDataRate.ToString();
+                    packetRate.Text = openFiles[count].stats.avgPacketRate.ToString();
+                    errorCountA.Text = openFiles[count].stats.totalNoOfErrors.ToString();
+                    errorHighlight(openFiles[count].stats.totalNoOfErrors, device);
+                    this.Refresh();
+                    count++;
+                    break;
+
+                case 2:
+                    LoadFile();
+                    linkTwoPacketCount.Text = openFiles[count].stats.noOfPackets.ToString();
+                    linkTwoCharCount.Text = openFiles[count].stats.noOfDataChars.ToString();
+                    linkTwoDataRate.Text = openFiles[count].stats.avgDataRate.ToString();
+                    linkTwoPacketRate.Text = openFiles[count].stats.avgPacketRate.ToString();
+                    linkTwoErrorCount.Text = openFiles[count].stats.totalNoOfErrors.ToString();
+                    errorHighlight(openFiles[count].stats.totalNoOfErrors, device);
+                    this.Refresh();
+                    count++;
+                    break;
+
+                case 3:
+                    LoadFile();
+                    linkThreePacketCount.Text = openFiles[count].stats.noOfPackets.ToString();
+                    linkThreeCharCount.Text = openFiles[count].stats.noOfDataChars.ToString();
+                    linkThreeDataRate.Text = openFiles[count].stats.avgDataRate.ToString();
+                    linkThreePacketRate.Text = openFiles[count].stats.avgPacketRate.ToString();
+                    linkThreeErrorCount.Text = openFiles[count].stats.totalNoOfErrors.ToString();
+                    errorHighlight(openFiles[count].stats.totalNoOfErrors, device);
+                    this.Refresh();
+                    count++;
+                    break;
+
+                case 4:
+                    LoadFile();
+                    linkFourPacketCount.Text = openFiles[count].stats.noOfPackets.ToString();
+                    linkFourCharCount.Text = openFiles[count].stats.noOfDataChars.ToString();
+                    linkFourDataRate.Text = openFiles[count].stats.avgDataRate.ToString();
+                    linkFourPacketRate.Text = openFiles[count].stats.avgPacketRate.ToString();
+                    linkFourErrorCount.Text = openFiles[count].stats.totalNoOfErrors.ToString();
+                    errorHighlight(openFiles[count].stats.totalNoOfErrors, device);
+                    this.Refresh();
+                    count++;
+                    break;
+            }
+        }
+
+        public void errorHighlight(int errors, int device)
+        {
+            errorsArray = new int[]
+            {
+                errors
+            };
+
+            switch(device)
+            {
+                case 1:
+                    chart1.Series[2].Points.DataBindY(errorsArray);
+                    break;
+
+                case 2:
+                    chart3.Series[2].Points.DataBindY(errorsArray);
+                    break;
+                case 3:
+                    chart4.Series[2].Points.DataBindY(errorsArray);
+                    break;
+                case 4:
+                    chart5.Series[2].Points.DataBindY(errorsArray);
+                    break;
+            }   
+        }
+
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.D1 && e.Modifiers == Keys.Control)
+            {
+                UpdateUI(1);
+            }
+
+            if (e.KeyCode == Keys.D2 && e.Modifiers == Keys.Control)
+            {
+                UpdateUI(2);
+            }
+
+            if (e.KeyCode == Keys.D3 && e.Modifiers == Keys.Control)
+            {
+                UpdateUI(3);
+            }
+
+            if (e.KeyCode == Keys.D4 && e.Modifiers == Keys.Control)
+            {
+                UpdateUI(4);
+            }
+
+            if (e.KeyCode == Keys.H && e.Modifiers == Keys.Control)
+            {
+                MessageBox.Show("User manual opened");
+            }
+        }
+
+
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UpdateUI(1);
+        }
+
+        private void LoadFile()
         {
             OpenFileDialog ofd = new OpenFileDialog();
 
@@ -71,7 +187,7 @@ namespace IndustrialProject
             ofd.FilterIndex = 2;
             ofd.RestoreDirectory = true;
 
-            if(ofd.ShowDialog() == DialogResult.OK)
+            if (ofd.ShowDialog() == DialogResult.OK)
             {
                 // parse, feed into datagrid n that
                 FileManager fm = new FileManager();
@@ -79,24 +195,23 @@ namespace IndustrialProject
                 Console.WriteLine("[+] " + openFiles[0].stats.noOfPackets + " [+]");
                 //Console.WriteLine("File exists?: " + openFiles.Count);
 
-              //  for(int i = 0; i < openFiles.Count; i++)
-              //  {
-              //      for(int y = 0; y < openFiles[i].packets.Count; y++)
-              //      {
-                       // Console.WriteLine(openFiles[i].packets[y].data)
-              //          for(int z = 0; z < openFiles[i].packets[y].data.Length; z++)
-               //         {
-               //             Console.Write(openFiles[i].packets[y].data[z]);
+                //  for(int i = 0; i < openFiles.Count; i++)
+                //  {
+                //      for(int y = 0; y < openFiles[i].packets.Count; y++)
+                //      {
+                // Console.WriteLine(openFiles[i].packets[y].data)
+                //          for(int z = 0; z < openFiles[i].packets[y].data.Length; z++)
+                //         {
+                //             Console.Write(openFiles[i].packets[y].data[z]);
                 //        }
-                 //       Console.WriteLine(" ");
+                //       Console.WriteLine(" ");
                 //    }
-               // }
+                // }
                 //Console.WriteLine(openFiles[0].filename);
             }
 
-            
-
         }
+
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -122,11 +237,6 @@ namespace IndustrialProject
                 chart1.Series[0].ChartType = SeriesChartType.SplineArea;
                 chart1.Series[1].ChartType = SeriesChartType.SplineArea; 
             }
-        }
-
-        public void errorHighlight()
-        {
-            chart1.Series[2].Points.DataBindY(errorTest);
         }
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -180,11 +290,11 @@ namespace IndustrialProject
                 if ((int)chartX == 0)
                 {
                     // first block
-                    series0_annotation.AnchorDataPoint = chart1.Series[0].Points[0];
+                    //series0_annotation.AnchorDataPoint = chart1.Series[0].Points[0];
                 } else if((int)chartX >= chart1.Series[0].Points.Count)
                 {
                     // last block
-                    series0_annotation.AnchorDataPoint = chart1.Series[0].Points[chart1.Series[0].Points.Count-1];
+                   // series0_annotation.AnchorDataPoint = chart1.Series[0].Points[chart1.Series[0].Points.Count-1];
                 } else
                 {
                     // middle blocks
@@ -195,8 +305,8 @@ namespace IndustrialProject
                     if (chartIdx >= chart1.Series[0].Points.Count)
                         chartIdx = chart1.Series[0].Points.Count - 1;
 
-                    series0_annotation.AnchorDataPoint = chart1.Series[0].Points[chartIdx];
-                    series0_annotation.Text = "[Series 0]:" + chart1.Series[0].Points[chartIdx].YValues[0].ToString();
+                   // series0_annotation.AnchorDataPoint = chart1.Series[0].Points[chartIdx];
+                    //series0_annotation.Text = "[Series 0]:" + chart1.Series[0].Points[chartIdx].YValues[0].ToString();
                 } 
             //}
         }
