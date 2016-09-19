@@ -89,8 +89,10 @@ namespace IndustrialProject
                                 Console.WriteLine("Error (E) At: " + date.ToString("dd-MM-yyyy HH:mm:ss:fff"));
                                 temp = sr.ReadLine();
 
-                                //Return error
-                                ec.determineFlaggedError(temp);
+                                Tuple<Packet, Packet> last2Packets = new Tuple<Packet, Packet>(file.packets[file.packets.Count - 1], file.packets.Last());
+                                file.packets.Last().error = ec.determineFlaggedError(temp); //Checks disconnect/parity error
+                                file.packets.Last().error = ec.determineError(last2Packets); //Checks errors requiring last 2 packets i.e. out of sequence error
+                                //RMAP Check?
 
                                 sr.ReadLine();
                                 break;

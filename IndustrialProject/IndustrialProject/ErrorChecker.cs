@@ -8,20 +8,6 @@ namespace IndustrialProject
 {
     class ErrorChecker
     {
-        public bool errorMarker(string line)
-        {
-
-            switch (line)
-            {
-                case "P":
-                    break;
-                case "E":
-                    return true;
-                default:
-                    break;
-            }
-            return false;
-        }
         
         public Packet.ErrorType determineError(Tuple<Packet, Packet> packets)//pass file as a parameter - need the list of packets?
         {
@@ -53,6 +39,8 @@ namespace IndustrialProject
             return Packet.ErrorType.NO_ERROR;
         }
 
+
+        //Checks if Parity or Disconnect errors are highlighted
         public Packet.ErrorType determineFlaggedError(string flaggedError)
         {
             if(flaggedError.Equals("Disconnect"))

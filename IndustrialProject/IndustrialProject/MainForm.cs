@@ -206,5 +206,10 @@ namespace IndustrialProject
         private void chart1_Click(object sender, EventArgs e)
         {
         }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

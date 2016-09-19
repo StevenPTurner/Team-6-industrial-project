@@ -110,12 +110,13 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1062, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1062, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -128,38 +129,38 @@
             this.loadDevice4ToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
             this.loadToolStripMenuItem.Text = "Load Device 1";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
             // loadDevice2ToolStripMenuItem
             // 
             this.loadDevice2ToolStripMenuItem.Name = "loadDevice2ToolStripMenuItem";
-            this.loadDevice2ToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.loadDevice2ToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
             this.loadDevice2ToolStripMenuItem.Text = "Load Device 2";
             // 
             // loadDevice3ToolStripMenuItem
             // 
             this.loadDevice3ToolStripMenuItem.Name = "loadDevice3ToolStripMenuItem";
-            this.loadDevice3ToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.loadDevice3ToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
             this.loadDevice3ToolStripMenuItem.Text = "Load Device 3";
             // 
             // loadDevice4ToolStripMenuItem
             // 
             this.loadDevice4ToolStripMenuItem.Name = "loadDevice4ToolStripMenuItem";
-            this.loadDevice4ToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.loadDevice4ToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
             this.loadDevice4ToolStripMenuItem.Text = "Load Device 4";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -168,13 +169,13 @@
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.useManualToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // useManualToolStripMenuItem
             // 
             this.useManualToolStripMenuItem.Name = "useManualToolStripMenuItem";
-            this.useManualToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.useManualToolStripMenuItem.Size = new System.Drawing.Size(166, 26);
             this.useManualToolStripMenuItem.Text = "User Manual";
             // 
             // tabControl1
@@ -219,13 +220,14 @@
             this.tabPage1.Controls.Add(this.checkedListBox1);
             this.tabPage1.Controls.Add(this.dataGridView1);
             this.tabPage1.Controls.Add(this.chart1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 26);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1054, 512);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Link 1";
             this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // errorCountB
             // 
@@ -344,7 +346,7 @@
             "Area"});
             this.chartDropdown.Location = new System.Drawing.Point(757, 20);
             this.chartDropdown.Name = "chartDropdown";
-            this.chartDropdown.Size = new System.Drawing.Size(121, 21);
+            this.chartDropdown.Size = new System.Drawing.Size(121, 25);
             this.chartDropdown.TabIndex = 12;
             this.chartDropdown.Text = "Chart mode";
             this.chartDropdown.SelectedIndexChanged += new System.EventHandler(this.chartDropdown_SelectedIndexChanged);
@@ -354,7 +356,7 @@
             this.linkblbl.AutoSize = true;
             this.linkblbl.Location = new System.Drawing.Point(690, 171);
             this.linkblbl.Name = "linkblbl";
-            this.linkblbl.Size = new System.Drawing.Size(13, 13);
+            this.linkblbl.Size = new System.Drawing.Size(16, 17);
             this.linkblbl.TabIndex = 11;
             this.linkblbl.Text = "B";
             // 
@@ -363,7 +365,7 @@
             this.linkalbl.AutoSize = true;
             this.linkalbl.Location = new System.Drawing.Point(238, 171);
             this.linkalbl.Name = "linkalbl";
-            this.linkalbl.Size = new System.Drawing.Size(14, 13);
+            this.linkalbl.Size = new System.Drawing.Size(16, 17);
             this.linkalbl.TabIndex = 10;
             this.linkalbl.Text = "A";
             // 
@@ -403,7 +405,7 @@
             this.errorRate.AutoSize = true;
             this.errorRate.Location = new System.Drawing.Point(690, 392);
             this.errorRate.Name = "errorRate";
-            this.errorRate.Size = new System.Drawing.Size(30, 13);
+            this.errorRate.Size = new System.Drawing.Size(36, 17);
             this.errorRate.TabIndex = 8;
             this.errorRate.Text = "err/s";
             // 
@@ -412,7 +414,7 @@
             this.ErrorRatelbl.AutoSize = true;
             this.ErrorRatelbl.Location = new System.Drawing.Point(631, 392);
             this.ErrorRatelbl.Name = "ErrorRatelbl";
-            this.ErrorRatelbl.Size = new System.Drawing.Size(58, 13);
+            this.ErrorRatelbl.Size = new System.Drawing.Size(72, 17);
             this.ErrorRatelbl.TabIndex = 7;
             this.ErrorRatelbl.Text = "Error rate:";
             // 
@@ -421,7 +423,7 @@
             this.packetRate.AutoSize = true;
             this.packetRate.Location = new System.Drawing.Point(491, 392);
             this.packetRate.Name = "packetRate";
-            this.packetRate.Size = new System.Drawing.Size(48, 13);
+            this.packetRate.Size = new System.Drawing.Size(60, 17);
             this.packetRate.TabIndex = 6;
             this.packetRate.Text = "packet/s";
             // 
@@ -430,7 +432,7 @@
             this.PacketRatelbl.AutoSize = true;
             this.PacketRatelbl.Location = new System.Drawing.Point(420, 392);
             this.PacketRatelbl.Name = "PacketRatelbl";
-            this.PacketRatelbl.Size = new System.Drawing.Size(66, 13);
+            this.PacketRatelbl.Size = new System.Drawing.Size(82, 17);
             this.PacketRatelbl.TabIndex = 5;
             this.PacketRatelbl.Text = "Packet rate:";
             // 
@@ -439,7 +441,7 @@
             this.dataRate.AutoSize = true;
             this.dataRate.Location = new System.Drawing.Point(311, 392);
             this.dataRate.Name = "dataRate";
-            this.dataRate.Size = new System.Drawing.Size(30, 13);
+            this.dataRate.Size = new System.Drawing.Size(39, 17);
             this.dataRate.TabIndex = 4;
             this.dataRate.Text = "mb/s";
             // 
@@ -448,7 +450,7 @@
             this.DataRatelbl.AutoSize = true;
             this.DataRatelbl.Location = new System.Drawing.Point(251, 392);
             this.DataRatelbl.Name = "DataRatelbl";
-            this.DataRatelbl.Size = new System.Drawing.Size(57, 13);
+            this.DataRatelbl.Size = new System.Drawing.Size(70, 17);
             this.DataRatelbl.TabIndex = 3;
             this.DataRatelbl.Text = "Data rate:";
             // 
@@ -464,7 +466,7 @@
             "EPPs and timeout"});
             this.checkedListBox1.Location = new System.Drawing.Point(757, 71);
             this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(111, 84);
+            this.checkedListBox1.Size = new System.Drawing.Size(111, 80);
             this.checkedListBox1.TabIndex = 2;
             this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
@@ -537,7 +539,7 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 26);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(1054, 512);
@@ -547,7 +549,7 @@
             // 
             // tabPage3
             // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Location = new System.Drawing.Point(4, 26);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(1054, 512);
             this.tabPage3.TabIndex = 2;
@@ -556,7 +558,7 @@
             // 
             // tabPage4
             // 
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Location = new System.Drawing.Point(4, 26);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Size = new System.Drawing.Size(1054, 512);
             this.tabPage4.TabIndex = 3;
@@ -698,7 +700,7 @@
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1062, 562);
