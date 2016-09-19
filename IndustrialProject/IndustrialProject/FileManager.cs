@@ -10,72 +10,50 @@ namespace IndustrialProject
     //Manages file handling
     class FileManager
     {
-
         //Returns list of packets
         public File loadAndParseFile(string fname) //Note: Set as string temporarily until File class is built.
         {
-
             File file = new IndustrialProject.File();
-            file.filename = fname;
-            
             List<string> packets = new List<String>();
-            string errorFound = null;
             ErrorChecker ec = new ErrorChecker();
             DateTime date = new DateTime();
+            string errorFound = null;
             int port;
 
-            Console.WriteLine("");
+            file.filename = fname;
 
             try
             {
                 using (StreamReader sr = new StreamReader(fname))
                 {
                     date = DateTime.Parse(sr.ReadLine());
-                    //date = Convert.ToDateTime(sr.ReadLine());
-                   // Console.WriteLine(date);
-
-                    //Console.WriteLine(date.ToString("dd-MM-yyyy hh:mm:ss.fff"));
+   
                     file.startDate = date;
+                    Console.WriteLine('\n');
                     Console.WriteLine("File: " + fname);
                     Console.WriteLine("File Start Date: " + date);
 
                     port = Convert.ToInt32(sr.ReadLine());
                     file.port = port;
 
-                    Console.WriteLine("Port: " + port);
-
-                    Console.WriteLine("");
+                    Console.WriteLine("Port: " + port + '\n');
                     
                     sr.ReadLine();
 
                     while (sr.Peek() >= 0)
                     {
-
-                        // Console.WriteLine("Line: " + sr.ReadLine());
-                        Packet packet = new Packet();
-
                         date = DateTime.Parse(sr.ReadLine());
-                        Console.WriteLine("Packet Date: " + date);
-                        // date = Convert.ToDateTime(sr.ReadLine());
 
-                        // Console.WriteLine(date.ToString("dd-MM-yyyy hh:mm:ss.fff"));
-                        //Console.WriteLine(date);
-
-                        packet.timestamp = date; //Set packet timestamp
-
-                        //Console.WriteLine("Was trying to convert...." + sr.ReadLine());
-                        //Add date (Packet date)
                         string temp = sr.ReadLine();
 
                         switch (temp)
                         {
 
                             case "P":
-                                //sr.ReadLine() --- Add packet
-                                string[] stringBytes = sr.ReadLine().Split(' ');
-                                //List<byte> byteList = new List<byte>();
+                                Packet packet = new Packet();
 
-                                //Console.WriteLine("P found");
+                                packet.timestamp = date; //Set packet timestamp
+                                string[] stringBytes = sr.ReadLine().Split(' ');//Splitting string of bytes
 
                                 byte[] byteArray = new byte[stringBytes.Length];
 
@@ -85,62 +63,53 @@ namespace IndustrialProject
                                     byteArray[i] = Convert.ToByte(stringBytes[i], 16);
                                 }
 
+                                Console.WriteLine("Packet Date: " + date);
                                 Console.Write("Packet: ");
                                 for (int i = 0; i < byteArray.Length; i++)
                                 {
                                     Console.Write(byteArray[i] + " ");
                                 }
 
-                                Console.WriteLine("");
-                                Console.WriteLine("");
-                                //Handling logical address/path address in packet class?
-
+                                Console.WriteLine('\n');
+               
                                 packet.data = byteArray; //Set packet bytes
 
                                 temp = sr.ReadLine();
 
                                 if (temp.Equals("None") || temp.Equals("EEP"))
                                 {
-                                    Console.WriteLine("None or EEP error detected");
+                                   //None or EEP error detected
                                     packet.error = Packet.ErrorType.ERROR_TRUNCATED; //Adding error to packet
                                 }
 
                                 file.addPacket(packet);
-                                //sr.ReadLine(); //Skip blank line
-                                sr.ReadLine(); //Skips empty line
+                                sr.ReadLine();
                                 break;
                             case "E":
-                                //sr.ReadLine(); // Will show us whether disconnect or parity error
+                                Console.WriteLine("Error (E) At: " + date);
                                 temp = sr.ReadLine();
-                                Console.WriteLine("");
                                 if (temp.Equals("Disconnect"))
                                 {
                                     //Add disconnect to last packet 
-                                    packet.error = Packet.ErrorType.ERROR_DISCONNECT;
-                                    Console.WriteLine("Disconnect detected");
+                                    //packet.error = Packet.ErrorType.ERROR_DISCONNECT; -- Add to last packet.
+                                    Console.WriteLine("Disconnected");
                                 }
                                 else if (temp.Equals("Parity"))
                                 {
                                     //Add parity to last packet 
-                                    packet.error = Packet.ErrorType.ERROR_PARITY;
-                                    Console.WriteLine("Parity detected");
+                                    //packet.error = Packet.ErrorType.ERROR_PARITY; -- Add this error to last packet
+                                    Console.WriteLine("Parity Error");
                                 }
 
-                                sr.ReadLine(); //Skips empty line
-                                date = Convert.ToDateTime(sr.ReadLine());
-                                //date.AddMilliseconds();
-                                //Console.WriteLine("End of file: " + date);
-                                //Console.WriteLine("Error was found (E)");
-                                //file.endDate = date;
-                                //Add error.
+                                sr.ReadLine();
                                 break;
                             default:
+                                Console.WriteLine('\n' + "File end date: " + date);
+                                sr.ReadLine();
                                 break;
                         }
                     }
 
-                    Console.WriteLine("");
-                    Console.WriteLine("File end date: " + date);
                 }
 
             }
@@ -173,9 +142,6 @@ namespace IndustrialProject
         public Packet lastPacket()
         {
             Packet packet = new IndustrialProject.Packet();
-
-
-
 
             return packet;
         }
