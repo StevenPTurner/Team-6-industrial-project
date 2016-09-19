@@ -92,6 +92,30 @@ namespace IndustrialProject
                     this.Refresh();
                     count++;
                     break;
+
+                case 3:
+                    LoadFile();
+                    linkThreePacketCount.Text = openFiles[count].stats.noOfPackets.ToString();
+                    linkThreeCharCount.Text = openFiles[count].stats.noOfDataChars.ToString();
+                    linkThreeDataRate.Text = openFiles[count].stats.avgDataRate.ToString();
+                    linkThreePacketRate.Text = openFiles[count].stats.avgPacketRate.ToString();
+                    linkThreeErrorCount.Text = openFiles[count].stats.totalNoOfErrors.ToString();
+                    errorHighlight(openFiles[count].stats.totalNoOfErrors, device);
+                    this.Refresh();
+                    count++;
+                    break;
+
+                case 4:
+                    LoadFile();
+                    linkFourPacketCount.Text = openFiles[count].stats.noOfPackets.ToString();
+                    linkFourCharCount.Text = openFiles[count].stats.noOfDataChars.ToString();
+                    linkFourDataRate.Text = openFiles[count].stats.avgDataRate.ToString();
+                    linkFourPacketRate.Text = openFiles[count].stats.avgPacketRate.ToString();
+                    linkFourErrorCount.Text = openFiles[count].stats.totalNoOfErrors.ToString();
+                    errorHighlight(openFiles[count].stats.totalNoOfErrors, device);
+                    this.Refresh();
+                    count++;
+                    break;
             }
         }
 
@@ -111,6 +135,12 @@ namespace IndustrialProject
                 case 2:
                     chart3.Series[2].Points.DataBindY(errorsArray);
                     break;
+                case 3:
+                    chart4.Series[2].Points.DataBindY(errorsArray);
+                    break;
+                case 4:
+                    chart5.Series[2].Points.DataBindY(errorsArray);
+                    break;
             }   
         }
 
@@ -124,6 +154,16 @@ namespace IndustrialProject
             if (e.KeyCode == Keys.D2 && e.Modifiers == Keys.Control)
             {
                 UpdateUI(2);
+            }
+
+            if (e.KeyCode == Keys.D3 && e.Modifiers == Keys.Control)
+            {
+                UpdateUI(3);
+            }
+
+            if (e.KeyCode == Keys.D4 && e.Modifiers == Keys.Control)
+            {
+                UpdateUI(4);
             }
 
             if (e.KeyCode == Keys.H && e.Modifiers == Keys.Control)
