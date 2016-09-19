@@ -185,7 +185,6 @@
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.tabPage2.SuspendLayout();
@@ -204,13 +203,12 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1062, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1062, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -223,38 +221,38 @@
             this.loadDevice4ToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.loadToolStripMenuItem.Text = "Load Device 1";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
             // loadDevice2ToolStripMenuItem
             // 
             this.loadDevice2ToolStripMenuItem.Name = "loadDevice2ToolStripMenuItem";
-            this.loadDevice2ToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
+            this.loadDevice2ToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.loadDevice2ToolStripMenuItem.Text = "Load Device 2";
             // 
             // loadDevice3ToolStripMenuItem
             // 
             this.loadDevice3ToolStripMenuItem.Name = "loadDevice3ToolStripMenuItem";
-            this.loadDevice3ToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
+            this.loadDevice3ToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.loadDevice3ToolStripMenuItem.Text = "Load Device 3";
             // 
             // loadDevice4ToolStripMenuItem
             // 
             this.loadDevice4ToolStripMenuItem.Name = "loadDevice4ToolStripMenuItem";
-            this.loadDevice4ToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
+            this.loadDevice4ToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.loadDevice4ToolStripMenuItem.Text = "Load Device 4";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -263,13 +261,13 @@
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.useManualToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // useManualToolStripMenuItem
             // 
             this.useManualToolStripMenuItem.Name = "useManualToolStripMenuItem";
-            this.useManualToolStripMenuItem.Size = new System.Drawing.Size(166, 26);
+            this.useManualToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.useManualToolStripMenuItem.Text = "User Manual";
             // 
             // tabControl1
@@ -305,41 +303,13 @@
             this.tabPage1.Controls.Add(this.checkedListBox1);
             this.tabPage1.Controls.Add(this.dataGridView1);
             this.tabPage1.Controls.Add(this.chart1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 26);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1054, 512);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Link 1";
             this.tabPage1.UseVisualStyleBackColor = true;
-            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
-            // 
-            // errorCountB
-            // 
-            this.errorCountB.AutoSize = true;
-            this.errorCountB.Location = new System.Drawing.Point(878, 346);
-            this.errorCountB.Name = "errorCountB";
-            this.errorCountB.Size = new System.Drawing.Size(41, 13);
-            this.errorCountB.TabIndex = 24;
-            this.errorCountB.Text = "label12";
-            // 
-            // charCountB
-            // 
-            this.charCountB.AutoSize = true;
-            this.charCountB.Location = new System.Drawing.Point(726, 346);
-            this.charCountB.Name = "charCountB";
-            this.charCountB.Size = new System.Drawing.Size(41, 13);
-            this.charCountB.TabIndex = 23;
-            this.charCountB.Text = "label11";
-            // 
-            // packetCountB
-            // 
-            this.packetCountB.AutoSize = true;
-            this.packetCountB.Location = new System.Drawing.Point(578, 346);
-            this.packetCountB.Name = "packetCountB";
-            this.packetCountB.Size = new System.Drawing.Size(41, 13);
-            this.packetCountB.TabIndex = 22;
-            this.packetCountB.Text = "label10";
             // 
             // errorCountA
             // 
@@ -367,33 +337,6 @@
             this.packetCountA.Size = new System.Drawing.Size(35, 13);
             this.packetCountA.TabIndex = 19;
             this.packetCountA.Text = "label7";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(821, 346);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(63, 13);
-            this.label4.TabIndex = 18;
-            this.label4.Text = "No. Errors: ";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(658, 346);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(62, 13);
-            this.label5.TabIndex = 17;
-            this.label5.Text = "No. Chars: ";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(504, 346);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(68, 13);
-            this.label6.TabIndex = 16;
-            this.label6.Text = "No. Packets:";
             // 
             // label3
             // 
@@ -431,66 +374,17 @@
             "Area"});
             this.chartDropdown.Location = new System.Drawing.Point(825, 6);
             this.chartDropdown.Name = "chartDropdown";
-            this.chartDropdown.Size = new System.Drawing.Size(121, 25);
+            this.chartDropdown.Size = new System.Drawing.Size(121, 21);
             this.chartDropdown.TabIndex = 12;
             this.chartDropdown.Text = "Chart mode";
             this.chartDropdown.SelectedIndexChanged += new System.EventHandler(this.chartDropdown_SelectedIndexChanged);
-            // 
-            // linkblbl
-            // 
-            this.linkblbl.AutoSize = true;
-            this.linkblbl.Location = new System.Drawing.Point(690, 171);
-            this.linkblbl.Name = "linkblbl";
-            this.linkblbl.Size = new System.Drawing.Size(13, 13);
-            this.linkblbl.TabIndex = 11;
-            this.linkblbl.Text = "B";
-            // 
-            // linkalbl
-            // 
-            this.linkalbl.AutoSize = true;
-            this.linkalbl.Location = new System.Drawing.Point(238, 171);
-            this.linkalbl.Name = "linkalbl";
-            this.linkalbl.Size = new System.Drawing.Size(14, 13);
-            this.linkalbl.TabIndex = 10;
-            this.linkalbl.Text = "A";
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2});
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle13;
-            this.dataGridView2.Location = new System.Drawing.Point(501, 187);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(446, 156);
-            this.dataGridView2.TabIndex = 9;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Time";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Width = 115;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Data";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 150;
             // 
             // errorRate
             // 
             this.errorRate.AutoSize = true;
             this.errorRate.Location = new System.Drawing.Point(923, 318);
             this.errorRate.Name = "errorRate";
-            this.errorRate.Size = new System.Drawing.Size(36, 17);
+            this.errorRate.Size = new System.Drawing.Size(30, 13);
             this.errorRate.TabIndex = 8;
             this.errorRate.Text = "err/s";
             // 
@@ -499,7 +393,7 @@
             this.ErrorRatelbl.AutoSize = true;
             this.ErrorRatelbl.Location = new System.Drawing.Point(864, 318);
             this.ErrorRatelbl.Name = "ErrorRatelbl";
-            this.ErrorRatelbl.Size = new System.Drawing.Size(72, 17);
+            this.ErrorRatelbl.Size = new System.Drawing.Size(58, 13);
             this.ErrorRatelbl.TabIndex = 7;
             this.ErrorRatelbl.Text = "Error rate:";
             // 
@@ -508,7 +402,7 @@
             this.packetRate.AutoSize = true;
             this.packetRate.Location = new System.Drawing.Point(724, 318);
             this.packetRate.Name = "packetRate";
-            this.packetRate.Size = new System.Drawing.Size(60, 17);
+            this.packetRate.Size = new System.Drawing.Size(48, 13);
             this.packetRate.TabIndex = 6;
             this.packetRate.Text = "packet/s";
             // 
@@ -517,7 +411,7 @@
             this.PacketRatelbl.AutoSize = true;
             this.PacketRatelbl.Location = new System.Drawing.Point(653, 318);
             this.PacketRatelbl.Name = "PacketRatelbl";
-            this.PacketRatelbl.Size = new System.Drawing.Size(82, 17);
+            this.PacketRatelbl.Size = new System.Drawing.Size(66, 13);
             this.PacketRatelbl.TabIndex = 5;
             this.PacketRatelbl.Text = "Packet rate:";
             // 
@@ -526,7 +420,7 @@
             this.dataRate.AutoSize = true;
             this.dataRate.Location = new System.Drawing.Point(544, 318);
             this.dataRate.Name = "dataRate";
-            this.dataRate.Size = new System.Drawing.Size(39, 17);
+            this.dataRate.Size = new System.Drawing.Size(30, 13);
             this.dataRate.TabIndex = 4;
             this.dataRate.Text = "mb/s";
             // 
@@ -535,7 +429,7 @@
             this.DataRatelbl.AutoSize = true;
             this.DataRatelbl.Location = new System.Drawing.Point(484, 318);
             this.DataRatelbl.Name = "DataRatelbl";
-            this.DataRatelbl.Size = new System.Drawing.Size(70, 17);
+            this.DataRatelbl.Size = new System.Drawing.Size(57, 13);
             this.DataRatelbl.TabIndex = 3;
             this.DataRatelbl.Text = "Data rate:";
             // 
@@ -551,7 +445,7 @@
             "EPPs and timeout"});
             this.checkedListBox1.Location = new System.Drawing.Point(835, 33);
             this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(111, 80);
+            this.checkedListBox1.Size = new System.Drawing.Size(111, 84);
             this.checkedListBox1.TabIndex = 2;
             this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
@@ -610,11 +504,25 @@
             this.chart1.Size = new System.Drawing.Size(819, 150);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
-            this.chart1.Click += new System.EventHandler(this.chart1_Click);
-            this.chart1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chart1_MouseMove);
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label16);
+            this.tabPage2.Controls.Add(this.label17);
+            this.tabPage2.Controls.Add(this.label18);
+            this.tabPage2.Controls.Add(this.label19);
+            this.tabPage2.Controls.Add(this.label20);
+            this.tabPage2.Controls.Add(this.label21);
+            this.tabPage2.Controls.Add(this.comboBox1);
+            this.tabPage2.Controls.Add(this.label22);
+            this.tabPage2.Controls.Add(this.label23);
+            this.tabPage2.Controls.Add(this.label24);
+            this.tabPage2.Controls.Add(this.label25);
+            this.tabPage2.Controls.Add(this.label26);
+            this.tabPage2.Controls.Add(this.label27);
+            this.tabPage2.Controls.Add(this.checkedListBox3);
+            this.tabPage2.Controls.Add(this.dataGridView2);
+            this.tabPage2.Controls.Add(this.chart3);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -625,6 +533,22 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.label28);
+            this.tabPage3.Controls.Add(this.label29);
+            this.tabPage3.Controls.Add(this.label30);
+            this.tabPage3.Controls.Add(this.label31);
+            this.tabPage3.Controls.Add(this.label32);
+            this.tabPage3.Controls.Add(this.label33);
+            this.tabPage3.Controls.Add(this.comboBox2);
+            this.tabPage3.Controls.Add(this.label34);
+            this.tabPage3.Controls.Add(this.label35);
+            this.tabPage3.Controls.Add(this.label36);
+            this.tabPage3.Controls.Add(this.label37);
+            this.tabPage3.Controls.Add(this.label38);
+            this.tabPage3.Controls.Add(this.label39);
+            this.tabPage3.Controls.Add(this.checkedListBox4);
+            this.tabPage3.Controls.Add(this.dataGridView4);
+            this.tabPage3.Controls.Add(this.chart4);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(1054, 512);
@@ -634,6 +558,22 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.label40);
+            this.tabPage4.Controls.Add(this.label41);
+            this.tabPage4.Controls.Add(this.label42);
+            this.tabPage4.Controls.Add(this.label43);
+            this.tabPage4.Controls.Add(this.label44);
+            this.tabPage4.Controls.Add(this.label45);
+            this.tabPage4.Controls.Add(this.comboBox3);
+            this.tabPage4.Controls.Add(this.label46);
+            this.tabPage4.Controls.Add(this.label47);
+            this.tabPage4.Controls.Add(this.label48);
+            this.tabPage4.Controls.Add(this.label49);
+            this.tabPage4.Controls.Add(this.label50);
+            this.tabPage4.Controls.Add(this.label51);
+            this.tabPage4.Controls.Add(this.checkedListBox5);
+            this.tabPage4.Controls.Add(this.dataGridView5);
+            this.tabPage4.Controls.Add(this.chart5);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Size = new System.Drawing.Size(1054, 512);
@@ -1606,7 +1546,7 @@
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1062, 562);
