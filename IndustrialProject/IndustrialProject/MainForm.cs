@@ -70,51 +70,59 @@ namespace IndustrialProject
             switch (device)
             {
                 case 1:
-                    LoadFile();
-                    packetCountA.Text = openFiles[count].stats.noOfPackets.ToString();
-                    charCountA.Text = openFiles[count].stats.noOfDataChars.ToString();
-                    dataRate.Text = openFiles[count].stats.avgDataRate.ToString();
-                    packetRate.Text = openFiles[count].stats.avgPacketRate.ToString();
-                    errorCountA.Text = openFiles[count].stats.totalNoOfErrors.ToString();
-                    errorHighlight(openFiles[count].stats.totalNoOfErrors, device);
-                    this.Refresh();
-                    count++;
+                    if(LoadFile())
+                    {
+                        packetCountA.Text = openFiles[count].stats.noOfPackets.ToString();
+                        charCountA.Text = openFiles[count].stats.noOfDataChars.ToString();
+                        dataRate.Text = openFiles[count].stats.avgDataRate.ToString();
+                        packetRate.Text = openFiles[count].stats.avgPacketRate.ToString();
+                        errorCountA.Text = openFiles[count].stats.totalNoOfErrors.ToString();
+                        errorHighlight(openFiles[count].stats.totalNoOfErrors, device);
+                        this.Refresh();
+                        count++;
+                    }
                     break;
 
                 case 2:
-                    LoadFile();
-                    linkTwoPacketCount.Text = openFiles[count].stats.noOfPackets.ToString();
-                    linkTwoCharCount.Text = openFiles[count].stats.noOfDataChars.ToString();
-                    linkTwoDataRate.Text = openFiles[count].stats.avgDataRate.ToString();
-                    linkTwoPacketRate.Text = openFiles[count].stats.avgPacketRate.ToString();
-                    linkTwoErrorCount.Text = openFiles[count].stats.totalNoOfErrors.ToString();
-                    errorHighlight(openFiles[count].stats.totalNoOfErrors, device);
-                    this.Refresh();
-                    count++;
+                    if(LoadFile())
+                    {
+                        linkTwoPacketCount.Text = openFiles[count].stats.noOfPackets.ToString();
+                        linkTwoCharCount.Text = openFiles[count].stats.noOfDataChars.ToString();
+                        linkTwoDataRate.Text = openFiles[count].stats.avgDataRate.ToString();
+                        linkTwoPacketRate.Text = openFiles[count].stats.avgPacketRate.ToString();
+                        linkTwoErrorCount.Text = openFiles[count].stats.totalNoOfErrors.ToString();
+                        errorHighlight(openFiles[count].stats.totalNoOfErrors, device);
+                        this.Refresh();
+                        count++;
+                    }
                     break;
 
                 case 3:
-                    LoadFile();
-                    linkThreePacketCount.Text = openFiles[count].stats.noOfPackets.ToString();
-                    linkThreeCharCount.Text = openFiles[count].stats.noOfDataChars.ToString();
-                    linkThreeDataRate.Text = openFiles[count].stats.avgDataRate.ToString();
-                    linkThreePacketRate.Text = openFiles[count].stats.avgPacketRate.ToString();
-                    linkThreeErrorCount.Text = openFiles[count].stats.totalNoOfErrors.ToString();
-                    errorHighlight(openFiles[count].stats.totalNoOfErrors, device);
-                    this.Refresh();
-                    count++;
+                    if(LoadFile())
+                    {
+                        linkThreePacketCount.Text = openFiles[count].stats.noOfPackets.ToString();
+                        linkThreeCharCount.Text = openFiles[count].stats.noOfDataChars.ToString();
+                        linkThreeDataRate.Text = openFiles[count].stats.avgDataRate.ToString();
+                        linkThreePacketRate.Text = openFiles[count].stats.avgPacketRate.ToString();
+                        linkThreeErrorCount.Text = openFiles[count].stats.totalNoOfErrors.ToString();
+                        errorHighlight(openFiles[count].stats.totalNoOfErrors, device);
+                        this.Refresh();
+                        count++;
+                    }
                     break;
 
                 case 4:
-                    LoadFile();
-                    linkFourPacketCount.Text = openFiles[count].stats.noOfPackets.ToString();
-                    linkFourCharCount.Text = openFiles[count].stats.noOfDataChars.ToString();
-                    linkFourDataRate.Text = openFiles[count].stats.avgDataRate.ToString();
-                    linkFourPacketRate.Text = openFiles[count].stats.avgPacketRate.ToString();
-                    linkFourErrorCount.Text = openFiles[count].stats.totalNoOfErrors.ToString();
-                    errorHighlight(openFiles[count].stats.totalNoOfErrors, device);
-                    this.Refresh();
-                    count++;
+                    if(LoadFile())
+                    {
+                        linkFourPacketCount.Text = openFiles[count].stats.noOfPackets.ToString();
+                        linkFourCharCount.Text = openFiles[count].stats.noOfDataChars.ToString();
+                        linkFourDataRate.Text = openFiles[count].stats.avgDataRate.ToString();
+                        linkFourPacketRate.Text = openFiles[count].stats.avgPacketRate.ToString();
+                        linkFourErrorCount.Text = openFiles[count].stats.totalNoOfErrors.ToString();
+                        errorHighlight(openFiles[count].stats.totalNoOfErrors, device);
+                        this.Refresh();
+                        count++;
+                    }
                     break;
             }
         }
@@ -178,7 +186,7 @@ namespace IndustrialProject
             UpdateUI(1);
         }
 
-        private void LoadFile()
+       /* private void LoadFile()
         {
             OpenFileDialog ofd = new OpenFileDialog();
 
@@ -208,6 +216,46 @@ namespace IndustrialProject
                 //    }
                 // }
                 //Console.WriteLine(openFiles[0].filename);
+            }
+
+        }*/
+
+        // changed to a bool function, to ensure the load process doesn't crash if user decides to cancel loading a file
+        private bool LoadFile()
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+
+            ofd.InitialDirectory = "c:\\";
+            ofd.Filter = "txt files (*.txt)|*.txt|rec files (*.rec)|*.rec|all files (*.*)|*.*";
+            ofd.FilterIndex = 2;
+            ofd.RestoreDirectory = true;
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                // parse, feed into datagrid n that
+                FileManager fm = new FileManager();
+                openFiles.Add(fm.loadAndParseFile(ofd.FileName));
+                Console.WriteLine("[+] " + openFiles[0].stats.noOfPackets + " [+]");
+                //Console.WriteLine("File exists?: " + openFiles.Count);
+
+                //  for(int i = 0; i < openFiles.Count; i++)
+                //  {
+                //      for(int y = 0; y < openFiles[i].packets.Count; y++)
+                //      {
+                // Console.WriteLine(openFiles[i].packets[y].data)
+                //          for(int z = 0; z < openFiles[i].packets[y].data.Length; z++)
+                //         {
+                //             Console.Write(openFiles[i].packets[y].data[z]);
+                //        }
+                //       Console.WriteLine(" ");
+                //    }
+                // }
+                //Console.WriteLine(openFiles[0].filename);
+                return true;
+            }
+            else
+            {
+                return false;
             }
 
         }
