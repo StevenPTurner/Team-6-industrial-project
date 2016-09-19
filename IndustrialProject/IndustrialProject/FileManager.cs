@@ -63,7 +63,7 @@ namespace IndustrialProject
                                     byteArray[i] = Convert.ToByte(stringBytes[i], 16);
                                 }
 
-                                Console.WriteLine("Packet Date: " + date);
+                                Console.WriteLine("Packet Date: " + date.ToString("dd-MM-yyyy HH:mm:ss:fff"));
                                 Console.Write("Packet: ");
                                 for (int i = 0; i < byteArray.Length; i++)
                                 {
@@ -86,28 +86,16 @@ namespace IndustrialProject
                                 sr.ReadLine();
                                 break;
                             case "E":
-                                Console.WriteLine("Error (E) At: " + date);
+                                Console.WriteLine("Error (E) At: " + date.ToString("dd-MM-yyyy HH:mm:ss:fff"));
                                 temp = sr.ReadLine();
 
-                                //Handle this elsewhere///////////////////////////////////////////////////////////
-                                if (temp.Equals("Disconnect"))
-                                {
-                                    //Add disconnect to last packet 
-                                    //packet.error = Packet.ErrorType.ERROR_DISCONNECT; -- Add to last packet.
-                                    Console.WriteLine("Disconnected");
-                                }
-                                else if (temp.Equals("Parity"))
-                                {
-                                    //Add parity to last packet 
-                                    //packet.error = Packet.ErrorType.ERROR_PARITY; -- Add this error to last packet
-                                    Console.WriteLine("Parity Error");
-                                }
-                                ////////////////////////////////////////////////////////////////////////////////
+                                //Return error
+                                ec.determineFlaggedError(temp);
 
                                 sr.ReadLine();
                                 break;
                             default:
-                                Console.WriteLine('\n' + "File end date: " + date);
+                                Console.WriteLine('\n' + "File end date: " + date.ToString("dd-MM-yyyy HH:mm:ss:fff"));
                                 sr.ReadLine();
                                 break;
                         }
