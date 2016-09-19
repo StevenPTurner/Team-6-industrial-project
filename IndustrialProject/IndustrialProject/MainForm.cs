@@ -18,7 +18,7 @@ namespace IndustrialProject
         int[] test;
         DateTime[] dates;
         double[] plotPoints;
-        List<Tuple<DateTime, double>> timeAxis;
+       // List<Tuple<DateTime, double>> timeAxis;
         int[] test1 = new int[6] { 5, 3, 7, 8, 2, 0 };
         int[] errorTest = new int[2] { 1, 3 };
 
@@ -69,7 +69,7 @@ namespace IndustrialProject
             DateTime date = new DateTime();
             string stringDate;
            
-            double plotPoint = 0;
+            //double plotPoint = 0;
             this.test = new int[openFiles[0].packets.Count];
             this.dates = new DateTime[openFiles[0].packets.Count];
             this.plotPoints = new double[openFiles[0].packets.Count];
@@ -215,6 +215,11 @@ namespace IndustrialProject
             {
                 UpdateUI(4);
             }
+
+            if (e.KeyCode == Keys.H && e.Modifiers == Keys.Control)
+            {
+                MessageBox.Show("User manual opened");
+            }
         }
 
 
@@ -223,57 +228,7 @@ namespace IndustrialProject
             UpdateUI(1);
         }
 
-        private void loadDevice2ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            UpdateUI(2);
-        }
-
-        private void loadDevice3ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            UpdateUI(3);
-        }
-
-        private void loadDevice4ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            UpdateUI(4);
-        }
-
-        /* private void LoadFile()
-         {
-             OpenFileDialog ofd = new OpenFileDialog();
-
-             ofd.InitialDirectory = "c:\\";
-             ofd.Filter = "txt files (*.txt)|*.txt|rec files (*.rec)|*.rec|all files (*.*)|*.*";
-             ofd.FilterIndex = 2;
-             ofd.RestoreDirectory = true;
-
-             if (ofd.ShowDialog() == DialogResult.OK)
-             {
-                 // parse, feed into datagrid n that
-                 FileManager fm = new FileManager();
-                 openFiles.Add(fm.loadAndParseFile(ofd.FileName));
-                 Console.WriteLine("[+] " + openFiles[0].stats.noOfPackets + " [+]");
-                 //Console.WriteLine("File exists?: " + openFiles.Count);
-
-                 //  for(int i = 0; i < openFiles.Count; i++)
-                 //  {
-                 //      for(int y = 0; y < openFiles[i].packets.Count; y++)
-                 //      {
-                 // Console.WriteLine(openFiles[i].packets[y].data)
-                 //          for(int z = 0; z < openFiles[i].packets[y].data.Length; z++)
-                 //         {
-                 //             Console.Write(openFiles[i].packets[y].data[z]);
-                 //        }
-                 //       Console.WriteLine(" ");
-                 //    }
-                 // }
-                 //Console.WriteLine(openFiles[0].filename);
-             }
-
-         }*/
-
-        // changed to a bool function, to ensure the load process doesn't crash if user decides to cancel loading a file
-        private bool LoadFile()
+        private void LoadFile()
         {
             OpenFileDialog ofd = new OpenFileDialog();
 
@@ -303,11 +258,6 @@ namespace IndustrialProject
                 //    }
                 // }
                 //Console.WriteLine(openFiles[0].filename);
-                return true;
-            }
-            else
-            {
-                return false;
             }
 
         }
