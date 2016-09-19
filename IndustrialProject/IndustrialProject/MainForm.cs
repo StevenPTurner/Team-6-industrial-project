@@ -73,7 +73,7 @@ namespace IndustrialProject
                 // parse, feed into datagrid n that
                 FileManager fm = new FileManager();
                 openFiles.Add(fm.loadAndParseFile(ofd.FileName));
-
+                Console.WriteLine("[+] " + openFiles[0].stats.noOfPackets + " [+]");
                 //Console.WriteLine("File exists?: " + openFiles.Count);
 
               //  for(int i = 0; i < openFiles.Count; i++)

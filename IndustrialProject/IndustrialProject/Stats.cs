@@ -9,48 +9,21 @@ namespace IndustrialProject
     class Stats
     {
         public List<Packet> packets { get; set; }
-        public int noOfPackets = 0;
-        public int noOfDataChars = 0;
-        public double avgPacketRate = 0.00;
-        public double avgDataRate = 0;
-        public int totalNoOfErrors = 0;
-        public double avgErrorRate = 0.00;
+        public int noOfPackets { get; set; }
+        public int noOfDataChars { get; set; }
+        public double avgPacketRate { get; set; }
+        public double avgDataRate { get; set; } 
+        public int totalNoOfErrors { get; set; }
+        public double avgErrorRate { get; set; }
 
         public Stats()
         {
-            //this.packets = packets;
-           
-        }
-
-        
-        public int getNoOfPackets()
-        {
-            return this.noOfPackets;
-        }
-
-        public int getNoOfDataChars()
-        {
-            return this.noOfDataChars;
-        }
-
-        public double getAvgPacketRate()
-        {
-            return this.avgPacketRate;
-        }
-
-        public int getTotalNoOfErrors()
-        {
-            return this.totalNoOfErrors;
-        }
-
-        public double getAvgErrorRate()
-        {
-            return this.avgErrorRate;
-        }
-
-        public double getAvgDataRate()
-        {
-            return this.avgDataRate;
+            noOfPackets = 0;
+            noOfDataChars = 0;
+            avgPacketRate = 0.00;
+            avgDataRate = 0;
+            totalNoOfErrors = 0;
+            avgErrorRate = 0.00;
         }
 
         public void setNumberOfPackets()

@@ -130,18 +130,18 @@ namespace IndustrialProject
                 Console.WriteLine("File not found");
             }
 
-            Stats stats = new Stats();
-            stats.packets = file.packets;
+            //Stats stats = new Stats();
+            file. stats.packets = file.packets;
 
-            stats.setNumberOfPackets();
-            stats.setNumberOfDataCharacters();
-            stats.setAvgPacketRate();
-            stats.setAvgDataRate();     
+            file.stats.setNumberOfPackets();
+            file.stats.setNumberOfDataCharacters();
+            file.stats.setAvgPacketRate();
+            file.stats.setAvgDataRate();     
                 
-            Console.WriteLine("No of packets: " + stats.getNoOfPackets());
-            Console.WriteLine("No. of data chars: " + stats.getNoOfDataChars());
-            Console.WriteLine("Avg. Packet Rate: " + stats.getAvgPacketRate());
-            Console.WriteLine("Avg. Data Rate: " + stats.getAvgDataRate());
+            Console.WriteLine("No of packets: " + file.stats.noOfPackets);
+            Console.WriteLine("No. of data chars: " + file.stats.noOfDataChars);
+            Console.WriteLine("Avg. Packet Rate: " + file.stats.avgPacketRate);
+            Console.WriteLine("Avg. Data Rate: " + file.stats.avgDataRate);
 
             return file;
         }
