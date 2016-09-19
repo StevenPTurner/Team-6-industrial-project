@@ -18,7 +18,11 @@ namespace IndustrialProject
         int[] test;
         DateTime[] dates;
         double[] plotPoints;
+<<<<<<< Updated upstream
        // List<Tuple<DateTime, double>> timeAxis;
+=======
+        List<Tuple<DateTime, double>> timeAxis;
+>>>>>>> Stashed changes
         int[] test1 = new int[6] { 5, 3, 7, 8, 2, 0 };
         int[] errorTest = new int[2] { 1, 3 };
 
@@ -69,7 +73,11 @@ namespace IndustrialProject
             DateTime date = new DateTime();
             string stringDate;
            
+<<<<<<< Updated upstream
             //double plotPoint = 0;
+=======
+            double plotPoint = 0;
+>>>>>>> Stashed changes
             this.test = new int[openFiles[0].packets.Count];
             this.dates = new DateTime[openFiles[0].packets.Count];
             this.plotPoints = new double[openFiles[0].packets.Count];
