@@ -722,6 +722,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+            this.KeyDown += MainForm_KeyDown;
 
         }
 
