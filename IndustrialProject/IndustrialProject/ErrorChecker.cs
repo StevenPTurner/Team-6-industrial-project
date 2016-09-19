@@ -11,6 +11,7 @@ namespace IndustrialProject
         
         public Packet.ErrorType determineError(Tuple<Packet, Packet> packets)//pass file as a parameter - need the list of packets?
         {
+
             // the max jump up in sequence number
             const int WRAP_THRESHOLD = 5;
 

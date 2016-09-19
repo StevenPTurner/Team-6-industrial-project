@@ -65,6 +65,7 @@ namespace IndustrialProject
 
                                 Console.WriteLine("Packet Date: " + date.ToString("dd-MM-yyyy HH:mm:ss:fff"));
                                 Console.Write("Packet: ");
+
                                 for (int i = 0; i < byteArray.Length; i++)
                                 {
                                     Console.Write(byteArray[i] + " ");
@@ -83,16 +84,37 @@ namespace IndustrialProject
                                 }
 
                                 file.addPacket(packet);
+                                Console.WriteLine("");
                                 sr.ReadLine();
                                 break;
                             case "E":
                                 Console.WriteLine("Error (E) At: " + date.ToString("dd-MM-yyyy HH:mm:ss:fff"));
                                 temp = sr.ReadLine();
 
-                                Tuple<Packet, Packet> last2Packets = new Tuple<Packet, Packet>(file.packets[file.packets.Count - 1], file.packets.Last());
+                                Tuple<Packet, Packet> last2Packets = new Tuple<Packet, Packet>(file.packets[file.packets.Count - 2], file.packets.Last());
                                 file.packets.Last().error = ec.determineFlaggedError(temp); //Checks disconnect/parity error
-                                file.packets.Last().error = ec.determineError(last2Packets); //Checks errors requiring last 2 packets i.e. out of sequence error
-                                //RMAP Check?
+
+                                try
+                                {
+
+                                    Console.WriteLine("");
+                                    for (int l = 0; l < file.packets.Last().data.Length; l++)
+                                    {
+                                        Console.Write(file.packets.Last().data[l] + " ");
+                                    }
+
+                                    Console.WriteLine("Size is: " + file.packets.Count);
+                                    Console.WriteLine("");
+
+                                 //Both throw null errors
+                                 //   file.packets.Last().error = ec.determineError(last2Packets); //Checks errors requiring last 2 packets i.e. out of sequence error
+                                 //   file.packets.Last().error = file.packets.Last().loadAndCheck(file.packets.Last().data); //Checks errors (RMAP/CRC)
+                                }           
+                                catch (Exception E)
+                                {
+                                    Console.WriteLine(E.ToString());
+                                }
+                               
 
                                 sr.ReadLine();
                                 break;
