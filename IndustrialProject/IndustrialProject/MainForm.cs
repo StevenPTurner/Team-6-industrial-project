@@ -38,14 +38,10 @@ namespace IndustrialProject
             series0_annotation.AnchorDataPoint = chart1.Series[0].Points[0];
             chart1.Annotations.Add(series0_annotation);
 
-            this.dataGridView1.Rows.Add(DateTime.Now, "f0bff0a0fb0");
-            this.dataGridView1.Rows.Add(DateTime.Now, "f1bbfif0fd0");
-            this.dataGridView1.Rows.Add(DateTime.Now, "f0hb0x0x0x0");
-            this.dataGridView1.Rows.Add(DateTime.Now, "0xfb0xbfb00");
-            this.dataGridView2.Rows.Add(DateTime.Now, "asjhfgasfad");
-            this.dataGridView2.Rows.Add(DateTime.Now, "asffasfasda");
-            this.dataGridView2.Rows.Add(DateTime.Now, "f0bff0a0fb0");
-            this.dataGridView2.Rows.Add(DateTime.Now, "f0bff0a0fb0");
+            this.dataGridView1.Rows.Add(DateTime.Now,"", "f0bff0a0fb0", "", "f0bff0a0fb0");
+            this.dataGridView1.Rows.Add(DateTime.Now, "", "f1bbfif0fd0", "", "f0bff0a0fb0");
+            this.dataGridView1.Rows.Add(DateTime.Now, "", "f0hb0x0x0x0", "", "f0bff0a0fb0");
+            this.dataGridView1.Rows.Add(DateTime.Now, "", "0xfb0xbfb00", "", "f0bff0a0fb0");
 
             chartDropdown.SelectedIndex = 0;
 
@@ -57,6 +53,8 @@ namespace IndustrialProject
             dataGridView3.Columns["Column11"].DefaultCellStyle.BackColor = Color.Gray;
             dataGridView3.Columns["Column12"].DefaultCellStyle.BackColor = Color.Gray;
             dataGridView3.Columns["Column13"].DefaultCellStyle.BackColor = Color.Gray;
+            dataGridView1.Columns["Column14"].DefaultCellStyle.BackColor = Color.Gray;
+            dataGridView1.Columns["Column15"].DefaultCellStyle.BackColor = Color.Gray;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
