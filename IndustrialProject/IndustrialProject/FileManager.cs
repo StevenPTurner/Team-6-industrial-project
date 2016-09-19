@@ -88,6 +88,8 @@ namespace IndustrialProject
                             case "E":
                                 Console.WriteLine("Error (E) At: " + date);
                                 temp = sr.ReadLine();
+
+                                //Handle this elsewhere///////////////////////////////////////////////////////////
                                 if (temp.Equals("Disconnect"))
                                 {
                                     //Add disconnect to last packet 
@@ -100,6 +102,7 @@ namespace IndustrialProject
                                     //packet.error = Packet.ErrorType.ERROR_PARITY; -- Add this error to last packet
                                     Console.WriteLine("Parity Error");
                                 }
+                                ////////////////////////////////////////////////////////////////////////////////
 
                                 sr.ReadLine();
                                 break;
@@ -130,9 +133,13 @@ namespace IndustrialProject
             Stats stats = new Stats();
             stats.packets = file.packets;
 
-            Console.WriteLine("");           
-            Console.WriteLine("No of packets: " + stats.getNumberOfPackets());
-            Console.WriteLine("No. of data chars: " + stats.getNumberOfDataCharacters());
+            stats.setNumberOfPackets();
+            stats.setNumberOfDataCharacters();
+            stats.setAvgPacketRate();
+            stats.setAvgDataRate();     
+                
+            Console.WriteLine("No of packets: " + stats.getNoOfPackets());
+            Console.WriteLine("No. of data chars: " + stats.getNoOfDataChars());
             Console.WriteLine("Avg. Packet Rate: " + stats.getAvgPacketRate());
             Console.WriteLine("Avg. Data Rate: " + stats.getAvgDataRate());
 

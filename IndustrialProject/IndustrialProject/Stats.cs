@@ -9,55 +9,97 @@ namespace IndustrialProject
     class Stats
     {
         public List<Packet> packets { get; set; }
+        public int noOfPackets = 0;
+        public int noOfDataChars = 0;
+        public double avgPacketRate = 0.00;
+        public double avgDataRate = 0;
+        public int totalNoOfErrors = 0;
+        public double avgErrorRate = 0.00;
 
         public Stats()
         {
             //this.packets = packets;
+           
         }
 
         
-
-        public int getNumberOfPackets()
+        public int getNoOfPackets()
         {
-            return this.packets.Count;
+            return this.noOfPackets;
         }
 
-        public int getNumberOfDataCharacters()
+        public int getNoOfDataChars()
         {
-            return this.packets.Select(pkt => pkt.data.Length).Sum();
+            return this.noOfDataChars;
         }
 
         public double getAvgPacketRate()
         {
-            IEnumerable<DateTime> e = this.packets.Select(pkt => pkt.timestamp);
-            return e.Count() / (e.Last() - e.First()).TotalSeconds;
-        }
-
-        public double getAvgDataRate()
-        {
-            IEnumerable<DateTime> e = this.packets.Select(pkt => pkt.timestamp);
-            return this.getNumberOfDataCharacters() / (e.Last() - e.First()).TotalSeconds;
+            return this.avgPacketRate;
         }
 
         public int getTotalNoOfErrors()
         {
-            int totalErrors = 0;
+            return this.totalNoOfErrors;
+        }
+
+        public double getAvgErrorRate()
+        {
+            return this.avgErrorRate;
+        }
+
+        public double getAvgDataRate()
+        {
+            return this.avgDataRate;
+        }
+
+        public void setNumberOfPackets()
+        {
+            //return this.packets.Count;
+            this.noOfPackets = this.packets.Count;
+        }
+
+        public void setNumberOfDataCharacters()
+        {
+           // return this.packets.Select(pkt => pkt.data.Length).Sum();
+           this.noOfDataChars = this.packets.Select(pkt => pkt.data.Length).Sum();
+        }
+
+        public void setAvgPacketRate()
+        {
+            IEnumerable<DateTime> e = this.packets.Select(pkt => pkt.timestamp);
+            //return e.Count() / (e.Last() - e.First()).TotalSeconds;
+            this.avgPacketRate = e.Count() / (e.Last() - e.First()).TotalSeconds;
+        }
+
+        public void setAvgDataRate()
+        {
+            IEnumerable<DateTime> e = this.packets.Select(pkt => pkt.timestamp);
+            //return this.noOfDataChars / (e.Last() - e.First()).TotalSeconds;
+            this.avgDataRate = this.noOfDataChars / (e.Last() - e.First()).TotalSeconds;
+        }
+
+        public void setTotalNoOfErrors()
+        {
+            int totalNoOfErrors = 0;
 
             for(int i = 0; i < this.packets.Count; i++)
             {
                 if(!this.packets[i].error.Equals("NO_ERROR"))
                 {
-                    totalErrors++;
+                    totalNoOfErrors++;
                 }
             }
 
-            return totalErrors;
+            // return totalErrors;
+            this.totalNoOfErrors = totalNoOfErrors;
         }
 
-        public double getAvgErrorRate()
+        public void setAvgErrorRate()
         {
             double avgErrorRate = 0.00;
-            return avgErrorRate;
+            //return avgErrorRate;
+            this.avgErrorRate = avgErrorRate;
         }
     }
 }
