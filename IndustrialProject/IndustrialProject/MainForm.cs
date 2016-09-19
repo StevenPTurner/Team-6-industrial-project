@@ -55,6 +55,7 @@ namespace IndustrialProject
             dataGridView3.Columns["Column13"].DefaultCellStyle.BackColor = Color.Gray;
             dataGridView1.Columns["Column14"].DefaultCellStyle.BackColor = Color.Gray;
             dataGridView1.Columns["Column15"].DefaultCellStyle.BackColor = Color.Gray;
+            dataGridView1.Columns["Column17"].DefaultCellStyle.BackColor = Color.Gray;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -76,6 +77,9 @@ namespace IndustrialProject
                 // parse, feed into datagrid n that
                 FileManager fm = new FileManager();
                 openFiles.Add(fm.loadAndParseFile(ofd.FileName));
+
+
+                
 
                 //Console.WriteLine("File exists?: " + openFiles.Count);
 
