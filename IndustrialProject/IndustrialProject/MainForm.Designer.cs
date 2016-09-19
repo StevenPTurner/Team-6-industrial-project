@@ -316,30 +316,7 @@
             // 
             // errorCountB
             // 
-            this.errorCountB.AutoSize = true;
-            this.errorCountB.Location = new System.Drawing.Point(878, 346);
-            this.errorCountB.Name = "errorCountB";
-            this.errorCountB.Size = new System.Drawing.Size(41, 13);
-            this.errorCountB.TabIndex = 24;
-            this.errorCountB.Text = "label12";
-            // 
-            // charCountB
-            // 
-            this.charCountB.AutoSize = true;
-            this.charCountB.Location = new System.Drawing.Point(726, 346);
-            this.charCountB.Name = "charCountB";
-            this.charCountB.Size = new System.Drawing.Size(41, 13);
-            this.charCountB.TabIndex = 23;
-            this.charCountB.Text = "label11";
-            // 
-            // packetCountB
-            // 
-            this.packetCountB.AutoSize = true;
-            this.packetCountB.Location = new System.Drawing.Point(578, 346);
-            this.packetCountB.Name = "packetCountB";
-            this.packetCountB.Size = new System.Drawing.Size(41, 13);
-            this.packetCountB.TabIndex = 22;
-            this.packetCountB.Text = "label10";
+            
             // 
             // errorCountA
             // 
