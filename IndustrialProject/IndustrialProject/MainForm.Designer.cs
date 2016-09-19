@@ -28,13 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea14 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend14 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series26 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series27 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series28 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea13 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend13 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series25 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,6 +49,18 @@
             this.useManualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.errorCountB = new System.Windows.Forms.Label();
+            this.charCountB = new System.Windows.Forms.Label();
+            this.packetCountB = new System.Windows.Forms.Label();
+            this.errorCountA = new System.Windows.Forms.Label();
+            this.charCountA = new System.Windows.Forms.Label();
+            this.packetCountA = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.chartDropdown = new System.Windows.Forms.ComboBox();
             this.linkblbl = new System.Windows.Forms.Label();
             this.linkalbl = new System.Windows.Forms.Label();
@@ -66,24 +81,31 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.packetCountA = new System.Windows.Forms.Label();
-            this.charCountA = new System.Windows.Forms.Label();
-            this.errorCountA = new System.Windows.Forms.Label();
-            this.packetCountB = new System.Windows.Forms.Label();
-            this.charCountB = new System.Windows.Forms.Label();
-            this.errorCountB = new System.Windows.Forms.Label();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -161,11 +183,13 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage5);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(83, 27);
+            this.tabControl1.Location = new System.Drawing.Point(0, 24);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(979, 510);
+            this.tabControl1.Size = new System.Drawing.Size(1062, 538);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -198,10 +222,118 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(971, 484);
+            this.tabPage1.Size = new System.Drawing.Size(1054, 512);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Device 1";
+            this.tabPage1.Text = "Link 1";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // errorCountB
+            // 
+            this.errorCountB.AutoSize = true;
+            this.errorCountB.Location = new System.Drawing.Point(878, 346);
+            this.errorCountB.Name = "errorCountB";
+            this.errorCountB.Size = new System.Drawing.Size(41, 13);
+            this.errorCountB.TabIndex = 24;
+            this.errorCountB.Text = "label12";
+            // 
+            // charCountB
+            // 
+            this.charCountB.AutoSize = true;
+            this.charCountB.Location = new System.Drawing.Point(726, 346);
+            this.charCountB.Name = "charCountB";
+            this.charCountB.Size = new System.Drawing.Size(41, 13);
+            this.charCountB.TabIndex = 23;
+            this.charCountB.Text = "label11";
+            // 
+            // packetCountB
+            // 
+            this.packetCountB.AutoSize = true;
+            this.packetCountB.Location = new System.Drawing.Point(578, 346);
+            this.packetCountB.Name = "packetCountB";
+            this.packetCountB.Size = new System.Drawing.Size(41, 13);
+            this.packetCountB.TabIndex = 22;
+            this.packetCountB.Text = "label10";
+            // 
+            // errorCountA
+            // 
+            this.errorCountA.AutoSize = true;
+            this.errorCountA.Location = new System.Drawing.Point(432, 346);
+            this.errorCountA.Name = "errorCountA";
+            this.errorCountA.Size = new System.Drawing.Size(35, 13);
+            this.errorCountA.TabIndex = 21;
+            this.errorCountA.Text = "label9";
+            // 
+            // charCountA
+            // 
+            this.charCountA.AutoSize = true;
+            this.charCountA.Location = new System.Drawing.Point(268, 346);
+            this.charCountA.Name = "charCountA";
+            this.charCountA.Size = new System.Drawing.Size(35, 13);
+            this.charCountA.TabIndex = 20;
+            this.charCountA.Text = "label8";
+            // 
+            // packetCountA
+            // 
+            this.packetCountA.AutoSize = true;
+            this.packetCountA.Location = new System.Drawing.Point(120, 346);
+            this.packetCountA.Name = "packetCountA";
+            this.packetCountA.Size = new System.Drawing.Size(35, 13);
+            this.packetCountA.TabIndex = 19;
+            this.packetCountA.Text = "label7";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(821, 346);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(63, 13);
+            this.label4.TabIndex = 18;
+            this.label4.Text = "No. Errors: ";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(658, 346);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(62, 13);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "No. Chars: ";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(504, 346);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(68, 13);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "No. Packets:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(363, 346);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(63, 13);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "No. Errors: ";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(200, 346);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(62, 13);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "No. Chars: ";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(46, 346);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(68, 13);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "No. Packets:";
             // 
             // chartDropdown
             // 
@@ -241,14 +373,14 @@
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle13;
             this.dataGridView2.Location = new System.Drawing.Point(501, 187);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(446, 156);
@@ -342,14 +474,14 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.timeCol,
             this.dataCol});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle14;
             this.dataGridView1.Location = new System.Drawing.Point(49, 187);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(446, 156);
@@ -369,34 +501,34 @@
             // 
             // chart1
             // 
-            chartArea1.AlignmentOrientation = ((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations)((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Vertical | System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Horizontal)));
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
+            chartArea14.AlignmentOrientation = ((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations)((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Vertical | System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Horizontal)));
+            chartArea14.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea14);
             this.chart1.Cursor = System.Windows.Forms.Cursors.Default;
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            legend14.Name = "Legend1";
+            this.chart1.Legends.Add(legend14);
             this.chart1.Location = new System.Drawing.Point(49, 20);
             this.chart1.Name = "chart1";
             this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Bright;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series1.Legend = "Legend1";
-            series1.MarkerBorderWidth = 2;
-            series1.Name = "A";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series2.Legend = "Legend1";
-            series2.Name = "B";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series3.Color = System.Drawing.Color.Red;
-            series3.Legend = "Legend1";
-            series3.Name = "error";
-            this.chart1.Series.Add(series1);
-            this.chart1.Series.Add(series2);
-            this.chart1.Series.Add(series3);
+            series26.ChartArea = "ChartArea1";
+            series26.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series26.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series26.Legend = "Legend1";
+            series26.MarkerBorderWidth = 2;
+            series26.Name = "A";
+            series27.ChartArea = "ChartArea1";
+            series27.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series27.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series27.Legend = "Legend1";
+            series27.Name = "B";
+            series28.ChartArea = "ChartArea1";
+            series28.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series28.Color = System.Drawing.Color.Red;
+            series28.Legend = "Legend1";
+            series28.Name = "error";
+            this.chart1.Series.Add(series26);
+            this.chart1.Series.Add(series27);
+            this.chart1.Series.Add(series28);
             this.chart1.Size = new System.Drawing.Size(705, 130);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
@@ -406,136 +538,161 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(971, 484);
+            this.tabPage2.Size = new System.Drawing.Size(1054, 512);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Device 2";
+            this.tabPage2.Text = "Link 2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // tabPage3
             // 
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(971, 484);
+            this.tabPage3.Size = new System.Drawing.Size(1054, 512);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Device 3";
+            this.tabPage3.Text = "Link 3";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // tabPage4
             // 
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(971, 484);
+            this.tabPage4.Size = new System.Drawing.Size(1054, 512);
             this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Device 4";
+            this.tabPage4.Text = "Link 4";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // tabPage5
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(46, 346);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(68, 13);
-            this.label1.TabIndex = 13;
-            this.label1.Text = "No. Packets:";
+            this.tabPage5.Controls.Add(this.chart2);
+            this.tabPage5.Controls.Add(this.dataGridView3);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(1054, 512);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Link 1-4";
+            this.tabPage5.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // chart2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(200, 346);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 13);
-            this.label2.TabIndex = 14;
-            this.label2.Text = "No. Chars: ";
+            chartArea13.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea13);
+            this.chart2.Dock = System.Windows.Forms.DockStyle.Top;
+            legend13.Name = "Legend1";
+            this.chart2.Legends.Add(legend13);
+            this.chart2.Location = new System.Drawing.Point(0, 0);
+            this.chart2.Name = "chart2";
+            series25.ChartArea = "ChartArea1";
+            series25.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series25.Legend = "Legend1";
+            series25.Name = "Series1";
+            series25.YValuesPerPoint = 6;
+            this.chart2.Series.Add(series25);
+            this.chart2.Size = new System.Drawing.Size(1054, 147);
+            this.chart2.TabIndex = 1;
+            this.chart2.Text = "chart2";
             // 
-            // label3
+            // dataGridView3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(363, 346);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(63, 13);
-            this.label3.TabIndex = 15;
-            this.label3.Text = "No. Errors: ";
+            this.dataGridView3.AllowUserToOrderColumns = true;
+            this.dataGridView3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column10,
+            this.Column2,
+            this.Column3,
+            this.Column11,
+            this.Column4,
+            this.Column5,
+            this.Column12,
+            this.Column6,
+            this.Column7,
+            this.Column13,
+            this.Column8,
+            this.Column9});
+            this.dataGridView3.GridColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.dataGridView3.Location = new System.Drawing.Point(3, 153);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.Size = new System.Drawing.Size(1051, 359);
+            this.dataGridView3.TabIndex = 0;
             // 
-            // label4
+            // Column1
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(821, 346);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(63, 13);
-            this.label4.TabIndex = 18;
-            this.label4.Text = "No. Errors: ";
+            this.Column1.HeaderText = "Time";
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 150;
             // 
-            // label5
+            // Column10
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(658, 346);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(62, 13);
-            this.label5.TabIndex = 17;
-            this.label5.Text = "No. Chars: ";
+            this.Column10.HeaderText = "";
+            this.Column10.Name = "Column10";
+            this.Column10.Width = 30;
             // 
-            // label6
+            // Column2
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(504, 346);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(68, 13);
-            this.label6.TabIndex = 16;
-            this.label6.Text = "No. Packets:";
+            this.Column2.HeaderText = "Link1 A";
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 84;
             // 
-            // packetCountA
+            // Column3
             // 
-            this.packetCountA.AutoSize = true;
-            this.packetCountA.Location = new System.Drawing.Point(120, 346);
-            this.packetCountA.Name = "packetCountA";
-            this.packetCountA.Size = new System.Drawing.Size(35, 13);
-            this.packetCountA.TabIndex = 19;
-            this.packetCountA.Text = "label7";
+            this.Column3.HeaderText = "Link1 B";
+            this.Column3.Name = "Column3";
+            this.Column3.Width = 84;
             // 
-            // charCountA
+            // Column11
             // 
-            this.charCountA.AutoSize = true;
-            this.charCountA.Location = new System.Drawing.Point(268, 346);
-            this.charCountA.Name = "charCountA";
-            this.charCountA.Size = new System.Drawing.Size(35, 13);
-            this.charCountA.TabIndex = 20;
-            this.charCountA.Text = "label8";
+            this.Column11.HeaderText = "";
+            this.Column11.Name = "Column11";
+            this.Column11.Width = 30;
             // 
-            // errorCountA
+            // Column4
             // 
-            this.errorCountA.AutoSize = true;
-            this.errorCountA.Location = new System.Drawing.Point(432, 346);
-            this.errorCountA.Name = "errorCountA";
-            this.errorCountA.Size = new System.Drawing.Size(35, 13);
-            this.errorCountA.TabIndex = 21;
-            this.errorCountA.Text = "label9";
+            this.Column4.HeaderText = "Link2 A";
+            this.Column4.Name = "Column4";
+            this.Column4.Width = 84;
             // 
-            // packetCountB
+            // Column5
             // 
-            this.packetCountB.AutoSize = true;
-            this.packetCountB.Location = new System.Drawing.Point(578, 346);
-            this.packetCountB.Name = "packetCountB";
-            this.packetCountB.Size = new System.Drawing.Size(41, 13);
-            this.packetCountB.TabIndex = 22;
-            this.packetCountB.Text = "label10";
+            this.Column5.HeaderText = "Link2 B";
+            this.Column5.Name = "Column5";
+            this.Column5.Width = 84;
             // 
-            // charCountB
+            // Column12
             // 
-            this.charCountB.AutoSize = true;
-            this.charCountB.Location = new System.Drawing.Point(726, 346);
-            this.charCountB.Name = "charCountB";
-            this.charCountB.Size = new System.Drawing.Size(41, 13);
-            this.charCountB.TabIndex = 23;
-            this.charCountB.Text = "label11";
+            this.Column12.HeaderText = "";
+            this.Column12.Name = "Column12";
+            this.Column12.Width = 30;
             // 
-            // errorCountB
+            // Column6
             // 
-            this.errorCountB.AutoSize = true;
-            this.errorCountB.Location = new System.Drawing.Point(878, 346);
-            this.errorCountB.Name = "errorCountB";
-            this.errorCountB.Size = new System.Drawing.Size(41, 13);
-            this.errorCountB.TabIndex = 24;
-            this.errorCountB.Text = "label12";
+            this.Column6.HeaderText = "Link3 A";
+            this.Column6.Name = "Column6";
+            this.Column6.Width = 84;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "Link3 B";
+            this.Column7.Name = "Column7";
+            this.Column7.Width = 84;
+            // 
+            // Column13
+            // 
+            this.Column13.HeaderText = "";
+            this.Column13.Name = "Column13";
+            this.Column13.Width = 30;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "Link4 A";
+            this.Column8.Name = "Column8";
+            this.Column8.Width = 84;
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "Link4 B";
+            this.Column9.Name = "Column9";
+            this.Column9.Width = 84;
             // 
             // MainForm
             // 
@@ -556,6 +713,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            this.tabPage5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -606,6 +766,22 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
+        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
     }
 }
 

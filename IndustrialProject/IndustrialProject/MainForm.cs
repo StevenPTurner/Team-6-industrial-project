@@ -21,6 +21,8 @@ namespace IndustrialProject
 
         List<IndustrialProject.File> openFiles = new List<IndustrialProject.File>();
 
+        CalloutAnnotation series0_annotation = new CalloutAnnotation();
+
         public MainForm()
         {
             InitializeComponent();
@@ -30,8 +32,11 @@ namespace IndustrialProject
             errorHighlight();
             chart1.Series[2].Enabled = false;
 
-            this.chart1.MouseMove += new MouseEventHandler(chart1_MouseMove);
-            this.tooltip.AutomaticDelay = 10;
+            series0_annotation.AllowMoving = true;
+            series0_annotation.Visible = true;
+            series0_annotation.Text = "helloworld";
+            series0_annotation.AnchorDataPoint = chart1.Series[0].Points[0];
+            chart1.Annotations.Add(series0_annotation);
 
             this.dataGridView1.Rows.Add(DateTime.Now, "f0bff0a0fb0");
             this.dataGridView1.Rows.Add(DateTime.Now, "f1bbfif0fd0");
@@ -47,47 +52,16 @@ namespace IndustrialProject
             var seriesPoints = this.chart1.Series[2];
             seriesPoints.XValueMember = "X";
             seriesPoints.YValueMembers = "Y";
+
+            dataGridView3.Columns["Column10"].DefaultCellStyle.BackColor = Color.Gray;
+            dataGridView3.Columns["Column11"].DefaultCellStyle.BackColor = Color.Gray;
+            dataGridView3.Columns["Column12"].DefaultCellStyle.BackColor = Color.Gray;
+            dataGridView3.Columns["Column13"].DefaultCellStyle.BackColor = Color.Gray;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
-        }
-
-        //http://pastebin.com/PzhHtfMu 
-
-        Point? prevPosition = null;
-        ToolTip tooltip = new ToolTip();
-
-        void chart1_MouseMove(object sender, MouseEventArgs e)
-        {
-            var pos = e.Location;
-            if (prevPosition.HasValue && pos == prevPosition.Value)
-                return;
-            tooltip.RemoveAll();
-            prevPosition = pos;
-            var results = chart1.HitTest(pos.X, pos.Y, false,
-                                            ChartElementType.DataPoint);
-            foreach (var result in results)
-            {
-                if (result.ChartElementType == ChartElementType.DataPoint)
-                {
-                    var prop = result.Object as DataPoint;
-                    if (prop != null)
-                    {
-                        var pointXPixel = result.ChartArea.AxisX.ValueToPixelPosition(prop.XValue);
-                        var pointYPixel = result.ChartArea.AxisY.ValueToPixelPosition(prop.YValues[0]);
-
-                        // check if the cursor is really close to the point (2 pixels around)
-                        if (Math.Abs(pos.X - pointXPixel) < 2 &&
-                            Math.Abs(pos.Y - pointYPixel) < 2)
-                        {
-                            tooltip.Show("X=" + prop.XValue + ", Y=" + prop.YValues[0], this.chart1,
-                                            pos.X, pos.Y - 15);
-                        }
-                    }
-                }
-            }
+            
         }
 
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
@@ -176,5 +150,61 @@ namespace IndustrialProject
             }
         }
 
+        private void chart1_MouseMove(object sender, MouseEventArgs e)
+        {
+            // Call HitTest
+            //HitTestResult result = chart1.HitTest(e.X, e.Y);
+
+
+            //if (result.ChartElementType == ChartElementType.PlottingArea)
+            //{
+                var xAxis = chart1.ChartAreas[0].AxisX;
+                int xRight = (int)xAxis.ValueToPixelPosition(xAxis.Maximum) - 1;
+                int xLeft = (int)xAxis.ValueToPixelPosition(xAxis.Minimum);
+
+                double chartX;
+
+                if (e.X > xRight)
+                {
+                    chartX = xAxis.Maximum;
+                }
+                else if (e.X < xLeft)
+                {
+                    chartX = xAxis.Minimum;
+                }
+                else
+                {
+                    chartX = xAxis.PixelPositionToValue(e.X);
+                }
+
+                // FIX: won't work if there are no points in chart
+
+                if ((int)chartX == 0)
+                {
+                    // first block
+                    series0_annotation.AnchorDataPoint = chart1.Series[0].Points[0];
+                } else if((int)chartX >= chart1.Series[0].Points.Count)
+                {
+                    // last block
+                    series0_annotation.AnchorDataPoint = chart1.Series[0].Points[chart1.Series[0].Points.Count-1];
+                } else
+                {
+                    // middle blocks
+                    double frac = chartX - (int)chartX;
+                    frac = (frac >= 0.5 ? 1.0 : 0.0);
+
+                    int chartIdx = (int)((int)chartX + frac) - 1;
+                    if (chartIdx >= chart1.Series[0].Points.Count)
+                        chartIdx = chart1.Series[0].Points.Count - 1;
+
+                    series0_annotation.AnchorDataPoint = chart1.Series[0].Points[chartIdx];
+                    series0_annotation.Text = "[Series 0]:" + chart1.Series[0].Points[chartIdx].YValues[0].ToString();
+                } 
+            //}
+        }
+
+        private void chart1_Click(object sender, EventArgs e)
+        {
+        }
     }
 }
