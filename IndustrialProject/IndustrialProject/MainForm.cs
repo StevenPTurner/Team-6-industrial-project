@@ -251,5 +251,10 @@ namespace IndustrialProject
         {
 
         }
+
+        private void useManualToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+          
+        }
     }
 }
