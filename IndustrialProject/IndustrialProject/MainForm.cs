@@ -173,11 +173,6 @@ namespace IndustrialProject
             {
                 UpdateUI(4);
             }
-
-            if (e.KeyCode == Keys.H && e.Modifiers == Keys.Control)
-            {
-                MessageBox.Show("User manual opened");
-            }
         }
 
 
@@ -186,39 +181,54 @@ namespace IndustrialProject
             UpdateUI(1);
         }
 
-       /* private void LoadFile()
+        private void loadDevice2ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
+            UpdateUI(2);
+        }
 
-            ofd.InitialDirectory = "c:\\";
-            ofd.Filter = "txt files (*.txt)|*.txt|rec files (*.rec)|*.rec|all files (*.*)|*.*";
-            ofd.FilterIndex = 2;
-            ofd.RestoreDirectory = true;
+        private void loadDevice3ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UpdateUI(3);
+        }
 
-            if (ofd.ShowDialog() == DialogResult.OK)
-            {
-                // parse, feed into datagrid n that
-                FileManager fm = new FileManager();
-                openFiles.Add(fm.loadAndParseFile(ofd.FileName));
-                Console.WriteLine("[+] " + openFiles[0].stats.noOfPackets + " [+]");
-                //Console.WriteLine("File exists?: " + openFiles.Count);
+        private void loadDevice4ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UpdateUI(4);
+        }
 
-                //  for(int i = 0; i < openFiles.Count; i++)
-                //  {
-                //      for(int y = 0; y < openFiles[i].packets.Count; y++)
-                //      {
-                // Console.WriteLine(openFiles[i].packets[y].data)
-                //          for(int z = 0; z < openFiles[i].packets[y].data.Length; z++)
-                //         {
-                //             Console.Write(openFiles[i].packets[y].data[z]);
-                //        }
-                //       Console.WriteLine(" ");
-                //    }
-                // }
-                //Console.WriteLine(openFiles[0].filename);
-            }
+        /* private void LoadFile()
+         {
+             OpenFileDialog ofd = new OpenFileDialog();
 
-        }*/
+             ofd.InitialDirectory = "c:\\";
+             ofd.Filter = "txt files (*.txt)|*.txt|rec files (*.rec)|*.rec|all files (*.*)|*.*";
+             ofd.FilterIndex = 2;
+             ofd.RestoreDirectory = true;
+
+             if (ofd.ShowDialog() == DialogResult.OK)
+             {
+                 // parse, feed into datagrid n that
+                 FileManager fm = new FileManager();
+                 openFiles.Add(fm.loadAndParseFile(ofd.FileName));
+                 Console.WriteLine("[+] " + openFiles[0].stats.noOfPackets + " [+]");
+                 //Console.WriteLine("File exists?: " + openFiles.Count);
+
+                 //  for(int i = 0; i < openFiles.Count; i++)
+                 //  {
+                 //      for(int y = 0; y < openFiles[i].packets.Count; y++)
+                 //      {
+                 // Console.WriteLine(openFiles[i].packets[y].data)
+                 //          for(int z = 0; z < openFiles[i].packets[y].data.Length; z++)
+                 //         {
+                 //             Console.Write(openFiles[i].packets[y].data[z]);
+                 //        }
+                 //       Console.WriteLine(" ");
+                 //    }
+                 // }
+                 //Console.WriteLine(openFiles[0].filename);
+             }
+
+         }*/
 
         // changed to a bool function, to ensure the load process doesn't crash if user decides to cancel loading a file
         private bool LoadFile()
@@ -366,6 +376,20 @@ namespace IndustrialProject
         private void tabPage1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void keyBoardShortcutsMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("The following shortcuts can be used. \n"
+                            + "CTRL & 1 to Load Device 1.\n"
+                            + "CTRL & 2 to Load Device 2.\n"
+                            + "CTRL & 3 to Load Device 3.\n"
+                            + "CTRL & 4 to Load Device 4.\n");
+        }
+
+        private void loadHelpMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("blahblahblah");
         }
     }
 }
