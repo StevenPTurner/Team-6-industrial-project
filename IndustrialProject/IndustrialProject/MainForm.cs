@@ -52,11 +52,16 @@ namespace IndustrialProject
             var seriesPoints = this.chart1.Series[2];
             seriesPoints.XValueMember = "X";
             seriesPoints.YValueMembers = "Y";
+
+            dataGridView3.Columns["Column10"].DefaultCellStyle.BackColor = Color.Gray;
+            dataGridView3.Columns["Column11"].DefaultCellStyle.BackColor = Color.Gray;
+            dataGridView3.Columns["Column12"].DefaultCellStyle.BackColor = Color.Gray;
+            dataGridView3.Columns["Column13"].DefaultCellStyle.BackColor = Color.Gray;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
