@@ -15,11 +15,16 @@ namespace IndustrialProject
     public partial class MainForm : Form
     {
 
+        //xAxisPlot[i] = time on graph
+        //yAxisPlot[i] = data on graph
+        //openFiles[x].packets[i].data.Count
+
         int[] test;
         DateTime[] dates;
-        double[] plotPoints;
+        double[] xAxisPlot;
+        double[] yAxisPlot;
 
-        List<Tuple<DateTime, double>> timeAxis;
+       // List<Tuple<double, DateTime>> timeAxis;
         int[] test1 = new int[6] { 5, 3, 7, 8, 2, 0 };
         int[] errorTest = new int[2] { 1, 3 };
 
@@ -34,8 +39,8 @@ namespace IndustrialProject
             InitializeComponent();
             this.KeyPreview = true;
             chart1.Series[1].Color = Color.FromArgb(127, 255, 0, 0);
-           // chart1.Series[0].Points.DataBindY(test);
-           // chart1.Series[1].Points.DataBindY(test1);
+            //chart1.Series[0].Points.DataBindY(yAxisPlot);
+            //chart1.Series[1].Points.DataBindY();
            // errorHighlight();
             chart1.Series[2].Enabled = false;
 
@@ -64,49 +69,34 @@ namespace IndustrialProject
             dataGridView1.Columns["Column15"].DefaultCellStyle.BackColor = Color.Gray;
         }
 
+        //Sets graph values
         private void setVals()
         {
-            //File files = new File();
-            DateTime date = new DateTime();
-            string stringDate;
-           
+            GraphCalculations gc = new GraphCalculations();
+            DateTime date1;
+            DateTime date2;
+            double timeDifference;
             double plotPoint = 0;
-
-            this.test = new int[openFiles[0].packets.Count];
-            this.dates = new DateTime[openFiles[0].packets.Count];
-            this.plotPoints = new double[openFiles[0].packets.Count];
-
-            //Console.WriteLine("Ello");
-            //Tuple<DateTime, double>(date, plotPoint) timeAxisPoint = new Tuple<DateTime, double>();
             
-            for(int i = 0; i < openFiles[0].packets.Count; i++)
+            xAxisPlot = new double[openFiles[0].packets.Count - 1];
+            yAxisPlot = new double[openFiles[0].packets.Count - 1];
+            
+            for(int i = 0; i < openFiles[0].packets.Count - 1; i++)
             {
-                test[i] = openFiles[0].packets[i].data.Length;
-                date = openFiles[0].packets[i].timestamp;
-                this.dates[i] = date;
-                stringDate = date.ToString("dd-MM-yyyy HH:mm:ss:fff");
+                date1 = openFiles[0].packets[i].timestamp;
+                date2 = openFiles[0].packets[i + 1].timestamp;
 
-                plotPoints[i] = Convert.ToDouble(stringDate.Substring(stringDate.Length - 2));
+                timeDifference = gc.calcPacketTimeDif(date1, date2);
+                plotPoint = plotPoint + timeDifference;
 
-
-                Console.WriteLine("Data chars: " + test[i]);
-                Console.WriteLine("Plot Point: " + plotPoints[i]);
-
-                //Calculate plotPoint 
-                //plotPoint = calculatePlotPoint(date);
-                //Tuple<DateTime, double> timeAxisPoint = new Tuple<DateTime, double>(date, plotPoint);
-                //timeAxis.Add(timeAxisPoint);
+                dates[i] = date1; //This may change
+                
+                xAxisPlot[i] = plotPoint;
+                yAxisPlot[i] = (openFiles[0].packets[i].data.Length)/timeDifference;
             }
 
+            chart1.Series[0].Points.DataBindXY(xAxisPlot, yAxisPlot);
         }
-
-        private double calculatePlotPoint(DateTime date)
-        {
-            double plotPoint = 0;
-            return plotPoint;
-        }
-
-
 
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -415,7 +405,7 @@ namespace IndustrialProject
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            
         }
     }
 }

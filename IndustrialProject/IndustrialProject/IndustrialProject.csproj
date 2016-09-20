@@ -50,6 +50,7 @@
     <Compile Include="ErrorChecker.cs" />
     <Compile Include="File.cs" />
     <Compile Include="FileManager.cs" />
+    <Compile Include="GraphCalculations.cs" />
     <Compile Include="InnerType.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
