@@ -61,6 +61,11 @@ namespace IndustrialProject
                 return Packet.ErrorType.ERROR_DUPLICATE;
             }
 
+            //Needed to stop overwriting Parity
+            if(!lastPacket.error.Equals(Packet.ErrorType.NO_ERROR))
+            {
+                return lastPacket.error;
+            }
             //Could do it with one packet if we store previous seq no in a packet
             return Packet.ErrorType.NO_ERROR;
         }
