@@ -65,20 +65,6 @@ namespace IndustrialProject
 
                                 packet.loadDataAndEndMarker(byteArray, epm);
 
-                                // CHECK FOR END OF MARKER ERROR
-
-                                if (packet.epm == "EEP" || packet.epm == "None")
-                                {
-                                    packet.error = Packet.ErrorType.ERROR_TRUNCATED;
-
-                                    Console.WriteLine("BAM BADA BAAAA... BADABA BAM BADA BAAAA.... " + packet.error);
-                                }
-                                else if (packet.epm != "EOP")
-                                {
-                                    // FIX: ARGH... undefined error
-                                    throw new Exception("ARGH...");
-                                }
-
                                 file.addPacket(packet);
 
                                 sr.ReadLine();

@@ -63,6 +63,20 @@ namespace IndustrialProject
         {
             this.data = data;
             this.epm = epm;
+
+            // CHECK FOR END OF MARKER ERROR
+
+            if (this.epm == "EEP" || this.epm == "None")
+            {
+                this.error = Packet.ErrorType.ERROR_TRUNCATED;
+
+                Console.WriteLine("BAM BADA BAAAA... BADABA BAM BADA BAAAA.... " + this.error);
+            }
+            else if (this.epm != "EOP")
+            {
+                // FIX: ARGH... undefined error
+                throw new Exception("ARGH...");
+            }
         }
 
         public void setError(ErrorType error)
