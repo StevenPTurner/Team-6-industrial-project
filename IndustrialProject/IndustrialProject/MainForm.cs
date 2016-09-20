@@ -15,9 +15,13 @@ namespace IndustrialProject
     public partial class MainForm : Form
     {
 
-        /*int[] test = new int[6] { 1, 3, 5, 2, 7, 9 };
+        int[] test;
+        DateTime[] dates;
+        double[] plotPoints;
+
+        List<Tuple<DateTime, double>> timeAxis;
         int[] test1 = new int[6] { 5, 3, 7, 8, 2, 0 };
-        int[] errorTest = new int[2] { 1, 3 };*/
+        int[] errorTest = new int[2] { 1, 3 };
 
         int[] errorsArray;
         int count = 0;
@@ -60,6 +64,50 @@ namespace IndustrialProject
             dataGridView1.Columns["Column15"].DefaultCellStyle.BackColor = Color.Gray;
         }
 
+        private void setVals()
+        {
+            //File files = new File();
+            DateTime date = new DateTime();
+            string stringDate;
+           
+            double plotPoint = 0;
+
+            this.test = new int[openFiles[0].packets.Count];
+            this.dates = new DateTime[openFiles[0].packets.Count];
+            this.plotPoints = new double[openFiles[0].packets.Count];
+
+            //Console.WriteLine("Ello");
+            //Tuple<DateTime, double>(date, plotPoint) timeAxisPoint = new Tuple<DateTime, double>();
+            
+            for(int i = 0; i < openFiles[0].packets.Count; i++)
+            {
+                test[i] = openFiles[0].packets[i].data.Length;
+                date = openFiles[0].packets[i].timestamp;
+                this.dates[i] = date;
+                stringDate = date.ToString("dd-MM-yyyy HH:mm:ss:fff");
+
+                plotPoints[i] = Convert.ToDouble(stringDate.Substring(stringDate.Length - 2));
+
+
+                Console.WriteLine("Data chars: " + test[i]);
+                Console.WriteLine("Plot Point: " + plotPoints[i]);
+
+                //Calculate plotPoint 
+                //plotPoint = calculatePlotPoint(date);
+                //Tuple<DateTime, double> timeAxisPoint = new Tuple<DateTime, double>(date, plotPoint);
+                //timeAxis.Add(timeAxisPoint);
+            }
+
+        }
+
+        private double calculatePlotPoint(DateTime date)
+        {
+            double plotPoint = 0;
+            return plotPoint;
+        }
+
+
+
         private void MainForm_Load(object sender, EventArgs e)
         {
             
@@ -70,59 +118,55 @@ namespace IndustrialProject
             switch (device)
             {
                 case 1:
-                    if(LoadFile())
-                    {
-                        packetCountA.Text = openFiles[count].stats.noOfPackets.ToString();
-                        charCountA.Text = openFiles[count].stats.noOfDataChars.ToString();
-                        dataRate.Text = openFiles[count].stats.avgDataRate.ToString();
-                        packetRate.Text = openFiles[count].stats.avgPacketRate.ToString();
-                        errorCountA.Text = openFiles[count].stats.totalNoOfErrors.ToString();
-                        errorHighlight(openFiles[count].stats.totalNoOfErrors, device);
-                        this.Refresh();
-                        count++;
-                    }
+                    LoadFile();
+                    setVals();
+                    packetCountA.Text = openFiles[count].stats.noOfPackets.ToString();
+                    charCountA.Text = openFiles[count].stats.noOfDataChars.ToString();
+                    dataRate.Text = openFiles[count].stats.avgDataRate.ToString();
+                    packetRate.Text = openFiles[count].stats.avgPacketRate.ToString();
+                    errorCountA.Text = openFiles[count].stats.totalNoOfErrors.ToString();
+                    errorHighlight(openFiles[count].stats.totalNoOfErrors, device);
+                    this.Refresh();
+                    count++;
                     break;
 
                 case 2:
-                    if(LoadFile())
-                    {
-                        linkTwoPacketCount.Text = openFiles[count].stats.noOfPackets.ToString();
-                        linkTwoCharCount.Text = openFiles[count].stats.noOfDataChars.ToString();
-                        linkTwoDataRate.Text = openFiles[count].stats.avgDataRate.ToString();
-                        linkTwoPacketRate.Text = openFiles[count].stats.avgPacketRate.ToString();
-                        linkTwoErrorCount.Text = openFiles[count].stats.totalNoOfErrors.ToString();
-                        errorHighlight(openFiles[count].stats.totalNoOfErrors, device);
-                        this.Refresh();
-                        count++;
-                    }
+                    LoadFile();
+                    setVals();
+                    linkTwoPacketCount.Text = openFiles[count].stats.noOfPackets.ToString();
+                    linkTwoCharCount.Text = openFiles[count].stats.noOfDataChars.ToString();
+                    linkTwoDataRate.Text = openFiles[count].stats.avgDataRate.ToString();
+                    linkTwoPacketRate.Text = openFiles[count].stats.avgPacketRate.ToString();
+                    linkTwoErrorCount.Text = openFiles[count].stats.totalNoOfErrors.ToString();
+                    errorHighlight(openFiles[count].stats.totalNoOfErrors, device);
+                    this.Refresh();
+                    count++;
                     break;
 
                 case 3:
-                    if(LoadFile())
-                    {
-                        linkThreePacketCount.Text = openFiles[count].stats.noOfPackets.ToString();
-                        linkThreeCharCount.Text = openFiles[count].stats.noOfDataChars.ToString();
-                        linkThreeDataRate.Text = openFiles[count].stats.avgDataRate.ToString();
-                        linkThreePacketRate.Text = openFiles[count].stats.avgPacketRate.ToString();
-                        linkThreeErrorCount.Text = openFiles[count].stats.totalNoOfErrors.ToString();
-                        errorHighlight(openFiles[count].stats.totalNoOfErrors, device);
-                        this.Refresh();
-                        count++;
-                    }
+                    LoadFile();
+                    setVals();
+                    linkThreePacketCount.Text = openFiles[count].stats.noOfPackets.ToString();
+                    linkThreeCharCount.Text = openFiles[count].stats.noOfDataChars.ToString();
+                    linkThreeDataRate.Text = openFiles[count].stats.avgDataRate.ToString();
+                    linkThreePacketRate.Text = openFiles[count].stats.avgPacketRate.ToString();
+                    linkThreeErrorCount.Text = openFiles[count].stats.totalNoOfErrors.ToString();
+                    errorHighlight(openFiles[count].stats.totalNoOfErrors, device);
+                    this.Refresh();
+                    count++;
                     break;
 
                 case 4:
-                    if(LoadFile())
-                    {
-                        linkFourPacketCount.Text = openFiles[count].stats.noOfPackets.ToString();
-                        linkFourCharCount.Text = openFiles[count].stats.noOfDataChars.ToString();
-                        linkFourDataRate.Text = openFiles[count].stats.avgDataRate.ToString();
-                        linkFourPacketRate.Text = openFiles[count].stats.avgPacketRate.ToString();
-                        linkFourErrorCount.Text = openFiles[count].stats.totalNoOfErrors.ToString();
-                        errorHighlight(openFiles[count].stats.totalNoOfErrors, device);
-                        this.Refresh();
-                        count++;
-                    }
+                    LoadFile();
+                    setVals();
+                    linkFourPacketCount.Text = openFiles[count].stats.noOfPackets.ToString();
+                    linkFourCharCount.Text = openFiles[count].stats.noOfDataChars.ToString();
+                    linkFourDataRate.Text = openFiles[count].stats.avgDataRate.ToString();
+                    linkFourPacketRate.Text = openFiles[count].stats.avgPacketRate.ToString();
+                    linkFourErrorCount.Text = openFiles[count].stats.totalNoOfErrors.ToString();
+                    errorHighlight(openFiles[count].stats.totalNoOfErrors, device);
+                    this.Refresh();
+                    count++;
                     break;
             }
         }
@@ -173,6 +217,11 @@ namespace IndustrialProject
             {
                 UpdateUI(4);
             }
+
+            if (e.KeyCode == Keys.H && e.Modifiers == Keys.Control)
+            {
+                MessageBox.Show("User manual opened");
+            }
         }
 
 
@@ -180,8 +229,7 @@ namespace IndustrialProject
         {
             UpdateUI(1);
         }
-
-        private void loadDevice2ToolStripMenuItem_Click(object sender, EventArgs e)
+         private void loadDevice2ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UpdateUI(2);
         }
@@ -196,42 +244,7 @@ namespace IndustrialProject
             UpdateUI(4);
         }
 
-        /* private void LoadFile()
-         {
-             OpenFileDialog ofd = new OpenFileDialog();
-
-             ofd.InitialDirectory = "c:\\";
-             ofd.Filter = "txt files (*.txt)|*.txt|rec files (*.rec)|*.rec|all files (*.*)|*.*";
-             ofd.FilterIndex = 2;
-             ofd.RestoreDirectory = true;
-
-             if (ofd.ShowDialog() == DialogResult.OK)
-             {
-                 // parse, feed into datagrid n that
-                 FileManager fm = new FileManager();
-                 openFiles.Add(fm.loadAndParseFile(ofd.FileName));
-                 Console.WriteLine("[+] " + openFiles[0].stats.noOfPackets + " [+]");
-                 //Console.WriteLine("File exists?: " + openFiles.Count);
-
-                 //  for(int i = 0; i < openFiles.Count; i++)
-                 //  {
-                 //      for(int y = 0; y < openFiles[i].packets.Count; y++)
-                 //      {
-                 // Console.WriteLine(openFiles[i].packets[y].data)
-                 //          for(int z = 0; z < openFiles[i].packets[y].data.Length; z++)
-                 //         {
-                 //             Console.Write(openFiles[i].packets[y].data[z]);
-                 //        }
-                 //       Console.WriteLine(" ");
-                 //    }
-                 // }
-                 //Console.WriteLine(openFiles[0].filename);
-             }
-
-         }*/
-
-        // changed to a bool function, to ensure the load process doesn't crash if user decides to cancel loading a file
-        private bool LoadFile()
+        private void LoadFile()
         {
             OpenFileDialog ofd = new OpenFileDialog();
 
@@ -261,11 +274,6 @@ namespace IndustrialProject
                 //    }
                 // }
                 //Console.WriteLine(openFiles[0].filename);
-                return true;
-            }
-            else
-            {
-                return false;
             }
 
         }
@@ -369,15 +377,6 @@ namespace IndustrialProject
             //}
         }
 
-        private void chart1_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void keyBoardShortcutsMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("The following shortcuts can be used. \n"
@@ -390,6 +389,20 @@ namespace IndustrialProject
         private void loadHelpMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("blahblahblah");
+        }
+
+        private void chart1_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
