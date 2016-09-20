@@ -22,8 +22,8 @@ namespace IndustrialProject
 
             file.filename = fname;
 
-            /*try
-            {*/
+            try
+            {
                 using (StreamReader sr = new StreamReader(fname))
                 {
                     date = DateTime.Parse(sr.ReadLine());
@@ -61,23 +61,26 @@ namespace IndustrialProject
                                     byteArray[i] = Convert.ToByte(stringBytes[i], 16);
                                 }
 
-                                Console.WriteLine("Packet Date: " + date.ToString("dd-MM-yyyy HH:mm:ss:fff"));
-                                Console.Write("Packet: ");
-
-                                for (int i = 0; i < byteArray.Length; i++)
-                                {
-                                    Console.Write(byteArray[i] + " ");
-                                }
-
-                                Console.WriteLine('\n');
-
                                 string epm = sr.ReadLine();
 
                                 packet.loadDataAndEndMarker(byteArray, epm);
 
+                                // CHECK FOR END OF MARKER ERROR
+
+                                if (packet.epm == "EEP" || packet.epm == "None")
+                                {
+                                    packet.error = Packet.ErrorType.ERROR_TRUNCATED;
+
+                                    Console.WriteLine("BAM BADA BAAAA... BADABA BAM BADA BAAAA.... " + packet.error);
+                                }
+                                else if (packet.epm != "EOP")
+                                {
+                                    // FIX: ARGH... undefined error
+                                    throw new Exception("ARGH...");
+                                }
+
                                 file.addPacket(packet);
 
-                                Console.WriteLine("");
                                 sr.ReadLine();
                                 break;
                             case "E":
@@ -93,7 +96,7 @@ namespace IndustrialProject
                                 Tuple<Packet, Packet> last2Packets = new Tuple<Packet, Packet>(secondLastPacket, lastPacket);
                                 lastPacket.setError(ErrorChecker.determineError(last2Packets));
 
-                                Console.WriteLine("BAM BADA BAAAA... BADABA BADA BAAAA.... " + lastPacket.error);
+                                Console.WriteLine("BAM BADA BAAAA... BADABA BAM BADA BAAAA.... " + lastPacket.error);
 
                                 // XXX: setter?
                                 lastPacket.errorPacket = error;
@@ -109,23 +112,15 @@ namespace IndustrialProject
 
                 }
 
-            /*}
-            catch (Exception E)
-            {
-                errorFound = E.ToString();
-            }*/
-
-            if (errorFound == null)
-            {
-               // Console.WriteLine("File found");
             }
-            else
+            catch (FileNotFoundException E)
             {
+                // FIX: tell the user
                 Console.WriteLine("File not found");
             }
 
             //Stats stats = new Stats();
-            file. stats.packets = file.packets;
+            file.stats.packets = file.packets;
 
             file.stats.setNumberOfPackets();
             file.stats.setNumberOfDataCharacters();

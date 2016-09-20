@@ -21,7 +21,7 @@ namespace IndustrialProject
                 return Packet.ErrorType.ERROR_TRUNCATED;
             } else if(lastPacket.epm != "EOP")
             {
-                // ARGH... undefined error
+                // FIX: ARGH... undefined error
                 throw new Exception("ARGH...");
             }
 
