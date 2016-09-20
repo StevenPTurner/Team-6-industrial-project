@@ -69,22 +69,31 @@ namespace IndustrialProject
             
             xAxisPlot = new double[openFiles[0].packets.Count - 1];
             yAxisPlot = new double[openFiles[0].packets.Count - 1];
-            
+
+            chart1.Series.Clear();
+            Series series = new Series();
+             
             for(int i = 0; i < openFiles[0].packets.Count - 1; i++)
             {
                 date1 = openFiles[0].packets[i].timestamp;
                 date2 = openFiles[0].packets[i + 1].timestamp;
 
                 timeDifference = gc.calcPacketTimeDif(date1, date2);
+                if (timeDifference == 0)
+                    continue;
                 plotPoint = plotPoint + timeDifference;
 
                 //dates[i] = date1; //This may change
                 
                 xAxisPlot[i] = plotPoint;
                 yAxisPlot[i] = (openFiles[0].packets[i].data.Length)/timeDifference;
+                Console.WriteLine(xAxisPlot[i].ToString() + "  -  " + yAxisPlot[i].ToString());
             }
 
-            chart1.Series[0].Points.DataBindXY(xAxisPlot, yAxisPlot);
+            series.Points.DataBindXY(xAxisPlot, yAxisPlot);
+            series.ChartType = SeriesChartType.Line;
+
+            chart1.Series.Add(series);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -166,7 +175,7 @@ namespace IndustrialProject
                 errors
             };
 
-            switch(device)
+            /*switch(device)
             {
                 case 1:
                     chart1.Series[2].Points.DataBindY(errorsArray);
@@ -180,7 +189,7 @@ namespace IndustrialProject
                 case 4:
                     chart5.Series[2].Points.DataBindY(errorsArray);
                     break;
-            }   
+            } */  
         }
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
