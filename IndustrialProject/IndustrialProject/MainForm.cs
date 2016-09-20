@@ -118,55 +118,63 @@ namespace IndustrialProject
             switch (device)
             {
                 case 1:
-                    LoadFile();
-                    setVals();
-                    packetCountA.Text = openFiles[count].stats.noOfPackets.ToString();
-                    charCountA.Text = openFiles[count].stats.noOfDataChars.ToString();
-                    dataRate.Text = openFiles[count].stats.avgDataRate.ToString();
-                    packetRate.Text = openFiles[count].stats.avgPacketRate.ToString();
-                    errorCountA.Text = openFiles[count].stats.totalNoOfErrors.ToString();
-                    errorHighlight(openFiles[count].stats.totalNoOfErrors, device);
-                    this.Refresh();
-                    count++;
+                    if (LoadFile())
+                    {
+                        setVals();
+                        packetCountA.Text = openFiles[count].stats.noOfPackets.ToString();
+                        charCountA.Text = openFiles[count].stats.noOfDataChars.ToString();
+                        dataRate.Text = openFiles[count].stats.avgDataRate.ToString();
+                        packetRate.Text = openFiles[count].stats.avgPacketRate.ToString();
+                        errorCountA.Text = openFiles[count].stats.totalNoOfErrors.ToString();
+                        errorHighlight(openFiles[count].stats.totalNoOfErrors, device);
+                        this.Refresh();
+                        count++;
+                    }
                     break;
 
                 case 2:
-                    LoadFile();
-                    setVals();
-                    linkTwoPacketCount.Text = openFiles[count].stats.noOfPackets.ToString();
-                    linkTwoCharCount.Text = openFiles[count].stats.noOfDataChars.ToString();
-                    linkTwoDataRate.Text = openFiles[count].stats.avgDataRate.ToString();
-                    linkTwoPacketRate.Text = openFiles[count].stats.avgPacketRate.ToString();
-                    linkTwoErrorCount.Text = openFiles[count].stats.totalNoOfErrors.ToString();
-                    errorHighlight(openFiles[count].stats.totalNoOfErrors, device);
-                    this.Refresh();
-                    count++;
+                    if (LoadFile())
+                    {
+                        setVals();
+                        linkTwoPacketCount.Text = openFiles[count].stats.noOfPackets.ToString();
+                        linkTwoCharCount.Text = openFiles[count].stats.noOfDataChars.ToString();
+                        linkTwoDataRate.Text = openFiles[count].stats.avgDataRate.ToString();
+                        linkTwoPacketRate.Text = openFiles[count].stats.avgPacketRate.ToString();
+                        linkTwoErrorCount.Text = openFiles[count].stats.totalNoOfErrors.ToString();
+                        errorHighlight(openFiles[count].stats.totalNoOfErrors, device);
+                        this.Refresh();
+                        count++;
+                    }
                     break;
 
                 case 3:
-                    LoadFile();
-                    setVals();
-                    linkThreePacketCount.Text = openFiles[count].stats.noOfPackets.ToString();
-                    linkThreeCharCount.Text = openFiles[count].stats.noOfDataChars.ToString();
-                    linkThreeDataRate.Text = openFiles[count].stats.avgDataRate.ToString();
-                    linkThreePacketRate.Text = openFiles[count].stats.avgPacketRate.ToString();
-                    linkThreeErrorCount.Text = openFiles[count].stats.totalNoOfErrors.ToString();
-                    errorHighlight(openFiles[count].stats.totalNoOfErrors, device);
-                    this.Refresh();
-                    count++;
+                    if (LoadFile())
+                    {
+                        setVals();
+                        linkThreePacketCount.Text = openFiles[count].stats.noOfPackets.ToString();
+                        linkThreeCharCount.Text = openFiles[count].stats.noOfDataChars.ToString();
+                        linkThreeDataRate.Text = openFiles[count].stats.avgDataRate.ToString();
+                        linkThreePacketRate.Text = openFiles[count].stats.avgPacketRate.ToString();
+                        linkThreeErrorCount.Text = openFiles[count].stats.totalNoOfErrors.ToString();
+                        errorHighlight(openFiles[count].stats.totalNoOfErrors, device);
+                        this.Refresh();
+                        count++;
+                    }
                     break;
 
                 case 4:
-                    LoadFile();
-                    setVals();
-                    linkFourPacketCount.Text = openFiles[count].stats.noOfPackets.ToString();
-                    linkFourCharCount.Text = openFiles[count].stats.noOfDataChars.ToString();
-                    linkFourDataRate.Text = openFiles[count].stats.avgDataRate.ToString();
-                    linkFourPacketRate.Text = openFiles[count].stats.avgPacketRate.ToString();
-                    linkFourErrorCount.Text = openFiles[count].stats.totalNoOfErrors.ToString();
-                    errorHighlight(openFiles[count].stats.totalNoOfErrors, device);
-                    this.Refresh();
-                    count++;
+                    if (LoadFile())
+                    {
+                        setVals();
+                        linkFourPacketCount.Text = openFiles[count].stats.noOfPackets.ToString();
+                        linkFourCharCount.Text = openFiles[count].stats.noOfDataChars.ToString();
+                        linkFourDataRate.Text = openFiles[count].stats.avgDataRate.ToString();
+                        linkFourPacketRate.Text = openFiles[count].stats.avgPacketRate.ToString();
+                        linkFourErrorCount.Text = openFiles[count].stats.totalNoOfErrors.ToString();
+                        errorHighlight(openFiles[count].stats.totalNoOfErrors, device);
+                        this.Refresh();
+                        count++;
+                    }
                     break;
             }
         }
@@ -183,7 +191,6 @@ namespace IndustrialProject
                 case 1:
                     chart1.Series[2].Points.DataBindY(errorsArray);
                     break;
-
                 case 2:
                     chart3.Series[2].Points.DataBindY(errorsArray);
                     break;
@@ -218,10 +225,10 @@ namespace IndustrialProject
                 UpdateUI(4);
             }
 
-            if (e.KeyCode == Keys.H && e.Modifiers == Keys.Control)
+            /*if (e.KeyCode == Keys.H && e.Modifiers == Keys.Control)
             {
                 MessageBox.Show("User manual opened");
-            }
+            }*/
         }
 
 
@@ -244,7 +251,7 @@ namespace IndustrialProject
             UpdateUI(4);
         }
 
-        private void LoadFile()
+        private bool LoadFile()
         {
             OpenFileDialog ofd = new OpenFileDialog();
 
@@ -274,7 +281,13 @@ namespace IndustrialProject
                 //    }
                 // }
                 //Console.WriteLine(openFiles[0].filename);
+                return true;
             }
+            else
+            {
+                return false;
+            }
+            
 
         }
 
