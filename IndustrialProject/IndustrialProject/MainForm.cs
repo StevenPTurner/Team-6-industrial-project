@@ -50,23 +50,12 @@ namespace IndustrialProject
             //series0_annotation.AnchorDataPoint = chart1.Series[0].Points[0];
             chart1.Annotations.Add(series0_annotation);
 
-            this.dataGridView1.Rows.Add(DateTime.Now,"", "f0bff0a0fb0", "", "f0bff0a0fb0");
-            this.dataGridView1.Rows.Add(DateTime.Now, "", "f1bbfif0fd0", "", "f0bff0a0fb0");
-            this.dataGridView1.Rows.Add(DateTime.Now, "", "f0hb0x0x0x0", "", "f0bff0a0fb0");
-            this.dataGridView1.Rows.Add(DateTime.Now, "", "0xfb0xbfb00", "", "f0bff0a0fb0");
-
             chartDropdown.SelectedIndex = 0;
 
             var seriesPoints = this.chart1.Series[2];
             seriesPoints.XValueMember = "X";
             seriesPoints.YValueMembers = "Y";
 
-            dataGridView3.Columns["Column10"].DefaultCellStyle.BackColor = Color.Gray;
-            dataGridView3.Columns["Column11"].DefaultCellStyle.BackColor = Color.Gray;
-            dataGridView3.Columns["Column12"].DefaultCellStyle.BackColor = Color.Gray;
-            dataGridView3.Columns["Column13"].DefaultCellStyle.BackColor = Color.Gray;
-            dataGridView1.Columns["Column14"].DefaultCellStyle.BackColor = Color.Gray;
-            dataGridView1.Columns["Column15"].DefaultCellStyle.BackColor = Color.Gray;
         }
 
         //Sets graph values
@@ -272,6 +261,21 @@ namespace IndustrialProject
                 //    }
                 // }
                 //Console.WriteLine(openFiles[0].filename);
+
+                var bindingList = new BindingList<Packet>(openFiles[0].packets);
+
+                var source = new BindingSource(bindingList, null);
+
+                //source.DataSource = GetData();
+                dataGridView1.DataSource = source;
+
+                foreach(DataGridViewRow row in dataGridView1.Rows)
+                    if(row.Cells[2].Value != null)
+                    {
+                        row.DefaultCellStyle.BackColor = Color.Red;
+                    }
+
+
                 return true;
             }
             else

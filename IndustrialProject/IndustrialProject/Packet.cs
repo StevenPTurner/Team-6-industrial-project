@@ -37,13 +37,17 @@ namespace IndustrialProject
             {
                 this.rawError = rawError;
                 this.timestamp = timestamp;
-                this.errorType = ErrorChecker.determineFlaggedError(this.rawError);
+                this.errorType = ErrorChecker.determineFlaggedError(this.rawError);   
             }
         }
 
         public DateTime timestamp;
         public byte[] data;
         public string epm;
+
+        public string displayTime { get; set; }
+        public string displayData { get; set; }
+        public string displayErrorType { set; get; }
 
         public InnerType innerPacket;
 
@@ -82,6 +86,7 @@ namespace IndustrialProject
         public void setError(ErrorType error)
         {
             this.error = error;
+            displayErrorType = error.ToString();
         }
 
         // loads and parses the packet bytes
