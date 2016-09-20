@@ -50,6 +50,8 @@ namespace IndustrialProject
             //series0_annotation.AnchorDataPoint = chart1.Series[0].Points[0];
             chart1.Annotations.Add(series0_annotation);
 
+     
+
             chartDropdown.SelectedIndex = 0;
 
             var seriesPoints = this.chart1.Series[2];
@@ -86,8 +88,14 @@ namespace IndustrialProject
                 //dates[i] = date1; //This may change
                 
                 xAxisPlot[i] = plotPoint;
-                yAxisPlot[i] = (openFiles[0].packets[i].data.Length)/timeDifference;
-                Console.WriteLine(xAxisPlot[i].ToString() + "  -  " + yAxisPlot[i].ToString());
+
+                //if(blabla)
+                //Load data rate line. If blabla load packet rate line
+
+                //yAxisPlot[i] = (openFiles[0].packets[i].data.Length)/timeDifference; //Data rate
+                yAxisPlot[i] = 1 / timeDifference; //Packet rate
+
+               // Console.WriteLine("Y is: " + yAxisPlot[i]);
             }
 
             series.Points.DataBindXY(xAxisPlot, yAxisPlot);
@@ -114,7 +122,6 @@ namespace IndustrialProject
                         dataRate.Text = openFiles[count].stats.avgDataRate.ToString();
                         packetRate.Text = openFiles[count].stats.avgPacketRate.ToString();
                         errorCountA.Text = openFiles[count].stats.totalNoOfErrors.ToString();
-                        errorRate.Text = openFiles[count].stats.avgErrorRate.ToString();
                         errorHighlight(openFiles[count].stats.totalNoOfErrors, device);
                         this.Refresh();
                         count++;
@@ -270,21 +277,6 @@ namespace IndustrialProject
                 //    }
                 // }
                 //Console.WriteLine(openFiles[0].filename);
-
-                var bindingList = new BindingList<Packet>(openFiles[0].packets);
-
-                var source = new BindingSource(bindingList, null);
-
-                //source.DataSource = GetData();
-                dataGridView1.DataSource = source;
-
-                foreach(DataGridViewRow row in dataGridView1.Rows)
-                    if(row.Cells[2].Value != null)
-                    {
-                        row.DefaultCellStyle.BackColor = Color.Red;
-                    }
-
-
                 return true;
             }
             else

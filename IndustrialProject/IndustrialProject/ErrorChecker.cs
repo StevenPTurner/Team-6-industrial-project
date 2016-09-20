@@ -70,7 +70,6 @@ namespace IndustrialProject
             return Packet.ErrorType.NO_ERROR;
         }
 
-
         //Checks if Parity or Disconnect errors are highlighted
         public static Packet.ErrorType determineFlaggedError(string flaggedError)
         {
