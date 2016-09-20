@@ -8,7 +8,6 @@ namespace IndustrialProject
 {
     class Stats
     {
-        public List<Packet> packets { get; set; }
         public int noOfPackets { get; set; }
         public int noOfDataChars { get; set; }
         public double avgPacketRate { get; set; }
@@ -16,7 +15,7 @@ namespace IndustrialProject
         public int totalNoOfErrors { get; set; }
         public double avgErrorRate { get; set; }
 
-        public Stats()
+        public Stats(File file)
         {
             noOfPackets = 0;
             noOfDataChars = 0;
@@ -24,55 +23,27 @@ namespace IndustrialProject
             avgDataRate = 0;
             totalNoOfErrors = 0;
             avgErrorRate = 0.00;
-        }
 
-        public void setNumberOfPackets()
-        {
-            //return this.packets.Count;
-            this.noOfPackets = this.packets.Count;
-        }
+            this.noOfPackets = file.packets.Count;
 
-        public void setNumberOfDataCharacters()
-        {
-           // return this.packets.Select(pkt => pkt.data.Length).Sum();
-           this.noOfDataChars = this.packets.Select(pkt => pkt.data.Length).Sum();
-        }
+            if (this.noOfPackets <= 0)
+                return;
 
-        public void setAvgPacketRate()
-        {
-            IEnumerable<DateTime> e = this.packets.Select(pkt => pkt.timestamp);
-            //return e.Count() / (e.Last() - e.First()).TotalSeconds;
-            this.avgPacketRate = e.Count() / (e.Last() - e.First()).TotalSeconds;
-        }
+            Packet firstPacket = file.packets.First();
+            Packet lastPacket = file.packets.Last();
 
-        public void setAvgDataRate()
-        {
-            IEnumerable<DateTime> e = this.packets.Select(pkt => pkt.timestamp);
-            //return this.noOfDataChars / (e.Last() - e.First()).TotalSeconds;
-            this.avgDataRate = this.noOfDataChars / (e.Last() - e.First()).TotalSeconds;
-        }
+            var totalTime = lastPacket.timestamp - firstPacket.timestamp;
 
-        public void setTotalNoOfErrors()
-        {
-            int totalNoOfErrors = 0;
-
-            for(int i = 0; i < this.packets.Count; i++)
+            foreach(Packet pkt in file.packets)
             {
-                if(!this.packets[i].error.Equals("NO_ERROR"))
-                {
-                    totalNoOfErrors++;
-                }
+                this.noOfDataChars += pkt.data.Length;
+                if (pkt.error != Packet.ErrorType.NO_ERROR)
+                    this.totalNoOfErrors += 1;
             }
 
-            // return totalErrors;
-            this.totalNoOfErrors = totalNoOfErrors;
-        }
-
-        public void setAvgErrorRate()
-        {
-            double avgErrorRate = 0.00;
-            //return avgErrorRate;
-            this.avgErrorRate = avgErrorRate;
+            this.avgPacketRate = this.noOfPackets / totalTime.TotalSeconds;
+            this.avgDataRate = this.noOfDataChars / totalTime.TotalSeconds;
+            this.avgErrorRate = this.totalNoOfErrors / totalTime.TotalSeconds;
         }
     }
 }

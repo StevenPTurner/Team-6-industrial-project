@@ -89,7 +89,7 @@ namespace IndustrialProject
                 timeDifference = gc.calcPacketTimeDif(date1, date2);
                 plotPoint = plotPoint + timeDifference;
 
-                dates[i] = date1; //This may change
+                //dates[i] = date1; //This may change
                 
                 xAxisPlot[i] = plotPoint;
                 yAxisPlot[i] = (openFiles[0].packets[i].data.Length)/timeDifference;
@@ -116,6 +116,7 @@ namespace IndustrialProject
                         dataRate.Text = openFiles[count].stats.avgDataRate.ToString();
                         packetRate.Text = openFiles[count].stats.avgPacketRate.ToString();
                         errorCountA.Text = openFiles[count].stats.totalNoOfErrors.ToString();
+                        errorRate.Text = openFiles[count].stats.avgErrorRate.ToString();
                         errorHighlight(openFiles[count].stats.totalNoOfErrors, device);
                         this.Refresh();
                         count++;

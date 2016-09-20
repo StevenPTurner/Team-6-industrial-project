@@ -17,7 +17,6 @@ namespace IndustrialProject
             List<string> packets = new List<String>();
             ErrorChecker ec = new ErrorChecker();
             DateTime date = new DateTime();
-            string errorFound = null;
             int port;
 
             file.filename = fname;
@@ -105,14 +104,8 @@ namespace IndustrialProject
                 Console.WriteLine("File not found");
             }
 
-            //Stats stats = new Stats();
-            file.stats.packets = file.packets;
-
-            file.stats.setNumberOfPackets();
-            file.stats.setNumberOfDataCharacters();
-            file.stats.setAvgPacketRate();
-            file.stats.setAvgDataRate();     
-                
+            file.stats = new Stats(file);
+            
             Console.WriteLine("No of packets: " + file.stats.noOfPackets);
             Console.WriteLine("No. of data chars: " + file.stats.noOfDataChars);
             Console.WriteLine("Avg. Packet Rate: " + file.stats.avgPacketRate);
