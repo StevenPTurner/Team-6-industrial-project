@@ -22,8 +22,8 @@ namespace IndustrialProject
 
             file.filename = fname;
 
-            try
-            {
+            /*try
+            {*/
                 using (StreamReader sr = new StreamReader(fname))
                 {
                     date = DateTime.Parse(sr.ReadLine());
@@ -48,18 +48,16 @@ namespace IndustrialProject
 
                         switch (temp)
                         {
-
                             case "P":
                                 Packet packet = new Packet();
 
-                                packet.timestamp = date; //Set packet timestamp
-                                string[] stringBytes = sr.ReadLine().Split(' ');//Splitting string of bytes
+                                packet.timestamp = date; // Set packet timestamp
+                                string[] stringBytes = sr.ReadLine().Split(' '); // Splitting string of bytes
 
                                 byte[] byteArray = new byte[stringBytes.Length];
 
                                 for (int i = 0; i < stringBytes.Length; i++)
                                 {
-                                    //byteList.Add(Convert.ToByte(stringBytes[i], 16));
                                     byteArray[i] = Convert.ToByte(stringBytes[i], 16);
                                 }
 
@@ -72,49 +70,33 @@ namespace IndustrialProject
                                 }
 
                                 Console.WriteLine('\n');
-               
-                                packet.data = byteArray; //Set packet bytes
 
-                                temp = sr.ReadLine();
+                                string epm = sr.ReadLine();
 
-                                if (temp.Equals("None") || temp.Equals("EEP"))
-                                {
-                                   //None or EEP error detected
-                                    packet.error = Packet.ErrorType.ERROR_TRUNCATED; //Adding error to packet
-                                }
+                                packet.loadDataAndEndMarker(byteArray, epm);
 
                                 file.addPacket(packet);
+
                                 Console.WriteLine("");
                                 sr.ReadLine();
                                 break;
                             case "E":
                                 Console.WriteLine("Error (E) At: " + date.ToString("dd-MM-yyyy HH:mm:ss:fff"));
-                                temp = sr.ReadLine();
+                                string rawError = sr.ReadLine();
 
-                                Tuple<Packet, Packet> last2Packets = new Tuple<Packet, Packet>(file.packets[file.packets.Count - 2], file.packets.Last());
-                                file.packets.Last().error = ec.determineFlaggedError(temp); //Checks disconnect/parity error
+                                Packet.Error error = new Packet.Error(rawError, date);
 
-                                try
-                                {
+                                // FIX: what if the error is first or second in the packet?
+                                Packet secondLastPacket = file.packets[file.packets.Count - 2];
+                                Packet lastPacket = file.packets.Last();
 
-                                    Console.WriteLine("");
-                                    for (int l = 0; l < file.packets.Last().data.Length; l++)
-                                    {
-                                        Console.Write(file.packets.Last().data[l] + " ");
-                                    }
+                                Tuple<Packet, Packet> last2Packets = new Tuple<Packet, Packet>(secondLastPacket, lastPacket);
+                                lastPacket.setError(ErrorChecker.determineError(last2Packets));
 
-                                    Console.WriteLine("Size is: " + file.packets.Count);
-                                    Console.WriteLine("");
+                                Console.WriteLine("BAM BADA BAAAA... BADABA BADA BAAAA.... " + lastPacket.error);
 
-                                 //Both throw null errors
-                                 //   file.packets.Last().error = ec.determineError(last2Packets); //Checks errors requiring last 2 packets i.e. out of sequence error
-                                 //   file.packets.Last().error = file.packets.Last().loadAndCheck(file.packets.Last().data); //Checks errors (RMAP/CRC)
-                                }           
-                                catch (Exception E)
-                                {
-                                    Console.WriteLine(E.ToString());
-                                }
-                               
+                                // XXX: setter?
+                                lastPacket.errorPacket = error;
 
                                 sr.ReadLine();
                                 break;
@@ -127,11 +109,11 @@ namespace IndustrialProject
 
                 }
 
-            }
+            /*}
             catch (Exception E)
             {
                 errorFound = E.ToString();
-            }
+            }*/
 
             if (errorFound == null)
             {

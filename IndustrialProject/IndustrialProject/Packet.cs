@@ -32,27 +32,48 @@ namespace IndustrialProject
             public string rawError;
             public ErrorType errorType;
             public DateTime timestamp;
+
+            public Error(string rawError, DateTime timestamp)
+            {
+                this.rawError = rawError;
+                this.timestamp = timestamp;
+                this.errorType = ErrorChecker.determineFlaggedError(this.rawError);
+            }
         }
 
         public DateTime timestamp;
         public byte[] data;
+        public string epm;
+
         public InnerType innerPacket;
 
+        public Error errorPacket;
         public ErrorType error;
+
         public List<byte> pathAddress;
         public byte logicalAddress;
         public byte protocolId;
 
-        public void load(byte[] data)
+        public Packet()
         {
+            this.pathAddress = new List<byte>();
+        }
+
+        public void loadDataAndEndMarker(byte[] data, string epm)
+        {
+            this.data = data;
+            this.epm = epm;
+        }
+
+        public void setError(ErrorType error)
+        {
+            this.error = error;
         }
 
         // loads and parses the packet bytes
-        public ErrorType loadAndCheck(byte[] data)
+        public ErrorType findError()
         {
-            this.data = data;
-            
-            MemoryStream stream = new MemoryStream(data);
+            MemoryStream stream = new MemoryStream(this.data);
 
             do
             {
@@ -81,22 +102,5 @@ namespace IndustrialProject
             // unknown packet type, so can't check for errors - ignore
             return ErrorType.NO_ERROR;
         }
-
-
-        public void checkDisconnectErrors(string fileLine)
-        {
-            if (fileLine.Equals("Disconnect"))
-            {
-
-            }
-        }
-
-        public void checkParityErrors(string fileLine)
-        {
-            if (fileLine.Equals("Parity"))
-            {
-
-            }
-        }  
     }
 }

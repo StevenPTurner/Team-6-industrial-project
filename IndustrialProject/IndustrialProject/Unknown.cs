@@ -23,7 +23,7 @@ namespace IndustrialProject
 
             this.sequenceNumber = (byte)stream.ReadByte();
             this.data = new byte[stream.Length - 1];
-            stream.Read(this.data, 0, (int)stream.Length);
+            stream.Read(this.data, 0, (int)stream.Length-1);
 
             return Packet.ErrorType.NO_ERROR;
         }

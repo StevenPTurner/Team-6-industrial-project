@@ -9,14 +9,39 @@ namespace IndustrialProject
     class ErrorChecker
     {
         
-        public Packet.ErrorType determineError(Tuple<Packet, Packet> packets)//pass file as a parameter - need the list of packets?
+        public static Packet.ErrorType determineError(Tuple<Packet, Packet> packets) // pass file as a parameter - need the list of packets?
         {
+            Packet secondLastPacket = packets.Item1;
+            Packet lastPacket = packets.Item2;
+
+            // CHECK END OF PACKET MARKER
+
+            if(lastPacket.epm == "EEP" || lastPacket.epm == "None")
+            {
+                return Packet.ErrorType.ERROR_TRUNCATED;
+            } else if(lastPacket.epm != "EOP")
+            {
+                // ARGH... undefined error
+                throw new Exception("ARGH...");
+            }
+
+            // CHECK INSIDE OF PACKET
+
+            Packet.ErrorType innerError = lastPacket.findError();
+            if (innerError != Packet.ErrorType.NO_ERROR)
+                return innerError;
+
+            // parse second last packet
+            if (secondLastPacket.findError() != Packet.ErrorType.NO_ERROR)
+                throw new Exception("Houston, we have a problem...");
+
+            // CHECK SEQUENCE NUMBER
 
             // the max jump up in sequence number
             const int WRAP_THRESHOLD = 5;
 
-            int prevSeqNo = packets.Item1.innerPacket.getSeqNo();
-            int seqNo = packets.Item2.innerPacket.getSeqNo();
+            int prevSeqNo = secondLastPacket.innerPacket.getSeqNo();
+            int seqNo = lastPacket.innerPacket.getSeqNo();
 
             int seqDist = Math.Abs(seqNo - prevSeqNo);
 
@@ -42,7 +67,7 @@ namespace IndustrialProject
 
 
         //Checks if Parity or Disconnect errors are highlighted
-        public Packet.ErrorType determineFlaggedError(string flaggedError)
+        public static Packet.ErrorType determineFlaggedError(string flaggedError)
         {
             if(flaggedError.Equals("Disconnect"))
             {
