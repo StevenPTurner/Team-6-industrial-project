@@ -13,5 +13,10 @@ namespace IndustrialProject
             double timeDifference = 0;
             return timeDifference = (date2 - date1).TotalSeconds;
         }
+
+        public void doStuff()
+        {
+            //Console.WriteLine("Element: " + element);
+        }
     }
 }
