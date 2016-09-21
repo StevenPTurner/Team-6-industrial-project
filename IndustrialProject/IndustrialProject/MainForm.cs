@@ -428,5 +428,11 @@ namespace IndustrialProject
         {
             
         }*/
+
+        /*private void button1_Click(object sender, EventArgs e)
+        {
+            this.chart1.ChartAreas[0].AxisX.ScaleView.ZoomReset(0);
+            this.chart1.ChartAreas[0].AxisY.ScaleView.ZoomReset(0);
+        }*/ // sorry mantas, i couldn't handle the button, you'll have to create it again
     }
 }
