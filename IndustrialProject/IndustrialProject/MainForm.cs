@@ -264,19 +264,18 @@ namespace IndustrialProject
                 Console.WriteLine("[+] " + openFiles[0].stats.noOfPackets + " [+]");
                 //Console.WriteLine("File exists?: " + openFiles.Count);
 
-                //  for(int i = 0; i < openFiles.Count; i++)
-                //  {
-                //      for(int y = 0; y < openFiles[i].packets.Count; y++)
-                //      {
-                // Console.WriteLine(openFiles[i].packets[y].data)
-                //          for(int z = 0; z < openFiles[i].packets[y].data.Length; z++)
-                //         {
-                //             Console.Write(openFiles[i].packets[y].data[z]);
-                //        }
-                //       Console.WriteLine(" ");
-                //    }
-                // }
-                //Console.WriteLine(openFiles[0].filename);
+                var bindingList = new BindingList<Packet>(openFiles[0].packets);
+                
+                var source = new BindingSource(bindingList, null);
+                
+                //source.DataSource = GetData();
+                dataGridView1.DataSource = source;
+                
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                    if (row.Cells[2].Value != null)
+                    {
+                        row.DefaultCellStyle.BackColor = Color.Red;
+                    }
                 return true;
             }
             else
