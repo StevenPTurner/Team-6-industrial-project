@@ -299,17 +299,17 @@ namespace IndustrialProject
             {
                 chart1.Series[2].Enabled = false;
                 chart1.Series[0].ChartType = SeriesChartType.Bar;
-                chart1.Series[1].ChartType = SeriesChartType.Bar;
+                //chart1.Series[1].ChartType = SeriesChartType.Bar;
             }
             if(chartDropdown.SelectedItem.Equals("Line"))
             {
                 chart1.Series[0].ChartType = SeriesChartType.Spline;
-                chart1.Series[1].ChartType = SeriesChartType.Spline;
+                //chart1.Series[1].ChartType = SeriesChartType.Spline;
             }
             if (chartDropdown.SelectedItem.Equals("Area"))
             {
                 chart1.Series[0].ChartType = SeriesChartType.SplineArea;
-                chart1.Series[1].ChartType = SeriesChartType.SplineArea; 
+                //chart1.Series[1].ChartType = SeriesChartType.SplineArea; 
             }
         }
 
@@ -411,6 +411,12 @@ namespace IndustrialProject
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.chart1.ChartAreas[0].AxisX.ScaleView.ZoomReset(0);
+            this.chart1.ChartAreas[0].AxisY.ScaleView.ZoomReset(0);
         }
     }
 }
