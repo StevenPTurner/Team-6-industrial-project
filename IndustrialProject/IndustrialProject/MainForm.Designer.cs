@@ -784,7 +784,7 @@
             this.chart3.TabIndex = 22;
             this.chart3.Text = "chart2";
             // 
-            // tabPage3
+            // label28
             // 
             this.tabPage3.Controls.Add(this.linkThreeErrorCount);
             this.tabPage3.Controls.Add(this.linkThreeCharCount);
@@ -1031,7 +1031,7 @@
             this.chart4.TabIndex = 22;
             this.chart4.Text = "chart3";
             // 
-            // tabPage4
+            // label40
             // 
             this.tabPage4.Controls.Add(this.linkFourErrorCount);
             this.tabPage4.Controls.Add(this.linkFourCharCount);
