@@ -52,6 +52,12 @@
     <Compile Include="FileManager.cs" />
     <Compile Include="GraphCalculations.cs" />
     <Compile Include="InnerType.cs" />
+    <Compile Include="LinkTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LinkTab.Designer.cs">
+      <DependentUpon>LinkTab.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +70,9 @@
     <Compile Include="RMAP.cs" />
     <Compile Include="Stats.cs" />
     <Compile Include="Unknown.cs" />
+    <EmbeddedResource Include="LinkTab.resx">
+      <DependentUpon>LinkTab.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

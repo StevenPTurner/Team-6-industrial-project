@@ -24,6 +24,8 @@ namespace IndustrialProject
         double[] xAxisPlot;
         double[] yAxisPlot;
 
+        TabPage[] templatePages;
+
        // List<Tuple<double, DateTime>> timeAxis;
         int[] test1 = new int[6] { 5, 3, 7, 8, 2, 0 };
         int[] errorTest = new int[2] { 1, 3 };
@@ -38,7 +40,7 @@ namespace IndustrialProject
         {
             InitializeComponent();
             this.KeyPreview = true;
-            chart1.Series[1].Color = Color.FromArgb(127, 255, 0, 0);
+            /*chart1.Series[1].Color = Color.FromArgb(127, 255, 0, 0);
             //chart1.Series[0].Points.DataBindY(yAxisPlot);
             //chart1.Series[1].Points.DataBindY();
            // errorHighlight();
@@ -56,12 +58,12 @@ namespace IndustrialProject
 
             var seriesPoints = this.chart1.Series[2];
             seriesPoints.XValueMember = "X";
-            seriesPoints.YValueMembers = "Y";
+            seriesPoints.YValueMembers = "Y";*/
 
         }
 
         //Sets graph values
-        private void setVals()
+        /*private void setVals()
         {
             GraphCalculations gc = new GraphCalculations();
             DateTime date1;
@@ -102,19 +104,26 @@ namespace IndustrialProject
             series.ChartType = SeriesChartType.Line;
 
             chart1.Series.Add(series);
-        }
+        }*/
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            
+            this.templatePages = new TabPage[tabControl1.TabPages.Count-1];
+            for(int i=1; i<tabControl1.TabPages.Count; i++)
+            {
+                this.templatePages[i-1] = tabControl1.TabPages[i];
+                tabControl1.TabPages.RemoveAt(i);
+            }
+
+            tabControl1.Refresh();
         }
 
-        public void UpdateUI(int device)
+        /*public void UpdateUI(int device)
         {
             switch (device)
             {
                 case 1:
-                    if (LoadFile())
+                    if (BrowseForFile() != null)
                     {
                         setVals();
                         packetCountA.Text = openFiles[count].stats.noOfPackets.ToString();
@@ -173,16 +182,16 @@ namespace IndustrialProject
                     }
                     break;
             }
-        }
+        }*/
 
-        public void errorHighlight(int errors, int device)
+        /*public void errorHighlight(int errors, int device)
         {
             errorsArray = new int[]
             {
                 errors
             };
 
-            /*switch(device)
+           switch(device)
             {
                 case 1:
                     chart1.Series[2].Points.DataBindY(errorsArray);
@@ -196,29 +205,29 @@ namespace IndustrialProject
                 case 4:
                     chart5.Series[2].Points.DataBindY(errorsArray);
                     break;
-            } */  
-        }
+            }
+        }*/
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.D1 && e.Modifiers == Keys.Control)
             {
-                UpdateUI(1);
+                //UpdateUI(1);
             }
 
             if (e.KeyCode == Keys.D2 && e.Modifiers == Keys.Control)
             {
-                UpdateUI(2);
+                //UpdateUI(2);
             }
 
             if (e.KeyCode == Keys.D3 && e.Modifiers == Keys.Control)
             {
-                UpdateUI(3);
+                //UpdateUI(3);
             }
 
             if (e.KeyCode == Keys.D4 && e.Modifiers == Keys.Control)
             {
-                UpdateUI(4);
+                //UpdateUI(4);
             }
 
             /*if (e.KeyCode == Keys.H && e.Modifiers == Keys.Control)
@@ -227,27 +236,22 @@ namespace IndustrialProject
             }*/
         }
 
-
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            UpdateUI(1);
-        }
-         private void loadDevice2ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            UpdateUI(2);
+            // get the filename
+            string filename = this.BrowseForFile();
+            if (filename == null)
+                return;
+
+            // create a tab for it
+            TabPage page = new TabPage("Loading Link...");
+            LinkTab tab = new LinkTab(page, filename);
+            tab.Dock = DockStyle.Fill;
+            page.Controls.Add(tab);
+            tabControl1.TabPages.Add(page);
         }
 
-        private void loadDevice3ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            UpdateUI(3);
-        }
-
-        private void loadDevice4ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            UpdateUI(4);
-        }
-
-        private bool LoadFile()
+        private string BrowseForFile()
         {
             OpenFileDialog ofd = new OpenFileDialog();
 
@@ -257,6 +261,13 @@ namespace IndustrialProject
             ofd.RestoreDirectory = true;
 
             if (ofd.ShowDialog() == DialogResult.OK)
+                return ofd.FileName;
+
+            return null;
+
+            // splitting this up
+
+            /*if (ofd.ShowDialog() == DialogResult.OK)
             {
                 // parse, feed into datagrid n that
                 FileManager fm = new FileManager();
@@ -281,7 +292,7 @@ namespace IndustrialProject
             else
             {
                 return false;
-            }
+            }*/
             
 
         }
@@ -292,7 +303,7 @@ namespace IndustrialProject
             Application.Exit();
         }
 
-        private void chartDropdown_SelectedIndexChanged(object sender, EventArgs e)
+        /*private void chartDropdown_SelectedIndexChanged(object sender, EventArgs e)
         {
             
             if (chartDropdown.SelectedItem.Equals("Bar"))
@@ -383,15 +394,15 @@ namespace IndustrialProject
                     //series0_annotation.Text = "[Series 0]:" + chart1.Series[0].Points[chartIdx].YValues[0].ToString();
                 } 
             //}
-        }
+        }*/
 
         private void keyBoardShortcutsMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("The following shortcuts can be used. \n"
+            /*MessageBox.Show("The following shortcuts can be used. \n"
                             + "CTRL & 1 to Load Device 1.\n"
                             + "CTRL & 2 to Load Device 2.\n"
                             + "CTRL & 3 to Load Device 3.\n"
-                            + "CTRL & 4 to Load Device 4.\n");
+                            + "CTRL & 4 to Load Device 4.\n");*/
         }
 
         private void loadHelpMenuItem_Click(object sender, EventArgs e)
@@ -399,7 +410,7 @@ namespace IndustrialProject
             MessageBox.Show("blahblahblah");
         }
 
-        private void chart1_Click(object sender, EventArgs e)
+        /*private void chart1_Click(object sender, EventArgs e)
         {
         }
 
@@ -411,6 +422,6 @@ namespace IndustrialProject
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             
-        }
+        }*/
     }
 }

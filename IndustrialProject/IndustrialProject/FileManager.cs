@@ -11,7 +11,7 @@ namespace IndustrialProject
     class FileManager
     {
         //Returns list of packets
-        public File loadAndParseFile(string fname) //Note: Set as string temporarily until File class is built.
+        public static File loadAndParseFile(string fname) //Note: Set as string temporarily until File class is built.
         {
             File file = new IndustrialProject.File();
             List<string> packets = new List<String>();
