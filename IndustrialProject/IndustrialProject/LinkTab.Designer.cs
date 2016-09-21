@@ -34,6 +34,7 @@
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LinkTab));
             this.errorCountA = new System.Windows.Forms.Label();
             this.charCountA = new System.Windows.Forms.Label();
             this.packetCountA = new System.Windows.Forms.Label();
@@ -50,6 +51,8 @@
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
@@ -59,7 +62,7 @@
             this.errorCountA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.errorCountA.AutoSize = true;
-            this.errorCountA.Location = new System.Drawing.Point(397, 321);
+            this.errorCountA.Location = new System.Drawing.Point(427, 494);
             this.errorCountA.Name = "errorCountA";
             this.errorCountA.Size = new System.Drawing.Size(35, 13);
             this.errorCountA.TabIndex = 37;
@@ -70,7 +73,7 @@
             this.charCountA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.charCountA.AutoSize = true;
-            this.charCountA.Location = new System.Drawing.Point(233, 321);
+            this.charCountA.Location = new System.Drawing.Point(263, 494);
             this.charCountA.Name = "charCountA";
             this.charCountA.Size = new System.Drawing.Size(35, 13);
             this.charCountA.TabIndex = 36;
@@ -81,7 +84,7 @@
             this.packetCountA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.packetCountA.AutoSize = true;
-            this.packetCountA.Location = new System.Drawing.Point(85, 321);
+            this.packetCountA.Location = new System.Drawing.Point(103, 494);
             this.packetCountA.Name = "packetCountA";
             this.packetCountA.Size = new System.Drawing.Size(35, 13);
             this.packetCountA.TabIndex = 35;
@@ -92,7 +95,7 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(328, 321);
+            this.label3.Location = new System.Drawing.Point(358, 494);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(60, 13);
             this.label3.TabIndex = 34;
@@ -103,7 +106,7 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(165, 321);
+            this.label2.Location = new System.Drawing.Point(195, 494);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(60, 13);
             this.label2.TabIndex = 33;
@@ -114,7 +117,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 321);
+            this.label1.Location = new System.Drawing.Point(28, 494);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 13);
             this.label1.TabIndex = 32;
@@ -122,14 +125,15 @@
             // 
             // chartDropdown
             // 
+            this.chartDropdown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chartDropdown.FormattingEnabled = true;
             this.chartDropdown.Items.AddRange(new object[] {
             "Line",
             "Bar",
             "Area"});
-            this.chartDropdown.Location = new System.Drawing.Point(828, 9);
+            this.chartDropdown.Location = new System.Drawing.Point(940, 9);
             this.chartDropdown.Name = "chartDropdown";
-            this.chartDropdown.Size = new System.Drawing.Size(121, 21);
+            this.chartDropdown.Size = new System.Drawing.Size(114, 21);
             this.chartDropdown.TabIndex = 31;
             this.chartDropdown.Text = "Chart mode";
             this.chartDropdown.SelectedIndexChanged += new System.EventHandler(this.chartDropdown_SelectedIndexChanged);
@@ -139,7 +143,7 @@
             this.errorRate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.errorRate.AutoSize = true;
-            this.errorRate.Location = new System.Drawing.Point(926, 321);
+            this.errorRate.Location = new System.Drawing.Point(956, 494);
             this.errorRate.Name = "errorRate";
             this.errorRate.Size = new System.Drawing.Size(29, 13);
             this.errorRate.TabIndex = 30;
@@ -150,7 +154,7 @@
             this.ErrorRatelbl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ErrorRatelbl.AutoSize = true;
-            this.ErrorRatelbl.Location = new System.Drawing.Point(867, 321);
+            this.ErrorRatelbl.Location = new System.Drawing.Point(897, 494);
             this.ErrorRatelbl.Name = "ErrorRatelbl";
             this.ErrorRatelbl.Size = new System.Drawing.Size(53, 13);
             this.ErrorRatelbl.TabIndex = 29;
@@ -161,7 +165,7 @@
             this.packetRate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.packetRate.AutoSize = true;
-            this.packetRate.Location = new System.Drawing.Point(727, 321);
+            this.packetRate.Location = new System.Drawing.Point(757, 494);
             this.packetRate.Name = "packetRate";
             this.packetRate.Size = new System.Drawing.Size(50, 13);
             this.packetRate.TabIndex = 28;
@@ -172,7 +176,7 @@
             this.PacketRatelbl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PacketRatelbl.AutoSize = true;
-            this.PacketRatelbl.Location = new System.Drawing.Point(656, 321);
+            this.PacketRatelbl.Location = new System.Drawing.Point(686, 494);
             this.PacketRatelbl.Name = "PacketRatelbl";
             this.PacketRatelbl.Size = new System.Drawing.Size(65, 13);
             this.PacketRatelbl.TabIndex = 27;
@@ -183,7 +187,7 @@
             this.dataRate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataRate.AutoSize = true;
-            this.dataRate.Location = new System.Drawing.Point(547, 321);
+            this.dataRate.Location = new System.Drawing.Point(577, 494);
             this.dataRate.Name = "dataRate";
             this.dataRate.Size = new System.Drawing.Size(31, 13);
             this.dataRate.TabIndex = 26;
@@ -194,7 +198,7 @@
             this.DataRatelbl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DataRatelbl.AutoSize = true;
-            this.DataRatelbl.Location = new System.Drawing.Point(487, 321);
+            this.DataRatelbl.Location = new System.Drawing.Point(517, 494);
             this.DataRatelbl.Name = "DataRatelbl";
             this.DataRatelbl.Size = new System.Drawing.Size(54, 13);
             this.DataRatelbl.TabIndex = 25;
@@ -202,6 +206,7 @@
             // 
             // checkedListBox1
             // 
+            this.checkedListBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkedListBox1.CheckOnClick = true;
             this.checkedListBox1.FormattingEnabled = true;
             this.checkedListBox1.Items.AddRange(new object[] {
@@ -210,16 +215,15 @@
             "Data errors",
             "Disconnect",
             "EPPs and timeout"});
-            this.checkedListBox1.Location = new System.Drawing.Point(838, 36);
+            this.checkedListBox1.Location = new System.Drawing.Point(940, 36);
             this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(111, 64);
+            this.checkedListBox1.Size = new System.Drawing.Size(111, 79);
             this.checkedListBox1.TabIndex = 24;
             this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
             // dataGridView1
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
@@ -229,15 +233,22 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 177);
+            this.dataGridView1.Location = new System.Drawing.Point(3, 228);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(971, 299);
+            this.dataGridView1.Size = new System.Drawing.Size(971, 261);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // chart1
             // 
+            this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             chartArea1.AlignmentOrientation = ((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations)((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Vertical | System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Horizontal)));
+            chartArea1.CursorX.IsUserEnabled = true;
+            chartArea1.CursorX.IsUserSelectionEnabled = true;
+            chartArea1.CursorY.IsUserEnabled = true;
+            chartArea1.CursorY.IsUserSelectionEnabled = true;
             chartArea1.Name = "ChartArea1";
             this.chart1.ChartAreas.Add(chartArea1);
             this.chart1.Cursor = System.Windows.Forms.Cursors.Default;
@@ -265,15 +276,37 @@
             this.chart1.Series.Add(series1);
             this.chart1.Series.Add(series2);
             this.chart1.Series.Add(series3);
-            this.chart1.Size = new System.Drawing.Size(819, 150);
+            this.chart1.Size = new System.Drawing.Size(931, 208);
             this.chart1.TabIndex = 22;
             this.chart1.Text = "chart1";
             this.chart1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chart1_MouseMove);
+            // 
+            // button1
+            // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.Location = new System.Drawing.Point(815, 160);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(29, 26);
+            this.button1.TabIndex = 38;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(329, 214);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(35, 13);
+            this.label4.TabIndex = 39;
+            this.label4.Text = "label4";
             // 
             // LinkTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.errorCountA);
             this.Controls.Add(this.charCountA);
             this.Controls.Add(this.packetCountA);
@@ -291,7 +324,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.chart1);
             this.Name = "LinkTab";
-            this.Size = new System.Drawing.Size(958, 345);
+            this.Size = new System.Drawing.Size(1054, 512);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
@@ -317,5 +350,7 @@
         private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label4;
     }
 }
