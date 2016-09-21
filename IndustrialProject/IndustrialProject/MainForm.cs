@@ -43,16 +43,14 @@ namespace IndustrialProject
             /*chart1.Series[1].Color = Color.FromArgb(127, 255, 0, 0);
             //chart1.Series[0].Points.DataBindY(yAxisPlot);
             //chart1.Series[1].Points.DataBindY();
-           // errorHighlight();
+            //errorHighlight();
             chart1.Series[2].Enabled = false;
 
             series0_annotation.AllowMoving = true;
             series0_annotation.Visible = true;
             series0_annotation.Text = "helloworld";
-            //series0_annotation.AnchorDataPoint = chart1.Series[0].Points[0];
+            ;
             chart1.Annotations.Add(series0_annotation);
-
-     
 
             chartDropdown.SelectedIndex = 0;
 
@@ -94,17 +92,23 @@ namespace IndustrialProject
                 //if(blabla)
                 //Load data rate line. If blabla load packet rate line
 
-                //yAxisPlot[i] = (openFiles[0].packets[i].data.Length)/timeDifference; //Data rate
-                yAxisPlot[i] = 1 / timeDifference; //Packet rate
+                yAxisPlot[i] = (openFiles[0].packets[i].data.Length)/timeDifference; //Data rate
+                //yAxisPlot[i] = 1 / timeDifference; //Packet rate
 
                // Console.WriteLine("Y is: " + yAxisPlot[i]);
             }
 
+            GraphCalculations ggc = new GraphCalculations();
+
             series.Points.DataBindXY(xAxisPlot, yAxisPlot);
             series.ChartType = SeriesChartType.Line;
+            series.MarkerStyle = MarkerStyle.Cross;
 
+            series.ToolTip = "#INDEX";
+   
             chart1.Series.Add(series);
         }*/
+
 
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -131,6 +135,7 @@ namespace IndustrialProject
                         dataRate.Text = openFiles[count].stats.avgDataRate.ToString();
                         packetRate.Text = openFiles[count].stats.avgPacketRate.ToString();
                         errorCountA.Text = openFiles[count].stats.totalNoOfErrors.ToString();
+                        errorRate.Text = openFiles[count].stats.avgErrorRate.ToString();
                         errorHighlight(openFiles[count].stats.totalNoOfErrors, device);
                         this.Refresh();
                         count++;
@@ -276,7 +281,7 @@ namespace IndustrialProject
                 //Console.WriteLine("File exists?: " + openFiles.Count);
 
                 var bindingList = new BindingList<Packet>(openFiles[0].packets);
-                
+         
                 var source = new BindingSource(bindingList, null);
                 
                 //source.DataSource = GetData();
@@ -348,10 +353,10 @@ namespace IndustrialProject
             // Call HitTest
             //HitTestResult result = chart1.HitTest(e.X, e.Y);
 
-
+ 
             //if (result.ChartElementType == ChartElementType.PlottingArea)
             //{
-                var xAxis = chart1.ChartAreas[0].AxisX;
+            var xAxis = chart1.ChartAreas[0].AxisX;
                 int xRight = (int)xAxis.ValueToPixelPosition(xAxis.Maximum) - 1;
                 int xLeft = (int)xAxis.ValueToPixelPosition(xAxis.Minimum);
 

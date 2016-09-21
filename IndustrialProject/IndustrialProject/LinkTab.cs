@@ -167,6 +167,11 @@ namespace IndustrialProject
             this.Refresh();
         }
 
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
         public void errorHighlight(int errors)
         {
             errorsArray = new int[]

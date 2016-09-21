@@ -37,7 +37,7 @@ namespace IndustrialProject
             {
                 this.rawError = rawError;
                 this.timestamp = timestamp;
-                this.errorType = ErrorChecker.determineFlaggedError(this.rawError);   
+                this.errorType = ErrorChecker.determineFlaggedError(this.rawError);
             }
         }
 
