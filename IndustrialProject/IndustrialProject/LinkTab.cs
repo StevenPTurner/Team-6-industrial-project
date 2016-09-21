@@ -18,8 +18,10 @@ namespace IndustrialProject
 
         double[] xAxisPlot;
         double[] yAxisPlot;
+      
+        //Perhaps put this in file?
+        List<Tuple<int, Packet.ErrorType>> errorGraphIndexs = new List<Tuple<int, Packet.ErrorType>>();
 
-        int[] errorsArray;
         string graphType;
 
         CalloutAnnotation series0_annotation = new CalloutAnnotation();
@@ -137,6 +139,14 @@ namespace IndustrialProject
                 plotPoint = plotPoint + timeDifference;
 
                 //dates[i] = date1; //This may change
+                Console.WriteLine("Error here is: " + this.file.packets[i].error);
+
+                //Perhaps refactor into another class (File?)
+                if(!this.file.packets[i + 1].error.Equals(Packet.ErrorType.NO_ERROR))
+                {
+                    Tuple<int, Packet.ErrorType> errorTuple = new Tuple<int, Packet.ErrorType>(i, this.file.packets[i].error);
+                    errorGraphIndexs.Add(errorTuple);
+                }
 
                 xAxisPlot[i] = plotPoint;
 
@@ -148,7 +158,7 @@ namespace IndustrialProject
                 }
                 else
                 {
-                    yAxisPlot[i] = 1 / timeDifference; //Packet rat
+                    yAxisPlot[i] = 1 / timeDifference; //Packet rate
                 }
 
             }
@@ -157,6 +167,11 @@ namespace IndustrialProject
             series.ChartType = SeriesChartType.Line;
             series.MarkerStyle = MarkerStyle.Cross;
 
+            for(int i = 0; i < errorGraphIndexs.Count; i++)
+            {
+                series.Points[errorGraphIndexs[i].Item1].MarkerColor = Color.Red;
+            }
+     
             chart1.Series.Add(series);
         }
 
@@ -181,12 +196,13 @@ namespace IndustrialProject
 
         public void errorHighlight(int errors)
         {
-            errorsArray = new int[]
-            {
-                errors
-            };
 
-            chart1.Series[2].Points.DataBindY(errorsArray);
+            //errorsArray = new int[]
+            //{
+            //    errors
+           // };
+
+           // chart1.Series[2].Points.DataBindY(errorsArray);
         }
 
         private void chart1_MouseMove(object sender, MouseEventArgs e)

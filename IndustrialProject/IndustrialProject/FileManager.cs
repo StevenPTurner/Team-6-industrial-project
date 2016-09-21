@@ -57,7 +57,6 @@ namespace IndustrialProject
 
                                 packet.displayData = String.Join(" ", stringBytes);
 
-
                                 byte[] byteArray = new byte[stringBytes.Length];
 
                                 for (int i = 0; i < stringBytes.Length; i++)
