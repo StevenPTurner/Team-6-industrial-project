@@ -20,13 +20,14 @@ namespace IndustrialProject
         double[] yAxisPlot;
 
         int[] errorsArray;
+        string graphType;
 
         CalloutAnnotation series0_annotation = new CalloutAnnotation();
 
         public LinkTab(TabPage tab, string filename)
         {
             InitializeComponent();
-
+            graphType = "DataRate";
             this.tab = tab;
 
             chart1.Series[1].Color = Color.FromArgb(127, 255, 0, 0);
@@ -141,15 +142,20 @@ namespace IndustrialProject
 
                 //if(blabla)
                 //Load data rate line. If blabla load packet rate line
+                if(graphType.Equals("DataRate"))
+                {
+                    yAxisPlot[i] = (this.file.packets[i].data.Length) / timeDifference; //Data rate
+                }
+                else
+                {
+                    yAxisPlot[i] = 1 / timeDifference; //Packet rat
+                }
 
-                //yAxisPlot[i] = (openFiles[0].packets[i].data.Length)/timeDifference; //Data rate
-                yAxisPlot[i] = 1 / timeDifference; //Packet rate
-
-                // Console.WriteLine("Y is: " + yAxisPlot[i]);
             }
 
             series.Points.DataBindXY(xAxisPlot, yAxisPlot);
             series.ChartType = SeriesChartType.Line;
+            series.MarkerStyle = MarkerStyle.Cross;
 
             chart1.Series.Add(series);
         }
@@ -162,6 +168,7 @@ namespace IndustrialProject
             dataRate.Text = this.file.stats.avgDataRate.ToString();
             packetRate.Text = this.file.stats.avgPacketRate.ToString();
             errorCountA.Text = this.file.stats.totalNoOfErrors.ToString();
+            errorRate.Text = this.file.stats.avgErrorRate.ToString();
             //errorHighlight(this.file.stats.totalNoOfErrors);
             this.tab.Text = "Link " + this.file.port.ToString();
             this.Refresh();
@@ -236,5 +243,13 @@ namespace IndustrialProject
             }
             //}
         }
+
+        private void navigateToTableIndex(int index)
+        {
+            dataGridView1.ClearSelection();
+            dataGridView1.Rows[index].Selected = true;
+            dataGridView1.FirstDisplayedScrollingRowIndex = index;
+        }
+
     }
 }
