@@ -44,52 +44,12 @@ namespace IndustrialProject
             series0_annotation.Text = "helloworld";
             //series0_annotation.AnchorDataPoint = chart1.Series[0].Points[0];
             chart1.Annotations.Add(series0_annotation);
-            chartDropdown.SelectedIndex = 0;
 
             var seriesPoints = this.chart1.Series[2];
             seriesPoints.XValueMember = "X";
             seriesPoints.YValueMembers = "Y";
 
             this.file = FileManager.loadAndParseFile(filename);
-        }
-
-        private void chartDropdown_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (chartDropdown.SelectedItem.Equals("Bar"))
-            {
-                chart1.Series[2].Enabled = false;
-                chart1.Series[0].ChartType = SeriesChartType.Bar;
-                chart1.Series[1].ChartType = SeriesChartType.Bar;
-            }
-            if (chartDropdown.SelectedItem.Equals("Line"))
-            {
-                chart1.Series[0].ChartType = SeriesChartType.Spline;
-                chart1.Series[1].ChartType = SeriesChartType.Spline;
-            }
-            if (chartDropdown.SelectedItem.Equals("Area"))
-            {
-                chart1.Series[0].ChartType = SeriesChartType.SplineArea;
-                chart1.Series[1].ChartType = SeriesChartType.SplineArea;
-            }
-        }
-
-        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (chartDropdown != null)
-            {
-                if (checkedListBox1.GetItemCheckState(0) == CheckState.Checked && !chartDropdown.SelectedItem.Equals("Bar"))
-                {
-                    //chart1.Series[2].Enabled = true;
-                }
-                else
-                {
-                    chart1.Series[2].Enabled = false;
-                }
-            }
-            else
-            {
-                return;
-            }
         }
 
         private void setVals()
@@ -260,6 +220,12 @@ namespace IndustrialProject
             var source = new BindingSource(bindingList, null);
 
             dataGridView1.DataSource = source;
+
+            dataGridView1.Columns[0].Width = 100;
+            dataGridView1.Columns[1].Width = 100;
+            dataGridView1.Columns[2].Width = 400;
+            dataGridView1.Columns[3].Width = 150;
+
 
             foreach (DataGridViewRow row in dataGridView1.Rows)
                 if (row.DataBoundItem != null && ((Packet)row.DataBoundItem).error != Packet.ErrorType.NO_ERROR)
