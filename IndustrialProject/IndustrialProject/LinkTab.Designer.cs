@@ -41,7 +41,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.chartDropdown = new System.Windows.Forms.ComboBox();
             this.errorRate = new System.Windows.Forms.Label();
             this.ErrorRatelbl = new System.Windows.Forms.Label();
             this.packetRate = new System.Windows.Forms.Label();
@@ -122,21 +121,6 @@
             this.label1.Size = new System.Drawing.Size(69, 13);
             this.label1.TabIndex = 32;
             this.label1.Text = "No. Packets:";
-            // 
-            // chartDropdown
-            // 
-            this.chartDropdown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chartDropdown.FormattingEnabled = true;
-            this.chartDropdown.Items.AddRange(new object[] {
-            "Line",
-            "Bar",
-            "Area"});
-            this.chartDropdown.Location = new System.Drawing.Point(940, 9);
-            this.chartDropdown.Name = "chartDropdown";
-            this.chartDropdown.Size = new System.Drawing.Size(114, 21);
-            this.chartDropdown.TabIndex = 31;
-            this.chartDropdown.Text = "Chart mode";
-            this.chartDropdown.SelectedIndexChanged += new System.EventHandler(this.chartDropdown_SelectedIndexChanged);
             // 
             // errorRate
             // 
@@ -219,7 +203,6 @@
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.Size = new System.Drawing.Size(111, 64);
             this.checkedListBox1.TabIndex = 24;
-            this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
             // dataGridView1
             // 
@@ -314,7 +297,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.chartDropdown);
             this.Controls.Add(this.errorRate);
             this.Controls.Add(this.ErrorRatelbl);
             this.Controls.Add(this.packetRate);
@@ -342,7 +324,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox chartDropdown;
         private System.Windows.Forms.Label errorRate;
         private System.Windows.Forms.Label ErrorRatelbl;
         private System.Windows.Forms.Label packetRate;
