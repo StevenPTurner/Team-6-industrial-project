@@ -272,6 +272,10 @@ namespace IndustrialProject
 
             dataGridView1.DataSource = source;
 
+            dataGridView1.Columns[0].Width = 150;
+            dataGridView1.Columns[1].Width = 400;
+            dataGridView1.Columns[2].Width = 150;
+
             foreach (DataGridViewRow row in dataGridView1.Rows)
                 if (row.DataBoundItem != null && ((Packet)row.DataBoundItem).error != Packet.ErrorType.NO_ERROR)
                     row.DefaultCellStyle.BackColor = Color.Red;
