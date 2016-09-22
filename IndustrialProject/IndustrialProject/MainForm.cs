@@ -251,9 +251,10 @@ namespace IndustrialProject
             // create a tab for it
             TabPage page = new TabPage("Loading Link...");
             LinkTab tab = new LinkTab(page, filename);
-            tab.Dock = DockStyle.Fill;
             page.Controls.Add(tab);
             tabControl1.TabPages.Add(page);
+            this.Invalidate(true);
+            tab.Dock = DockStyle.Fill;
         }
 
         private string BrowseForFile()
