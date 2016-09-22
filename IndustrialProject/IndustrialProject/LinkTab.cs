@@ -227,12 +227,6 @@ namespace IndustrialProject
 
         private void chart1_MouseMove(object sender, MouseEventArgs e)
         {
-            // Call HitTest
-            //HitTestResult result = chart1.HitTest(e.X, e.Y);
-
-
-            //if (result.ChartElementType == ChartElementType.PlottingArea)
-            //{
             var xAxis = chart1.ChartAreas[0].AxisX;
             int xRight = (int)xAxis.ValueToPixelPosition(xAxis.Maximum) - 1;
             int xLeft = (int)xAxis.ValueToPixelPosition(xAxis.Minimum);
@@ -252,17 +246,35 @@ namespace IndustrialProject
                 chartX = xAxis.PixelPositionToValue(e.X);
             }
 
+            // closest with binary search
+
+            int left, right, middle = 0;
+            left = 0;
+            right = chart1.Series[0].Points.Count()-1;
+            while(right >= left)
+            {
+                middle = (right + left) / 2;
+                if (chart1.Series[0].Points[middle].XValue < chartX)
+                    left = middle + 1;
+                else if (chart1.Series[0].Points[middle].XValue > chartX)
+                    right = middle - 1;
+                else
+                    break;
+            }
+
+            chartX = (double)middle;
+
             // FIX: won't work if there are no points in chart
 
             if ((int)chartX == 0)
             {
                 // first block
-                //series0_annotation.AnchorDataPoint = chart1.Series[0].Points[0];
+                series0_annotation.AnchorDataPoint = chart1.Series[0].Points[0];
             }
             else if ((int)chartX >= chart1.Series[0].Points.Count)
             {
                 // last block
-                // series0_annotation.AnchorDataPoint = chart1.Series[0].Points[chart1.Series[0].Points.Count-1];
+                 series0_annotation.AnchorDataPoint = chart1.Series[0].Points[chart1.Series[0].Points.Count-1];
             }
             else
             {
@@ -274,10 +286,9 @@ namespace IndustrialProject
                 if (chartIdx >= chart1.Series[0].Points.Count)
                     chartIdx = chart1.Series[0].Points.Count - 1;
 
-                // series0_annotation.AnchorDataPoint = chart1.Series[0].Points[chartIdx];
-                //series0_annotation.Text = "[Series 0]:" + chart1.Series[0].Points[chartIdx].YValues[0].ToString();
+                series0_annotation.AnchorDataPoint = chart1.Series[0].Points[chartIdx];
+                series0_annotation.Text = "[Series 0]:" + chart1.Series[0].Points[chartIdx].YValues[0].ToString();
             }
-            //}
         }
 
         private void button1_Click(object sender, EventArgs e)
