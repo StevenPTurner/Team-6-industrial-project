@@ -51,24 +51,6 @@ namespace IndustrialProject
             seriesPoints.YValueMembers = "Y";
 
             this.file = FileManager.loadAndParseFile(filename);
-
-            Console.WriteLine("[+] " + this.file.stats.noOfPackets + " [+]");
-            //Console.WriteLine("File exists?: " + openFiles.Count);
-
-            var bindingList = new BindingList<Packet>(this.file.packets);
-
-            var source = new BindingSource(bindingList, null);
-
-            //source.DataSource = GetData();
-            dataGridView1.DataSource = source;
-
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-                if (row.Cells[2].Value != null)
-                {
-                    row.DefaultCellStyle.BackColor = Color.Red;
-                }
-
-            this.UpdateUI();
         }
 
         private void chartDropdown_SelectedIndexChanged(object sender, EventArgs e)
@@ -195,20 +177,6 @@ namespace IndustrialProject
             chart1.Series.Add(series);
         }
 
-        public void UpdateUI()
-        {
-            setVals();
-            packetCountA.Text = this.file.stats.noOfPackets.ToString();
-            charCountA.Text = this.file.stats.noOfDataChars.ToString();
-            dataRate.Text = this.file.stats.avgDataRate.ToString();
-            packetRate.Text = this.file.stats.avgPacketRate.ToString();
-            errorCountA.Text = this.file.stats.totalNoOfErrors.ToString();
-            errorRate.Text = this.file.stats.avgErrorRate.ToString();
-            //errorHighlight(this.file.stats.totalNoOfErrors);
-            this.tab.Text = "Link " + this.file.port.ToString();
-            this.Refresh();
-        }
-
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -297,9 +265,27 @@ namespace IndustrialProject
             this.chart1.ChartAreas[0].AxisY.ScaleView.ZoomReset(0);
         }
 
-        private void LinkTab_Load(object sender, EventArgs e)
+        public void PostAdding()
         {
+            var bindingList = new BindingList<Packet>(this.file.packets);
+            var source = new BindingSource(bindingList, null);
 
+            dataGridView1.DataSource = source;
+
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+                if (row.DataBoundItem != null && ((Packet)row.DataBoundItem).error != Packet.ErrorType.NO_ERROR)
+                    row.DefaultCellStyle.BackColor = Color.Red;
+
+            this.setVals();
+            packetCountA.Text = this.file.stats.noOfPackets.ToString();
+            charCountA.Text = this.file.stats.noOfDataChars.ToString();
+            dataRate.Text = this.file.stats.avgDataRate.ToString();
+            packetRate.Text = this.file.stats.avgPacketRate.ToString();
+            errorCountA.Text = this.file.stats.totalNoOfErrors.ToString();
+            errorRate.Text = this.file.stats.avgErrorRate.ToString();
+            //errorHighlight(this.file.stats.totalNoOfErrors);
+            this.tab.Text = "Link " + this.file.port.ToString();
+            this.Refresh();
         }
 
         private void navigateToTableIndex(int index)

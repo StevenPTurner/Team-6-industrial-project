@@ -255,6 +255,8 @@ namespace IndustrialProject
             tabControl1.TabPages.Add(page);
             this.Invalidate(true);
             tab.Dock = DockStyle.Fill;
+
+            tab.PostAdding();
         }
 
         private string BrowseForFile()

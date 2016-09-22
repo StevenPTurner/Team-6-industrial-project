@@ -73,6 +73,7 @@ namespace IndustrialProject
             if (this.epm == "EEP" || this.epm == "None")
             {
                 this.error = Packet.ErrorType.ERROR_TRUNCATED;
+                displayErrorType = error.ToString();
 
                 Console.WriteLine("BAM BADA BAAAA... BADABA BAM BADA BAAAA.... " + this.error);
             }

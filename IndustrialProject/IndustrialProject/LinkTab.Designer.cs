@@ -327,7 +327,6 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "LinkTab";
             this.Size = new System.Drawing.Size(1054, 512);
-            this.Load += new System.EventHandler(this.LinkTab_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
