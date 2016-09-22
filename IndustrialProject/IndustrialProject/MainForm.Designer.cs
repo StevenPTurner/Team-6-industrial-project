@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -36,11 +37,20 @@
             this.keyBoardShortcutsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadHelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.startTab = new System.Windows.Forms.TabPage();
+            this.instrLabel3 = new System.Windows.Forms.Label();
+            this.instrLabel2 = new System.Windows.Forms.Label();
+            this.instrLabel1 = new System.Windows.Forms.Label();
+            this.logoBox = new System.Windows.Forms.PictureBox();
             this.overviewTab = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
+            this.startTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logoBox)).BeginInit();
             this.overviewTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -103,6 +113,7 @@
             // 
             // tabControl1
             // 
+            this.tabControl1.Controls.Add(this.startTab);
             this.tabControl1.Controls.Add(this.overviewTab);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -110,7 +121,71 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1062, 538);
-            this.tabControl1.TabIndex = 1;
+            this.tabControl1.TabIndex = 0;
+            // 
+            // startTab
+            // 
+            this.startTab.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.startTab.Controls.Add(this.pictureBox1);
+            this.startTab.Controls.Add(this.instrLabel3);
+            this.startTab.Controls.Add(this.instrLabel2);
+            this.startTab.Controls.Add(this.instrLabel1);
+            this.startTab.Controls.Add(this.logoBox);
+            this.startTab.Location = new System.Drawing.Point(4, 22);
+            this.startTab.Name = "startTab";
+            this.startTab.Size = new System.Drawing.Size(1054, 512);
+            this.startTab.TabIndex = 1;
+            this.startTab.Text = "Start";
+            // 
+            // instrLabel3
+            // 
+            this.instrLabel3.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.instrLabel3.AutoSize = true;
+            this.instrLabel3.Font = new System.Drawing.Font("Lucida Bright", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.instrLabel3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.instrLabel3.Location = new System.Drawing.Point(100, 197);
+            this.instrLabel3.Name = "instrLabel3";
+            this.instrLabel3.Size = new System.Drawing.Size(879, 33);
+            this.instrLabel3.TabIndex = 4;
+            this.instrLabel3.Text = "3. The Overview tab will provide summary for all opened tabs";
+            this.instrLabel3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // instrLabel2
+            // 
+            this.instrLabel2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.instrLabel2.AutoSize = true;
+            this.instrLabel2.Font = new System.Drawing.Font("Lucida Bright", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.instrLabel2.Location = new System.Drawing.Point(264, 164);
+            this.instrLabel2.Name = "instrLabel2";
+            this.instrLabel2.Size = new System.Drawing.Size(511, 33);
+            this.instrLabel2.TabIndex = 2;
+            this.instrLabel2.Text = "2. Adding a file will open a new tab";
+            this.instrLabel2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // instrLabel1
+            // 
+            this.instrLabel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.instrLabel1.AutoSize = true;
+            this.instrLabel1.Font = new System.Drawing.Font("Lucida Bright", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.instrLabel1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.instrLabel1.Location = new System.Drawing.Point(100, 131);
+            this.instrLabel1.Name = "instrLabel1";
+            this.instrLabel1.Size = new System.Drawing.Size(860, 33);
+            this.instrLabel1.TabIndex = 1;
+            this.instrLabel1.Text = "1. Use \'File>Load\' to add a file with recordings from one link";
+            this.instrLabel1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // logoBox
+            // 
+            this.logoBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.logoBox.Image = ((System.Drawing.Image)(resources.GetObject("logoBox.Image")));
+            this.logoBox.Location = new System.Drawing.Point(362, 3);
+            this.logoBox.Name = "logoBox";
+            this.logoBox.Size = new System.Drawing.Size(300, 100);
+            this.logoBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.logoBox.TabIndex = 0;
+            this.logoBox.TabStop = false;
             // 
             // overviewTab
             // 
@@ -121,7 +196,7 @@
             this.overviewTab.TabIndex = 1;
             this.overviewTab.Text = "Overview";
             this.overviewTab.UseVisualStyleBackColor = true;
-            //
+            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(549, 248);
@@ -130,6 +205,16 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "DO NOT CLICK";
             this.button1.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(0, 312);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1054, 200);
+            this.pictureBox1.TabIndex = 5;
+            this.pictureBox1.TabStop = false;
             // 
             // MainForm
             // 
@@ -140,13 +225,18 @@
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
+            this.startTab.ResumeLayout(false);
+            this.startTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logoBox)).EndInit();
             this.overviewTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -163,7 +253,13 @@
         private System.Windows.Forms.ToolStripMenuItem keyBoardShortcutsMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadHelpMenuItem;
         private System.Windows.Forms.TabPage overviewTab;
+        private System.Windows.Forms.TabPage startTab;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.PictureBox logoBox;
+        private System.Windows.Forms.Label instrLabel1;
+        private System.Windows.Forms.Label instrLabel2;
+        private System.Windows.Forms.Label instrLabel3;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
