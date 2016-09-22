@@ -169,10 +169,10 @@ namespace IndustrialProject
             series.ChartType = SeriesChartType.Line;
             series.MarkerStyle = MarkerStyle.Cross;
 
-            for(int i = 0; i < errorGraphIndexs.Count; i++)
+            /*for(int i = 0; i < errorGraphIndexs.Count; i++)
             {
                 series.Points[errorGraphIndexs[i].Item1].MarkerColor = Color.Red;
-            }
+            }*/
      
             chart1.Series.Add(series);
         }
@@ -195,68 +195,57 @@ namespace IndustrialProject
 
         private void chart1_MouseMove(object sender, MouseEventArgs e)
         {
+            DataPoint point = FindClosestPoint(chart1.Series[0], e.X);
+
+            series0_annotation.AnchorDataPoint = point;
+            series0_annotation.Text = "[Series 0]: " + point.YValues[0].ToString();
+        }
+
+        private DataPoint FindClosestPoint(Series series, int pixelX)
+        {
             var xAxis = chart1.ChartAreas[0].AxisX;
             int xRight = (int)xAxis.ValueToPixelPosition(xAxis.Maximum) - 1;
             int xLeft = (int)xAxis.ValueToPixelPosition(xAxis.Minimum);
 
             double chartX;
-
-            if (e.X > xRight)
-            {
+            if (pixelX > xRight)
                 chartX = xAxis.Maximum;
-            }
-            else if (e.X < xLeft)
-            {
+            else if (pixelX < xLeft)
                 chartX = xAxis.Minimum;
-            }
             else
-            {
-                chartX = xAxis.PixelPositionToValue(e.X);
-            }
+                chartX = xAxis.PixelPositionToValue(pixelX);
 
             // closest with binary search
 
-            int left, right, middle = 0;
-            left = 0;
-            right = chart1.Series[0].Points.Count()-1;
-            while(right >= left)
+            DataPointCollection points = series.Points;
+
+            if (points.Count() <= 0)
+                throw new Exception("FindClosestPoint needs at least one point.");
+
+            int left = 0;
+            int right = points.Count() - 1;
+            int middle = 0;
+            int lastMiddle = -1;
+            while (middle != lastMiddle)
             {
-                middle = (right + left) / 2;
-                if (chart1.Series[0].Points[middle].XValue < chartX)
-                    left = middle + 1;
-                else if (chart1.Series[0].Points[middle].XValue > chartX)
-                    right = middle - 1;
-                else
-                    break;
+                double leftX = points[left].XValue;
+                double rightX = points[right].XValue;
+                double middleX = (leftX + rightX) / 2.0;
+
+                lastMiddle = middle;
+                middle = (left + right) / 2;
+                if (chartX > middleX)
+                    left = middle;
+                else if (chartX < middleX)
+                    right = middle;
             }
 
-            chartX = (double)middle;
-
-            // FIX: won't work if there are no points in chart
-
-            if ((int)chartX == 0)
-            {
-                // first block
-                series0_annotation.AnchorDataPoint = chart1.Series[0].Points[0];
-            }
-            else if ((int)chartX >= chart1.Series[0].Points.Count)
-            {
-                // last block
-                 series0_annotation.AnchorDataPoint = chart1.Series[0].Points[chart1.Series[0].Points.Count-1];
-            }
+            if (chartX - points[left].XValue < points[right].XValue - chartX)
+                middle = left;
             else
-            {
-                // middle blocks
-                double frac = chartX - (int)chartX;
-                frac = (frac >= 0.5 ? 1.0 : 0.0);
+                middle = right;
 
-                int chartIdx = (int)((int)chartX + frac) - 1;
-                if (chartIdx >= chart1.Series[0].Points.Count)
-                    chartIdx = chart1.Series[0].Points.Count - 1;
-
-                series0_annotation.AnchorDataPoint = chart1.Series[0].Points[chartIdx];
-                series0_annotation.Text = "[Series 0]:" + chart1.Series[0].Points[chartIdx].YValues[0].ToString();
-            }
+            return points[middle];
         }
 
         private void button1_Click(object sender, EventArgs e)
