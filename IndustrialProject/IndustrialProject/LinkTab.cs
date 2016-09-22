@@ -18,8 +18,11 @@ namespace IndustrialProject
 
         double[] xAxisPlot;
         double[] yAxisPlot;
+        List<string> errorsSelected = new List<string>();
+        
+        //Perhaps put this in file?
+        List<Tuple<int, Packet.ErrorType>> errorGraphIndexs = new List<Tuple<int, Packet.ErrorType>>();
 
-        int[] errorsArray;
         string graphType;
 
         CalloutAnnotation series0_annotation = new CalloutAnnotation();
@@ -29,7 +32,7 @@ namespace IndustrialProject
             InitializeComponent();
             graphType = "DataRate";
             this.tab = tab;
-
+            errorsSelected.Add("All");
             chart1.Series[1].Color = Color.FromArgb(127, 255, 0, 0);
             //chart1.Series[0].Points.DataBindY(yAxisPlot);
             //chart1.Series[1].Points.DataBindY();
@@ -41,16 +44,11 @@ namespace IndustrialProject
             series0_annotation.Text = "helloworld";
             //series0_annotation.AnchorDataPoint = chart1.Series[0].Points[0];
             chart1.Annotations.Add(series0_annotation);
-
-
-
             chartDropdown.SelectedIndex = 0;
 
             var seriesPoints = this.chart1.Series[2];
             seriesPoints.XValueMember = "X";
             seriesPoints.YValueMembers = "Y";
-
-
 
             this.file = FileManager.loadAndParseFile(filename);
 
@@ -99,7 +97,7 @@ namespace IndustrialProject
             {
                 if (checkedListBox1.GetItemCheckState(0) == CheckState.Checked && !chartDropdown.SelectedItem.Equals("Bar"))
                 {
-                    chart1.Series[2].Enabled = true;
+                    //chart1.Series[2].Enabled = true;
                 }
                 else
                 {
@@ -137,6 +135,38 @@ namespace IndustrialProject
                 plotPoint = plotPoint + timeDifference;
 
                 //dates[i] = date1; //This may change
+                //Console.WriteLine("Error here is: " + this.file.packets[i].error);
+
+                //Perhaps refactor into another class (File?)
+                if(!this.file.packets[i + 1].error.Equals(Packet.ErrorType.NO_ERROR))
+                {
+                    //Tuple<int, Packet.ErrorType> errorTuple = new Tuple<int, Packet.ErrorType>(i, this.file.packets[i].error);
+
+                    Tuple<int, Packet.ErrorType> errorTuple = null;
+                    
+                    // What it may look like...
+                    if(errorsSelected.Contains("All"))
+                    {
+                        errorTuple = new Tuple<int, Packet.ErrorType>(i, this.file.packets[i + 1].error);
+                    }
+                    else
+                    {
+                        if(errorsSelected.Contains("Parity"))
+                        {
+                            ////
+                            if(this.file.packets[i + 1].error.Equals(Packet.ErrorType.ERROR_PARITY))
+                            {
+                                errorTuple = new Tuple<int, Packet.ErrorType>(i, this.file.packets[i + 1].error);
+                            }
+                        }
+
+                     
+                        //if.... for rest of error types
+                        ///////////////////////////
+                    }
+                    
+                    errorGraphIndexs.Add(errorTuple);
+                }
 
                 xAxisPlot[i] = plotPoint;
 
@@ -148,7 +178,7 @@ namespace IndustrialProject
                 }
                 else
                 {
-                    yAxisPlot[i] = 1 / timeDifference; //Packet rat
+                    yAxisPlot[i] = 1 / timeDifference; //Packet rate
                 }
 
             }
@@ -157,6 +187,11 @@ namespace IndustrialProject
             series.ChartType = SeriesChartType.Line;
             series.MarkerStyle = MarkerStyle.Cross;
 
+            for(int i = 0; i < errorGraphIndexs.Count; i++)
+            {
+                series.Points[errorGraphIndexs[i].Item1].MarkerColor = Color.Red;
+            }
+     
             chart1.Series.Add(series);
         }
 
@@ -181,12 +216,13 @@ namespace IndustrialProject
 
         public void errorHighlight(int errors)
         {
-            errorsArray = new int[]
-            {
-                errors
-            };
 
-            chart1.Series[2].Points.DataBindY(errorsArray);
+            //errorsArray = new int[]
+            //{
+            //    errors
+           // };
+
+           // chart1.Series[2].Points.DataBindY(errorsArray);
         }
 
         private void chart1_MouseMove(object sender, MouseEventArgs e)
@@ -249,5 +285,17 @@ namespace IndustrialProject
             this.chart1.ChartAreas[0].AxisX.ScaleView.ZoomReset(0);
             this.chart1.ChartAreas[0].AxisY.ScaleView.ZoomReset(0);
         }
-    }
+
+        private void LinkTab_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void navigateToTableIndex(int index)
+        {
+             dataGridView1.ClearSelection();
+             dataGridView1.Rows[index].Selected = true;
+             dataGridView1.FirstDisplayedScrollingRowIndex = index;
+        }
+}
 }
