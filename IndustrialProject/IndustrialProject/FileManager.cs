@@ -53,8 +53,9 @@ namespace IndustrialProject
                                 packet.timestamp = date; // Set packet timestamp
                                 string[] stringBytes = sr.ReadLine().Split(' '); // Splitting string of bytes
 
-                                packet.displayTime = date.ToString("dd-MM-yyyy HH:mm:ss:fff");
-
+                                packet.displayDate = date.ToString("dd-MM-yyyy");
+                                packet.displayTime = date.ToString("HH:mm:ss:fff");
+                                
                                 packet.displayData = String.Join(" ", stringBytes);
 
                                 byte[] byteArray = new byte[stringBytes.Length];

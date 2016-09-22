@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LinkTab));
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
@@ -52,8 +53,10 @@
             this.button1 = new System.Windows.Forms.Button();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.packetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.packetBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // errorCountA
@@ -190,7 +193,6 @@
             // 
             // checkedListBox1
             // 
-            this.checkedListBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkedListBox1.CheckOnClick = true;
             this.checkedListBox1.FormattingEnabled = true;
             this.checkedListBox1.Items.AddRange(new object[] {
@@ -199,9 +201,9 @@
             "Data errors",
             "Disconnect",
             "EPPs and timeout"});
-            this.checkedListBox1.Location = new System.Drawing.Point(940, 36);
+            this.checkedListBox1.Location = new System.Drawing.Point(916, 3);
             this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(111, 64);
+            this.checkedListBox1.Size = new System.Drawing.Size(111, 79);
             this.checkedListBox1.TabIndex = 24;
             // 
             // dataGridView1
@@ -261,6 +263,7 @@
             series1.Legend = "Legend1";
             series1.MarkerBorderWidth = 2;
             series1.Name = "A";
+            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.String;
             series2.ChartArea = "ChartArea1";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
             series2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -285,6 +288,10 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(200, 100);
             this.flowLayoutPanel1.TabIndex = 0;
+            // 
+            // packetBindingSource
+            // 
+            this.packetBindingSource.DataSource = typeof(IndustrialProject.Packet);
             // 
             // LinkTab
             // 
@@ -311,6 +318,7 @@
             this.Size = new System.Drawing.Size(1054, 512);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.packetBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -336,5 +344,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.BindingSource packetBindingSource;
     }
 }

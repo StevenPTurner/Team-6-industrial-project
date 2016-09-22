@@ -45,9 +45,11 @@ namespace IndustrialProject
         public byte[] data;
         public string epm;
 
+        public string displayDate { set; get; }
         public string displayTime { get; set; }
         public string displayData { get; set; }
         public string displayErrorType { set; get; }
+        
 
         public InnerType innerPacket;
 
