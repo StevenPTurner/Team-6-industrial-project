@@ -93,7 +93,7 @@ namespace IndustrialProject
 
                                 // XXX: setter?
                                 lastPacket.errorPacket = error;
-
+                            
                                 sr.ReadLine();
                                 break;
                             default:

@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace IndustrialProject
 {
+
+    //Class not needed. Refactor into LinkTab
     class GraphCalculations
     {
         public double calcPacketTimeDif(DateTime date1, DateTime date2)
