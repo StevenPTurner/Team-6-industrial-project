@@ -18,6 +18,7 @@ namespace IndustrialProject
 
         double[] xAxisPlot;
         double[] yAxisPlot;
+        bool[] errorsChecked;
         List<string> errorsSelected = new List<string>();
         
         //Perhaps put this in file?
@@ -30,6 +31,9 @@ namespace IndustrialProject
         public LinkTab(TabPage tab, string filename)
         {
             InitializeComponent();
+            errorsChecked = new bool[7];
+            errorsChecked[0] = true;
+            checkedListBox1.SetItemChecked(0, true);
             graphType = "DataRate";
             this.tab = tab;
             errorsSelected.Add("All");
@@ -85,29 +89,59 @@ namespace IndustrialProject
                     //Tuple<int, Packet.ErrorType> errorTuple = new Tuple<int, Packet.ErrorType>(i, this.file.packets[i].error);
 
                     Tuple<int, Packet.ErrorType> errorTuple = null;
-                    
+
                     // What it may look like...
-                    if(errorsSelected.Contains("All"))
+                    if (errorsChecked[0])
                     {
                         errorTuple = new Tuple<int, Packet.ErrorType>(i, this.file.packets[i + 1].error);
                     }
                     else
                     {
-                        if(errorsSelected.Contains("Parity"))
+                        if(errorsChecked[1])
                         {
                             ////
-                            if(this.file.packets[i + 1].error.Equals(Packet.ErrorType.ERROR_PARITY))
+                            if(this.file.packets[i + 1].error.Equals(Packet.ErrorType.ERROR_TRUNCATED))
+                            {
+                                errorTuple = new Tuple<int, Packet.ErrorType>(i, this.file.packets[i + 1].error);
+                            }
+                        }
+                        {
+                            if (this.file.packets[i + 1].error.Equals(Packet.ErrorType.ERROR_HEADER_CRC) || this.file.packets[i + 1].error.Equals(Packet.ErrorType.ERROR_BODY_CRC))
+                            {
+                                errorTuple = new Tuple<int, Packet.ErrorType>(i, this.file.packets[i + 1].error);
+                            }
+                        }
+                        if (errorsChecked[3])
+                        {
+                            if (this.file.packets[i + 1].error.Equals(Packet.ErrorType.ERROR_OUT_OF_ORDER))
+                            {
+                                errorTuple = new Tuple<int, Packet.ErrorType>(i, this.file.packets[i + 1].error);
+                            }
+                        }
+                        if (errorsChecked[4])
+                        {
+                            if (this.file.packets[i + 1].error.Equals(Packet.ErrorType.ERROR_TOO_MANY_BYTES) || this.file.packets[i + 1].error.Equals(Packet.ErrorType.ERROR_NOT_ENOUGH_BYTES))
+                            {
+                                errorTuple = new Tuple<int, Packet.ErrorType>(i, this.file.packets[i + 1].error);
+                            }
+                        }
+                        if (errorsChecked[5])
+                        {
+                            if (this.file.packets[i + 1].error.Equals(Packet.ErrorType.ERROR_DISCONNECT))
                             {
                                 errorTuple = new Tuple<int, Packet.ErrorType>(i, this.file.packets[i + 1].error);
                             }
                         }
 
-                     
+
                         //if.... for rest of error types
                         ///////////////////////////
                     }
-                    
-                    errorGraphIndexs.Add(errorTuple);
+
+                    if (errorTuple != null)
+                    {
+                        errorGraphIndexs.Add(errorTuple);
+                    }
                 }
 
                 xAxisPlot[i] = plotPoint;
@@ -129,10 +163,10 @@ namespace IndustrialProject
             series.ChartType = SeriesChartType.Line;
             series.MarkerStyle = MarkerStyle.Cross;
 
-            /*for(int i = 0; i < errorGraphIndexs.Count; i++)
+            for(int i = 0; i < errorGraphIndexs.Count; i++)
             {
                 series.Points[errorGraphIndexs[i].Item1].MarkerColor = Color.Red;
-            }*/
+            }
      
             chart1.Series.Add(series);
         }
@@ -253,6 +287,70 @@ namespace IndustrialProject
         private void LinkTab_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            Console.WriteLine("Hi I am here...");
+            //if (chartDropdown != null) 
+
+            if (errorsChecked[0])
+            {
+                //Console.WriteLine("Checked"); 
+                if (checkedListBox1.GetItemCheckState(0) == CheckState.Unchecked)
+                {
+                    errorsChecked[0] = false;
+                    //errorGraphIndexs.Clear(); 
+                }
+            }
+            //  } 
+
+            if (!errorsChecked[0])
+            {
+                if (checkedListBox1.GetItemCheckState(0) == CheckState.Checked)
+                {
+                    errorsChecked[0] = true;
+
+                    for (int i = 1; i < checkedListBox1.Items.Count; i++)
+                    {
+                        checkedListBox1.SetItemChecked(i, false);
+                        errorsChecked[i] = false;
+                    }
+
+
+                    errorGraphIndexs.Clear();
+                }
+            }
+
+
+            for (int i = 1; i < checkedListBox1.Items.Count; i++)
+            {
+                if (checkedListBox1.GetItemCheckState(i) == CheckState.Checked)
+                {
+                    if (errorsChecked[0])
+                    {
+                        errorsChecked[0] = false;
+                        checkedListBox1.SetItemChecked(0, false);
+                    }
+                    errorsChecked[i] = true;
+                }
+
+                if (checkedListBox1.GetItemCheckState(i) == CheckState.Unchecked)
+                {
+                    errorsChecked[i] = false;
+                }
+
+            }
+
+            for (int i = 0; i < errorsChecked.Length; i++)
+            {
+                Console.WriteLine(errorsChecked[i]);
+            }
+
+            errorGraphIndexs.Clear();
+
+            PostAdding();
         }
     }
 }

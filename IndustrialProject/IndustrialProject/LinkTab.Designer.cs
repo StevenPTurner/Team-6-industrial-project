@@ -208,16 +208,18 @@
             this.checkedListBox1.CheckOnClick = true;
             this.checkedListBox1.FormattingEnabled = true;
             this.checkedListBox1.Items.AddRange(new object[] {
+            "All",
+            "EPPs and timeout",
             "CRCs",
-            "Out of seq",
-            "Data errors",
-            "Disconnect",
-            "EPPs and timeout"});
+            "OutofSeq",
+            "DataErrors",
+            "Disconnect"});
             this.checkedListBox1.Location = new System.Drawing.Point(1221, 4);
-            this.checkedListBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkedListBox1.Margin = new System.Windows.Forms.Padding(4);
             this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(147, 89);
+            this.checkedListBox1.Size = new System.Drawing.Size(147, 106);
             this.checkedListBox1.TabIndex = 24;
+            this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
             // dataGridView1
             // 
