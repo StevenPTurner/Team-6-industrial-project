@@ -19,12 +19,14 @@ namespace IndustrialProject
         double[] xAxisPlot;
         double[] yAxisPlot;
         bool[] errorsChecked;
+
         List<string> errorsSelected = new List<string>();
-        
+
         //Perhaps put this in file?
         List<Tuple<int, Packet.ErrorType>> errorGraphIndexs = new List<Tuple<int, Packet.ErrorType>>();
 
         string graphType;
+        bool[] graphTypes;
 
         CalloutAnnotation series0_annotation = new CalloutAnnotation();
 
@@ -33,8 +35,12 @@ namespace IndustrialProject
             InitializeComponent();
             errorsChecked = new bool[7];
             errorsChecked[0] = true;
+            graphTypes = new bool[2];
+            graphTypes[0] = true;
             checkedListBox1.SetItemChecked(0, true);
             graphType = "DataRate";
+
+
             this.tab = tab;
             errorsSelected.Add("All");
             chart1.Series[1].Color = Color.FromArgb(127, 255, 0, 0);
@@ -84,7 +90,7 @@ namespace IndustrialProject
                 //Console.WriteLine("Error here is: " + this.file.packets[i].error);
 
                 //Perhaps refactor into another class (File?)
-                if(!this.file.packets[i + 1].error.Equals(Packet.ErrorType.NO_ERROR))
+                if (!this.file.packets[i + 1].error.Equals(Packet.ErrorType.NO_ERROR))
                 {
                     //Tuple<int, Packet.ErrorType> errorTuple = new Tuple<int, Packet.ErrorType>(i, this.file.packets[i].error);
 
@@ -97,10 +103,10 @@ namespace IndustrialProject
                     }
                     else
                     {
-                        if(errorsChecked[1])
+                        if (errorsChecked[1])
                         {
                             ////
-                            if(this.file.packets[i + 1].error.Equals(Packet.ErrorType.ERROR_TRUNCATED))
+                            if (this.file.packets[i + 1].error.Equals(Packet.ErrorType.ERROR_TRUNCATED))
                             {
                                 errorTuple = new Tuple<int, Packet.ErrorType>(i, this.file.packets[i + 1].error);
                             }
@@ -148,26 +154,26 @@ namespace IndustrialProject
 
                 //if(blabla)
                 //Load data rate line. If blabla load packet rate line
-                if(graphType.Equals("DataRate"))
+                if (graphType.Equals("DataRate"))
                 {
                     yAxisPlot[i] = (this.file.packets[i].data.Length) / timeDifference; //Data rate
                 }
-                else
+                else if (graphType.Equals("PacketRate"))
                 {
                     yAxisPlot[i] = 1 / timeDifference; //Packet rate
                 }
-
+                //More graphs?
             }
 
             series.Points.DataBindXY(xAxisPlot, yAxisPlot);
             series.ChartType = SeriesChartType.Line;
             series.MarkerStyle = MarkerStyle.Cross;
 
-            for(int i = 0; i < errorGraphIndexs.Count; i++)
+            for (int i = 0; i < errorGraphIndexs.Count; i++)
             {
                 series.Points[errorGraphIndexs[i].Item1].MarkerColor = Color.Red;
             }
-     
+
             chart1.Series.Add(series);
         }
 
@@ -182,9 +188,9 @@ namespace IndustrialProject
             //errorsArray = new int[]
             //{
             //    errors
-           // };
+            // };
 
-           // chart1.Series[2].Points.DataBindY(errorsArray);
+            // chart1.Series[2].Points.DataBindY(errorsArray);
         }
 
         private void chart1_MouseMove(object sender, MouseEventArgs e)
@@ -374,5 +380,84 @@ namespace IndustrialProject
 
             PostAdding();
         }
+
+        private void dataRateBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            if(dataRateBtn.Checked)
+            {
+                graphType = "DataRate";
+                PostAdding();
+            }
+        }
+
+        private void packetRateBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            if(packetRateBtn.Checked)
+            {
+                graphType = "PacketRate";
+                PostAdding();
+            }
+        }
     }
-}
+    }
+
+        //Do not delete this code, may be useful later on.
+        /**
+            if (!graphTypes[0])
+            {
+                
+                if (checkedListBox2.GetItemCheckState(0) == CheckState.Checked)
+                {
+                    if (graphTypes[1])
+                    {
+                        checkedListBox2.SetItemChecked(1, false);
+                    }
+                    graphTypes[0] = true;
+                }
+            }
+
+            if (graphTypes[0])
+            {
+               
+                if (checkedListBox2.GetItemCheckState(0) == CheckState.Unchecked)
+                {
+                    checkedListBox2.SetItemChecked(0, true);
+                }
+
+                if (checkedListBox2.GetItemCheckState(1) == CheckState.Checked)
+                {
+                    graphTypes[1] = true;
+                    graphTypes[0] = false;
+                    checkedListBox2.SetItemChecked(0, false);
+                    Console.WriteLine("Hallo");
+                }
+            }
+        
+           /**
+            if (!graphTypes[1])
+            {
+                if (checkedListBox2.GetItemCheckState(1) == CheckState.Checked)
+                {
+                    Console.WriteLine("Why??????????????????????????????????????????????????????????????");
+
+                    if (graphTypes[0])
+                    {
+                        Console.WriteLine("Whyz");
+                        checkedListBox2.SetItemChecked(0, false);
+                    }
+                    graphTypes[1] = true;
+                }
+            }
+
+            if(graphTypes[1])
+            {
+                if(checkedListBox2.GetItemCheckState(1) == CheckState.Unchecked)
+                {
+                    graphTypes[1] = false;
+                }
+
+            }
+
+    PostAdding();
+    */
+
