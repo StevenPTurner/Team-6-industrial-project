@@ -163,6 +163,11 @@ namespace IndustrialProject
 
         private DataPoint FindClosestPoint(Series series, int pixelX)
         {
+            return series.Points[FindClosestPointIndex(series, pixelX)];
+        }
+
+        private int FindClosestPointIndex(Series series, int pixelX)
+        {
             var xAxis = chart1.ChartAreas[0].AxisX;
             int xRight = (int)xAxis.ValueToPixelPosition(xAxis.Maximum) - 1;
             int xLeft = (int)xAxis.ValueToPixelPosition(xAxis.Minimum);
@@ -205,7 +210,7 @@ namespace IndustrialProject
             else
                 middle = right;
 
-            return points[middle];
+            return middle;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -245,9 +250,20 @@ namespace IndustrialProject
 
         private void navigateToTableIndex(int index)
         {
-             dataGridView1.ClearSelection();
-             dataGridView1.Rows[index].Selected = true;
-             dataGridView1.FirstDisplayedScrollingRowIndex = index;
+            dataGridView1.ClearSelection();
+            dataGridView1.Rows[index].Selected = true;
+            dataGridView1.FirstDisplayedScrollingRowIndex = index;
         }
-}
+
+        private void chart1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chart1_DoubleClick(object sender, EventArgs e)
+        {
+            int index = FindClosestPointIndex(chart1.Series[0], MousePosition.X);
+            this.navigateToTableIndex(index);
+        }
+    }
 }

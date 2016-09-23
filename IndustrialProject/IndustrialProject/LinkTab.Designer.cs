@@ -280,6 +280,8 @@
             this.chart1.Size = new System.Drawing.Size(909, 223);
             this.chart1.TabIndex = 22;
             this.chart1.Text = "chart1";
+            this.chart1.Click += new System.EventHandler(this.chart1_Click);
+            this.chart1.DoubleClick += new System.EventHandler(this.chart1_DoubleClick);
             this.chart1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chart1_MouseMove);
             // 
             // flowLayoutPanel1
