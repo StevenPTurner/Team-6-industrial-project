@@ -105,12 +105,13 @@ namespace IndustrialProject
                     {
                         if (errorsChecked[1])
                         {
-                            ////
+                           
                             if (this.file.packets[i + 1].error.Equals(Packet.ErrorType.ERROR_TRUNCATED))
                             {
                                 errorTuple = new Tuple<int, Packet.ErrorType>(i, this.file.packets[i + 1].error);
                             }
                         }
+                        if(errorsChecked[2])
                         {
                             if (this.file.packets[i + 1].error.Equals(Packet.ErrorType.ERROR_HEADER_CRC) || this.file.packets[i + 1].error.Equals(Packet.ErrorType.ERROR_BODY_CRC))
                             {
