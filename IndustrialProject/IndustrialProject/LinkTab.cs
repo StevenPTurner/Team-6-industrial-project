@@ -249,5 +249,10 @@ namespace IndustrialProject
              dataGridView1.Rows[index].Selected = true;
              dataGridView1.FirstDisplayedScrollingRowIndex = index;
         }
-}
+
+        private void LinkTab_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
 }
