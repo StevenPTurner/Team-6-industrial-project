@@ -45,6 +45,7 @@
             this.overviewTab = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.userManualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.startTab.SuspendLayout();
@@ -92,7 +93,8 @@
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.keyBoardShortcutsMenuItem,
-            this.loadHelpMenuItem});
+            this.loadHelpMenuItem,
+            this.userManualToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
@@ -207,6 +209,7 @@
             this.button1.UseVisualStyleBackColor = true;
             // 
             // pictureBox1
+            // userManualToolStripMenuItem
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
@@ -215,6 +218,10 @@
             this.pictureBox1.Size = new System.Drawing.Size(1054, 200);
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
+            this.userManualToolStripMenuItem.Name = "userManualToolStripMenuItem";
+            this.userManualToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.userManualToolStripMenuItem.Text = "User manual";
+            this.userManualToolStripMenuItem.Click += new System.EventHandler(this.userManualToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -260,6 +267,7 @@
         private System.Windows.Forms.Label instrLabel2;
         private System.Windows.Forms.Label instrLabel3;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ToolStripMenuItem userManualToolStripMenuItem;
     }
 }
 
