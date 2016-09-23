@@ -260,6 +260,12 @@ namespace IndustrialProject
             dataGridView1.Columns[2].Width = 400;
             dataGridView1.Columns[3].Width = 150;
 
+            dataGridView1.Columns[0].HeaderText = "Date";
+            dataGridView1.Columns[1].HeaderText = "Time";
+            dataGridView1.Columns[2].HeaderText = "Data";
+            dataGridView1.Columns[3].HeaderText = "Error";
+
+
 
             foreach (DataGridViewRow row in dataGridView1.Rows)
                 if (row.DataBoundItem != null && ((Packet)row.DataBoundItem).error != Packet.ErrorType.NO_ERROR)
