@@ -286,10 +286,10 @@ namespace IndustrialProject
             this.setVals();
             packetCountA.Text = this.file.stats.noOfPackets.ToString();
             charCountA.Text = this.file.stats.noOfDataChars.ToString();
-            dataRate.Text = this.file.stats.avgDataRate.ToString();
-            packetRate.Text = this.file.stats.avgPacketRate.ToString();
+            dataRate.Text = this.file.stats.avgDataRate.ToString() + " B/s";
+            packetRate.Text = this.file.stats.avgPacketRate.ToString() + " packet/s"; 
             errorCountA.Text = this.file.stats.totalNoOfErrors.ToString();
-            errorRate.Text = this.file.stats.avgErrorRate.ToString();
+            errorRate.Text = this.file.stats.avgErrorRate.ToString() + " error/s";
             //errorHighlight(this.file.stats.totalNoOfErrors);
             this.tab.Text = "Link " + this.file.port.ToString();
             this.Refresh();

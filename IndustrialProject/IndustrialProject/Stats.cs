@@ -41,9 +41,9 @@ namespace IndustrialProject
                     this.totalNoOfErrors += 1;
             }
 
-            this.avgPacketRate = this.noOfPackets / totalTime.TotalSeconds;
-            this.avgDataRate = this.noOfDataChars / totalTime.TotalSeconds;
-            this.avgErrorRate = this.totalNoOfErrors / totalTime.TotalSeconds;
+            this.avgPacketRate = Math.Round(this.noOfPackets / totalTime.TotalSeconds, 3);
+            this.avgDataRate = Math.Round(this.noOfDataChars / totalTime.TotalSeconds, 3);
+            this.avgErrorRate = Math.Round(this.totalNoOfErrors / totalTime.TotalSeconds, 3);
         }
     }
 }
