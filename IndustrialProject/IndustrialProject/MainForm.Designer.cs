@@ -34,8 +34,6 @@
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.keyBoardShortcutsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loadHelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userManualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.startTab = new System.Windows.Forms.TabPage();
@@ -94,26 +92,17 @@
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.keyBoardShortcutsMenuItem,
-            this.loadHelpMenuItem,
             this.userManualToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
             // 
-            // keyBoardShortcutsMenuItem
+            // userManualToolStripMenuItem
             // 
-            this.keyBoardShortcutsMenuItem.Name = "keyBoardShortcutsMenuItem";
-            this.keyBoardShortcutsMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.keyBoardShortcutsMenuItem.Text = "Keyboard Shortcuts";
-            this.keyBoardShortcutsMenuItem.Click += new System.EventHandler(this.keyBoardShortcutsMenuItem_Click);
-            // 
-            // loadHelpMenuItem
-            // 
-            this.loadHelpMenuItem.Name = "loadHelpMenuItem";
-            this.loadHelpMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.loadHelpMenuItem.Text = "How To Load Files";
-            this.loadHelpMenuItem.Click += new System.EventHandler(this.loadHelpMenuItem_Click);
+            this.userManualToolStripMenuItem.Name = "userManualToolStripMenuItem";
+            this.userManualToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.userManualToolStripMenuItem.Text = "User manual";
+            this.userManualToolStripMenuItem.Click += new System.EventHandler(this.userManualToolStripMenuItem_Click);
             // 
             // userManualToolStripMenuItem
             // 
@@ -268,8 +257,6 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem keyBoardShortcutsMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem loadHelpMenuItem;
         private System.Windows.Forms.TabPage overviewTab;
         private System.Windows.Forms.TabPage startTab;
         private System.Windows.Forms.Button button1;
