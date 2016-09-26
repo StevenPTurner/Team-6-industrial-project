@@ -153,6 +153,7 @@ namespace IndustrialProject
 
                 xAxisPlot[i] = plotPoint;
 
+                chart1.ChartAreas[0].AxisX.LabelStyle.Format = "{ 00.00}";
                 chart1.ChartAreas[0].AxisY.Title = "byte";
                 chart1.ChartAreas[0].AxisX.Title = "second";
 
