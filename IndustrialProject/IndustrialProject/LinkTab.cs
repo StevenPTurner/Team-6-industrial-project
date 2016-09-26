@@ -157,10 +157,12 @@ namespace IndustrialProject
                 //Load data rate line. If blabla load packet rate line
                 if (graphType.Equals("DataRate"))
                 {
+                    chart1.ChartAreas[0].RecalculateAxesScale();
                     yAxisPlot[i] = (this.file.packets[i].data.Length) / timeDifference; //Data rate
                 }
                 else if (graphType.Equals("PacketRate"))
                 {
+                    chart1.ChartAreas[0].RecalculateAxesScale();
                     yAxisPlot[i] = 1 / timeDifference; //Packet rate
                 }
                 //More graphs?
