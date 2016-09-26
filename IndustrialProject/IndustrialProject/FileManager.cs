@@ -86,6 +86,7 @@ namespace IndustrialProject
                                 Tuple<Packet, Packet> last2Packets = new Tuple<Packet, Packet>(secondLastPacket, lastPacket);
                               
                                 lastPacket.setError(ErrorChecker.determineError(last2Packets));
+                                
 
                                 if (lastPacket.error == Packet.ErrorType.NO_ERROR)
                                     throw new Exception("ARGH...");
@@ -94,7 +95,9 @@ namespace IndustrialProject
 
                                 // XXX: setter?
                                 lastPacket.errorPacket = error;
-                            
+                                file.incrementErrCounts(lastPacket.error);
+
+
                                 sr.ReadLine();
                                 break;
                             default:
@@ -119,6 +122,8 @@ namespace IndustrialProject
             Console.WriteLine("No. of data chars: " + file.stats.noOfDataChars);
             Console.WriteLine("Avg. Packet Rate: " + file.stats.avgPacketRate);
             Console.WriteLine("Avg. Data Rate: " + file.stats.avgDataRate);
+
+            
 
             return file;
         }

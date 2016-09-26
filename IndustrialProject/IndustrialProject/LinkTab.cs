@@ -176,6 +176,7 @@ namespace IndustrialProject
             }
 
             chart1.Series.Add(series);
+            errCountLabel.Text = " Seq: " + file.outOfSeqErrs + "\n CRC: " + file.crcErrs + "\n Data: " + file.dataErrs + "\n Parity: " + file.parityErrs + "\n EEPs + Timeouts " + file.eepAndTimeoutErrs;
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -398,6 +399,11 @@ namespace IndustrialProject
                 graphType = "PacketRate";
                 PostAdding();
             }
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
     }
     }
