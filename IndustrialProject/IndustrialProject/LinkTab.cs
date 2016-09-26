@@ -283,13 +283,18 @@ namespace IndustrialProject
             dataGridView1.Columns[2].HeaderText = "Data";
             dataGridView1.Columns[3].HeaderText = "Error";
 
-
-
+            /**
             foreach (DataGridViewRow row in dataGridView1.Rows)
                 if (row.DataBoundItem != null && ((Packet)row.DataBoundItem).error != Packet.ErrorType.NO_ERROR)
                     row.DefaultCellStyle.BackColor = Color.Red;
-
+            */
             this.setVals();
+
+            for(int i = 0; i < errorGraphIndexs.Count; i++)
+            {
+                dataGridView1.Rows[errorGraphIndexs[i].Item1 + 1].DefaultCellStyle.BackColor = Color.Red;
+            }
+
             packetCountA.Text = this.file.stats.noOfPackets.ToString();
             charCountA.Text = this.file.stats.noOfDataChars.ToString();
             dataRate.Text = this.file.stats.avgDataRate.ToString() + " B/s";
