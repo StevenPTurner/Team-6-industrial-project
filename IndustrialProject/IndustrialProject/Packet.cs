@@ -12,17 +12,17 @@ namespace IndustrialProject
         public enum ErrorType
         {
             //XXX: Is this a good place for this enum - define it in File instead?
-            NO_ERROR,
-            ERROR_TRUNCATED,
-            ERROR_DISCONNECT,
-            ERROR_PARITY,
-            ERROR_HEADER_CRC,
-            ERROR_BODY_CRC,
-            ERROR_OUT_OF_ORDER,
-            ERROR_BAD_PATH,
-            ERROR_TOO_MANY_BYTES,
-            ERROR_NOT_ENOUGH_BYTES,
-            ERROR_DUPLICATE,
+            NO_ERROR = 0,
+            ERROR_TRUNCATED = 1 << 0,
+            ERROR_DISCONNECT = 1 << 1,
+            ERROR_PARITY = 1 << 2,
+            ERROR_HEADER_CRC = 1 << 3,
+            ERROR_BODY_CRC = 1 << 4,
+            ERROR_OUT_OF_ORDER = 1 << 5,
+            ERROR_BAD_PATH = 1 << 6,
+            ERROR_TOO_MANY_BYTES = 1 << 7,
+            ERROR_NOT_ENOUGH_BYTES = 1 << 8,
+            ERROR_DUPLICATE = 1 << 9,
         }
 
         public class Error

@@ -228,7 +228,7 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.Location = new System.Drawing.Point(2, 229);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(909, 263);
             this.dataGridView1.TabIndex = 1;
@@ -239,7 +239,7 @@
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
             this.button1.Location = new System.Drawing.Point(889, 204);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(22, 21);
             this.button1.TabIndex = 38;
@@ -262,7 +262,7 @@
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(2, 2);
-            this.chart1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chart1.Margin = new System.Windows.Forms.Padding(2);
             this.chart1.Name = "chart1";
             this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Bright;
             series1.ChartArea = "ChartArea1";
@@ -304,7 +304,7 @@
             this.dataRateBtn.AutoSize = true;
             this.dataRateBtn.Checked = true;
             this.dataRateBtn.Location = new System.Drawing.Point(4, 11);
-            this.dataRateBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataRateBtn.Margin = new System.Windows.Forms.Padding(2);
             this.dataRateBtn.Name = "dataRateBtn";
             this.dataRateBtn.Size = new System.Drawing.Size(74, 17);
             this.dataRateBtn.TabIndex = 40;
@@ -317,7 +317,7 @@
             // 
             this.packetRateBtn.AutoSize = true;
             this.packetRateBtn.Location = new System.Drawing.Point(4, 33);
-            this.packetRateBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.packetRateBtn.Margin = new System.Windows.Forms.Padding(2);
             this.packetRateBtn.Name = "packetRateBtn";
             this.packetRateBtn.Size = new System.Drawing.Size(85, 17);
             this.packetRateBtn.TabIndex = 41;
@@ -331,9 +331,9 @@
             this.groupBox1.Controls.Add(this.dataRateBtn);
             this.groupBox1.Controls.Add(this.packetRateBtn);
             this.groupBox1.Location = new System.Drawing.Point(916, 95);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(150, 81);
             this.groupBox1.TabIndex = 43;
             this.groupBox1.TabStop = false;
@@ -372,7 +372,7 @@
             this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.chart1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "LinkTab";
             this.Size = new System.Drawing.Size(1054, 512);
             this.Load += new System.EventHandler(this.LinkTab_Load);
