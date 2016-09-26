@@ -38,19 +38,19 @@
             this.loadHelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.startTab = new System.Windows.Forms.TabPage();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.instrLabel3 = new System.Windows.Forms.Label();
             this.instrLabel2 = new System.Windows.Forms.Label();
             this.instrLabel1 = new System.Windows.Forms.Label();
             this.logoBox = new System.Windows.Forms.PictureBox();
             this.overviewTab = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.startTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logoBox)).BeginInit();
             this.overviewTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -137,9 +137,19 @@
             this.startTab.TabIndex = 1;
             this.startTab.Text = "Start";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(-73, 316);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1200, 200);
+            this.pictureBox1.TabIndex = 5;
+            this.pictureBox1.TabStop = false;
+            // 
             // instrLabel3
             // 
-            this.instrLabel3.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.instrLabel3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.instrLabel3.AutoSize = true;
             this.instrLabel3.Font = new System.Drawing.Font("Lucida Bright", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.instrLabel3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -152,7 +162,7 @@
             // 
             // instrLabel2
             // 
-            this.instrLabel2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.instrLabel2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.instrLabel2.AutoSize = true;
             this.instrLabel2.Font = new System.Drawing.Font("Lucida Bright", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.instrLabel2.Location = new System.Drawing.Point(264, 164);
@@ -164,7 +174,7 @@
             // 
             // instrLabel1
             // 
-            this.instrLabel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.instrLabel1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.instrLabel1.AutoSize = true;
             this.instrLabel1.Font = new System.Drawing.Font("Lucida Bright", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.instrLabel1.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -206,16 +216,6 @@
             this.button1.Text = "DO NOT CLICK";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(0, 312);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1054, 200);
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -234,9 +234,9 @@
             this.tabControl1.ResumeLayout(false);
             this.startTab.ResumeLayout(false);
             this.startTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.logoBox)).EndInit();
             this.overviewTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
