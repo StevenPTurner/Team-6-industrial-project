@@ -16,7 +16,7 @@ namespace IndustrialProject
         File file;
         TabPage tab;
 
-        int errorsShown;
+        uint errorsShown = ~(uint)Packet.ErrorType.NO_ERROR;
 
         //Perhaps put this in file?
         List<Tuple<int, Packet.ErrorType>> errorGraphIndexs = new List<Tuple<int, Packet.ErrorType>>();
@@ -85,13 +85,14 @@ namespace IndustrialProject
                 plotPoint = plotPoint + timeDifference;
 
                 //Perhaps refactor into another class (File?)
-                if (((int)this.file.packets[i].error & this.errorsShown) != 0)
+                if (((uint)this.file.packets[i].error & this.errorsShown) != 0)
                 {
                     point.MarkerColor = Color.Red;
-                    point.MarkerSize = 50;
+                    point.MarkerSize = 25;
                 } else
                 {
                     point.MarkerColor = Color.Green;
+                    point.MarkerSize = 15;
                 }
 
                 point.XValue = plotPoint;
@@ -127,10 +128,6 @@ namespace IndustrialProject
             if(clearGraph)
                 chart1.Series.Add(series);
 
-            /*foreach (DataGridViewRow row in dataGridView1.Rows)
-                if (row.DataBoundItem != null && ((Packet)row.DataBoundItem).error != Packet.ErrorType.NO_ERROR)
-                    row.DefaultCellStyle.BackColor = Color.Red;*/
-
             errCountLabel.Text = " Seq: " + file.outOfSeqErrs + "\n CRC: " + file.crcErrs + "\n Data: " + file.dataErrs + "\n Parity: " + file.parityErrs + "\n EEPs + Timeouts " + file.eepAndTimeoutErrs;
         }
 
@@ -165,8 +162,6 @@ namespace IndustrialProject
                 chartX = xAxis.Minimum;
             else
                 chartX = xAxis.PixelPositionToValue(pixelX);
-
-            Console.WriteLine(String.Format("{0} {1} {2} {3}", xLeft, xRight, pixelX, chartX));
 
             // closest with binary search
 
@@ -243,6 +238,10 @@ namespace IndustrialProject
             dataGridView1.Columns[2].HeaderText = "Data";
             dataGridView1.Columns[3].HeaderText = "Error";
 
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+                if (row.DataBoundItem != null && ((Packet)row.DataBoundItem).error != Packet.ErrorType.NO_ERROR)
+                    row.DefaultCellStyle.BackColor = Color.Red;
+
             this.setVals(true);
             packetCountA.Text = this.file.stats.noOfPackets.ToString();
             charCountA.Text = this.file.stats.noOfDataChars.ToString();
@@ -287,17 +286,22 @@ namespace IndustrialProject
                 string text = itemChecked.ToString();
 
                 if (text == "All")
-                    this.errorsShown |= ~1;
+                {
+                    this.errorsShown |= ~(uint)Packet.ErrorType.NO_ERROR;
+
+                    checkedListBox1.ClearSelected();
+                    checkedListBox1.SetSelected(checkedListBox1.Items.IndexOf(itemChecked), true);
+                }
                 else if (text == "EPPs and timeouts")
-                    this.errorsShown |= (int)(Packet.ErrorType.ERROR_TRUNCATED | Packet.ErrorType.ERROR_PARITY);
+                    this.errorsShown |= (uint)(Packet.ErrorType.ERROR_TRUNCATED | Packet.ErrorType.ERROR_PARITY);
                 else if (text == "CRCs")
-                    this.errorsShown |= (int)(Packet.ErrorType.ERROR_HEADER_CRC | Packet.ErrorType.ERROR_BODY_CRC);
+                    this.errorsShown |= (uint)(Packet.ErrorType.ERROR_HEADER_CRC | Packet.ErrorType.ERROR_BODY_CRC);
                 else if (text == "OutofSeq")
-                    this.errorsShown |= (int)(Packet.ErrorType.ERROR_OUT_OF_ORDER | Packet.ErrorType.ERROR_DUPLICATE);
+                    this.errorsShown |= (uint)(Packet.ErrorType.ERROR_OUT_OF_ORDER | Packet.ErrorType.ERROR_DUPLICATE);
                 else if (text == "DataErrors")
-                    this.errorsShown |= (int)(Packet.ErrorType.ERROR_NOT_ENOUGH_BYTES | Packet.ErrorType.ERROR_TOO_MANY_BYTES);
+                    this.errorsShown |= (uint)(Packet.ErrorType.ERROR_NOT_ENOUGH_BYTES | Packet.ErrorType.ERROR_TOO_MANY_BYTES);
                 else if (text == "Disconnect")
-                    this.errorsShown |= (int)(Packet.ErrorType.ERROR_DISCONNECT);
+                    this.errorsShown |= (uint)(Packet.ErrorType.ERROR_DISCONNECT);
             }
 
             this.setVals(false);

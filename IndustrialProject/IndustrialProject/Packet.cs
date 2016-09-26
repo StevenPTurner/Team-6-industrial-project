@@ -12,17 +12,17 @@ namespace IndustrialProject
         public enum ErrorType
         {
             //XXX: Is this a good place for this enum - define it in File instead?
-            NO_ERROR = 0,
-            ERROR_TRUNCATED = 1 << 0,
-            ERROR_DISCONNECT = 1 << 1,
-            ERROR_PARITY = 1 << 2,
-            ERROR_HEADER_CRC = 1 << 3,
-            ERROR_BODY_CRC = 1 << 4,
-            ERROR_OUT_OF_ORDER = 1 << 5,
-            ERROR_BAD_PATH = 1 << 6,
-            ERROR_TOO_MANY_BYTES = 1 << 7,
-            ERROR_NOT_ENOUGH_BYTES = 1 << 8,
-            ERROR_DUPLICATE = 1 << 9,
+            NO_ERROR = 1 << 0,
+            ERROR_TRUNCATED = 1 << 1,
+            ERROR_DISCONNECT = 1 << 2,
+            ERROR_PARITY = 1 << 3,
+            ERROR_HEADER_CRC = 1 << 4,
+            ERROR_BODY_CRC = 1 << 5,
+            ERROR_OUT_OF_ORDER = 1 << 6,
+            ERROR_BAD_PATH = 1 << 7,
+            ERROR_TOO_MANY_BYTES = 1 << 8,
+            ERROR_NOT_ENOUGH_BYTES = 1 << 9,
+            ERROR_DUPLICATE = 1 << 10,
         }
 
         public class Error
@@ -63,6 +63,7 @@ namespace IndustrialProject
         public Packet()
         {
             this.pathAddress = new List<byte>();
+            this.error = ErrorType.NO_ERROR;
         }
 
         public void loadDataAndEndMarker(byte[] data, string epm)
