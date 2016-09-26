@@ -92,7 +92,7 @@ namespace IndustrialProject
                 page1.Controls.Add(overViewTab);
                 tabControl1.TabPages.Add(page1);
                 this.Invalidate(true);
-                overViewTab.PostAdding();
+                
             }
 
             // create a tab for it
@@ -104,12 +104,16 @@ namespace IndustrialProject
             tab.Dock = DockStyle.Fill;
 
             tab.PostAdding();
+            
 
             Dictionary<string, File> file = new Dictionary<string, File>();
             file.Add(filename, tab.file);
             allFiles.Add(file);
+            overViewTab.allFiles = this.allFiles;
+            overViewTab.PostAdding();
+            overViewTab.allFiles =  allFiles;
 
-            Console.WriteLine("File: " + file.ElementAt(0).Key + "fadsf " + file.ElementAt(0).Value.packets[0].timestamp);
+            //Console.WriteLine("File: " + file.ElementAt(0).Key + "fadsf " + file.ElementAt(0).Value.packets[0].timestamp);
 
         }
 

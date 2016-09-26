@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Windows.Forms;
 
+
 namespace IndustrialProject
 {
     public partial class LinkTab : UserControl
@@ -16,16 +17,19 @@ namespace IndustrialProject
         public File file;
         TabPage tab;
         string tabType;
+       
+        public List<Dictionary<string, File>> allFiles = new List<Dictionary<string, File>>();
 
         uint errorsShown = ~(uint)Packet.ErrorType.NO_ERROR;
 
         //Perhaps put this in file?
-        List<Tuple<int, Packet.ErrorType>> errorGraphIndexs = new List<Tuple<int, Packet.ErrorType>>();
+        //List<Tuple<int, Packet.ErrorType>> errorGraphIndexs = new List<Tuple<int, Packet.ErrorType>>();
 
         string graphType;
         bool[] graphTypes;
 
         CalloutAnnotation series0_annotation = new CalloutAnnotation();
+        CalloutAnnotation series1_annotation = new CalloutAnnotation();
 
         public LinkTab(TabPage tab, string filename, string tabType)
         {
@@ -38,101 +42,135 @@ namespace IndustrialProject
             this.tabType = tabType;
 
             this.tab = tab;
-            chart1.Series[1].Color = Color.FromArgb(127, 255, 0, 0);
-            chart1.Series[2].Enabled = false;
+            //chart1.Series[1].Color = Color.FromArgb(127, 255, 0, 0);
+            //chart1.Series[2].Enabled = false;
 
             series0_annotation.AllowMoving = true;
             series0_annotation.Visible = true;
             series0_annotation.Text = "";
             chart1.Annotations.Add(series0_annotation);
 
-            var seriesPoints = this.chart1.Series[2];
-            seriesPoints.XValueMember = "X";
-            seriesPoints.YValueMembers = "Y";
+            //var seriesPoints = this.chart1.Series[2];
+            //seriesPoints.XValueMember = "X";
+            //seriesPoints.YValueMembers = "Y";
 
             this.file = FileManager.loadAndParseFile(filename);
         }
 
-        private void setVals(bool clearGraph)
+        private void setTabs()
         {
-            double plotPoint = 0;
-
-            Series series;
-            if (clearGraph)
+            if (tabType.Equals("Link"))
             {
-                chart1.Series.Clear();
-                series = new Series();
-            } else
-                series = chart1.Series[0];
-
-            for (int i = 0; i < this.file.packets.Count; i++)
-            {
-                DataPoint point;
-                if (clearGraph)
-                    point = new DataPoint(series);
-                else
-                    point = series.Points[i];
-
-                DateTime date1 = this.file.packets[i].timestamp;
-                DateTime date2;
-                if (i >= this.file.packets.Count - 1) {
-                    // XXX: this is inaccurate
-                    // FIX: won't work if count is less than 2
-                    date1 = this.file.packets[i - 1].timestamp;
-                    date2 = this.file.packets[i].timestamp;
-                } else
-                    date2 = this.file.packets[i + 1].timestamp;
-
-                double timeDifference = (date2 - date1).TotalSeconds;
-                plotPoint = plotPoint + timeDifference;
-
-                //Console.WriteLine("This was... :" + (int)this.file.packets[i].error);
-                //Perhaps refactor into another class (File?)
-                if (((uint)this.file.packets[i].error & this.errorsShown) != 0)
-                {
-                    
-                    point.MarkerColor = Color.Red;
-                    point.MarkerSize = 25;
-                } else
-                {
-                    point.MarkerColor = Color.Green;
-                    point.MarkerSize = 15;
-                }
-
-                point.XValue = plotPoint;
-
-                //Load data rate line. If blabla load packet rate line
-                if (graphType.Equals("DataRate"))
-                {
-                    if (timeDifference == 0)
-                        point.YValues = new double[] { 0 };
-                    else
-                        point.YValues = new double[] { (this.file.packets[i].data.Length) / timeDifference }; //Data rate
-                }
-                else if (graphType.Equals("PacketRate"))
-                {
-                    if (timeDifference == 0)
-                        point.YValues = new double[] { 0 };
-                    else
-                        point.YValues = new double[] { 1 / timeDifference }; //Packet rate
-                }
-                //More graphs?
-
-                if(clearGraph)
-                    series.Points.Add(point);
+                setVals(true, file, "Link");
+                //setVals(false, file, "lOLOK");
             }
+            else if (tabType.Equals("Overview"))
+            {
+                 Console.WriteLine("File list size: " + allFiles.Count);
 
-            chart1.ChartAreas[0].AxisY.Title = "Byte";
-            chart1.ChartAreas[0].AxisX.Title = "millisec";
-            chart1.ChartAreas[0].AxisX.LabelStyle.Format = "{ 00.00}";
+                chart1.Series.Clear();
 
-            series.ChartType = SeriesChartType.Line;
-            series.MarkerStyle = MarkerStyle.Cross;
+                 setVals(true, allFiles[0].ElementAt(0).Value, "Graph: " + 0.ToString());
 
-            if(clearGraph)
-                chart1.Series.Add(series);
+                 for (int i = 1; i < allFiles.Count; i++)
+                 {
+                      Console.WriteLine("Next file... " + allFiles[i].ElementAt(0).Value.filename);
+                      setVals(false, allFiles[i].ElementAt(0).Value, "Graph " + i.ToString());
+                  }
 
-            errCountLabel.Text = " Seq: " + file.outOfSeqErrs + "\n CRC: " + file.crcErrs + "\n Data: " + file.dataErrs + "\n Parity: " + file.parityErrs + "\n EEPs + Timeouts " + file.eepAndTimeoutErrs;
+                //  Console.WriteLine("list of file size..." + allFiles.Count);
+
+            }
+        }
+
+        private void setVals(bool clearGraph, File filePassed, string seriesNo)
+        {         
+                Series series;
+                series = chart1.Series.Add(seriesNo);
+
+                double plotPoint = 0;
+
+                if (clearGraph)
+                {
+                    chart1.Series.Clear();
+                    
+                }
+                else
+            { }
+            //series = chart1.Series[0];
+           
+
+            for (int i = 0; i < filePassed.packets.Count; i++)
+                {
+                    DataPoint point;
+                   // if (clearGraph)
+                        point = new DataPoint(series);
+                   // else
+                     //   point = series.Points[i];
+
+                    DateTime date1 = filePassed.packets[i].timestamp;
+                    DateTime date2;
+                    if (i >= filePassed.packets.Count - 1)
+                    {
+                        // XXX: this is inaccurate
+                        // FIX: won't work if count is less than 2
+                        date1 = filePassed.packets[i - 1].timestamp;
+                        date2 = filePassed.packets[i].timestamp;
+                    }
+                    else
+                        date2 = filePassed.packets[i + 1].timestamp;
+
+                    double timeDifference = (date2 - date1).TotalSeconds;
+                    plotPoint = plotPoint + timeDifference;
+
+                    //Console.WriteLine("This was... :" + (int)this.file.packets[i].error);
+                    //Perhaps refactor into another class (File?)
+                    if (((uint)filePassed.packets[i].error & this.errorsShown) != 0)
+                    {
+
+                        point.MarkerColor = Color.Red;
+                        point.MarkerSize = 25;
+                    }
+                    else
+                    {
+                        point.MarkerColor = Color.Green;
+                        point.MarkerSize = 15;
+                    }
+
+                    point.XValue = plotPoint;
+
+                    //Load data rate line. If blabla load packet rate line
+                    if (graphType.Equals("DataRate"))
+                    {
+                        if (timeDifference == 0)
+                            point.YValues = new double[] { 0 };
+                        else
+                            point.YValues = new double[] { (filePassed.packets[i].data.Length) / timeDifference }; //Data rate
+                    }
+                    else if (graphType.Equals("PacketRate"))
+                    {
+                        if (timeDifference == 0)
+                            point.YValues = new double[] { 0 };
+                        else
+                            point.YValues = new double[] { 1 / timeDifference }; //Packet rate
+                    }
+                    //More graphs?
+
+                   // if (clearGraph)
+                        series.Points.Add(point);
+                }
+
+                chart1.ChartAreas[0].AxisY.Title = "Byte";
+                chart1.ChartAreas[0].AxisX.Title = "millisec";
+                chart1.ChartAreas[0].AxisX.LabelStyle.Format = "{ 00.00}";
+
+                series.ChartType = SeriesChartType.Line;
+                series.MarkerStyle = MarkerStyle.Cross;
+
+                if (clearGraph)
+                    chart1.Series.Add(series);
+            
+
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -246,7 +284,8 @@ namespace IndustrialProject
                 if (row.DataBoundItem != null && ((Packet)row.DataBoundItem).error != Packet.ErrorType.NO_ERROR)
                     row.DefaultCellStyle.BackColor = Color.Red;
 
-            this.setVals(true);
+            // this.setVals(true);
+            this.setTabs();
             packetCountA.Text = this.file.stats.noOfPackets.ToString();
             charCountA.Text = this.file.stats.noOfDataChars.ToString();
             dataRate.Text = this.file.stats.avgDataRate.ToString() + " B/s";
@@ -302,10 +341,12 @@ namespace IndustrialProject
 
                 if (text == "All")
                 {
+                    Console.WriteLine("All checked...");
                     this.errorsShown |= ~(uint)Packet.ErrorType.NO_ERROR;
 
                     checkedListBox1.ClearSelected();
                     checkedListBox1.SetSelected(checkedListBox1.Items.IndexOf(itemChecked), true);
+                    
                 }
                 else if (text == "EPPs and timeouts")
                     this.errorsShown |= (uint)(Packet.ErrorType.ERROR_TRUNCATED | Packet.ErrorType.ERROR_PARITY);
@@ -319,7 +360,7 @@ namespace IndustrialProject
                     this.errorsShown |= (uint)(Packet.ErrorType.ERROR_DISCONNECT);
             }
 
-            this.setVals(false);
+            this.setTabs();
         }
 
         private void dataRateBtn_CheckedChanged(object sender, EventArgs e)
@@ -327,7 +368,7 @@ namespace IndustrialProject
             if(dataRateBtn.Checked)
             {
                 graphType = "DataRate";
-                this.setVals(false);
+                this.setTabs();
             }
         }
 
@@ -336,7 +377,7 @@ namespace IndustrialProject
             if(packetRateBtn.Checked)
             {
                 graphType = "PacketRate";
-                this.setVals(false);
+                this.setTabs();
             }
         }
 
