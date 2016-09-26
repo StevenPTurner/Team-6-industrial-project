@@ -86,16 +86,18 @@ namespace IndustrialProject
                                 Tuple<Packet, Packet> last2Packets = new Tuple<Packet, Packet>(secondLastPacket, lastPacket);
                               
                                 lastPacket.setError(ErrorChecker.determineError(last2Packets));
-                                /*
+                                
+
                                 if (lastPacket.error == Packet.ErrorType.NO_ERROR)
                                     throw new Exception("ARGH...");
-                                    */
 
                                 Console.WriteLine("BAM BADA BAAAA... BADABA BAM BADA BAAAA.... " + lastPacket.error);
 
                                 // XXX: setter?
                                 lastPacket.errorPacket = error;
-                            
+                                file.incrementErrCounts(lastPacket.error);
+
+
                                 sr.ReadLine();
                                 break;
                             default:
