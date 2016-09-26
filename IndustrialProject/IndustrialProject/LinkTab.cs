@@ -153,8 +153,8 @@ namespace IndustrialProject
 
                 xAxisPlot[i] = plotPoint;
 
-                chart1.ChartAreas[0].AxisY.Title = "Byte";
-                chart1.ChartAreas[0].AxisX.Title = "millisec";
+                chart1.ChartAreas[0].AxisY.Title = "byte";
+                chart1.ChartAreas[0].AxisX.Title = "second";
 
                 //if(blabla)
                 //Load data rate line. If blabla load packet rate line
