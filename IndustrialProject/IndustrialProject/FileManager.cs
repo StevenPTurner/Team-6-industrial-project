@@ -74,29 +74,39 @@ namespace IndustrialProject
                                 sr.ReadLine();
                                 break;
                             case "E":
-                                Console.WriteLine("Error (E) At: " + date.ToString("dd-MM-yyyy HH:mm:ss:fff"));
+                                //Console.WriteLine("Error (E) At: " + date.ToString("dd-MM-yyyy HH:mm:ss:fff"));
                                 string rawError = sr.ReadLine();
-
-                                Packet.Error error = new Packet.Error(rawError, date);
 
                                 // FIX: what if the error is first or second in the packet?
                                 Packet secondLastPacket = file.packets[file.packets.Count - 2];
                                 Packet lastPacket = file.packets.Last();
 
-                                Tuple<Packet, Packet> last2Packets = new Tuple<Packet, Packet>(secondLastPacket, lastPacket);
+                                if (lastPacket.error.Equals(Packet.ErrorType.ERROR_TRUNCATED))
+                                {
+                                    Console.WriteLine("Triggered1");
+                                    Packet.Error error = new Packet.Error(rawError, date);
+                                    lastPacket.setError(error.errorType);
+                                    lastPacket.errorPacket = error;
+                                }
+                           
+                                                           
+                                if (lastPacket.error.Equals(Packet.ErrorType.NO_ERROR) || lastPacket.error.Equals(null))
+                                {
+                                    Tuple<Packet, Packet> last2Packets = new Tuple<Packet, Packet>(secondLastPacket, lastPacket);
+
+                                    lastPacket.setError(ErrorChecker.determineError(last2Packets));
+                                }
                               
-                                lastPacket.setError(ErrorChecker.determineError(last2Packets));
                                 /*
                                 if (lastPacket.error == Packet.ErrorType.NO_ERROR)
                                     throw new Exception("ARGH...");
                                     */
 
-                                Console.WriteLine("BAM BADA BAAAA... BADABA BAM BADA BAAAA.... " + lastPacket.error);
+                                //Console.WriteLine("BAM BADA BAAAA... BADABA BAM BADA BAAAA.... " + lastPacket.error);
 
                                 // XXX: setter?
-                                lastPacket.errorPacket = error;
+                                
                                 file.incrementErrCounts(lastPacket.error);
-
 
                                 sr.ReadLine();
                                 break;
@@ -118,10 +128,10 @@ namespace IndustrialProject
 
             file.stats = new Stats(file);
             
-            Console.WriteLine("No of packets: " + file.stats.noOfPackets);
-            Console.WriteLine("No. of data chars: " + file.stats.noOfDataChars);
-            Console.WriteLine("Avg. Packet Rate: " + file.stats.avgPacketRate);
-            Console.WriteLine("Avg. Data Rate: " + file.stats.avgDataRate);
+            //Console.WriteLine("No of packets: " + file.stats.noOfPackets);
+            //Console.WriteLine("No. of data chars: " + file.stats.noOfDataChars);
+            //Console.WriteLine("Avg. Packet Rate: " + file.stats.avgPacketRate);
+            //Console.WriteLine("Avg. Data Rate: " + file.stats.avgDataRate);
 
             
 
