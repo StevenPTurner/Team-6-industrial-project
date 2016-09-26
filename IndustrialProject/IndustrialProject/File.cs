@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IndustrialProject
 {
-    class File
+    public class File
     {
         public String filename { set; get; }
         public DateTime endDate { set; get;  }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IndustrialProject
 {
-    class Stats
+    public class Stats
     {
         public int noOfPackets { get; set; }
         public int noOfDataChars { get; set; }

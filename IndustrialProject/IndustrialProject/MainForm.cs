@@ -14,7 +14,10 @@ namespace IndustrialProject
 {
     public partial class MainForm : Form
     {
+       
         TabPage[] templatePages;
+        LinkTab overViewTab;
+        List<Dictionary<string, File>> allFiles = new List<Dictionary<string, File>>();
 
         public MainForm()
         {
@@ -80,15 +83,34 @@ namespace IndustrialProject
 
         private void LoadTab(string filename)
         {
+
+
+            if (overViewTab == null)
+            {
+                TabPage page1 = new TabPage("Loading Link...");
+                overViewTab = new LinkTab(page1, filename, "Overview");
+                page1.Controls.Add(overViewTab);
+                tabControl1.TabPages.Add(page1);
+                this.Invalidate(true);
+                overViewTab.PostAdding();
+            }
+
             // create a tab for it
             TabPage page = new TabPage("Loading Link...");
-            LinkTab tab = new LinkTab(page, filename);
+            LinkTab tab = new LinkTab(page, filename, "Link");
             page.Controls.Add(tab);
             tabControl1.TabPages.Add(page);
             this.Invalidate(true);
             tab.Dock = DockStyle.Fill;
 
             tab.PostAdding();
+
+            Dictionary<string, File> file = new Dictionary<string, File>();
+            file.Add(filename, tab.file);
+            allFiles.Add(file);
+
+            Console.WriteLine("File: " + file.ElementAt(0).Key + "fadsf " + file.ElementAt(0).Value.packets[0].timestamp);
+
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -126,6 +148,11 @@ namespace IndustrialProject
             {
                 this.LoadTab(filename);
             }
+        }
+
+        private void startTab_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

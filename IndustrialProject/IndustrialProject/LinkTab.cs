@@ -13,8 +13,9 @@ namespace IndustrialProject
 {
     public partial class LinkTab : UserControl
     {
-        File file;
+        public File file;
         TabPage tab;
+        string tabType;
 
         uint errorsShown = ~(uint)Packet.ErrorType.NO_ERROR;
 
@@ -26,7 +27,7 @@ namespace IndustrialProject
 
         CalloutAnnotation series0_annotation = new CalloutAnnotation();
 
-        public LinkTab(TabPage tab, string filename)
+        public LinkTab(TabPage tab, string filename, string tabType)
         {
             InitializeComponent();
             graphTypes = new bool[2];
@@ -34,6 +35,7 @@ namespace IndustrialProject
             checkedListBox1.SetItemChecked(0, true);
             graphType = "DataRate";
 
+            this.tabType = tabType;
 
             this.tab = tab;
             chart1.Series[1].Color = Color.FromArgb(127, 255, 0, 0);
@@ -84,9 +86,11 @@ namespace IndustrialProject
                 double timeDifference = (date2 - date1).TotalSeconds;
                 plotPoint = plotPoint + timeDifference;
 
+                //Console.WriteLine("This was... :" + (int)this.file.packets[i].error);
                 //Perhaps refactor into another class (File?)
                 if (((uint)this.file.packets[i].error & this.errorsShown) != 0)
                 {
+                    
                     point.MarkerColor = Color.Red;
                     point.MarkerSize = 25;
                 } else
@@ -246,10 +250,19 @@ namespace IndustrialProject
             packetCountA.Text = this.file.stats.noOfPackets.ToString();
             charCountA.Text = this.file.stats.noOfDataChars.ToString();
             dataRate.Text = this.file.stats.avgDataRate.ToString() + " B/s";
-            packetRate.Text = this.file.stats.avgPacketRate.ToString() + " packet/s"; 
+            packetRate.Text = this.file.stats.avgPacketRate.ToString() + " packet/s";
             errorCountA.Text = this.file.stats.totalNoOfErrors.ToString();
             errorRate.Text = this.file.stats.avgErrorRate.ToString() + " error/s";
-            this.tab.Text = "Link " + this.file.port.ToString();
+
+            if (tabType.Equals("Overview"))
+            {
+                this.tab.Text = "Overview";
+            }
+            else
+            {
+                this.tab.Text = "Link " + this.file.port.ToString();
+            }
+
             this.Refresh();
         }
 
@@ -279,6 +292,8 @@ namespace IndustrialProject
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.errorsShown = 0;
+
+           // Console.WriteLine("hELLO STEVEN");
 
             int idx = checkedListBox1.SelectedIndex;
             foreach (object itemChecked in checkedListBox1.CheckedItems)
