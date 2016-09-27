@@ -166,7 +166,10 @@ namespace IndustrialProject
                 if (file.stats.noOfPackets > 100)
                 {
                     chart1.ChartAreas[0].AxisX.ScaleView.Zoom(0, 60);
-                } 
+                }
+
+            chart1.ChartAreas[0].AxisX.ScrollBar.IsPositionedInside = false;
+
                 chart1.ChartAreas[0].AxisX.ScrollBar.ButtonStyle = ScrollBarButtonStyles.SmallScroll;
 
                 chart1.ChartAreas[0].AxisY.Title = "Byte";
