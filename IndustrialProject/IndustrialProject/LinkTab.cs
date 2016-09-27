@@ -191,7 +191,7 @@ namespace IndustrialProject
                         series.Points.Add(point);
                 }
 
-                if (file.stats.noOfPackets > 100)
+                if (series.Points.Count() > 100)
                 {
                     chart1.ChartAreas[0].AxisX.ScaleView.Zoom(0, 60);
                 }
