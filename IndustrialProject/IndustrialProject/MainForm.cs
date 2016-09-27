@@ -102,9 +102,9 @@ namespace IndustrialProject
             overViewTab.allFiles = this.allFiles;
             overViewTab.PostAdding();
             overViewTab.allFiles =  allFiles;
-
+            
             //Console.WriteLine("File: " + file.ElementAt(0).Key + "fadsf " + file.ElementAt(0).Value.packets[0].timestamp);
-
+            
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)

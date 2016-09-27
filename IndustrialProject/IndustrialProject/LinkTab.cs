@@ -44,6 +44,8 @@ namespace IndustrialProject
 
             this.tabType = tabType;
 
+           
+
             this.tab = tab;
             //chart1.Series[1].Color = Color.FromArgb(127, 255, 0, 0);
             //chart1.Series[2].Enabled = false;
@@ -191,6 +193,11 @@ namespace IndustrialProject
                         series.Points.Add(point);
                 }
 
+                if (series.Points.Count() > 100)
+                {
+                    chart1.ChartAreas[0].AxisX.ScaleView.Zoom(0, 60);
+                }
+
                 graphSetup();
 
                 series.ChartType = SeriesChartType.Line;
@@ -198,17 +205,13 @@ namespace IndustrialProject
 
                 if (clearGraph)
                     chart1.Series.Add(series);
-            
+
+
 
         }
 
         private void graphSetup()
         {
-            if (file.stats.noOfPackets > 100)
-            {
-                chart1.ChartAreas[0].AxisX.ScaleView.Zoom(0, 60);
-            }
-
 
             chart1.ChartAreas[0].AxisX.ScrollBar.IsPositionedInside = false;
             chart1.ChartAreas[0].AxisY.ScrollBar.IsPositionedInside = false;
@@ -223,7 +226,7 @@ namespace IndustrialProject
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            
         }
 
         private void chart1_MouseMove(object sender, MouseEventArgs e)
