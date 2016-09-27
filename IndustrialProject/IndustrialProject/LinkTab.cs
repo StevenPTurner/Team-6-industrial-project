@@ -65,24 +65,42 @@ namespace IndustrialProject
             {
                 chart1.Series.Clear();
                 setVals(true, file, "Link");
-                //setVals(false, file, "lOLOK");
+                //errCountLabel.Text = " Seq: " + file.outOfSeqErrs + "\n CRC: "; //+ file.crcErrs + "\n Data: " + file.dataErrs + "\n Parity: " + file.parityErrs + "\n EEPs + Timeouts " + file.eepAndTimeoutErrs;
+                totalErrorLabel.Text = " ----Link " + file.port.ToString() + "----\n Parity: " + file.parityErrs + "\n Seq: " + file.outOfSeqErrs + "\n Header CRC " + file.headCRCErrs + "\n Body CRC " + file.bodyCRCErrs + "\n Too Many Bytes: " + file.tooManyBytesErrs + "\n Not Enough Bytes: " + file.notEnoughBytesErrs + "\n EEPs and timeout: " + file.eepAndTimeoutErrs;
+                errorCountLabel.Text = "";
             }
             else if (tabType.Equals("Overview"))
             {
-                 Console.WriteLine("File list size: " + allFiles.Count);
-
+                Console.WriteLine("File list size: " + allFiles.Count);
                 chart1.Series.Clear();
+                errorCountLabel.Text = "\n----Link " + allFiles[0].ElementAt(0).Value.port.ToString() + ", Graph: " + 0.ToString() + "----\n Parity: " + allFiles[0].ElementAt(0).Value.parityErrs + "\n Seq: " + allFiles[0].ElementAt(0).Value.outOfSeqErrs + "\n Header CRC " + allFiles[0].ElementAt(0).Value.headCRCErrs + "\n Body CRC " + allFiles[0].ElementAt(0).Value.bodyCRCErrs + "\n Too Many Bytes: " + allFiles[0].ElementAt(0).Value.tooManyBytesErrs + "\n Not Enough Bytes: " + allFiles[0].ElementAt(0).Value.notEnoughBytesErrs + "\n EEPs and timeout: " + allFiles[0].ElementAt(0).Value.eepAndTimeoutErrs;
+                //errorCountLabel.Text = totalErrorLabel.Text;
 
-                 setVals(true, allFiles[0].ElementAt(0).Value, "Graph: " + 0.ToString());
+                int totalParityErrs = allFiles[0].ElementAt(0).Value.parityErrs;
+                int totalOutOfSeqErrs = allFiles[0].ElementAt(0).Value.outOfSeqErrs;
+                int totalHeadCRCErrs = allFiles[0].ElementAt(0).Value.headCRCErrs;
+                int totalBodyCRCErrs = allFiles[0].ElementAt(0).Value.bodyCRCErrs;
+                int totalTooManyBytesErrs = allFiles[0].ElementAt(0).Value.tooManyBytesErrs;
+                int totalNotEnoughBytesErrs = allFiles[0].ElementAt(0).Value.notEnoughBytesErrs;
+                int totalEepAndTimeoutErrs = allFiles[0].ElementAt(0).Value.eepAndTimeoutErrs;
 
-                 for (int i = 1; i < allFiles.Count; i++)
-                 {
-                      Console.WriteLine("Next file... " + allFiles[i].ElementAt(0).Value.filename);
-                      setVals(false, allFiles[i].ElementAt(0).Value, "Graph " + i.ToString());
-                  }
+                setVals(true, allFiles[0].ElementAt(0).Value, "Graph: " + 0.ToString());
 
-                //  Console.WriteLine("list of file size..." + allFiles.Count);
+                for (int i = 1; i < allFiles.Count; i++)
+                {
+                    Console.WriteLine("Next file... " + allFiles[i].ElementAt(0).Value.filename);
+                    setVals(false, allFiles[i].ElementAt(0).Value, "Graph " + i.ToString());
+                    errorCountLabel.Text = errorCountLabel.Text + "\n----Link " + allFiles[i].ElementAt(0).Value.port.ToString() + ". Graph: " + i.ToString() + "----\n Parity: " + allFiles[i].ElementAt(0).Value.parityErrs + "\n Seq: " + allFiles[i].ElementAt(0).Value.outOfSeqErrs + "\n Header CRC " + allFiles[i].ElementAt(0).Value.headCRCErrs + "\n Body CRC " + allFiles[i].ElementAt(0).Value.bodyCRCErrs + "\n Too Many Bytes: " + allFiles[i].ElementAt(0).Value.tooManyBytesErrs + "\n Not Enough Bytes: " + allFiles[i].ElementAt(0).Value.notEnoughBytesErrs + "\n EEPs and timeout: " + allFiles[i].ElementAt(0).Value.eepAndTimeoutErrs + "\n";
+                    totalParityErrs = totalParityErrs + allFiles[i].ElementAt(0).Value.parityErrs;
+                    totalOutOfSeqErrs = totalOutOfSeqErrs + allFiles[i].ElementAt(0).Value.outOfSeqErrs;
+                    totalHeadCRCErrs = totalHeadCRCErrs + allFiles[i].ElementAt(0).Value.headCRCErrs;
+                    totalBodyCRCErrs = totalBodyCRCErrs + allFiles[i].ElementAt(0).Value.bodyCRCErrs;
+                    totalTooManyBytesErrs = totalTooManyBytesErrs + allFiles[i].ElementAt(0).Value.tooManyBytesErrs;
+                    totalNotEnoughBytesErrs = totalNotEnoughBytesErrs + allFiles[i].ElementAt(0).Value.notEnoughBytesErrs;
+                    totalEepAndTimeoutErrs = totalEepAndTimeoutErrs + allFiles[i].ElementAt(0).Value.eepAndTimeoutErrs;
+                }
 
+                totalErrorLabel.Text = "----Total----" + "\n Parity: " + totalParityErrs + "\n Seq: " + totalOutOfSeqErrs + "\n Header CRC " + totalHeadCRCErrs + "\n Body CRC " + totalBodyCRCErrs + "\n Too Many Bytes: " + totalTooManyBytesErrs + "\n Not Enough Bytes: " + totalNotEnoughBytesErrs + "\n EEPs and timeout: " + totalEepAndTimeoutErrs;
             }
         }
 
