@@ -15,7 +15,6 @@ namespace IndustrialProject
     public partial class MainForm : Form
     {
        
-        TabPage[] templatePages;
         LinkTab overViewTab;
         List<Dictionary<string, File>> allFiles = new List<Dictionary<string, File>>();
 
@@ -27,14 +26,6 @@ namespace IndustrialProject
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            this.templatePages = new TabPage[tabControl1.TabPages.Count-1];
-            for(int i=1; i<tabControl1.TabPages.Count; i++)
-            {
-                this.templatePages[i-1] = tabControl1.TabPages[i];
-                tabControl1.TabPages.RemoveAt(i);
-            }
-
-            tabControl1.Refresh();
         }
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
