@@ -13,9 +13,11 @@ namespace IndustrialProject
         public DateTime startDate { set; get; }
         public int port { set; get; }
         public List<Packet> packets { get; private set; }
-        public int outOfSeqErrs { get; private set;}
-        public int dataErrs { get; private set; }
-        public int crcErrs { get; private set; }
+        public int outOfSeqErrs { get; private set; }
+        public int tooManyBytesErrs { get; private set; }
+        public int notEnoughBytesErrs { get; private set; }
+        public int bodyCRCErrs { get; private set; }
+        public int headCRCErrs { get; private set; }
         public int parityErrs { get; private set;  }
         public int eepAndTimeoutErrs { get; private set; }
         public Stats stats;
@@ -38,12 +40,16 @@ namespace IndustrialProject
                     outOfSeqErrs++;
                     break;
                 case Packet.ErrorType.ERROR_NOT_ENOUGH_BYTES:
+                    notEnoughBytesErrs++;
+                    break;
                 case Packet.ErrorType.ERROR_TOO_MANY_BYTES:
-                    dataErrs++;
+                    tooManyBytesErrs++;
                     break;
                 case Packet.ErrorType.ERROR_BODY_CRC:
+                    bodyCRCErrs++;
+                    break;
                 case Packet.ErrorType.ERROR_HEADER_CRC:
-                    crcErrs++;
+                    headCRCErrs++;
                     break;
                 case Packet.ErrorType.ERROR_TRUNCATED:
                     eepAndTimeoutErrs++;

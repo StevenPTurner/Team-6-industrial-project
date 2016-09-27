@@ -17,6 +17,7 @@ namespace IndustrialProject
         public File file;
         TabPage tab;
         string tabType;
+        bool allChecked;
        
         public List<Dictionary<string, File>> allFiles = new List<Dictionary<string, File>>();
 
@@ -34,6 +35,7 @@ namespace IndustrialProject
         public LinkTab(TabPage tab, string filename, string tabType)
         {
             InitializeComponent();
+            allChecked = true;
             graphTypes = new bool[2];
             graphTypes[0] = true;
             checkedListBox1.SetItemChecked(0, true);
@@ -61,6 +63,7 @@ namespace IndustrialProject
         {
             if (tabType.Equals("Link"))
             {
+                chart1.Series.Clear();
                 setVals(true, file, "Link");
                 //setVals(false, file, "lOLOK");
             }
@@ -332,34 +335,49 @@ namespace IndustrialProject
         {
             this.errorsShown = 0;
 
-           // Console.WriteLine("hELLO STEVEN");
-
+            
             int idx = checkedListBox1.SelectedIndex;
             foreach (object itemChecked in checkedListBox1.CheckedItems)
             {
                 string text = itemChecked.ToString();
 
+                if (text != "All" && text != "")
+                {
+                    allChecked = false;
+                }
+
                 if (text == "All")
                 {
-                    Console.WriteLine("All checked...");
-                    this.errorsShown |= ~(uint)Packet.ErrorType.NO_ERROR;
+                    //checkedListBox1.ClearSelected();
 
-                    checkedListBox1.ClearSelected();
-                    checkedListBox1.SetSelected(checkedListBox1.Items.IndexOf(itemChecked), true);
-                    
+                    this.errorsShown |= ~(uint)Packet.ErrorType.NO_ERROR;
+                    allChecked = true;
+                    //checkedListBox1.SetSelected(checkedListBox1.Items.IndexOf(itemChecked), true);
                 }
+                //checkedListBox1.SetItemChecked(0, false);
+                //break;
+                else if (text == "Parity")
+                    this.errorsShown |= (uint)(Packet.ErrorType.ERROR_PARITY);
                 else if (text == "EPPs and timeouts")
-                    this.errorsShown |= (uint)(Packet.ErrorType.ERROR_TRUNCATED | Packet.ErrorType.ERROR_PARITY);
-                else if (text == "CRCs")
-                    this.errorsShown |= (uint)(Packet.ErrorType.ERROR_HEADER_CRC | Packet.ErrorType.ERROR_BODY_CRC);
+                    this.errorsShown |= (uint)(Packet.ErrorType.ERROR_TRUNCATED);
+                else if (text == "Header CRC")
+                    this.errorsShown |= (uint)(Packet.ErrorType.ERROR_HEADER_CRC);
+                else if (text == "Body CRC")
+                    this.errorsShown |= (uint)(Packet.ErrorType.ERROR_BODY_CRC);
                 else if (text == "OutofSeq")
+                {
                     this.errorsShown |= (uint)(Packet.ErrorType.ERROR_OUT_OF_ORDER | Packet.ErrorType.ERROR_DUPLICATE);
-                else if (text == "DataErrors")
-                    this.errorsShown |= (uint)(Packet.ErrorType.ERROR_NOT_ENOUGH_BYTES | Packet.ErrorType.ERROR_TOO_MANY_BYTES);
+                    Console.WriteLine("Ok then");
+                }
+                else if (text == "Too Many Bytes")
+                    this.errorsShown |= (uint)(Packet.ErrorType.ERROR_TOO_MANY_BYTES);
+                else if (text == "Not Enough Bytes")
+                    this.errorsShown |= (uint)(Packet.ErrorType.ERROR_NOT_ENOUGH_BYTES);
                 else if (text == "Disconnect")
                     this.errorsShown |= (uint)(Packet.ErrorType.ERROR_DISCONNECT);
             }
-
+   
+            
             this.setTabs();
         }
 
