@@ -163,10 +163,10 @@ namespace IndustrialProject
                         series.Points.Add(point);
                 }
 
-            if (file.stats.noOfPackets > 100)
-            {
-                chart1.ChartAreas[0].AxisX.ScaleView.Zoom(0, 60);
-            } //min per screen
+                if (file.stats.noOfPackets > 100)
+                {
+                    chart1.ChartAreas[0].AxisX.ScaleView.Zoom(0, 60);
+                } 
                 chart1.ChartAreas[0].AxisX.ScrollBar.ButtonStyle = ScrollBarButtonStyles.SmallScroll;
 
                 chart1.ChartAreas[0].AxisY.Title = "Byte";
@@ -269,8 +269,16 @@ namespace IndustrialProject
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.chart1.ChartAreas[0].AxisX.ScaleView.ZoomReset(0);
-            this.chart1.ChartAreas[0].AxisY.ScaleView.ZoomReset(0);
+            if (file.stats.noOfPackets > 100)
+            {
+                this.chart1.ChartAreas[0].AxisX.ScaleView.ZoomReset(60);
+                this.chart1.ChartAreas[0].AxisY.ScaleView.ZoomReset(0);
+            }
+            else
+            {
+                this.chart1.ChartAreas[0].AxisX.ScaleView.ZoomReset(0);
+                this.chart1.ChartAreas[0].AxisY.ScaleView.ZoomReset(0);
+            }
         }
 
         public void PostAdding()
