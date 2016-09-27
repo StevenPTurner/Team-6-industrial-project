@@ -18,6 +18,7 @@ namespace IndustrialProject
         TabPage tab;
         string tabType;
         bool allChecked;
+        public List<int> graphStartIndexs = new List<int>();
        
         public List<Dictionary<string, File>> allFiles = new List<Dictionary<string, File>>();
 
@@ -86,6 +87,9 @@ namespace IndustrialProject
 
                 setVals(true, allFiles[0].ElementAt(0).Value, "Graph: " + 0.ToString());
 
+                graphStartIndexs.Clear();
+                graphStartIndexs.Add(allFiles[0].ElementAt(0).Value.packets.Count);
+
                 for (int i = 1; i < allFiles.Count; i++)
                 {
                     Console.WriteLine("Next file... " + allFiles[i].ElementAt(0).Value.filename);
@@ -98,8 +102,14 @@ namespace IndustrialProject
                     totalTooManyBytesErrs = totalTooManyBytesErrs + allFiles[i].ElementAt(0).Value.tooManyBytesErrs;
                     totalNotEnoughBytesErrs = totalNotEnoughBytesErrs + allFiles[i].ElementAt(0).Value.notEnoughBytesErrs;
                     totalEepAndTimeoutErrs = totalEepAndTimeoutErrs + allFiles[i].ElementAt(0).Value.eepAndTimeoutErrs;
+
+                    graphStartIndexs.Add(allFiles[i].ElementAt(0).Value.packets.Count);
                 }
 
+                for(int k = 0; k < graphStartIndexs.Count; k++)
+                {
+                    Console.WriteLine("FDOKVDGKJFJKDS;JKG: " + graphStartIndexs[k]);
+                }
                 totalErrorLabel.Text = "----Total----" + "\n Parity: " + totalParityErrs + "\n Seq: " + totalOutOfSeqErrs + "\n Header CRC " + totalHeadCRCErrs + "\n Body CRC " + totalBodyCRCErrs + "\n Too Many Bytes: " + totalTooManyBytesErrs + "\n Not Enough Bytes: " + totalNotEnoughBytesErrs + "\n EEPs and timeout: " + totalEepAndTimeoutErrs;
             }
         }
@@ -228,13 +238,21 @@ namespace IndustrialProject
             int xRight = (int)xAxis.ValueToPixelPosition(xAxis.Maximum);
             int xLeft = (int)xAxis.ValueToPixelPosition(xAxis.Minimum);
 
-            double chartX;
+            double chartX = 0;
             if (pixelX > xRight)
                 chartX = xAxis.Maximum;
             else if (pixelX < xLeft)
                 chartX = xAxis.Minimum;
             else
-                chartX = xAxis.PixelPositionToValue(pixelX);
+                try
+                {
+                    chartX = xAxis.PixelPositionToValue(pixelX);
+                }
+                catch (Exception E)
+                {
+                    Console.WriteLine("Error: " + E.ToString());
+                }
+                
 
             // closest with binary search
 
