@@ -29,6 +29,7 @@ namespace IndustrialProject
 
         string graphType;
         bool[] graphTypes;
+        public List<int> graphStartIndexs = new List<int>();
 
         CalloutAnnotation series0_annotation = new CalloutAnnotation();
         CalloutAnnotation series1_annotation = new CalloutAnnotation();
@@ -68,6 +69,7 @@ namespace IndustrialProject
                 //errCountLabel.Text = " Seq: " + file.outOfSeqErrs + "\n CRC: "; //+ file.crcErrs + "\n Data: " + file.dataErrs + "\n Parity: " + file.parityErrs + "\n EEPs + Timeouts " + file.eepAndTimeoutErrs;
                 totalErrorLabel.Text = " ----Link " + file.port.ToString() + "----\n Parity: " + file.parityErrs + "\n Seq: " + file.outOfSeqErrs + "\n Header CRC " + file.headCRCErrs + "\n Body CRC " + file.bodyCRCErrs + "\n Too Many Bytes: " + file.tooManyBytesErrs + "\n Not Enough Bytes: " + file.notEnoughBytesErrs + "\n EEPs and timeout: " + file.eepAndTimeoutErrs;
                 errorCountLabel.Text = "";
+                Console.WriteLine("Link...");
             }
             else if (tabType.Equals("Overview"))
             {
@@ -86,6 +88,9 @@ namespace IndustrialProject
 
                 setVals(true, allFiles[0].ElementAt(0).Value, "Graph: " + 0.ToString());
 
+                graphStartIndexs.Clear();
+                graphStartIndexs.Add(allFiles[0].ElementAt(0).Value.packets.Count);
+
                 for (int i = 1; i < allFiles.Count; i++)
                 {
                     Console.WriteLine("Next file... " + allFiles[i].ElementAt(0).Value.filename);
@@ -98,7 +103,11 @@ namespace IndustrialProject
                     totalTooManyBytesErrs = totalTooManyBytesErrs + allFiles[i].ElementAt(0).Value.tooManyBytesErrs;
                     totalNotEnoughBytesErrs = totalNotEnoughBytesErrs + allFiles[i].ElementAt(0).Value.notEnoughBytesErrs;
                     totalEepAndTimeoutErrs = totalEepAndTimeoutErrs + allFiles[i].ElementAt(0).Value.eepAndTimeoutErrs;
+
+                    graphStartIndexs.Add(allFiles[i].ElementAt(0).Value.packets.Count);
                 }
+
+                Console.WriteLine("Size:... " + graphStartIndexs.Count);
 
                 totalErrorLabel.Text = "----Total----" + "\n Parity: " + totalParityErrs + "\n Seq: " + totalOutOfSeqErrs + "\n Header CRC " + totalHeadCRCErrs + "\n Body CRC " + totalBodyCRCErrs + "\n Too Many Bytes: " + totalTooManyBytesErrs + "\n Not Enough Bytes: " + totalNotEnoughBytesErrs + "\n EEPs and timeout: " + totalEepAndTimeoutErrs;
             }
@@ -325,9 +334,54 @@ namespace IndustrialProject
         public void PostAdding()
         {
             var bindingList = new BindingList<Packet>(this.file.packets);
-            var source = new BindingSource(bindingList, null);
+            BindingSource source = null;
 
-            dataGridView1.DataSource = source;
+            if (tabType.Equals("Link"))
+            {
+                source = new BindingSource(bindingList, null);
+                dataGridView1.DataSource = source;
+                packetCountA.Text = "Packets: " + this.file.stats.noOfPackets.ToString();
+                charCountA.Text = "Chars: " + this.file.stats.noOfDataChars.ToString();
+                dataRate.Text = "Data Rate: " + this.file.stats.avgDataRate.ToString() + " B/s";
+                packetRate.Text = "Packet Rate: " + this.file.stats.avgPacketRate.ToString() + " packet/s";
+                errorCountA.Text = "Error Count: " + this.file.stats.totalNoOfErrors.ToString();
+                errorRate.Text = "Error Rate: " + this.file.stats.avgErrorRate.ToString() + " error/s";
+            }
+            else
+            {
+                List<Packet> graphTableList = new List<Packet>();
+                graphTableList = allFiles[0].ElementAt(0).Value.packets;
+
+                Console.WriteLine("One");
+                Console.WriteLine("TWO");
+
+                //packetCountA.Text = "";
+                packetCountA.Text = "Packets: " + this.allFiles[0].ElementAt(0).Value.stats.noOfPackets.ToString() + "\n";
+                charCountA.Text = "Chars: " + this.allFiles[0].ElementAt(0).Value.stats.noOfDataChars.ToString() + "\n";
+                dataRate.Text = "Data Rate : " + this.allFiles[0].ElementAt(0).Value.stats.avgDataRate.ToString() + "\n";
+                packetRate.Text = "Packet Rate : " + this.allFiles[0].ElementAt(0).Value.stats.avgPacketRate.ToString() + "\n";
+                errorCountA.Text = "Error Count: " + this.allFiles[0].ElementAt(0).Value.stats.totalNoOfErrors.ToString() + "\n";
+                errorRate.Text = "Error Rate: " + this.allFiles[0].ElementAt(0).Value.stats.avgErrorRate.ToString() + "\n";
+
+
+                for (int i = 1; i < allFiles.Count; i++)
+                {
+                    graphTableList = graphTableList.Concat(allFiles[i].ElementAt(0).Value.packets).ToList();
+                    //packetCountA.Text = packetCountA.Text + this.allFiles[i].ElementAt(0).Value.stats.noOfPackets.ToString() + "\n";
+                    packetCountA.Text = packetCountA.Text + "Packets: " + this.allFiles[i].ElementAt(0).Value.stats.noOfPackets.ToString() + "\n";
+                    charCountA.Text = charCountA.Text + "Chars: " + this.allFiles[i].ElementAt(0).Value.stats.noOfDataChars.ToString() + "\n";
+                    dataRate.Text = dataRate.Text + "Data Rate : " + this.allFiles[i].ElementAt(0).Value.stats.avgDataRate.ToString() + "\n";
+                    packetRate.Text = packetRate.Text + "Packet Rate : " + this.allFiles[i].ElementAt(0).Value.stats.avgPacketRate.ToString() + "\n";
+                    errorCountA.Text = errorCountA.Text + "Error Count: " + this.allFiles[i].ElementAt(0).Value.stats.totalNoOfErrors.ToString() + "\n";
+                    errorRate.Text = errorRate.Text + "Error Rate: " + this.allFiles[i].ElementAt(0).Value.stats.avgErrorRate.ToString() + "\n";
+                }
+
+                var test = new BindingList<Packet>(graphTableList);
+                dataGridView1.DataSource = test;
+
+            }
+
+
 
             dataGridView1.Columns[0].Width = 100;
             dataGridView1.Columns[1].Width = 100;
@@ -345,12 +399,7 @@ namespace IndustrialProject
 
             // this.setVals(true);
             this.setTabs();
-            packetCountA.Text = this.file.stats.noOfPackets.ToString();
-            charCountA.Text = this.file.stats.noOfDataChars.ToString();
-            dataRate.Text = this.file.stats.avgDataRate.ToString() + " B/s";
-            packetRate.Text = this.file.stats.avgPacketRate.ToString() + " packet/s";
-            errorCountA.Text = this.file.stats.totalNoOfErrors.ToString();
-            errorRate.Text = this.file.stats.avgErrorRate.ToString() + " error/s";
+
 
             if (tabType.Equals("Overview"))
             {
