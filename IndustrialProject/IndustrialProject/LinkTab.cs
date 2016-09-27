@@ -150,12 +150,13 @@ namespace IndustrialProject
                     {
 
                         point.MarkerColor = Color.Red;
-                        point.MarkerSize = 25;
+                        point.MarkerSize = 10;
                     }
                     else
                     {
                         point.MarkerColor = Color.Green;
-                        point.MarkerSize = 15;
+                        point.MarkerSize = 3;
+                        point.MarkerStyle = MarkerStyle.Square;
                     }
 
                     point.XValue = plotPoint;
