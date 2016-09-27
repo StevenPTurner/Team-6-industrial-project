@@ -181,19 +181,7 @@ namespace IndustrialProject
                         series.Points.Add(point);
                 }
 
-                if (file.stats.noOfPackets > 100)
-                {
-                    chart1.ChartAreas[0].AxisX.ScaleView.Zoom(0, 60);
-                }
-
-            chart1.ChartAreas[0].AxisX.ScrollBar.IsPositionedInside = false;
-
-                chart1.ChartAreas[0].AxisX.ScrollBar.ButtonStyle = ScrollBarButtonStyles.SmallScroll;
-
-                chart1.ChartAreas[0].AxisY.Title = "Byte";
-                chart1.ChartAreas[0].AxisX.Title = "Second";
-
-                chart1.ChartAreas[0].AxisX.LabelStyle.Format = "{ 00.00}";
+                graphSetup();
 
                 series.ChartType = SeriesChartType.Line;
                 series.MarkerStyle = MarkerStyle.Cross;
@@ -202,6 +190,25 @@ namespace IndustrialProject
                     chart1.Series.Add(series);
             
 
+        }
+
+        private void graphSetup()
+        {
+            if (file.stats.noOfPackets > 100)
+            {
+                chart1.ChartAreas[0].AxisX.ScaleView.Zoom(0, 60);
+            }
+
+
+            chart1.ChartAreas[0].AxisX.ScrollBar.IsPositionedInside = false;
+            chart1.ChartAreas[0].AxisY.ScrollBar.IsPositionedInside = false;
+
+            chart1.ChartAreas[0].AxisX.ScrollBar.ButtonStyle = ScrollBarButtonStyles.SmallScroll;
+
+            chart1.ChartAreas[0].AxisY.Title = "Byte";
+            chart1.ChartAreas[0].AxisX.Title = "Second";
+
+            chart1.ChartAreas[0].AxisX.LabelStyle.Format = "{ 00.00}";
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

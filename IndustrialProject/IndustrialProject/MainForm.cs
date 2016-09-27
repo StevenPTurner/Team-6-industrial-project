@@ -83,7 +83,6 @@ namespace IndustrialProject
                 page1.Controls.Add(overViewTab);
                 tabControl1.TabPages.Add(page1);
                 this.Invalidate(true);
-                
             }
 
             // create a tab for it
