@@ -57,7 +57,8 @@
             this.packetRateBtn = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.packetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.errCountLabel = new System.Windows.Forms.Label();
+            this.totalErrorLabel = new System.Windows.Forms.Label();
+            this.errorCountLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -224,7 +225,7 @@
             "EEP and timeout",
             "Disconnect"});
             this.checkedListBox1.Location = new System.Drawing.Point(1221, 4);
-            this.checkedListBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkedListBox1.Margin = new System.Windows.Forms.Padding(4);
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.Size = new System.Drawing.Size(147, 174);
             this.checkedListBox1.TabIndex = 24;
@@ -354,22 +355,32 @@
             this.groupBox1.TabIndex = 43;
             this.groupBox1.TabStop = false;
             // 
-            // errCountLabel
+            // totalErrorLabel
             // 
-            this.errCountLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.errCountLabel.AutoSize = true;
-            this.errCountLabel.Location = new System.Drawing.Point(1223, 282);
-            this.errCountLabel.Name = "errCountLabel";
-            this.errCountLabel.Size = new System.Drawing.Size(132, 102);
-            this.errCountLabel.TabIndex = 44;
-            this.errCountLabel.Text = "Error Types\r\nSeq\r\nCRCs\r\nData\r\nParity\r\nEEPs and Timeouts";
-            this.errCountLabel.Click += new System.EventHandler(this.label5_Click);
+            this.totalErrorLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.totalErrorLabel.AutoSize = true;
+            this.totalErrorLabel.Location = new System.Drawing.Point(1223, 282);
+            this.totalErrorLabel.Name = "totalErrorLabel";
+            this.totalErrorLabel.Size = new System.Drawing.Size(132, 102);
+            this.totalErrorLabel.TabIndex = 44;
+            this.totalErrorLabel.Text = "Error Types\r\nSeq\r\nCRCs\r\nData\r\nParity\r\nEEPs and Timeouts";
+            this.totalErrorLabel.Click += new System.EventHandler(this.label5_Click);
+            // 
+            // errorCountLabel
+            // 
+            this.errorCountLabel.AutoSize = true;
+            this.errorCountLabel.Location = new System.Drawing.Point(1226, 398);
+            this.errorCountLabel.Name = "errorCountLabel";
+            this.errorCountLabel.Size = new System.Drawing.Size(46, 17);
+            this.errorCountLabel.TabIndex = 45;
+            this.errorCountLabel.Text = "label5";
             // 
             // LinkTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.errCountLabel);
+            this.Controls.Add(this.errorCountLabel);
+            this.Controls.Add(this.totalErrorLabel);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.errorCountA);
@@ -425,6 +436,7 @@
         private System.Windows.Forms.RadioButton dataRateBtn;
         private System.Windows.Forms.RadioButton packetRateBtn;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label errCountLabel;
+        private System.Windows.Forms.Label totalErrorLabel;
+        private System.Windows.Forms.Label errorCountLabel;
     }
 }
