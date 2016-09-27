@@ -163,8 +163,15 @@ namespace IndustrialProject
                         series.Points.Add(point);
                 }
 
+            if (file.stats.noOfPackets > 100)
+            {
+                chart1.ChartAreas[0].AxisX.ScaleView.Zoom(0, 60);
+            } //min per screen
+                chart1.ChartAreas[0].AxisX.ScrollBar.ButtonStyle = ScrollBarButtonStyles.SmallScroll;
+
                 chart1.ChartAreas[0].AxisY.Title = "Byte";
-                chart1.ChartAreas[0].AxisX.Title = "millisec";
+                chart1.ChartAreas[0].AxisX.Title = "Second";
+
                 chart1.ChartAreas[0].AxisX.LabelStyle.Format = "{ 00.00}";
 
                 series.ChartType = SeriesChartType.Line;
