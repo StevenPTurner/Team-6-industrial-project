@@ -17,12 +17,12 @@ namespace IndustrialProject
         public File file;
         TabPage tab;
         string tabType;
-        bool allChecked;
-        public List<int> graphStartIndexs = new List<int>();
-       
+
         public List<Dictionary<string, File>> allFiles = new List<Dictionary<string, File>>();
 
         uint errorsShown = ~(uint)Packet.ErrorType.NO_ERROR;
+
+        int mouseX, mouseY;
 
         //Perhaps put this in file?
         //List<Tuple<int, Packet.ErrorType>> errorGraphIndexs = new List<Tuple<int, Packet.ErrorType>>();
@@ -36,15 +36,12 @@ namespace IndustrialProject
         public LinkTab(TabPage tab, string filename, string tabType)
         {
             InitializeComponent();
-            allChecked = true;
             graphTypes = new bool[2];
             graphTypes[0] = true;
             checkedListBox1.SetItemChecked(0, true);
             graphType = "DataRate";
 
-            this.tabType = tabType;
-
-           
+            this.tabType = tabType;           
 
             this.tab = tab;
             //chart1.Series[1].Color = Color.FromArgb(127, 255, 0, 0);
@@ -89,9 +86,6 @@ namespace IndustrialProject
 
                 setVals(true, allFiles[0].ElementAt(0).Value, "Graph: " + 0.ToString());
 
-                graphStartIndexs.Clear();
-                graphStartIndexs.Add(allFiles[0].ElementAt(0).Value.packets.Count);
-
                 for (int i = 1; i < allFiles.Count; i++)
                 {
                     Console.WriteLine("Next file... " + allFiles[i].ElementAt(0).Value.filename);
@@ -104,14 +98,8 @@ namespace IndustrialProject
                     totalTooManyBytesErrs = totalTooManyBytesErrs + allFiles[i].ElementAt(0).Value.tooManyBytesErrs;
                     totalNotEnoughBytesErrs = totalNotEnoughBytesErrs + allFiles[i].ElementAt(0).Value.notEnoughBytesErrs;
                     totalEepAndTimeoutErrs = totalEepAndTimeoutErrs + allFiles[i].ElementAt(0).Value.eepAndTimeoutErrs;
-
-                    graphStartIndexs.Add(allFiles[i].ElementAt(0).Value.packets.Count);
                 }
 
-                for(int k = 0; k < graphStartIndexs.Count; k++)
-                {
-                    Console.WriteLine("FDOKVDGKJFJKDS;JKG: " + graphStartIndexs[k]);
-                }
                 totalErrorLabel.Text = "----Total----" + "\n Parity: " + totalParityErrs + "\n Seq: " + totalOutOfSeqErrs + "\n Header CRC " + totalHeadCRCErrs + "\n Body CRC " + totalBodyCRCErrs + "\n Too Many Bytes: " + totalTooManyBytesErrs + "\n Not Enough Bytes: " + totalNotEnoughBytesErrs + "\n EEPs and timeout: " + totalEepAndTimeoutErrs;
             }
         }
@@ -231,6 +219,9 @@ namespace IndustrialProject
 
         private void chart1_MouseMove(object sender, MouseEventArgs e)
         {
+            this.mouseX = e.X;
+            this.mouseY = e.Y;
+
             DataPoint point = FindClosestPoint(chart1.Series[0], e.X);
 
             series0_annotation.AnchorDataPoint = point;
@@ -391,35 +382,25 @@ namespace IndustrialProject
 
         private void chart1_DoubleClick(object sender, EventArgs e)
         {
-            int index = FindClosestPointIndex(chart1.Series[0], MousePosition.X - (int)chart1.ChartAreas[0].AxisX.ValueToPixelPosition(chart1.ChartAreas[0].AxisX.Minimum));
+            int index = FindClosestPointIndex(chart1.Series[0], this.mouseX);
             this.navigateToTableIndex(index);
         }
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.errorsShown = 0;
-
             
             int idx = checkedListBox1.SelectedIndex;
             foreach (object itemChecked in checkedListBox1.CheckedItems)
             {
                 string text = itemChecked.ToString();
 
-                if (text != "All" && text != "")
-                {
-                    allChecked = false;
-                }
-
                 if (text == "All")
                 {
-                    //checkedListBox1.ClearSelected();
-
                     this.errorsShown |= ~(uint)Packet.ErrorType.NO_ERROR;
-                    allChecked = true;
-                    //checkedListBox1.SetSelected(checkedListBox1.Items.IndexOf(itemChecked), true);
+                    checkedListBox1.ClearSelected();
+                    checkedListBox1.SetSelected(checkedListBox1.Items.IndexOf(itemChecked), true);
                 }
-                //checkedListBox1.SetItemChecked(0, false);
-                //break;
                 else if (text == "Parity")
                     this.errorsShown |= (uint)(Packet.ErrorType.ERROR_PARITY);
                 else if (text == "EPPs and timeouts")
@@ -431,7 +412,6 @@ namespace IndustrialProject
                 else if (text == "OutofSeq")
                 {
                     this.errorsShown |= (uint)(Packet.ErrorType.ERROR_OUT_OF_ORDER | Packet.ErrorType.ERROR_DUPLICATE);
-                    Console.WriteLine("Ok then");
                 }
                 else if (text == "Too Many Bytes")
                     this.errorsShown |= (uint)(Packet.ErrorType.ERROR_TOO_MANY_BYTES);
@@ -441,7 +421,6 @@ namespace IndustrialProject
                     this.errorsShown |= (uint)(Packet.ErrorType.ERROR_DISCONNECT);
             }
    
-            
             this.setTabs();
         }
 
