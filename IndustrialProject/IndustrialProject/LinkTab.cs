@@ -253,6 +253,8 @@ namespace IndustrialProject
 
         private void graphSetup()
         {
+
+
             chart1.ChartAreas[0].AxisX.ScaleView.Zoomable = true;
             chart1.ChartAreas[0].AxisY.ScaleView.Zoomable = true;
 
@@ -294,11 +296,10 @@ namespace IndustrialProject
 
         private void chart1_MouseWheel(object sender, MouseEventArgs e)
         {
-
             if (e.Delta < 0)
             {
-                chart1.ChartAreas[0].AxisX.ScaleView.ZoomReset(1);
-                chart1.ChartAreas[0].AxisY.ScaleView.ZoomReset(1);
+                this.chart1.ChartAreas[0].AxisX.ScaleView.Zoom(0, 60);
+                this.chart1.ChartAreas[0].AxisY.ScaleView.ZoomReset(0);
             }
             if (e.Delta > 0)
             {
@@ -397,20 +398,6 @@ namespace IndustrialProject
             }
 
             return minIdx;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (file.stats.noOfPackets > 100)
-            {
-                this.chart1.ChartAreas[0].AxisX.ScaleView.ZoomReset(60);
-                this.chart1.ChartAreas[0].AxisY.ScaleView.ZoomReset(0);
-            }
-            else
-            {
-                this.chart1.ChartAreas[0].AxisX.ScaleView.ZoomReset(0);
-                this.chart1.ChartAreas[0].AxisY.ScaleView.ZoomReset(0);
-            }
         }
 
         public void PostAdding()
@@ -518,7 +505,7 @@ namespace IndustrialProject
                     {
                         // dataGridView1.Rows[y].DefaultCellStyle.BackColor = chart1.Series[graphNames[i]].MarkerColor;
                         // dataGridView1.Rows[y]. = "ll";
-                        Console.WriteLine("Size... : " + dataGridView1.RowCount);
+                       // Console.WriteLine("Size... : " + dataGridView1.RowCount);
                         //dataGridView1.Rows[31].DefaultCellStyle.BackColor = Color.Black;
                     }
                 
