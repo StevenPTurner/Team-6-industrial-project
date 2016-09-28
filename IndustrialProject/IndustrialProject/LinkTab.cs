@@ -18,12 +18,12 @@ namespace IndustrialProject
         TabPage tab;
         string tabType;
         bool onlyErrors;
+        BindingSource source = null;
         List<int> errorTableIndexes = new List<int>();
 
         public List<Dictionary<string, File>> allFiles = new List<Dictionary<string, File>>();
 
         uint errorsShown = ~(uint)Packet.ErrorType.NO_ERROR;
-
         int mouseX, mouseY;
 
         //Perhaps put this in file?
@@ -35,6 +35,8 @@ namespace IndustrialProject
         public List<string> graphNames = new List<string>();
         public List<Color> graphColors = new List<Color>();
 
+        List<Tuple<int, int>> errorOnlyIndexRefs = new List<Tuple<int, int>>();
+
         CalloutAnnotation series0_annotation = new CalloutAnnotation();
         CalloutAnnotation series1_annotation = new CalloutAnnotation();
 
@@ -45,21 +47,14 @@ namespace IndustrialProject
             graphTypes[0] = true;
             checkedListBox1.SetItemChecked(0, true);
             graphType = "DataRate";
-            //onlyErrors = true;
-            //graphColors.Add(Color.Red);
-            //Console.WriteLine("Ok... " + graphColors[0]);
 
             this.tabType = tabType;           
-
             this.tab = tab;
-            //chart1.Series[1].Color = Color.FromArgb(127, 255, 0, 0);
-            //chart1.Series[2].Enabled = false;
 
             series0_annotation.AllowMoving = true;
             series0_annotation.Visible = true;
             series0_annotation.Text = "";
             chart1.Annotations.Add(series0_annotation);
-           // chart1.Palette = ChartColorPalette.Bright
 
             //var seriesPoints = this.chart1.Series[2];
             //seriesPoints.XValueMember = "X";
@@ -71,22 +66,14 @@ namespace IndustrialProject
         private void setTabs()
         {
             totalErrorLabel.Anchor = (AnchorStyles.Left | AnchorStyles.Top);
+            chart1.Series.Clear();
             if (tabType.Equals("Link"))
             {
-                chart1.Series.Clear();
                 setVals(true, file, "Link");
-                //errCountLabel.Text = " Seq: " + file.outOfSeqErrs + "\n CRC: "; //+ file.crcErrs + "\n Data: " + file.dataErrs + "\n Parity: " + file.parityErrs + "\n EEPs + Timeouts " + file.eepAndTimeoutErrs;
-                totalErrorLabel.Text = " ----Link " + file.port.ToString() + "----\n Parity: " + file.parityErrs + "\n Seq: " + file.outOfSeqErrs + "\n Header CRC " + file.headCRCErrs + "\n Body CRC " + file.bodyCRCErrs + "\n Too Many Bytes: " + file.tooManyBytesErrs + "\n Not Enough Bytes: " + file.notEnoughBytesErrs + "\n EEPs and timeout: " + file.eepAndTimeoutErrs;
-                errorCountLabel.Text = "";
-                //Console.WriteLine("Link...");
+                totalErrorLabel.Text = " Parity: " + file.parityErrs + "\n Seq: " + file.outOfSeqErrs + "\n Header CRC " + file.headCRCErrs + "\n Body CRC " + file.bodyCRCErrs + "\n Too Many Bytes: " + file.tooManyBytesErrs + "\n Not Enough Bytes: " + file.notEnoughBytesErrs + "\n EEPs and timeout: " + file.eepAndTimeoutErrs;
             }
             else if (tabType.Equals("Overview"))
             {
-                //Console.WriteLine("File list size: " + allFiles.Count);
-                chart1.Series.Clear();
-                errorCountLabel.Text = "\n----Link " + allFiles[0].ElementAt(0).Value.port.ToString() + ", Graph: " + 0.ToString() + "----\n Parity: " + allFiles[0].ElementAt(0).Value.parityErrs + "\n Seq: " + allFiles[0].ElementAt(0).Value.outOfSeqErrs + "\n Header CRC " + allFiles[0].ElementAt(0).Value.headCRCErrs + "\n Body CRC " + allFiles[0].ElementAt(0).Value.bodyCRCErrs + "\n Too Many Bytes: " + allFiles[0].ElementAt(0).Value.tooManyBytesErrs + "\n Not Enough Bytes: " + allFiles[0].ElementAt(0).Value.notEnoughBytesErrs + "\n EEPs and timeout: " + allFiles[0].ElementAt(0).Value.eepAndTimeoutErrs;
-                //errorCountLabel.Text = totalErrorLabel.Text;
-
                 int totalParityErrs = allFiles[0].ElementAt(0).Value.parityErrs;
                 int totalOutOfSeqErrs = allFiles[0].ElementAt(0).Value.outOfSeqErrs;
                 int totalHeadCRCErrs = allFiles[0].ElementAt(0).Value.headCRCErrs;
@@ -99,14 +86,9 @@ namespace IndustrialProject
 
                 setVals(true, allFiles[0].ElementAt(0).Value, "Graph: " + 0.ToString());
 
-                //graphStartIndexs.Clear();
-                //graphStartIndexs.Add(allFiles[0].ElementAt(0).Value.packets.Count);
-
                 for (int i = 1; i < allFiles.Count; i++)
                 {
-                    //Console.WriteLine("Next file... " + allFiles[i].ElementAt(0).Value.filename);
                     setVals(false, allFiles[i].ElementAt(0).Value, "Graph " + i.ToString());
-                    errorCountLabel.Text = errorCountLabel.Text + "\n----Link " + allFiles[i].ElementAt(0).Value.port.ToString() + ". Graph: " + i.ToString() + "----\n Parity: " + allFiles[i].ElementAt(0).Value.parityErrs + "\n Seq: " + allFiles[i].ElementAt(0).Value.outOfSeqErrs + "\n Header CRC " + allFiles[i].ElementAt(0).Value.headCRCErrs + "\n Body CRC " + allFiles[i].ElementAt(0).Value.bodyCRCErrs + "\n Too Many Bytes: " + allFiles[i].ElementAt(0).Value.tooManyBytesErrs + "\n Not Enough Bytes: " + allFiles[i].ElementAt(0).Value.notEnoughBytesErrs + "\n EEPs and timeout: " + allFiles[i].ElementAt(0).Value.eepAndTimeoutErrs + "\n";
                     totalParityErrs = totalParityErrs + allFiles[i].ElementAt(0).Value.parityErrs;
                     totalOutOfSeqErrs = totalOutOfSeqErrs + allFiles[i].ElementAt(0).Value.outOfSeqErrs;
                     totalHeadCRCErrs = totalHeadCRCErrs + allFiles[i].ElementAt(0).Value.headCRCErrs;
@@ -114,13 +96,8 @@ namespace IndustrialProject
                     totalTooManyBytesErrs = totalTooManyBytesErrs + allFiles[i].ElementAt(0).Value.tooManyBytesErrs;
                     totalNotEnoughBytesErrs = totalNotEnoughBytesErrs + allFiles[i].ElementAt(0).Value.notEnoughBytesErrs;
                     totalEepAndTimeoutErrs = totalEepAndTimeoutErrs + allFiles[i].ElementAt(0).Value.eepAndTimeoutErrs;
-
-                   // graphStartIndexs.Add(allFiles[i].ElementAt(0).Value.packets.Count);
                 }
-
-                Console.WriteLine("Size:... " + graphStartIndexs.Count);
-
-                totalErrorLabel.Text = "----Total----" + "\n Parity: " + totalParityErrs + "\n Seq: " + totalOutOfSeqErrs + "\n Header CRC " + totalHeadCRCErrs + "\n Body CRC " + totalBodyCRCErrs + "\n Too Many Bytes: " + totalTooManyBytesErrs + "\n Not Enough Bytes: " + totalNotEnoughBytesErrs + "\n EEPs and timeout: " + totalEepAndTimeoutErrs;
+                totalErrorLabel.Text = " Parity: " + totalParityErrs + "\n Seq: " + totalOutOfSeqErrs + "\n Header CRC " + totalHeadCRCErrs + "\n Body CRC " + totalBodyCRCErrs + "\n Too Many Bytes: " + totalTooManyBytesErrs + "\n Not Enough Bytes: " + totalNotEnoughBytesErrs + "\n EEPs and timeout: " + totalEepAndTimeoutErrs;
             }
         }
 
@@ -132,28 +109,20 @@ namespace IndustrialProject
                 series = chart1.Series.Add(seriesNo);
 
                 graphNames.Add(seriesNo);
-
                 chart1.ApplyPaletteColors();
-            //graphColors.Add(series.Color);
 
             if (tabType.Equals("Overview"))
             {
                 graphColors.Add(series.Color);
-                Console.WriteLine("Size... Here" + graphColors.Count);
             }
 
             double plotPoint = 0;
 
                 if (clearGraph)
                 {
-                    chart1.Series.Clear();
-                    
+                    chart1.Series.Clear();    
                 }
-                else
-                { }
-
-            //series = chart1.Series[0];
-            
+                
 
             for (int i = 0; i < filePassed.packets.Count; i++)
                 {
@@ -226,23 +195,12 @@ namespace IndustrialProject
                 if (series.Points.Count() > 100)
                 {
                     chart1.ChartAreas[0].AxisX.ScaleView.Zoom(0, 60);
-                }
-
-            //graphColors.Add(series.Color);  
+                }  
                 
                 graphSetup();
 
                 series.ChartType = SeriesChartType.Line;
                 series.MarkerStyle = MarkerStyle.Cross;
-            //series.Color = Color.Blue;
-            //Console.WriteLine("Test1: " + series.Color.ToArgb());
-               
-            //Console.WriteLine("hmm" + series.Color);
-            if (tabType.Equals("Overview"))
-            {
-                //Console.WriteLine(graphColors.Count);
-            }
-
 
             if (clearGraph)
                     chart1.Series.Add(series);
@@ -402,13 +360,13 @@ namespace IndustrialProject
 
         public void PostAdding()
         {
-            var bindingList = new BindingList<Packet>(this.file.packets);
-            BindingSource source = null;
-
+            
             if (tabType.Equals("Link"))
             {
-                source = new BindingSource(bindingList, null);
+                var linkBindingList = new BindingList<Packet>(this.file.packets);
+                source = new BindingSource(linkBindingList, null);
                 dataGridView1.DataSource = source;
+
                 packetCountA.Text = this.file.stats.noOfPackets.ToString();
                 charCountA.Text = this.file.stats.noOfDataChars.ToString();
                 dataRate.Text = this.file.stats.avgDataRate.ToString() + " B/s";
@@ -420,12 +378,6 @@ namespace IndustrialProject
             {
                 List<Packet> graphTableList = new List<Packet>();
                 graphTableList = allFiles[0].ElementAt(0).Value.packets;
-                packetCountA.Text = "Packets: " + this.allFiles[0].ElementAt(0).Value.stats.noOfPackets.ToString() + "\n";
-                charCountA.Text = "Chars: " + this.allFiles[0].ElementAt(0).Value.stats.noOfDataChars.ToString() + "\n";
-                dataRate.Text = "Data Rate : " + this.allFiles[0].ElementAt(0).Value.stats.avgDataRate.ToString() + "\n";
-                packetRate.Text = "Packet Rate : " + this.allFiles[0].ElementAt(0).Value.stats.avgPacketRate.ToString() + "\n";
-                errorCountA.Text = "Error Count: " + this.allFiles[0].ElementAt(0).Value.stats.totalNoOfErrors.ToString() + "\n";
-                errorRate.Text = "Error Rate: " + this.allFiles[0].ElementAt(0).Value.stats.avgErrorRate.ToString() + "\n";
 
                 graphStartIndexs.Clear();
                 graphStartIndexs.Add(allFiles[0].ElementAt(0).Value.packets.Count);
@@ -433,23 +385,21 @@ namespace IndustrialProject
                 for (int i = 1; i < allFiles.Count; i++)
                 {
                     graphTableList = graphTableList.Concat(allFiles[i].ElementAt(0).Value.packets).ToList();
-                    //packetCountA.Text = packetCountA.Text + this.allFiles[i].ElementAt(0).Value.stats.noOfPackets.ToString() + "\n";
-                    packetCountA.Text = packetCountA.Text + "Packets: " + this.allFiles[i].ElementAt(0).Value.stats.noOfPackets.ToString() + "\n";
-                    charCountA.Text = charCountA.Text + "Chars: " + this.allFiles[i].ElementAt(0).Value.stats.noOfDataChars.ToString() + "\n";
-                    dataRate.Text = dataRate.Text + "Data Rate : " + this.allFiles[i].ElementAt(0).Value.stats.avgDataRate.ToString() + "\n";
-                    packetRate.Text = packetRate.Text + "Packet Rate : " + this.allFiles[i].ElementAt(0).Value.stats.avgPacketRate.ToString() + "\n";
-                    errorCountA.Text = errorCountA.Text + "Error Count: " + this.allFiles[i].ElementAt(0).Value.stats.totalNoOfErrors.ToString() + "\n";
-                    errorRate.Text = errorRate.Text + "Error Rate: " + this.allFiles[i].ElementAt(0).Value.stats.avgErrorRate.ToString() + "\n";
-
                     graphStartIndexs.Add(allFiles[i].ElementAt(0).Value.packets.Count);
                 }
 
-                var test = new BindingList<Packet>(graphTableList);
-                dataGridView1.DataSource = test;
-
-
+                var overViewBindingList = new BindingList<Packet>(graphTableList);
+                source = new BindingSource(overViewBindingList, null);
+                dataGridView1.DataSource = source;
             }
 
+            manageTable();
+
+            this.Refresh();
+        }
+
+        private void manageTable()
+        {
             dataGridView1.Columns[0].Width = 100;
             dataGridView1.Columns[1].Width = 100;
             dataGridView1.Columns[2].Width = 350;
@@ -466,28 +416,7 @@ namespace IndustrialProject
             dataGridView1.Columns[5].HeaderText = "Logical address";
             dataGridView1.Columns[6].HeaderText = "Protocol id";
 
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-                if (row.DataBoundItem != null && ((Packet)row.DataBoundItem).error != Packet.ErrorType.NO_ERROR)
-                {
-                    row.DefaultCellStyle.BackColor = Color.Red;
-                    errorTableIndexes.Add(row.Index);
-                }
-                else
-                {
-                    if (onlyErrors && row.Index != 0)
-                    {
-                        row.Visible = false;
-                    }
-                }
-
-                //reference this properly
-                //4 lines below from: www.stackoverflow.com/questions/18942017/unable-to-set-row-visible-false-of-a-datagridview  Accessed: 19:55 on 27/07/2016.  
-                //CurrencyManager currencyManager1 = (CurrencyManager)BindingContext[dataGridView1.DataSource];
-                //currencyManager1.SuspendBinding();
-                //dataGridView1.CurrentCell = null;
-                //dataGridView1.Rows[0].Visible = false;
-        
-                this.setTabs();
+            this.setTabs();
 
             if (tabType.Equals("Overview"))
 
@@ -499,27 +428,31 @@ namespace IndustrialProject
                 this.tab.Text = "Link " + this.file.port.ToString();
             }
 
-            if (graphStartIndexs != null)
+            if (graphStartIndexs != null && !onlyErrors)
             {
                 int currIndex = 0;
-             
+
                 for (int i = 0; i < graphStartIndexs.Count; i++)
                 {
-                    Console.WriteLine("This was.. " + graphStartIndexs.Count);
-                    Console.WriteLine("ok dokie " + graphStartIndexs[i]);
+
                     for (int y = currIndex; y < graphStartIndexs[i] + currIndex; y++)
                     {
-                        // dataGridView1.Rows[y].DefaultCellStyle.BackColor = chart1.Series[graphNames[i]].MarkerColor;
-                        // dataGridView1.Rows[y]. = "ll";
-                       // Console.WriteLine("Size... : " + dataGridView1.RowCount);
-                        //dataGridView1.Rows[31].DefaultCellStyle.BackColor = Color.Black;
+                        dataGridView1.Rows[y].Cells[0].Style.BackColor = graphColors[i];
                     }
-                
-                    currIndex = graphStartIndexs[i];
+                    currIndex = currIndex + graphStartIndexs[i];
                 }
             }
 
-            this.Refresh();
+            errorOnlyIndexRefs.Clear();
+
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+                if (row.DataBoundItem != null && ((Packet)row.DataBoundItem).error != Packet.ErrorType.NO_ERROR)
+                {
+                    row.DefaultCellStyle.BackColor = Color.Red;
+                    Tuple<int, int> errorIndexRef = new Tuple<int, int>(row.Index, errorOnlyIndexRefs.Count);
+                    errorOnlyIndexRefs.Add(errorIndexRef);
+                    errorTableIndexes.Add(row.Index);
+                }
         }
 
         private void navigateToTableIndex(int index)
@@ -548,7 +481,7 @@ namespace IndustrialProject
             int index = FindClosestPointIndex(chart1.Series[0], this.mouseX);
             this.navigateToTableIndex(index);
         }
-
+        
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.errorsShown = 0;
@@ -622,20 +555,42 @@ namespace IndustrialProject
         {
             if (errorsOnlyCheckBox.Checked)
             {
+
+                BindingSource errorSource = null;
                 onlyErrors = true;
-                PostAdding();
-                
+                List<Packet> bindingListErrs = new List<Packet>();
+
+                List<Packet> packetsBind = new List<Packet>();
+
+                if (tabType.Equals("Overview"))
+                { 
+                    for (int p = 0; p < allFiles.Count; p++)
+                    {
+                        //allFiles.ElementAt
+                        packetsBind = packetsBind.Concat(this.allFiles[p].ElementAt(0).Value.packets).ToList();
+                    }
+               }
+                else
+                {
+                    packetsBind = this.file.packets;
+                }
+
+                for (int i = 0; i < errorOnlyIndexRefs.Count; i++)
+                {
+                    bindingListErrs.Add(packetsBind[errorOnlyIndexRefs[i].Item1]); 
+                }
+
+                errorSource = new BindingSource(bindingListErrs, null);
+                dataGridView1.DataSource = errorSource;
+             
+                manageTable();
+                //PostAdding();
             }
             else
             {
                 onlyErrors = false;
-                dataGridView1.Visible = true;
-
-               // for(int i = 0; i < dataGridView1.Rows.Count; i++)
-               // {
-                //    dataGridView1.Rows[i].Visible = true;
-                //}
-                PostAdding();
+                dataGridView1.DataSource = source;
+                manageTable();
             }
         }
 
@@ -674,7 +629,7 @@ namespace IndustrialProject
                     graphTypes[1] = true;
                     graphTypes[0] = false;
                     checkedListBox2.SetItemChecked(0, false);
-                    Console.WriteLine("Hallo");
+                 
                 }
             }
         
@@ -683,11 +638,9 @@ namespace IndustrialProject
             {
                 if (checkedListBox2.GetItemCheckState(1) == CheckState.Checked)
                 {
-                    Console.WriteLine("Why??????????????????????????????????????????????????????????????");
-
                     if (graphTypes[0])
                     {
-                        Console.WriteLine("Whyz");
+                    
                         checkedListBox2.SetItemChecked(0, false);
                     }
                     graphTypes[1] = true;
