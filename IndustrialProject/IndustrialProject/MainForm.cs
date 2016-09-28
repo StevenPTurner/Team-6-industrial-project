@@ -74,8 +74,6 @@ namespace IndustrialProject
 
         private void LoadTab(string filename)
         {
-
-
             if (overViewTab == null)
             {
                 TabPage page1 = new TabPage("Loading Link...");
@@ -97,16 +95,13 @@ namespace IndustrialProject
 
             tab.PostAdding();
 
-            
-
             Dictionary<string, File> file = new Dictionary<string, File>();
             file.Add(filename, tab.file);
             allFiles.Add(file);
             overViewTab.allFiles = this.allFiles;
+            
             overViewTab.PostAdding();
             overViewTab.allFiles =  allFiles;
-            
-            //Console.WriteLine("File: " + file.ElementAt(0).Key + "fadsf " + file.ElementAt(0).Value.packets[0].timestamp);
             
         }
 
@@ -150,6 +145,17 @@ namespace IndustrialProject
         private void startTab_Click(object sender, EventArgs e)
         {
 
+        }
+
+        //Closes all opened tabs
+        private void closeAllTabsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.tabControl1.TabPages.RemoveAt(1);
+            for(int i = 1; i < this.tabControl1.TabPages.Count; i++)
+            {
+                tabControl1.TabPages.RemoveAt(i);
+            }
+            overViewTab = null;
         }
     }
 }

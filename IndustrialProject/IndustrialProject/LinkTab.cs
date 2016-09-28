@@ -457,13 +457,6 @@ namespace IndustrialProject
             foreach (DataGridViewRow row in dataGridView1.Rows)
                 if (row.DataBoundItem != null && ((Packet)row.DataBoundItem).error != Packet.ErrorType.NO_ERROR)
                 {
-                    Packet.ErrorType err;
-                    err = ((Packet)row.DataBoundItem).error;
-                    if(((uint)(err) & this.errorsShown) != 0)
-                    {
-                      
-                    }
-
                     row.DefaultCellStyle.BackColor = Color.Red;
                     Tuple<int, int> errorIndexRef = new Tuple<int, int>(row.Index, errorOnlyIndexRefs.Count);
                     errorOnlyIndexRefs.Add(errorIndexRef);
@@ -498,6 +491,7 @@ namespace IndustrialProject
             this.navigateToTableIndex(index);
         }
         
+
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.errorsShown = 0;
