@@ -422,12 +422,12 @@ namespace IndustrialProject
             {
                 source = new BindingSource(bindingList, null);
                 dataGridView1.DataSource = source;
-                packetCountA.Text = "Packets: " + this.file.stats.noOfPackets.ToString();
-                charCountA.Text = "Chars: " + this.file.stats.noOfDataChars.ToString();
-                dataRate.Text = "Data Rate: " + this.file.stats.avgDataRate.ToString() + " B/s";
-                packetRate.Text = "Packet Rate: " + this.file.stats.avgPacketRate.ToString() + " packet/s";
-                errorCountA.Text = "Error Count: " + this.file.stats.totalNoOfErrors.ToString();
-                errorRate.Text = "Error Rate: " + this.file.stats.avgErrorRate.ToString() + " error/s";
+                packetCountA.Text = this.file.stats.noOfPackets.ToString();
+                charCountA.Text = this.file.stats.noOfDataChars.ToString();
+                dataRate.Text = this.file.stats.avgDataRate.ToString() + " B/s";
+                packetRate.Text = this.file.stats.avgPacketRate.ToString() + " packet/s";
+                errorCountA.Text = this.file.stats.totalNoOfErrors.ToString();
+                errorRate.Text = this.file.stats.avgErrorRate.ToString() + " error/s";
             }
             else
             {
