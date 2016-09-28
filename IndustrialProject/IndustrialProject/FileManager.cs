@@ -28,14 +28,14 @@ namespace IndustrialProject
                     date = DateTime.Parse(sr.ReadLine());
    
                     file.startDate = date;
-                    Console.WriteLine('\n');
-                    Console.WriteLine("File: " + fname);
-                    Console.WriteLine("File Start Date: " + date);
+                    //Console.WriteLine('\n');
+                    //Console.WriteLine("File: " + fname);
+                    //Console.WriteLine("File Start Date: " + date);
 
                     port = Convert.ToInt32(sr.ReadLine());
                     file.port = port;
 
-                    Console.WriteLine("Port: " + port + '\n');
+                    //Console.WriteLine("Port: " + port + '\n');
                     
                     sr.ReadLine();
 
@@ -104,7 +104,7 @@ namespace IndustrialProject
                                 sr.ReadLine();
                                 break;
                             default:
-                                Console.WriteLine('\n' + "File end date: " + date.ToString("dd-MM-yyyy HH:mm:ss:fff"));
+                                //Console.WriteLine('\n' + "File end date: " + date.ToString("dd-MM-yyyy HH:mm:ss:fff"));
                                 sr.ReadLine();
                                 break;
                         }

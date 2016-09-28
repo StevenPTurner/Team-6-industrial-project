@@ -59,6 +59,7 @@
             this.packetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.totalErrorLabel = new System.Windows.Forms.Label();
             this.errorCountLabel = new System.Windows.Forms.Label();
+            this.errorsOnlyCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -233,6 +234,7 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -354,6 +356,7 @@
             this.groupBox1.Size = new System.Drawing.Size(200, 100);
             this.groupBox1.TabIndex = 43;
             this.groupBox1.TabStop = false;
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // totalErrorLabel
             // 
@@ -369,16 +372,28 @@
             // errorCountLabel
             // 
             this.errorCountLabel.AutoSize = true;
-            this.errorCountLabel.Location = new System.Drawing.Point(1226, 398);
+            this.errorCountLabel.Location = new System.Drawing.Point(1222, 402);
             this.errorCountLabel.Name = "errorCountLabel";
             this.errorCountLabel.Size = new System.Drawing.Size(46, 17);
             this.errorCountLabel.TabIndex = 45;
             this.errorCountLabel.Text = "label5";
             // 
+            // errorsOnlyCheckBox
+            // 
+            this.errorsOnlyCheckBox.AutoSize = true;
+            this.errorsOnlyCheckBox.Location = new System.Drawing.Point(1066, 255);
+            this.errorsOnlyCheckBox.Name = "errorsOnlyCheckBox";
+            this.errorsOnlyCheckBox.Size = new System.Drawing.Size(102, 21);
+            this.errorsOnlyCheckBox.TabIndex = 47;
+            this.errorsOnlyCheckBox.Text = "Errors Only";
+            this.errorsOnlyCheckBox.UseVisualStyleBackColor = true;
+            this.errorsOnlyCheckBox.CheckedChanged += new System.EventHandler(this.errorsOnlyCheckBox_CheckedChanged);
+            // 
             // LinkTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.errorsOnlyCheckBox);
             this.Controls.Add(this.errorCountLabel);
             this.Controls.Add(this.totalErrorLabel);
             this.Controls.Add(this.groupBox1);
@@ -438,5 +453,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label totalErrorLabel;
         private System.Windows.Forms.Label errorCountLabel;
+        private System.Windows.Forms.CheckBox errorsOnlyCheckBox;
     }
 }
