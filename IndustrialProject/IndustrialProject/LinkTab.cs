@@ -65,7 +65,9 @@ namespace IndustrialProject
 
         private void setTabs()
         {
-            totalErrorLabel.Anchor = (AnchorStyles.Left | AnchorStyles.Top);
+            //totalErrorLabel.Anchor = (AnchorStyles.Left | AnchorStyles.Top);
+            //totalErrorLabel
+
             chart1.Series.Clear();
             if (tabType.Equals("Link"))
             {
@@ -97,6 +99,7 @@ namespace IndustrialProject
                     totalNotEnoughBytesErrs = totalNotEnoughBytesErrs + allFiles[i].ElementAt(0).Value.notEnoughBytesErrs;
                     totalEepAndTimeoutErrs = totalEepAndTimeoutErrs + allFiles[i].ElementAt(0).Value.eepAndTimeoutErrs;
                 }
+
                 totalErrorLabel.Text = " Parity: " + totalParityErrs + "\n Seq: " + totalOutOfSeqErrs + "\n Header CRC " + totalHeadCRCErrs + "\n Body CRC " + totalBodyCRCErrs + "\n Too Many Bytes: " + totalTooManyBytesErrs + "\n Not Enough Bytes: " + totalNotEnoughBytesErrs + "\n EEPs and timeout: " + totalEepAndTimeoutErrs;
             }
         }
@@ -211,7 +214,6 @@ namespace IndustrialProject
 
         private void graphSetup()
         {
-
 
             chart1.ChartAreas[0].AxisX.ScaleView.Zoomable = true;
             chart1.ChartAreas[0].AxisY.ScaleView.Zoomable = true;
@@ -376,6 +378,13 @@ namespace IndustrialProject
             }
             else
             {
+                packetCountA.Text = "N/A";
+                charCountA.Text = "N/A";
+                dataRate.Text = "N/A";
+                packetRate.Text = "N/A";
+                errorCountA.Text = "N/A";
+                errorRate.Text = "N/A";
+
                 List<Packet> graphTableList = new List<Packet>();
                 graphTableList = allFiles[0].ElementAt(0).Value.packets;
 
@@ -448,6 +457,13 @@ namespace IndustrialProject
             foreach (DataGridViewRow row in dataGridView1.Rows)
                 if (row.DataBoundItem != null && ((Packet)row.DataBoundItem).error != Packet.ErrorType.NO_ERROR)
                 {
+                    Packet.ErrorType err;
+                    err = ((Packet)row.DataBoundItem).error;
+                    if(((uint)(err) & this.errorsShown) != 0)
+                    {
+                      
+                    }
+
                     row.DefaultCellStyle.BackColor = Color.Red;
                     Tuple<int, int> errorIndexRef = new Tuple<int, int>(row.Index, errorOnlyIndexRefs.Count);
                     errorOnlyIndexRefs.Add(errorIndexRef);
@@ -512,9 +528,7 @@ namespace IndustrialProject
                 else if (text == "Body CRC")
                     this.errorsShown |= (uint)(Packet.ErrorType.ERROR_BODY_CRC);
                 else if (text == "OutofSeq")
-                {
                     this.errorsShown |= (uint)(Packet.ErrorType.ERROR_OUT_OF_ORDER | Packet.ErrorType.ERROR_DUPLICATE);
-                }
                 else if (text == "Too Many Bytes")
                     this.errorsShown |= (uint)(Packet.ErrorType.ERROR_TOO_MANY_BYTES);
                 else if (text == "Not Enough Bytes")
