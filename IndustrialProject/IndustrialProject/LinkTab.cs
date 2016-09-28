@@ -452,13 +452,19 @@ namespace IndustrialProject
 
             dataGridView1.Columns[0].Width = 100;
             dataGridView1.Columns[1].Width = 100;
-            dataGridView1.Columns[2].Width = 400;
+            dataGridView1.Columns[2].Width = 350;
             dataGridView1.Columns[3].Width = 150;
+            dataGridView1.Columns[4].Width = 50;
+            dataGridView1.Columns[5].Width = 50;
+            dataGridView1.Columns[6].Width = 50;
 
             dataGridView1.Columns[0].HeaderText = "Date";
             dataGridView1.Columns[1].HeaderText = "Time";
             dataGridView1.Columns[2].HeaderText = "Data";
             dataGridView1.Columns[3].HeaderText = "Error";
+            dataGridView1.Columns[4].HeaderText = "Path address";
+            dataGridView1.Columns[5].HeaderText = "Logical address";
+            dataGridView1.Columns[6].HeaderText = "Protocol id";
 
             foreach (DataGridViewRow row in dataGridView1.Rows)
                 if (row.DataBoundItem != null && ((Packet)row.DataBoundItem).error != Packet.ErrorType.NO_ERROR)
