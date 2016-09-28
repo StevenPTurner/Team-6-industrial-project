@@ -71,10 +71,9 @@
             this.errorCountA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.errorCountA.AutoSize = true;
-            this.errorCountA.Location = new System.Drawing.Point(533, 608);
-            this.errorCountA.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.errorCountA.Location = new System.Drawing.Point(400, 494);
             this.errorCountA.Name = "errorCountA";
-            this.errorCountA.Size = new System.Drawing.Size(46, 17);
+            this.errorCountA.Size = new System.Drawing.Size(35, 13);
             this.errorCountA.TabIndex = 37;
             this.errorCountA.Text = "label9";
             // 
@@ -83,10 +82,9 @@
             this.charCountA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.charCountA.AutoSize = true;
-            this.charCountA.Location = new System.Drawing.Point(345, 608);
-            this.charCountA.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.charCountA.Location = new System.Drawing.Point(259, 494);
             this.charCountA.Name = "charCountA";
-            this.charCountA.Size = new System.Drawing.Size(46, 17);
+            this.charCountA.Size = new System.Drawing.Size(35, 13);
             this.charCountA.TabIndex = 36;
             this.charCountA.Text = "label8";
             // 
@@ -95,10 +93,9 @@
             this.packetCountA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.packetCountA.AutoSize = true;
-            this.packetCountA.Location = new System.Drawing.Point(101, 608);
-            this.packetCountA.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.packetCountA.Location = new System.Drawing.Point(76, 494);
             this.packetCountA.Name = "packetCountA";
-            this.packetCountA.Size = new System.Drawing.Size(46, 17);
+            this.packetCountA.Size = new System.Drawing.Size(35, 13);
             this.packetCountA.TabIndex = 35;
             this.packetCountA.Text = "label7";
             // 
@@ -107,10 +104,9 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(441, 608);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(331, 494);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(81, 17);
+            this.label3.Size = new System.Drawing.Size(60, 13);
             this.label3.TabIndex = 34;
             this.label3.Text = "No. Errors: ";
             // 
@@ -119,10 +115,9 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(224, 608);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(168, 494);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(111, 17);
+            this.label2.Size = new System.Drawing.Size(85, 13);
             this.label2.TabIndex = 33;
             this.label2.Text = "No. Data chars: ";
             // 
@@ -131,10 +126,9 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1, 608);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(1, 494);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(88, 17);
+            this.label1.Size = new System.Drawing.Size(69, 13);
             this.label1.TabIndex = 32;
             this.label1.Text = "No. Packets:";
             // 
@@ -143,10 +137,9 @@
             this.errorRate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.errorRate.AutoSize = true;
-            this.errorRate.Location = new System.Drawing.Point(1239, 608);
-            this.errorRate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.errorRate.Location = new System.Drawing.Point(929, 494);
             this.errorRate.Name = "errorRate";
-            this.errorRate.Size = new System.Drawing.Size(37, 17);
+            this.errorRate.Size = new System.Drawing.Size(29, 13);
             this.errorRate.TabIndex = 30;
             this.errorRate.Text = "err/s";
             // 
@@ -155,10 +148,9 @@
             this.ErrorRatelbl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ErrorRatelbl.AutoSize = true;
-            this.ErrorRatelbl.Location = new System.Drawing.Point(1160, 608);
-            this.ErrorRatelbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ErrorRatelbl.Location = new System.Drawing.Point(870, 494);
             this.ErrorRatelbl.Name = "ErrorRatelbl";
-            this.ErrorRatelbl.Size = new System.Drawing.Size(73, 17);
+            this.ErrorRatelbl.Size = new System.Drawing.Size(53, 13);
             this.ErrorRatelbl.TabIndex = 29;
             this.ErrorRatelbl.Text = "Error rate:";
             // 
@@ -167,10 +159,9 @@
             this.packetRate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.packetRate.AutoSize = true;
-            this.packetRate.Location = new System.Drawing.Point(973, 608);
-            this.packetRate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.packetRate.Location = new System.Drawing.Point(730, 494);
             this.packetRate.Name = "packetRate";
-            this.packetRate.Size = new System.Drawing.Size(61, 17);
+            this.packetRate.Size = new System.Drawing.Size(50, 13);
             this.packetRate.TabIndex = 28;
             this.packetRate.Text = "packet/s";
             // 
@@ -179,10 +170,9 @@
             this.PacketRatelbl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PacketRatelbl.AutoSize = true;
-            this.PacketRatelbl.Location = new System.Drawing.Point(879, 608);
-            this.PacketRatelbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.PacketRatelbl.Location = new System.Drawing.Point(659, 494);
             this.PacketRatelbl.Name = "PacketRatelbl";
-            this.PacketRatelbl.Size = new System.Drawing.Size(84, 17);
+            this.PacketRatelbl.Size = new System.Drawing.Size(65, 13);
             this.PacketRatelbl.TabIndex = 27;
             this.PacketRatelbl.Text = "Packet rate:";
             // 
@@ -191,10 +181,9 @@
             this.dataRate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataRate.AutoSize = true;
-            this.dataRate.Location = new System.Drawing.Point(733, 608);
-            this.dataRate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.dataRate.Location = new System.Drawing.Point(550, 494);
             this.dataRate.Name = "dataRate";
-            this.dataRate.Size = new System.Drawing.Size(38, 17);
+            this.dataRate.Size = new System.Drawing.Size(31, 13);
             this.dataRate.TabIndex = 26;
             this.dataRate.Text = "mb/s";
             // 
@@ -203,10 +192,9 @@
             this.DataRatelbl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DataRatelbl.AutoSize = true;
-            this.DataRatelbl.Location = new System.Drawing.Point(653, 608);
-            this.DataRatelbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.DataRatelbl.Location = new System.Drawing.Point(490, 494);
             this.DataRatelbl.Name = "DataRatelbl";
-            this.DataRatelbl.Size = new System.Drawing.Size(71, 17);
+            this.DataRatelbl.Size = new System.Drawing.Size(54, 13);
             this.DataRatelbl.TabIndex = 25;
             this.DataRatelbl.Text = "Data rate:";
             // 
@@ -225,10 +213,9 @@
             "Not Enough Bytes",
             "EEP and timeout",
             "Disconnect"});
-            this.checkedListBox1.Location = new System.Drawing.Point(1221, 4);
-            this.checkedListBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.checkedListBox1.Location = new System.Drawing.Point(916, 3);
             this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(147, 174);
+            this.checkedListBox1.Size = new System.Drawing.Size(111, 139);
             this.checkedListBox1.TabIndex = 24;
             this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
@@ -246,21 +233,21 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 282);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dataGridView1.Location = new System.Drawing.Point(2, 229);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1212, 324);
+            this.dataGridView1.Size = new System.Drawing.Size(909, 263);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // button1
             // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(1185, 251);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button1.Location = new System.Drawing.Point(889, 204);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(29, 26);
+            this.button1.Size = new System.Drawing.Size(22, 21);
             this.button1.TabIndex = 38;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -280,8 +267,8 @@
             this.chart1.Cursor = System.Windows.Forms.Cursors.Default;
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(3, 2);
-            this.chart1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chart1.Location = new System.Drawing.Point(2, 2);
+            this.chart1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.chart1.Name = "chart1";
             this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Bright;
             series1.ChartArea = "ChartArea1";
@@ -304,7 +291,7 @@
             this.chart1.Series.Add(series1);
             this.chart1.Series.Add(series2);
             this.chart1.Series.Add(series3);
-            this.chart1.Size = new System.Drawing.Size(1212, 274);
+            this.chart1.Size = new System.Drawing.Size(909, 223);
             this.chart1.TabIndex = 22;
             this.chart1.Text = "chart1";
             this.chart1.Click += new System.EventHandler(this.chart1_Click);
@@ -322,10 +309,10 @@
             // 
             this.dataRateBtn.AutoSize = true;
             this.dataRateBtn.Checked = true;
-            this.dataRateBtn.Location = new System.Drawing.Point(5, 14);
-            this.dataRateBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dataRateBtn.Location = new System.Drawing.Point(4, 11);
+            this.dataRateBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataRateBtn.Name = "dataRateBtn";
-            this.dataRateBtn.Size = new System.Drawing.Size(93, 21);
+            this.dataRateBtn.Size = new System.Drawing.Size(74, 17);
             this.dataRateBtn.TabIndex = 40;
             this.dataRateBtn.TabStop = true;
             this.dataRateBtn.Text = "Data Rate";
@@ -335,10 +322,10 @@
             // packetRateBtn
             // 
             this.packetRateBtn.AutoSize = true;
-            this.packetRateBtn.Location = new System.Drawing.Point(5, 41);
-            this.packetRateBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.packetRateBtn.Location = new System.Drawing.Point(4, 33);
+            this.packetRateBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.packetRateBtn.Name = "packetRateBtn";
-            this.packetRateBtn.Size = new System.Drawing.Size(106, 21);
+            this.packetRateBtn.Size = new System.Drawing.Size(85, 17);
             this.packetRateBtn.TabIndex = 41;
             this.packetRateBtn.Text = "Packet Rate";
             this.packetRateBtn.UseVisualStyleBackColor = true;
@@ -349,11 +336,11 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.dataRateBtn);
             this.groupBox1.Controls.Add(this.packetRateBtn);
-            this.groupBox1.Location = new System.Drawing.Point(1220, 176);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox1.Location = new System.Drawing.Point(915, 143);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(200, 100);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(150, 81);
             this.groupBox1.TabIndex = 43;
             this.groupBox1.TabStop = false;
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
@@ -362,9 +349,10 @@
             // 
             this.totalErrorLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.totalErrorLabel.AutoSize = true;
-            this.totalErrorLabel.Location = new System.Drawing.Point(1223, 282);
+            this.totalErrorLabel.Location = new System.Drawing.Point(917, 229);
+            this.totalErrorLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.totalErrorLabel.Name = "totalErrorLabel";
-            this.totalErrorLabel.Size = new System.Drawing.Size(132, 102);
+            this.totalErrorLabel.Size = new System.Drawing.Size(100, 78);
             this.totalErrorLabel.TabIndex = 44;
             this.totalErrorLabel.Text = "Error Types\r\nSeq\r\nCRCs\r\nData\r\nParity\r\nEEPs and Timeouts";
             this.totalErrorLabel.Click += new System.EventHandler(this.label5_Click);
@@ -372,18 +360,21 @@
             // errorCountLabel
             // 
             this.errorCountLabel.AutoSize = true;
-            this.errorCountLabel.Location = new System.Drawing.Point(1222, 402);
+            this.errorCountLabel.Location = new System.Drawing.Point(916, 327);
+            this.errorCountLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.errorCountLabel.Name = "errorCountLabel";
-            this.errorCountLabel.Size = new System.Drawing.Size(46, 17);
+            this.errorCountLabel.Size = new System.Drawing.Size(35, 13);
             this.errorCountLabel.TabIndex = 45;
             this.errorCountLabel.Text = "label5";
             // 
             // errorsOnlyCheckBox
             // 
+            this.errorsOnlyCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.errorsOnlyCheckBox.AutoSize = true;
-            this.errorsOnlyCheckBox.Location = new System.Drawing.Point(1066, 255);
+            this.errorsOnlyCheckBox.Location = new System.Drawing.Point(800, 207);
+            this.errorsOnlyCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.errorsOnlyCheckBox.Name = "errorsOnlyCheckBox";
-            this.errorsOnlyCheckBox.Size = new System.Drawing.Size(102, 21);
+            this.errorsOnlyCheckBox.Size = new System.Drawing.Size(77, 17);
             this.errorsOnlyCheckBox.TabIndex = 47;
             this.errorsOnlyCheckBox.Text = "Errors Only";
             this.errorsOnlyCheckBox.UseVisualStyleBackColor = true;
@@ -391,7 +382,7 @@
             // 
             // LinkTab
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.errorsOnlyCheckBox);
             this.Controls.Add(this.errorCountLabel);
@@ -413,9 +404,9 @@
             this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.chart1);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "LinkTab";
-            this.Size = new System.Drawing.Size(1405, 630);
+            this.Size = new System.Drawing.Size(1054, 512);
             this.Load += new System.EventHandler(this.LinkTab_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
