@@ -18,6 +18,7 @@ namespace IndustrialProject
         TabPage tab;
         string tabType;
         bool onlyErrors;
+        List<int> errorTableIndexes = new List<int>();
 
         public List<Dictionary<string, File>> allFiles = new List<Dictionary<string, File>>();
 
@@ -45,8 +46,8 @@ namespace IndustrialProject
             checkedListBox1.SetItemChecked(0, true);
             graphType = "DataRate";
             //onlyErrors = true;
-            graphColors.Add(Color.Red);
-            Console.WriteLine("Ok... " + graphColors[0]);
+            //graphColors.Add(Color.Red);
+            //Console.WriteLine("Ok... " + graphColors[0]);
 
             this.tabType = tabType;           
 
@@ -58,6 +59,7 @@ namespace IndustrialProject
             series0_annotation.Visible = true;
             series0_annotation.Text = "";
             chart1.Annotations.Add(series0_annotation);
+           // chart1.Palette = ChartColorPalette.Bright
 
             //var seriesPoints = this.chart1.Series[2];
             //seriesPoints.XValueMember = "X";
@@ -93,6 +95,8 @@ namespace IndustrialProject
                 int totalNotEnoughBytesErrs = allFiles[0].ElementAt(0).Value.notEnoughBytesErrs;
                 int totalEepAndTimeoutErrs = allFiles[0].ElementAt(0).Value.eepAndTimeoutErrs;
 
+                graphColors.Clear();
+
                 setVals(true, allFiles[0].ElementAt(0).Value, "Graph: " + 0.ToString());
 
                 //graphStartIndexs.Clear();
@@ -120,6 +124,8 @@ namespace IndustrialProject
             }
         }
 
+        
+
         private void setVals(bool clearGraph, File filePassed, string seriesNo)
         {         
                 Series series;
@@ -127,7 +133,16 @@ namespace IndustrialProject
 
                 graphNames.Add(seriesNo);
 
-                double plotPoint = 0;
+                chart1.ApplyPaletteColors();
+            //graphColors.Add(series.Color);
+
+            if (tabType.Equals("Overview"))
+            {
+                graphColors.Add(series.Color);
+                Console.WriteLine("Size... Here" + graphColors.Count);
+            }
+
+            double plotPoint = 0;
 
                 if (clearGraph)
                 {
@@ -135,9 +150,10 @@ namespace IndustrialProject
                     
                 }
                 else
-            { }
+                { }
+
             //series = chart1.Series[0];
-           
+            
 
             for (int i = 0; i < filePassed.packets.Count; i++)
                 {
@@ -175,16 +191,11 @@ namespace IndustrialProject
                     }
                     else
                     {
-                    point.MarkerColor = series.Color;
-                    //Console.WriteLine(point.MarkerColor.IsEmpty);
-                    //Console.WriteLine("Hmm " + series.Color.ToString());
-                    //Console.WriteLine("Series: " + series.Color.ToArgb());
-                    //Console.WriteLine("Marker Color..." + point.MarkerColor);
-                    // graphColors.Add(series.Color);
-                    //Color color = graphColors[0];
-                    //Color color1 = series.Color;
-                    //Console.WriteLine(color1);
-                    //Console.WriteLine("Color: " + color.ToString());
+                        point.MarkerColor = series.Color;
+
+                        //series.
+                        //Console.WriteLine("Test2: " + series.Color);
+
                     point.MarkerSize = 3;
                         point.MarkerStyle = MarkerStyle.Square;
                     }
@@ -217,16 +228,23 @@ namespace IndustrialProject
                     chart1.ChartAreas[0].AxisX.ScaleView.Zoom(0, 60);
                 }
 
-                //graphColors.Add(series.Color);  
-
+            //graphColors.Add(series.Color);  
+                
                 graphSetup();
 
                 series.ChartType = SeriesChartType.Line;
                 series.MarkerStyle = MarkerStyle.Cross;
-                //series.Color = Color.Red;
-                
+            //series.Color = Color.Blue;
+            //Console.WriteLine("Test1: " + series.Color.ToArgb());
+               
+            //Console.WriteLine("hmm" + series.Color);
+            if (tabType.Equals("Overview"))
+            {
+                //Console.WriteLine(graphColors.Count);
+            }
 
-                if (clearGraph)
+
+            if (clearGraph)
                     chart1.Series.Add(series);
 
 
@@ -412,6 +430,7 @@ namespace IndustrialProject
                 if (row.DataBoundItem != null && ((Packet)row.DataBoundItem).error != Packet.ErrorType.NO_ERROR)
                 {
                     row.DefaultCellStyle.BackColor = Color.Red;
+                    errorTableIndexes.Add(row.Index);
                 }
                 else
                 {
@@ -421,17 +440,17 @@ namespace IndustrialProject
                     }
                 }
 
-                    //reference this properly
-                    //4 lines below from: www.stackoverflow.com/questions/18942017/unable-to-set-row-visible-false-of-a-datagridview  Accessed: 19:55 on 27/07/2016.  
-                    CurrencyManager currencyManager1 = (CurrencyManager)BindingContext[dataGridView1.DataSource];
-                    currencyManager1.SuspendBinding();
-                    dataGridView1.CurrentCell = null;
-                    dataGridView1.Rows[0].Visible = false;
-           
+                //reference this properly
+                //4 lines below from: www.stackoverflow.com/questions/18942017/unable-to-set-row-visible-false-of-a-datagridview  Accessed: 19:55 on 27/07/2016.  
+                //CurrencyManager currencyManager1 = (CurrencyManager)BindingContext[dataGridView1.DataSource];
+                //currencyManager1.SuspendBinding();
+                //dataGridView1.CurrentCell = null;
+                //dataGridView1.Rows[0].Visible = false;
         
-            this.setTabs();
+                this.setTabs();
 
             if (tabType.Equals("Overview"))
+
             {
                 this.tab.Text = "Overview";
             }
@@ -446,17 +465,15 @@ namespace IndustrialProject
              
                 for (int i = 0; i < graphStartIndexs.Count; i++)
                 {
-                    for (int y = currIndex; y <= graphStartIndexs[i]; y++)
+                    Console.WriteLine("This was.. " + graphStartIndexs.Count);
+                    Console.WriteLine("ok dokie " + graphStartIndexs[i]);
+                    for (int y = currIndex; y < graphStartIndexs[i] + currIndex; y++)
                     {
-                        // dataGridView1.Rows[y].DefaultCellStyle.BackColor = chart1.Series[graphNames[i]].MarkerColor;
-                        // dataGridView1.Rows[y]. = "ll";
-                        Console.WriteLine("Size... : " + dataGridView1.RowCount);
-                        //dataGridView1.Rows[31].DefaultCellStyle.BackColor = Color.Black;
+                     
+                        dataGridView1.Rows[y].Cells[0].Style.BackColor = graphColors[i];
                     }
-                    Console.WriteLine("Color was..." + graphColors[0].ToString());
-                    Console.WriteLine("Size was... " + graphColors.Count);
-                    Console.WriteLine("Graph name: " + chart1.Series[graphNames[i]].Name);
-                    currIndex = currIndex + graphStartIndexs[i];
+                
+                    currIndex = graphStartIndexs[i];
                 }
             }
 
@@ -565,10 +582,17 @@ namespace IndustrialProject
             {
                 onlyErrors = true;
                 PostAdding();
+                
             }
             else
             {
                 onlyErrors = false;
+                dataGridView1.Visible = true;
+
+               // for(int i = 0; i < dataGridView1.Rows.Count; i++)
+               // {
+                //    dataGridView1.Rows[i].Visible = true;
+                //}
                 PostAdding();
             }
         }
