@@ -70,6 +70,7 @@ namespace IndustrialProject
 
         private void setTabs()
         {
+            totalErrorLabel.Anchor = (AnchorStyles.Left | AnchorStyles.Top);
             if (tabType.Equals("Link"))
             {
                 chart1.Series.Clear();
@@ -81,7 +82,6 @@ namespace IndustrialProject
             }
             else if (tabType.Equals("Overview"))
             {
-                totalErrorLabel.Anchor = (AnchorStyles.Left | AnchorStyles.Top);
                 //Console.WriteLine("File list size: " + allFiles.Count);
                 chart1.Series.Clear();
                 errorCountLabel.Text = "\n----Link " + allFiles[0].ElementAt(0).Value.port.ToString() + ", Graph: " + 0.ToString() + "----\n Parity: " + allFiles[0].ElementAt(0).Value.parityErrs + "\n Seq: " + allFiles[0].ElementAt(0).Value.outOfSeqErrs + "\n Header CRC " + allFiles[0].ElementAt(0).Value.headCRCErrs + "\n Body CRC " + allFiles[0].ElementAt(0).Value.bodyCRCErrs + "\n Too Many Bytes: " + allFiles[0].ElementAt(0).Value.tooManyBytesErrs + "\n Not Enough Bytes: " + allFiles[0].ElementAt(0).Value.notEnoughBytesErrs + "\n EEPs and timeout: " + allFiles[0].ElementAt(0).Value.eepAndTimeoutErrs;
@@ -253,6 +253,8 @@ namespace IndustrialProject
 
         private void graphSetup()
         {
+            chart1.ChartAreas[0].AxisX.ScaleView.Zoomable = true;
+            chart1.ChartAreas[0].AxisY.ScaleView.Zoomable = true;
 
             chart1.ChartAreas[0].AxisX.ScrollBar.IsPositionedInside = false;
             chart1.ChartAreas[0].AxisY.ScrollBar.IsPositionedInside = false;
@@ -268,6 +270,51 @@ namespace IndustrialProject
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             
+        }
+
+        void chart1_MouseLeave(object sender, EventArgs e)
+        {
+            Console.Write("out");
+            if(chart1.Focused)
+            {
+                chart1.Parent.Focus();
+            }
+        }
+
+        void chart1_MouseEnter(object sender, EventArgs e)
+        {
+            Console.Write("in");
+            if(!chart1.Focused)
+            {
+                chart1.Focus();
+            }
+        }
+
+        //http://stackoverflow.com/questions/13584061/how-to-enable-zooming-in-microsoft-chart-control-by-using-mouse-wheel
+
+        private void chart1_MouseWheel(object sender, MouseEventArgs e)
+        {
+
+            if (e.Delta < 0)
+            {
+                chart1.ChartAreas[0].AxisX.ScaleView.ZoomReset(1);
+                chart1.ChartAreas[0].AxisY.ScaleView.ZoomReset(1);
+            }
+            if (e.Delta > 0)
+            {
+                double xmin = chart1.ChartAreas[0].AxisX.ScaleView.ViewMinimum;
+                double xmax = chart1.ChartAreas[0].AxisX.ScaleView.ViewMaximum;
+                double ymin = chart1.ChartAreas[0].AxisY.ScaleView.ViewMinimum;
+                double ymax = chart1.ChartAreas[0].AxisY.ScaleView.ViewMaximum;
+
+                double posXstart = chart1.ChartAreas[0].AxisX.PixelPositionToValue(e.Location.X) - (xmax - xmin) / 3;
+                double posXend = chart1.ChartAreas[0].AxisX.PixelPositionToValue(e.Location.X) + (xmax - xmin) / 3;
+                double posYstart = chart1.ChartAreas[0].AxisY.PixelPositionToValue(e.Location.Y) - (ymax - ymin) / 1.5;
+                double posYend = chart1.ChartAreas[0].AxisY.PixelPositionToValue(e.Location.Y) + (ymax - ymin) / 1.5;
+
+                chart1.ChartAreas[0].AxisX.ScaleView.Zoom(posXstart, posXend);
+                chart1.ChartAreas[0].AxisY.ScaleView.Zoom(posYstart, posYend);
+            }
         }
 
         private void chart1_MouseMove(object sender, MouseEventArgs e)
@@ -469,8 +516,10 @@ namespace IndustrialProject
                     Console.WriteLine("ok dokie " + graphStartIndexs[i]);
                     for (int y = currIndex; y < graphStartIndexs[i] + currIndex; y++)
                     {
-                     
-                        dataGridView1.Rows[y].Cells[0].Style.BackColor = graphColors[i];
+                        // dataGridView1.Rows[y].DefaultCellStyle.BackColor = chart1.Series[graphNames[i]].MarkerColor;
+                        // dataGridView1.Rows[y]. = "ll";
+                        Console.WriteLine("Size... : " + dataGridView1.RowCount);
+                        //dataGridView1.Rows[31].DefaultCellStyle.BackColor = Color.Black;
                     }
                 
                     currIndex = graphStartIndexs[i];

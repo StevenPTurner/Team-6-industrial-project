@@ -84,6 +84,7 @@ namespace IndustrialProject
                 tabControl1.TabPages.Add(page1);
                 this.Invalidate(true);
                 overViewTab.Dock = DockStyle.Fill;
+                
             }
 
             // create a tab for it
@@ -95,6 +96,7 @@ namespace IndustrialProject
             tab.Dock = DockStyle.Fill;
 
             tab.PostAdding();
+
             
 
             Dictionary<string, File> file = new Dictionary<string, File>();
