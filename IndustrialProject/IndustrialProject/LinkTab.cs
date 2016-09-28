@@ -279,15 +279,7 @@ namespace IndustrialProject
             else if (pixelX < xLeft)
                 chartX = xAxis.Minimum;
             else
-                try
-                {
-                    chartX = xAxis.PixelPositionToValue(pixelX);
-                }
-                catch (Exception E)
-                {
-                    Console.WriteLine("Error: " + E.ToString());
-                }
-                
+                chartX = xAxis.PixelPositionToValue(pixelX);
 
             // closest with binary search
 
@@ -500,17 +492,23 @@ namespace IndustrialProject
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.errorsShown = 0;
-            
+
+            object[] checkedItems = new object[checkedListBox1.CheckedItems.Count];
+            checkedListBox1.CheckedItems.CopyTo(checkedItems, 0);
+
             int idx = checkedListBox1.SelectedIndex;
-            foreach (object itemChecked in checkedListBox1.CheckedItems)
+            foreach (object itemChecked in checkedItems)
             {
                 string text = itemChecked.ToString();
 
                 if (text == "All")
                 {
                     this.errorsShown |= ~(uint)Packet.ErrorType.NO_ERROR;
+
+                    checkedListBox1.SelectedIndexChanged -= checkedListBox1_SelectedIndexChanged;
                     checkedListBox1.ClearSelected();
                     checkedListBox1.SetSelected(checkedListBox1.Items.IndexOf(itemChecked), true);
+                    checkedListBox1.SelectedIndexChanged += checkedListBox1_SelectedIndexChanged;
                 }
                 else if (text == "Parity")
                     this.errorsShown |= (uint)(Packet.ErrorType.ERROR_PARITY);
