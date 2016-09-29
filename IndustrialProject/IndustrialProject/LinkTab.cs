@@ -565,8 +565,12 @@ namespace IndustrialProject
             {
                 if (tabType.Equals("Overview"))
                 {
-                    int index = this.graphStartIndexes[point.Item1];
-                    this.navigateToTableIndex(index + point.Item2);
+                    // this could be shorter but ...
+                    int startIndex = 0;
+                    if(point.Item1 > 0)
+                        startIndex = this.graphStartIndexes[point.Item1-1];
+
+                    this.navigateToTableIndex(startIndex + point.Item2);
                 } else
                     this.navigateToTableIndex(point.Item2);
             }
