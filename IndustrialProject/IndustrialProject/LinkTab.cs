@@ -76,7 +76,7 @@ namespace IndustrialProject
             chart1.Series.Clear();
             if (tabType.Equals("Link"))
             {
-                setVals(true, file, "Link: " + file.port.ToString());
+                setVals(true, file, 0.ToString());
                 totalErrorLabel.Text = " Parity: " + file.parityErrs + "\n Seq: " + file.outOfSeqErrs + "\n Header CRC " + file.headCRCErrs + "\n Body CRC " + file.bodyCRCErrs + "\n Too Many Bytes: " + file.tooManyBytesErrs + "\n Not Enough Bytes: " + file.notEnoughBytesErrs + "\n EEPs and timeout: " + file.eepAndTimeoutErrs;
             }
             else if (tabType.Equals("Overview"))
@@ -91,11 +91,11 @@ namespace IndustrialProject
 
                 graphColors.Clear();
 
-                setVals(true, allFiles[0].ElementAt(0).Value, "Link: " + allFiles[0].ElementAt(0).Value.port.ToString());
+                setVals(true, allFiles[0].ElementAt(0).Value, 0.ToString());
 
                 for (int i = 1; i < allFiles.Count; i++)
                 {
-                    setVals(false, allFiles[i].ElementAt(0).Value, "Link: " + allFiles[i].ElementAt(0).Value.port.ToString());
+                    setVals(false, allFiles[i].ElementAt(0).Value, i.ToString());
                     totalParityErrs = totalParityErrs + allFiles[i].ElementAt(0).Value.parityErrs;
                     totalOutOfSeqErrs = totalOutOfSeqErrs + allFiles[i].ElementAt(0).Value.outOfSeqErrs;
                     totalHeadCRCErrs = totalHeadCRCErrs + allFiles[i].ElementAt(0).Value.headCRCErrs;
@@ -116,6 +116,8 @@ namespace IndustrialProject
         {         
                 Series series;
                 series = chart1.Series.Add(seriesNo);
+
+                series.LegendText = "Link: " + filePassed.port;
 
                 graphNames.Add(seriesNo);
                 chart1.ApplyPaletteColors();
@@ -315,7 +317,7 @@ namespace IndustrialProject
                 yValue = yAxis.PixelPositionToValue(pixelY);
                 yValue = Math.Max(Math.Min(yValue, yAxis.Maximum), yAxis.Minimum);
 
-            } catch(ArgumentException e)
+            } catch(ArgumentException)
             {
                 // partially seems to be a bug in .NET
                 return null;
@@ -694,6 +696,8 @@ namespace IndustrialProject
                 dataGridView1.DataSource = source;
                 manageTable();
             }
+
+          
         }
 
         private void label5_Click(object sender, EventArgs e)
