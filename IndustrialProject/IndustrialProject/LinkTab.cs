@@ -76,7 +76,7 @@ namespace IndustrialProject
             chart1.Series.Clear();
             if (tabType.Equals("Link"))
             {
-                setVals(true, file, "Link");
+                setVals(true, file, "Link: " + file.port.ToString());
                 totalErrorLabel.Text = " Parity: " + file.parityErrs + "\n Seq: " + file.outOfSeqErrs + "\n Header CRC " + file.headCRCErrs + "\n Body CRC " + file.bodyCRCErrs + "\n Too Many Bytes: " + file.tooManyBytesErrs + "\n Not Enough Bytes: " + file.notEnoughBytesErrs + "\n EEPs and timeout: " + file.eepAndTimeoutErrs;
             }
             else if (tabType.Equals("Overview"))
@@ -91,11 +91,11 @@ namespace IndustrialProject
 
                 graphColors.Clear();
 
-                setVals(true, allFiles[0].ElementAt(0).Value, "Graph: " + 0.ToString());
+                setVals(true, allFiles[0].ElementAt(0).Value, "Link: " + allFiles[0].ElementAt(0).Value.port.ToString());
 
                 for (int i = 1; i < allFiles.Count; i++)
                 {
-                    setVals(false, allFiles[i].ElementAt(0).Value, "Graph " + i.ToString());
+                    setVals(false, allFiles[i].ElementAt(0).Value, "Link: " + allFiles[i].ElementAt(0).Value.port.ToString());
                     totalParityErrs = totalParityErrs + allFiles[i].ElementAt(0).Value.parityErrs;
                     totalOutOfSeqErrs = totalOutOfSeqErrs + allFiles[i].ElementAt(0).Value.outOfSeqErrs;
                     totalHeadCRCErrs = totalHeadCRCErrs + allFiles[i].ElementAt(0).Value.headCRCErrs;
@@ -305,7 +305,8 @@ namespace IndustrialProject
             double xValue;
             double yValue;
 
-            try {
+            try 
+            {
 
                 xValue = xAxis.PixelPositionToValue(pixelX);
                 xValue = Math.Max(Math.Min(xValue, xAxis.Maximum), xAxis.Minimum);
@@ -313,7 +314,7 @@ namespace IndustrialProject
                 yValue = yAxis.PixelPositionToValue(pixelY);
                 yValue = Math.Max(Math.Min(yValue, yAxis.Maximum), yAxis.Minimum);
 
-            } catch(ArgumentOutOfRangeException e)
+            } catch(ArgumentException e)
             {
                 // partially seems to be a bug in .NET
                 return null;
