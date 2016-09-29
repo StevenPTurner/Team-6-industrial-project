@@ -49,6 +49,9 @@ namespace IndustrialProject
         public string displayTime { get; set; }
         public string displayData { get; set; }
         public string displayErrorType { set; get; }
+        public string displayPathAddress { set; get; }
+        public string displayLogicalAddress { set; get; }
+        public string displayProtocolId { set; get; }
         
 
         public InnerType innerPacket;
@@ -70,6 +73,8 @@ namespace IndustrialProject
         {
             this.data = data;
             this.epm = epm;
+            
+
 
             // CHECK FOR END OF MARKER ERROR
 
@@ -85,7 +90,26 @@ namespace IndustrialProject
                 // FIX: ARGH... undefined error
                 throw new Exception("ARGH...");
             }
+            MemoryStream stream = new MemoryStream(this.data);
+
+            do
+            {
+                if (stream.Position + 2 >= stream.Length)
+                {
+                    return;
+                }
+
+                this.pathAddress.Add((byte)stream.ReadByte());
+                this.logicalAddress = this.pathAddress[this.pathAddress.Count - 1];
+
+                
+            } while (this.logicalAddress < 32);
+
+            this.pathAddress.RemoveAt(this.pathAddress.Count - 1);
+            this.protocolId = (byte)stream.ReadByte();
         }
+
+
 
         public void setError(ErrorType error)
         {
@@ -110,11 +134,12 @@ namespace IndustrialProject
 
                 this.pathAddress.Add((byte)stream.ReadByte());
                 this.logicalAddress = this.pathAddress[this.pathAddress.Count - 1];
+
                 this.pathAddress.RemoveAt(this.pathAddress.Count - 1);
             } while (this.logicalAddress < 32);
 
             this.protocolId = (byte)stream.ReadByte();
-
+            
             switch(this.protocolId)
             {
                 case 0x01:
