@@ -15,7 +15,7 @@ namespace IndustrialProject
 {
     public partial class MainForm : Form
     {
-       
+        bool allFilesLoadWait;
         LinkTab overViewTab;
         List<Dictionary<string, File>> allFiles = new List<Dictionary<string, File>>();
 
@@ -72,16 +72,18 @@ namespace IndustrialProject
                 return;
 
             this.LoadTab(ofd.FileName);
+            this.overViewTab.PostAdding();
         }
 
         private void LoadTab(string filename)
         {
             //loadingLabel.Show();
 
+
             if (overViewTab == null)
             {
                 TabPage page1 = new TabPage("Loading Link...");
-                overViewTab = new LinkTab(page1, filename, "Overview");
+                overViewTab = new LinkTab(page1, null, "Overview");
                 page1.Controls.Add(overViewTab);
                 tabControl1.TabPages.Add(page1);
                 this.Invalidate(true);
@@ -97,18 +99,14 @@ namespace IndustrialProject
             this.Invalidate(true);
             tab.Dock = DockStyle.Fill;
 
-            tab.PostAdding();
-
             Dictionary<string, File> file = new Dictionary<string, File>();
             file.Add(filename, tab.file);
             allFiles.Add(file);
             overViewTab.allFiles = this.allFiles;
-            
-            overViewTab.PostAdding();
-            overViewTab.allFiles =  allFiles;
 
-            //loadingLabel.Hide();
-            
+            tab.PostAdding();
+
+
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -142,12 +140,13 @@ namespace IndustrialProject
 
             if (fbd.ShowDialog() != DialogResult.OK)
                 return;
-           
 
             foreach (string filename in Directory.GetFiles(fbd.SelectedPath))
             {
                 this.LoadTab(filename);
             }
+
+            overViewTab.PostAdding();
 
             loadingLabel.Hide();
         }
@@ -167,8 +166,13 @@ namespace IndustrialProject
              {
                 tabControl1.TabPages.RemoveAt(1);
              }
-            overViewTab = null;
+
             allFiles.Clear();
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }

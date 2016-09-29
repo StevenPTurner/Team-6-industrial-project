@@ -62,7 +62,10 @@ namespace IndustrialProject
             //seriesPoints.XValueMember = "X";
             //seriesPoints.YValueMembers = "Y";
 
-            this.file = FileManager.loadAndParseFile(filename);
+            if (!tabType.Equals("Overview"))
+            {
+                this.file = FileManager.loadAndParseFile(filename);
+            }
         }
 
         private void setTabs()
@@ -308,7 +311,16 @@ namespace IndustrialProject
             else if (pixelX < xLeft)
                 chartX = xAxis.Minimum;
             else
-                chartX = xAxis.PixelPositionToValue(pixelX);
+            { 
+                try
+                {
+                     chartX = xAxis.PixelPositionToValue(pixelX);
+                }
+                catch (System.ArgumentException err)
+                {
+                    Console.WriteLine(err.ToString());
+                }
+            }
 
             // closest with binary search
 
@@ -441,16 +453,15 @@ namespace IndustrialProject
 
             errorOnlyIndexRefs.Clear();
 
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-                if (row.DataBoundItem != null && ((Packet)row.DataBoundItem).error != Packet.ErrorType.NO_ERROR)
-                {
-                    row.DefaultCellStyle.BackColor = Color.Red;
-                    Tuple<int, int> errorIndexRef = new Tuple<int, int>(row.Index, errorOnlyIndexRefs.Count);
-                    errorOnlyIndexRefs.Add(errorIndexRef);
-                    errorTableIndexes.Add(row.Index);
-                }
+            setErrorRows();
+            colourCodeRows();
+          
+        }
 
-            if(onlyErrors)
+        private void colourCodeRows()
+        {
+
+            if (onlyErrors)
             {
                 int count = 0;
                 int currIndex = 0;
@@ -458,11 +469,12 @@ namespace IndustrialProject
                 for (int y = 0; y < errorOnlyFileIndex.Count; y++)
                 {
                     currIndex = currIndex + errorOnlyFileIndex[y];
-                    
+
                     for (int u = count; u < currIndex; u++)
                     {
                         dataGridView1.Rows[u].Cells[0].Style.BackColor = graphColors[y];
                     }
+
                     count = count + errorOnlyFileIndex[y];
 
                     //Console.WriteLine("Count is.. " + count);
@@ -480,20 +492,41 @@ namespace IndustrialProject
                     {
                         dataGridView1.Rows[y].Cells[0].Style.BackColor = graphColors[i];
                     }
-                   
+
                     currIndex = currIndex + graphStartIndexs[i];
                 }
             }
         }
 
+        private void setErrorRows()
+        {
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+                if (row.DataBoundItem != null && ((Packet)row.DataBoundItem).error != Packet.ErrorType.NO_ERROR)
+                {
+                    row.DefaultCellStyle.BackColor = Color.Red;
+                    Tuple<int, int> errorIndexRef = new Tuple<int, int>(row.Index, errorOnlyIndexRefs.Count);
+                    errorOnlyIndexRefs.Add(errorIndexRef);
+                    errorTableIndexes.Add(row.Index);
+                }
+        }
+
         private void navigateToTableIndex(int index)
         {
             dataGridView1.ClearSelection();
-            dataGridView1.Rows[index].Selected = true;
-            if (dataGridView1.Rows[index].Visible)
+            try
             {
+
                 dataGridView1.Rows[index].Selected = true;
-                dataGridView1.FirstDisplayedScrollingRowIndex = index;
+
+                if (dataGridView1.Rows[index].Visible)
+                {
+                    dataGridView1.Rows[index].Selected = true;
+                    dataGridView1.FirstDisplayedScrollingRowIndex = index;
+                }
+            }
+            catch(System.ArgumentOutOfRangeException err)
+            {
+                Console.WriteLine(err.ToString());
             }
         }
 
@@ -616,7 +649,6 @@ namespace IndustrialProject
                     Console.WriteLine("... " + errorOnlyFileIndex[l]);
                 }
 
-
                 for (int i = 0; i < errorOnlyIndexRefs.Count; i++)
                 {
                     bindingListErrs.Add(packetsBind[errorOnlyIndexRefs[i].Item1]); 
@@ -641,6 +673,7 @@ namespace IndustrialProject
 
         }
     }
+
     }
 
         //Do not delete this code, may be useful later on.
