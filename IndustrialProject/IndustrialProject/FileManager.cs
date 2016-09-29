@@ -106,7 +106,7 @@ namespace IndustrialProject
                                 //Console.WriteLine("BAM BADA BAAAA... BADABA BAM BADA BAAAA.... " + lastPacket.error);
 
                                 // XXX: setter?
-                                
+
                                 file.incrementErrCounts(lastPacket.error);
 
                                 sr.ReadLine();

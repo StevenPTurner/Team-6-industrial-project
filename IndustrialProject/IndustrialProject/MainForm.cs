@@ -168,6 +168,7 @@ namespace IndustrialProject
                 tabControl1.TabPages.RemoveAt(1);
              }
 
+            overViewTab = null;
             allFiles.Clear();
         }
 
