@@ -44,6 +44,7 @@
             this.instrLabel1 = new System.Windows.Forms.Label();
             this.logoBox = new System.Windows.Forms.PictureBox();
             this.closeAllTabsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadingLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.startTab.SuspendLayout();
@@ -124,6 +125,7 @@
             // startTab
             // 
             this.startTab.BackColor = System.Drawing.Color.White;
+            this.startTab.Controls.Add(this.loadingLabel);
             this.startTab.Controls.Add(this.pictureBox1);
             this.startTab.Controls.Add(this.instrLabel3);
             this.startTab.Controls.Add(this.instrLabel2);
@@ -203,6 +205,17 @@
             this.closeAllTabsToolStripMenuItem.Text = "Close All Tabs";
             this.closeAllTabsToolStripMenuItem.Click += new System.EventHandler(this.closeAllTabsToolStripMenuItem_Click);
             // 
+            // loadingLabel
+            // 
+            this.loadingLabel.AutoSize = true;
+            this.loadingLabel.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loadingLabel.Location = new System.Drawing.Point(878, 38);
+            this.loadingLabel.Name = "loadingLabel";
+            this.loadingLabel.Size = new System.Drawing.Size(147, 36);
+            this.loadingLabel.TabIndex = 6;
+            this.loadingLabel.Text = "Loading...";
+            this.loadingLabel.Visible = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -245,6 +258,7 @@
         private System.Windows.Forms.ToolStripMenuItem userManualToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadFolderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeAllTabsToolStripMenuItem;
+        private System.Windows.Forms.Label loadingLabel;
     }
 }
 

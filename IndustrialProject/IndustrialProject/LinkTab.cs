@@ -20,6 +20,7 @@ namespace IndustrialProject
         bool onlyErrors;
         BindingSource source = null;
         List<int> errorTableIndexes = new List<int>();
+        List<int> errorOnlyFileIndex = new List<int>();
 
         public List<Dictionary<string, File>> allFiles = new List<Dictionary<string, File>>();
 
@@ -36,6 +37,7 @@ namespace IndustrialProject
         public List<Color> graphColors = new List<Color>();
 
         List<Tuple<int, int>> errorOnlyIndexRefs = new List<Tuple<int, int>>();
+        List<Tuple<int, int>> errorTableRowColourLinks = new List<Tuple<int, int>>();
 
         CalloutAnnotation series0_annotation = new CalloutAnnotation();
         CalloutAnnotation series1_annotation = new CalloutAnnotation();
@@ -437,21 +439,6 @@ namespace IndustrialProject
                 this.tab.Text = "Link " + this.file.port.ToString();
             }
 
-            if (graphStartIndexs != null && !onlyErrors)
-            {
-                int currIndex = 0;
-
-                for (int i = 0; i < graphStartIndexs.Count; i++)
-                {
-
-                    for (int y = currIndex; y < graphStartIndexs[i] + currIndex; y++)
-                    {
-                        dataGridView1.Rows[y].Cells[0].Style.BackColor = graphColors[i];
-                    }
-                    currIndex = currIndex + graphStartIndexs[i];
-                }
-            }
-
             errorOnlyIndexRefs.Clear();
 
             foreach (DataGridViewRow row in dataGridView1.Rows)
@@ -462,6 +449,41 @@ namespace IndustrialProject
                     errorOnlyIndexRefs.Add(errorIndexRef);
                     errorTableIndexes.Add(row.Index);
                 }
+
+            if(onlyErrors)
+            {
+                int count = 0;
+                int currIndex = 0;
+
+                for (int y = 0; y < errorOnlyFileIndex.Count; y++)
+                {
+                    currIndex = currIndex + errorOnlyFileIndex[y];
+                    
+                    for (int u = count; u < currIndex; u++)
+                    {
+                        dataGridView1.Rows[u].Cells[0].Style.BackColor = graphColors[y];
+                    }
+                    count = count + errorOnlyFileIndex[y];
+
+                    //Console.WriteLine("Count is.. " + count);
+                }
+
+            }
+
+            if (graphStartIndexs != null && !onlyErrors)
+            {
+                int currIndex = 0;
+
+                for (int i = 0; i < graphStartIndexs.Count; i++)
+                {
+                    for (int y = currIndex; y < graphStartIndexs[i] + currIndex; y++)
+                    {
+                        dataGridView1.Rows[y].Cells[0].Style.BackColor = graphColors[i];
+                    }
+                   
+                    currIndex = currIndex + graphStartIndexs[i];
+                }
+            }
         }
 
         private void navigateToTableIndex(int index)
@@ -570,18 +592,30 @@ namespace IndustrialProject
 
                 List<Packet> packetsBind = new List<Packet>();
 
+                errorOnlyFileIndex.Clear();
+
                 if (tabType.Equals("Overview"))
                 { 
                     for (int p = 0; p < allFiles.Count; p++)
                     {
                         //allFiles.ElementAt
                         packetsBind = packetsBind.Concat(this.allFiles[p].ElementAt(0).Value.packets).ToList();
+                        if (this.allFiles[p].ElementAt(0).Value.stats.totalNoOfErrors != 0)
+                        {
+                            errorOnlyFileIndex.Add(this.allFiles[p].ElementAt(0).Value.stats.totalNoOfErrors);
+                        }
                     }
-               }
+                }
                 else
                 {
                     packetsBind = this.file.packets;
                 }
+
+                for(int l = 0; l < errorOnlyFileIndex.Count; l++)
+                {
+                    Console.WriteLine("... " + errorOnlyFileIndex[l]);
+                }
+
 
                 for (int i = 0; i < errorOnlyIndexRefs.Count; i++)
                 {
@@ -590,7 +624,7 @@ namespace IndustrialProject
 
                 errorSource = new BindingSource(bindingListErrs, null);
                 dataGridView1.DataSource = errorSource;
-             
+
                 manageTable();
                 //PostAdding();
             }

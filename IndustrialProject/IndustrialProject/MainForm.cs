@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.IO;
@@ -26,6 +27,7 @@ namespace IndustrialProject
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            
         }
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
@@ -74,6 +76,8 @@ namespace IndustrialProject
 
         private void LoadTab(string filename)
         {
+            //loadingLabel.Show();
+
             if (overViewTab == null)
             {
                 TabPage page1 = new TabPage("Loading Link...");
@@ -102,6 +106,8 @@ namespace IndustrialProject
             
             overViewTab.PostAdding();
             overViewTab.allFiles =  allFiles;
+
+            //loadingLabel.Hide();
             
         }
 
@@ -131,15 +137,19 @@ namespace IndustrialProject
 
         private void loadFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            
             FolderBrowserDialog fbd = new FolderBrowserDialog();
 
             if (fbd.ShowDialog() != DialogResult.OK)
                 return;
+           
 
-            foreach(string filename in Directory.GetFiles(fbd.SelectedPath))
+            foreach (string filename in Directory.GetFiles(fbd.SelectedPath))
             {
                 this.LoadTab(filename);
             }
+
+            loadingLabel.Hide();
         }
 
         private void startTab_Click(object sender, EventArgs e)
@@ -150,12 +160,15 @@ namespace IndustrialProject
         //Closes all opened tabs
         private void closeAllTabsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.tabControl1.TabPages.RemoveAt(1);
-            for(int i = 1; i < this.tabControl1.TabPages.Count; i++)
-            {
-                tabControl1.TabPages.RemoveAt(i);
-            }
+            
+            int tabSize = tabControl1.TabPages.Count;
+
+            for(int i = 1; i < tabSize; i++)
+             {
+                tabControl1.TabPages.RemoveAt(1);
+             }
             overViewTab = null;
+            allFiles.Clear();
         }
     }
 }
