@@ -32,7 +32,7 @@ namespace IndustrialProject
 
         string graphType;
         bool[] graphTypes;
-        public List<int> graphStartIndexs = new List<int>();
+        public List<int> graphStartIndexes = new List<int>();
         public List<string> graphNames = new List<string>();
         public List<Color> graphColors = new List<Color>();
 
@@ -395,12 +395,6 @@ namespace IndustrialProject
 
         public void PostAdding()
         {
-            var bindingList = new BindingList<Packet>(this.file.packets);
-            BindingSource source = null;
-
-            graphStartIndexs.Clear();
-            graphStartIndexs.Add(0);
-
             if (tabType.Equals("Link"))
             {
                 var linkBindingList = new BindingList<Packet>(this.file.packets);
@@ -426,12 +420,13 @@ namespace IndustrialProject
                 List<Packet> graphTableList = new List<Packet>();
                 graphTableList = allFiles[0].ElementAt(0).Value.packets;
 
-                graphStartIndexs.Add(allFiles[0].ElementAt(0).Value.packets.Count);
+                graphStartIndexes.Clear();
+                graphStartIndexes.Add(allFiles[0].ElementAt(0).Value.packets.Count);
 
                 for (int i = 1; i < allFiles.Count; i++)
                 {
                     graphTableList = graphTableList.Concat(allFiles[i].ElementAt(0).Value.packets).ToList();
-                    graphStartIndexs.Add(allFiles[i].ElementAt(0).Value.packets.Count);
+                    graphStartIndexes.Add(allFiles[i].ElementAt(0).Value.packets.Count);
                 }
 
                 var overViewBindingList = new BindingList<Packet>(graphTableList);
@@ -505,18 +500,18 @@ namespace IndustrialProject
 
             }
 
-            if (graphStartIndexs != null && !onlyErrors)
+            if (graphStartIndexes != null && !onlyErrors)
             {
                 int currIndex = 0;
 
-                for (int i = 0; i < graphStartIndexs.Count; i++)
+                for (int i = 0; i < graphStartIndexes.Count; i++)
                 {
-                    for (int y = currIndex; y < graphStartIndexs[i] + currIndex; y++)
+                    for (int y = currIndex; y < graphStartIndexes[i] + currIndex; y++)
                     {
                         dataGridView1.Rows[y].Cells[0].Style.BackColor = graphColors[i];
                     }
 
-                    currIndex = currIndex + graphStartIndexs[i];
+                    currIndex = currIndex + graphStartIndexes[i];
                 }
             }
         }
@@ -568,8 +563,12 @@ namespace IndustrialProject
             Tuple<int, int> point = FindClosestPointIndex(this.mouseX, this.mouseY);
             if(point != null)
             {
-                int index = this.graphStartIndexs[point.Item1];
-                this.navigateToTableIndex(index + point.Item2);
+                if (tabType.Equals("Overview"))
+                {
+                    int index = this.graphStartIndexes[point.Item1];
+                    this.navigateToTableIndex(index + point.Item2);
+                } else
+                    this.navigateToTableIndex(point.Item2);
             }
         }
         
