@@ -550,7 +550,19 @@ namespace IndustrialProject
 
         private void chart1_Click(object sender, EventArgs e)
         {
-
+            Tuple<int, int> point = FindClosestPointIndex(this.mouseX, this.mouseY);
+            if (point != null)
+            {
+                if (tabType.Equals("Overview"))
+                {
+                    // this could be shorter but ...
+                    // FIX: graphStartIndexes should be called seriesCounts
+                    int startIndex = this.graphStartIndexes.GetRange(0, point.Item1).Sum();
+                    this.navigateToTableIndex(startIndex + point.Item2);
+                }
+                else
+                    this.navigateToTableIndex(point.Item2);
+            }
         }
 
         private void LinkTab_Load(object sender, EventArgs e)
@@ -560,18 +572,6 @@ namespace IndustrialProject
 
         private void chart1_DoubleClick(object sender, EventArgs e)
         {
-            Tuple<int, int> point = FindClosestPointIndex(this.mouseX, this.mouseY);
-            if(point != null)
-            {
-                if (tabType.Equals("Overview"))
-                {
-                    // this could be shorter but ...
-                    // FIX: graphStartIndexes should be called seriesCounts
-                    int startIndex = this.graphStartIndexes.GetRange(0, point.Item1).Sum();
-                    this.navigateToTableIndex(startIndex + point.Item2);
-                } else
-                    this.navigateToTableIndex(point.Item2);
-            }
         }
         
 
