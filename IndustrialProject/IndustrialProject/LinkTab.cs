@@ -566,10 +566,8 @@ namespace IndustrialProject
                 if (tabType.Equals("Overview"))
                 {
                     // this could be shorter but ...
-                    int startIndex = 0;
-                    if(point.Item1 > 0)
-                        startIndex = this.graphStartIndexes[point.Item1-1];
-
+                    // FIX: graphStartIndexes should be called seriesCounts
+                    int startIndex = this.graphStartIndexes.GetRange(0, point.Item1).Sum();
                     this.navigateToTableIndex(startIndex + point.Item2);
                 } else
                     this.navigateToTableIndex(point.Item2);
