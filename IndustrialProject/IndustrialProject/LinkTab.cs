@@ -224,7 +224,6 @@ namespace IndustrialProject
                 series.ChartType = SeriesChartType.Line;
                 series.MarkerStyle = MarkerStyle.Cross;
                 //series.Color = Color.Red;
-                
 
                 if (clearGraph)
                     chart1.Series.Add(series);
@@ -257,81 +256,109 @@ namespace IndustrialProject
             this.mouseX = e.X;
             this.mouseY = e.Y;
 
-            DataPoint point = FindClosestPoint(chart1.Series[0], e.X);
+            var point = FindClosestPointIndex(e.X, e.Y);
 
-            series0_annotation.AnchorDataPoint = point;
-            series0_annotation.Text = "[Series 0]: " + point.YValues[0].ToString();
+            if (point == null)
+                return;
+
+            series0_annotation.AnchorDataPoint = chart1.Series[point.Item1].Points[point.Item2];
+            series0_annotation.Text = String.Format("[Series {0}]: {1}", point.Item1, chart1.Series[point.Item1].Points[point.Item2].YValues[0].ToString());
         }
 
-        private DataPoint FindClosestPoint(Series series, int pixelX)
-        {
-            return series.Points[FindClosestPointIndex(series, pixelX)];
-        }
-
-        private int FindClosestPointIndex(Series series, int pixelX)
+        private Tuple<int, int> FindClosestPointIndex(int pixelX, int pixelY)
         {
             var xAxis = chart1.ChartAreas[0].AxisX;
-            int xRight = (int)xAxis.ValueToPixelPosition(xAxis.Maximum);
-            int xLeft = (int)xAxis.ValueToPixelPosition(xAxis.Minimum);
+            var yAxis = chart1.ChartAreas[0].AxisY;
 
-            double chartX = 0;
-            if (pixelX > xRight)
-                chartX = xAxis.Maximum;
-            else if (pixelX < xLeft)
-                chartX = xAxis.Minimum;
-            else
-                chartX = xAxis.PixelPositionToValue(pixelX);
+            double xValue;
+            double yValue;
 
-            // closest with binary search
+            try {
 
-            DataPointCollection points = series.Points;
+                xValue = xAxis.PixelPositionToValue(pixelX);
+                xValue = Math.Max(Math.Min(xValue, xAxis.Maximum), xAxis.Minimum);
 
-            if (points.Count() <= 0)
-                throw new Exception("FindClosestPoint needs at least one point.");
+                yValue = yAxis.PixelPositionToValue(pixelY);
+                yValue = Math.Max(Math.Min(yValue, yAxis.Maximum), yAxis.Minimum);
 
-            /*int left = 0;
-            int right = points.Count() - 1;
-            int middle = 0;
-            int lastMiddle = -1;
-            while (middle != lastMiddle)
+            } catch(ArgumentOutOfRangeException e)
             {
-                double leftX = points[left].XValue;
-                double rightX = points[right].XValue;
-                double middleX = (leftX + rightX) / 2.0;
-
-                lastMiddle = middle;
-                middle = (left + right) / 2;
-                if (chartX > middleX)
-                    left = middle;
-                else if (chartX < middleX)
-                    right = middle;
+                // partially seems to be a bug in .NET
+                return null;
             }
 
-            if (chartX - points[left].XValue < points[right].XValue - chartX)
-                middle = left;
-            else
-                middle = right;
+            int[] leftIdx = new int[chart1.Series.Count], rightIdx = new int[chart1.Series.Count];
+            int[] middleIdx = new int[chart1.Series.Count];
 
-            Console.WriteLine(String.Format("{0} {1} {2}", left, middle, right));
+            for(int i = 0; i < leftIdx.Count(); i++)
+                leftIdx[i] = 0;
 
-            return middle;*/
+            for (int i = 0; i < rightIdx.Count(); i++)
+                rightIdx[i] = chart1.Series[i].Points.Count() - 1;
 
-            // XXX: temporary work-around
+            var finished = Enumerable.Repeat(false, chart1.Series.Count()).ToArray();
 
-            int minIdx = -1;
-            double minDist = 99999999999.0;
+            // perform binary search
 
-            for(int i=0;i<points.Count();i++)
+            while (true)
             {
-                double distX = Math.Abs(points[i].XValue - chartX);
-                if(distX < minDist)
+                for (int i=0;i<middleIdx.Count();i++)
                 {
-                    minDist = distX;
-                    minIdx = i;
+                    if (finished[i])
+                        continue;
+
+                    middleIdx[i] = (rightIdx[i] + leftIdx[i]) / 2;
+                    double middle = chart1.Series[i].Points[middleIdx[i]].XValue;
+                    double middlePlusOne = chart1.Series[i].Points[middleIdx[i]].XValue;
+                    if (middleIdx[i] < chart1.Series[i].Points.Count-1)
+                         middlePlusOne = chart1.Series[i].Points[middleIdx[i] + 1].XValue;
+
+                    if (xValue > middle)
+                        leftIdx[i] = middleIdx[i];
+                    else
+                        rightIdx[i] = middleIdx[i];
+
+                    if (Math.Abs(rightIdx[i] - leftIdx[i]) <= 1)
+                    {
+                        finished[i] = true;
+
+                        double leftValue = chart1.Series[i].Points[leftIdx[i]].XValue;
+                        double rightValue = chart1.Series[i].Points[rightIdx[i]].XValue;
+                        if (Math.Abs(xValue - leftValue) < Math.Abs(rightValue - xValue))
+                            middleIdx[i] = leftIdx[i];
+                        else
+                            middleIdx[i] = rightIdx[i];
+
+                        break;
+                    }
+                }
+
+                if (finished.All(x => x))
+                    break;
+            }
+
+            int minSeries = -1;
+            double minDist = -1;
+            for(int i=0;i<middleIdx.Count();i++)
+            {
+                double xPoint = chart1.Series[i].Points[middleIdx[i]].XValue;
+                double xDist = Math.Abs(xValue - xPoint);
+                double yPoint = chart1.Series[i].Points[middleIdx[i]].YValues[0];
+                double yDist = Math.Abs(yValue - yPoint);
+                double dist = xDist * xDist + yDist * yDist;
+                if (minDist < 0)
+                {
+                    minDist = dist;
+                    minSeries = i;
+                }
+                if (dist < minDist)
+                {
+                    minSeries = i;
+                    minDist = dist;
                 }
             }
 
-            return minIdx;
+            return new Tuple<int, int>(minSeries, middleIdx[minSeries]);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -352,6 +379,9 @@ namespace IndustrialProject
         {
             var bindingList = new BindingList<Packet>(this.file.packets);
             BindingSource source = null;
+
+            graphStartIndexs.Clear();
+            graphStartIndexs.Add(0);
 
             if (tabType.Equals("Link"))
             {
@@ -375,7 +405,6 @@ namespace IndustrialProject
                 errorCountA.Text = "Error Count: " + this.allFiles[0].ElementAt(0).Value.stats.totalNoOfErrors.ToString() + "\n";
                 errorRate.Text = "Error Rate: " + this.allFiles[0].ElementAt(0).Value.stats.avgErrorRate.ToString() + "\n";
 
-                graphStartIndexs.Clear();
                 graphStartIndexs.Add(allFiles[0].ElementAt(0).Value.packets.Count);
 
                 for (int i = 1; i < allFiles.Count; i++)
@@ -440,7 +469,7 @@ namespace IndustrialProject
                 this.tab.Text = "Link " + this.file.port.ToString();
             }
 
-            if (graphStartIndexs != null)
+            /*if (graphStartIndexs != null)
             {
                 int currIndex = 0;
              
@@ -458,7 +487,7 @@ namespace IndustrialProject
                     Console.WriteLine("Graph name: " + chart1.Series[graphNames[i]].Name);
                     currIndex = currIndex + graphStartIndexs[i];
                 }
-            }
+            }*/
 
             this.Refresh();
         }
@@ -486,8 +515,12 @@ namespace IndustrialProject
 
         private void chart1_DoubleClick(object sender, EventArgs e)
         {
-            int index = FindClosestPointIndex(chart1.Series[0], this.mouseX);
-            this.navigateToTableIndex(index);
+            Tuple<int, int> point = FindClosestPointIndex(this.mouseX, this.mouseY);
+            if(point != null)
+            {
+                int index = this.graphStartIndexs[point.Item1];
+                this.navigateToTableIndex(index + point.Item2);
+            }
         }
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -578,7 +611,7 @@ namespace IndustrialProject
 
         }
     }
-    }
+}
 
         //Do not delete this code, may be useful later on.
         /**
