@@ -43,6 +43,8 @@
             this.instrLabel2 = new System.Windows.Forms.Label();
             this.instrLabel1 = new System.Windows.Forms.Label();
             this.logoBox = new System.Windows.Forms.PictureBox();
+            this.closeAllTabsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadingLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.startTab.SuspendLayout();
@@ -58,38 +60,40 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1062, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1062, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.loadToolStripMenuItem,
             this.loadFolderToolStripMenuItem,
+            this.closeAllTabsToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.loadToolStripMenuItem.Text = "Load ";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
             // loadFolderToolStripMenuItem
             // 
             this.loadFolderToolStripMenuItem.Name = "loadFolderToolStripMenuItem";
-            this.loadFolderToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.loadFolderToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.loadFolderToolStripMenuItem.Text = "Load Folder";
             this.loadFolderToolStripMenuItem.Click += new System.EventHandler(this.loadFolderToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -98,13 +102,13 @@
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.userManualToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // userManualToolStripMenuItem
             // 
             this.userManualToolStripMenuItem.Name = "userManualToolStripMenuItem";
-            this.userManualToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.userManualToolStripMenuItem.Size = new System.Drawing.Size(166, 26);
             this.userManualToolStripMenuItem.Text = "User manual";
             this.userManualToolStripMenuItem.Click += new System.EventHandler(this.userManualToolStripMenuItem_Click);
             // 
@@ -113,23 +117,24 @@
             this.tabControl1.Controls.Add(this.startTab);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(0, 24);
+            this.tabControl1.Location = new System.Drawing.Point(0, 28);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1062, 538);
+            this.tabControl1.Size = new System.Drawing.Size(1062, 534);
             this.tabControl1.TabIndex = 0;
             // 
             // startTab
             // 
             this.startTab.BackColor = System.Drawing.Color.White;
+            this.startTab.Controls.Add(this.loadingLabel);
             this.startTab.Controls.Add(this.pictureBox1);
             this.startTab.Controls.Add(this.instrLabel3);
             this.startTab.Controls.Add(this.instrLabel2);
             this.startTab.Controls.Add(this.instrLabel1);
             this.startTab.Controls.Add(this.logoBox);
-            this.startTab.Location = new System.Drawing.Point(4, 22);
+            this.startTab.Location = new System.Drawing.Point(4, 26);
             this.startTab.Name = "startTab";
-            this.startTab.Size = new System.Drawing.Size(1054, 512);
+            this.startTab.Size = new System.Drawing.Size(1054, 504);
             this.startTab.TabIndex = 1;
             this.startTab.Text = "Start";
             this.startTab.Click += new System.EventHandler(this.startTab_Click);
@@ -138,7 +143,7 @@
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(0, 312);
+            this.pictureBox1.Location = new System.Drawing.Point(0, 308);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(1054, 200);
             this.pictureBox1.TabIndex = 5;
@@ -150,9 +155,9 @@
             this.instrLabel3.AutoSize = true;
             this.instrLabel3.Font = new System.Drawing.Font("Lucida Bright", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.instrLabel3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.instrLabel3.Location = new System.Drawing.Point(100, 228);
+            this.instrLabel3.Location = new System.Drawing.Point(100, 226);
             this.instrLabel3.Name = "instrLabel3";
-            this.instrLabel3.Size = new System.Drawing.Size(879, 33);
+            this.instrLabel3.Size = new System.Drawing.Size(1137, 42);
             this.instrLabel3.TabIndex = 4;
             this.instrLabel3.Text = "3. The Overview tab will provide summary for all opened tabs";
             this.instrLabel3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -162,9 +167,9 @@
             this.instrLabel2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.instrLabel2.AutoSize = true;
             this.instrLabel2.Font = new System.Drawing.Font("Lucida Bright", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.instrLabel2.Location = new System.Drawing.Point(264, 195);
+            this.instrLabel2.Location = new System.Drawing.Point(264, 193);
             this.instrLabel2.Name = "instrLabel2";
-            this.instrLabel2.Size = new System.Drawing.Size(511, 33);
+            this.instrLabel2.Size = new System.Drawing.Size(658, 42);
             this.instrLabel2.TabIndex = 2;
             this.instrLabel2.Text = "2. Adding a file will open a new tab";
             this.instrLabel2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -175,9 +180,9 @@
             this.instrLabel1.AutoSize = true;
             this.instrLabel1.Font = new System.Drawing.Font("Lucida Bright", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.instrLabel1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.instrLabel1.Location = new System.Drawing.Point(100, 162);
+            this.instrLabel1.Location = new System.Drawing.Point(100, 160);
             this.instrLabel1.Name = "instrLabel1";
-            this.instrLabel1.Size = new System.Drawing.Size(860, 33);
+            this.instrLabel1.Size = new System.Drawing.Size(1111, 42);
             this.instrLabel1.TabIndex = 1;
             this.instrLabel1.Text = "1. Use \'File>Load\' to add a file with recordings from one link";
             this.instrLabel1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -194,9 +199,27 @@
             this.logoBox.TabIndex = 0;
             this.logoBox.TabStop = false;
             // 
+            // closeAllTabsToolStripMenuItem
+            // 
+            this.closeAllTabsToolStripMenuItem.Name = "closeAllTabsToolStripMenuItem";
+            this.closeAllTabsToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.closeAllTabsToolStripMenuItem.Text = "Close All Tabs";
+            this.closeAllTabsToolStripMenuItem.Click += new System.EventHandler(this.closeAllTabsToolStripMenuItem_Click);
+            // 
+            // loadingLabel
+            // 
+            this.loadingLabel.AutoSize = true;
+            this.loadingLabel.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loadingLabel.Location = new System.Drawing.Point(878, 38);
+            this.loadingLabel.Name = "loadingLabel";
+            this.loadingLabel.Size = new System.Drawing.Size(147, 36);
+            this.loadingLabel.TabIndex = 6;
+            this.loadingLabel.Text = "Loading...";
+            this.loadingLabel.Visible = false;
+            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1062, 562);
@@ -235,6 +258,8 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ToolStripMenuItem userManualToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadFolderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem closeAllTabsToolStripMenuItem;
+        private System.Windows.Forms.Label loadingLabel;
     }
 }
 

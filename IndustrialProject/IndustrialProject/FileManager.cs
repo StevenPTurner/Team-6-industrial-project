@@ -58,6 +58,7 @@ namespace IndustrialProject
                                 
                                 packet.displayData = String.Join(" ", stringBytes);
 
+                                
                                 byte[] byteArray = new byte[stringBytes.Length];
 
                                 for (int i = 0; i < stringBytes.Length; i++)
@@ -68,6 +69,10 @@ namespace IndustrialProject
                                 string epm = sr.ReadLine();
 
                                 packet.loadDataAndEndMarker(byteArray, epm);
+
+                                packet.displayProtocolId = packet.protocolId.ToString();
+                                packet.displayPathAddress = String.Join(String.Empty, Array.ConvertAll(packet.pathAddress.ToArray(), new Converter<byte, string> (x => x.ToString("X2"))));
+                                packet.displayLogicalAddress = packet.logicalAddress.ToString();
 
                                 file.addPacket(packet);
 

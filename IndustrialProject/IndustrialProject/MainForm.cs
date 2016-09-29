@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.IO;
@@ -14,7 +15,7 @@ namespace IndustrialProject
 {
     public partial class MainForm : Form
     {
-       
+        bool allFilesLoadWait;
         LinkTab overViewTab;
         List<Dictionary<string, File>> allFiles = new List<Dictionary<string, File>>();
 
@@ -26,6 +27,7 @@ namespace IndustrialProject
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            
         }
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
@@ -70,20 +72,23 @@ namespace IndustrialProject
                 return;
 
             this.LoadTab(ofd.FileName);
+            this.overViewTab.PostAdding();
         }
 
         private void LoadTab(string filename)
         {
+            //loadingLabel.Show();
 
 
             if (overViewTab == null)
             {
                 TabPage page1 = new TabPage("Loading Link...");
-                overViewTab = new LinkTab(page1, filename, "Overview");
+                overViewTab = new LinkTab(page1, null, "Overview");
                 page1.Controls.Add(overViewTab);
                 tabControl1.TabPages.Add(page1);
                 this.Invalidate(true);
                 overViewTab.Dock = DockStyle.Fill;
+                
             }
 
             // create a tab for it
@@ -94,18 +99,14 @@ namespace IndustrialProject
             this.Invalidate(true);
             tab.Dock = DockStyle.Fill;
 
-            tab.PostAdding();
-            
-
             Dictionary<string, File> file = new Dictionary<string, File>();
             file.Add(filename, tab.file);
             allFiles.Add(file);
             overViewTab.allFiles = this.allFiles;
-            overViewTab.PostAdding();
-            overViewTab.allFiles =  allFiles;
-            
-            //Console.WriteLine("File: " + file.ElementAt(0).Key + "fadsf " + file.ElementAt(0).Value.packets[0].timestamp);
-            
+
+            tab.PostAdding();
+
+
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -134,18 +135,42 @@ namespace IndustrialProject
 
         private void loadFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            
             FolderBrowserDialog fbd = new FolderBrowserDialog();
 
             if (fbd.ShowDialog() != DialogResult.OK)
                 return;
 
-            foreach(string filename in Directory.GetFiles(fbd.SelectedPath))
+            foreach (string filename in Directory.GetFiles(fbd.SelectedPath))
             {
                 this.LoadTab(filename);
             }
+
+            overViewTab.PostAdding();
+
+            loadingLabel.Hide();
         }
 
         private void startTab_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        //Closes all opened tabs
+        private void closeAllTabsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            int tabSize = tabControl1.TabPages.Count;
+
+            for(int i = 1; i < tabSize; i++)
+             {
+                tabControl1.TabPages.RemoveAt(1);
+             }
+
+            allFiles.Clear();
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
         }
