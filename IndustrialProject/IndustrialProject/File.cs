@@ -20,6 +20,7 @@ namespace IndustrialProject
         public int headCRCErrs { get; private set; }
         public int parityErrs { get; private set;  }
         public int eepAndTimeoutErrs { get; private set; }
+        public int errDuplicateErrs { get; private set;  }
         public Stats stats;
 
         public File()
@@ -56,6 +57,9 @@ namespace IndustrialProject
                     break;
                 case Packet.ErrorType.ERROR_PARITY:
                     parityErrs++;
+                    break;
+                case Packet.ErrorType.ERROR_DUPLICATE:
+                    errDuplicateErrs++;
                     break;
                 default:
                     Console.WriteLine("No error - cannot increment...");

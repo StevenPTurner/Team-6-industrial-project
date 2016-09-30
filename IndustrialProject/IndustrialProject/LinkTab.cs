@@ -473,7 +473,10 @@ namespace IndustrialProject
                 this.tab.Text = "Link " + this.file.port.ToString();
             }
 
-            errorOnlyIndexRefs.Clear();
+            if (!onlyErrors)
+            {
+                errorOnlyIndexRefs.Clear();
+            }
 
             setErrorRows();
             colourCodeRows();
@@ -526,30 +529,66 @@ namespace IndustrialProject
                 if (row.DataBoundItem != null && ((Packet)row.DataBoundItem).error != Packet.ErrorType.NO_ERROR)
                 {
                     row.DefaultCellStyle.BackColor = Color.Red;
-                    Tuple<int, int> errorIndexRef = new Tuple<int, int>(row.Index, errorOnlyIndexRefs.Count);
-                    errorOnlyIndexRefs.Add(errorIndexRef);
+                    if (!onlyErrors)
+                    {
+                        Tuple<int, int> errorIndexRef = new Tuple<int, int>(row.Index, errorOnlyIndexRefs.Count);
+                        errorOnlyIndexRefs.Add(errorIndexRef);
+                    }
                     errorTableIndexes.Add(row.Index);
                 }
         }
 
         private void navigateToTableIndex(int index)
         {
-            dataGridView1.ClearSelection();
-            try
-            {
 
-                dataGridView1.Rows[index].Selected = true;
+                bool indexFound = false;
+                dataGridView1.ClearSelection();
 
-                if (dataGridView1.Rows[index].Visible)
-                {
-                    dataGridView1.Rows[index].Selected = true;
-                    dataGridView1.FirstDisplayedScrollingRowIndex = index;
+                 if (onlyErrors)
+                 {
+                    for (int i = 0; i < errorOnlyIndexRefs.Count; i++)
+                    {
+                     if (index == errorOnlyIndexRefs[i].Item1)
+                     {
+                        index = errorOnlyIndexRefs[i].Item2;
+                        indexFound = true;
+                     }
+                 }
+
+                if (!indexFound)
+                    return;
                 }
-            }
-            catch(System.ArgumentOutOfRangeException err)
-            {
-                Console.WriteLine(err.ToString());
-            }
+    
+              try
+              { 
+                    dataGridView1.Rows[index].Selected = true;
+
+                    if (dataGridView1.Rows[index].Visible)
+                    {
+                        dataGridView1.Rows[index].Selected = true;
+                        dataGridView1.FirstDisplayedScrollingRowIndex = index;
+                    }
+                }
+                catch (System.ArgumentOutOfRangeException err)
+                {
+                    Console.WriteLine(err.ToString());
+                }
+            
+        }
+
+        private void getIndex(int index)
+        {
+            
+                if(onlyErrors)
+                {
+                    for(int i = 0; i < errorOnlyIndexRefs.Count; i++)
+                    {
+                        if(index == errorOnlyIndexRefs[i].Item2)
+                        {
+                            index = errorOnlyIndexRefs[i].Item1;
+                        }
+                    }
+                }
         }
 
         private void chart1_Click(object sender, EventArgs e)
