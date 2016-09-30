@@ -131,7 +131,7 @@ namespace IndustrialProject
         private void userManualToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string path = Environment.CurrentDirectory;
-            System.Diagnostics.Process.Start("IExplore.exe", path + "/Manual.pdf");
+            System.Diagnostics.Process.Start("file://" + path + "\\Manual.pdf");
         }
 
         private void loadFolderToolStripMenuItem_Click(object sender, EventArgs e)
