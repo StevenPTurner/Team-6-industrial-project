@@ -74,8 +74,6 @@ namespace IndustrialProject
             this.data = data;
             this.epm = epm;
             
-
-
             // CHECK FOR END OF MARKER ERROR
 
             if (this.epm == "EEP" || this.epm == "None")

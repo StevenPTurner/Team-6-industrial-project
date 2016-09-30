@@ -103,8 +103,6 @@ namespace IndustrialProject
                                     }
                                 }
 
-                                //Console.WriteLine("BAM BADA BAAAA... BADABA BAM BADA BAAAA.... " + lastPacket.error);
-
                                 // XXX: setter?
 
                                 file.incrementErrCounts(lastPacket.error);
@@ -133,8 +131,6 @@ namespace IndustrialProject
             //Console.WriteLine("No. of data chars: " + file.stats.noOfDataChars);
             //Console.WriteLine("Avg. Packet Rate: " + file.stats.avgPacketRate);
             //Console.WriteLine("Avg. Data Rate: " + file.stats.avgDataRate);
-
-            
 
             return file;
         }

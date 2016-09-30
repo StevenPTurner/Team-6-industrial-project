@@ -45,6 +45,7 @@
             this.instrLabel2 = new System.Windows.Forms.Label();
             this.instrLabel1 = new System.Windows.Forms.Label();
             this.logoBox = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.startTab.SuspendLayout();
@@ -133,6 +134,7 @@
             // startTab
             // 
             this.startTab.BackColor = System.Drawing.Color.White;
+            this.startTab.Controls.Add(this.label1);
             this.startTab.Controls.Add(this.loadingLabel);
             this.startTab.Controls.Add(this.pictureBox1);
             this.startTab.Controls.Add(this.instrLabel3);
@@ -173,11 +175,11 @@
             this.instrLabel3.AutoSize = true;
             this.instrLabel3.Font = new System.Drawing.Font("Lucida Bright", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.instrLabel3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.instrLabel3.Location = new System.Drawing.Point(100, 226);
+            this.instrLabel3.Location = new System.Drawing.Point(100, 263);
             this.instrLabel3.Name = "instrLabel3";
             this.instrLabel3.Size = new System.Drawing.Size(1137, 42);
             this.instrLabel3.TabIndex = 4;
-            this.instrLabel3.Text = "3. The Overview tab will provide summary for all opened tabs";
+            this.instrLabel3.Text = "4. The Overview tab will provide summary for all opened tabs";
             this.instrLabel3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // instrLabel2
@@ -185,12 +187,13 @@
             this.instrLabel2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.instrLabel2.AutoSize = true;
             this.instrLabel2.Font = new System.Drawing.Font("Lucida Bright", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.instrLabel2.Location = new System.Drawing.Point(264, 193);
+            this.instrLabel2.Location = new System.Drawing.Point(258, 184);
             this.instrLabel2.Name = "instrLabel2";
             this.instrLabel2.Size = new System.Drawing.Size(658, 42);
             this.instrLabel2.TabIndex = 2;
             this.instrLabel2.Text = "2. Adding a file will open a new tab";
             this.instrLabel2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.instrLabel2.Click += new System.EventHandler(this.instrLabel2_Click);
             // 
             // instrLabel1
             // 
@@ -198,7 +201,7 @@
             this.instrLabel1.AutoSize = true;
             this.instrLabel1.Font = new System.Drawing.Font("Lucida Bright", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.instrLabel1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.instrLabel1.Location = new System.Drawing.Point(100, 160);
+            this.instrLabel1.Location = new System.Drawing.Point(100, 142);
             this.instrLabel1.Name = "instrLabel1";
             this.instrLabel1.Size = new System.Drawing.Size(1111, 42);
             this.instrLabel1.TabIndex = 1;
@@ -216,6 +219,19 @@
             this.logoBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.logoBox.TabIndex = 0;
             this.logoBox.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Lucida Bright", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(135, 226);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(1034, 42);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "3. Use \'File>Load Folder\' to load all files from one folder";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // MainForm
             // 
@@ -260,6 +276,7 @@
         private System.Windows.Forms.ToolStripMenuItem loadFolderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeAllTabsToolStripMenuItem;
         private System.Windows.Forms.Label loadingLabel;
+        private System.Windows.Forms.Label label1;
     }
 }
 

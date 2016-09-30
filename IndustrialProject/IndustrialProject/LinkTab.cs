@@ -58,10 +58,6 @@ namespace IndustrialProject
             series0_annotation.Text = "";
             chart1.Annotations.Add(series0_annotation);
 
-            //var seriesPoints = this.chart1.Series[2];
-            //seriesPoints.XValueMember = "X";
-            //seriesPoints.YValueMembers = "Y";
-
             if (!tabType.Equals("Overview"))
             {
                 this.file = FileManager.loadAndParseFile(filename);
@@ -71,7 +67,6 @@ namespace IndustrialProject
         private void setTabs()
         {
             //totalErrorLabel.Anchor = (AnchorStyles.Left | AnchorStyles.Top);
-            //totalErrorLabel
 
             chart1.Series.Clear();
             if (tabType.Equals("Link"))
@@ -146,8 +141,7 @@ namespace IndustrialProject
                     DateTime date1 = filePassed.packets[i].timestamp;
                     DateTime date2;
 
-                    //Console.WriteLine("Series colour..." + series.Color);
-
+                  
                 if (i >= filePassed.packets.Count - 1)
                     {
                         // XXX: this is inaccurate
@@ -161,7 +155,6 @@ namespace IndustrialProject
                     double timeDifference = (date2 - date1).TotalSeconds;
                     plotPoint = plotPoint + timeDifference;
 
-                    //Console.WriteLine("This was... :" + (int)this.file.packets[i].error);
                     //Perhaps refactor into another class (File?)
                     if (((uint)filePassed.packets[i].error & this.errorsShown) != 0)
                     {
@@ -173,8 +166,6 @@ namespace IndustrialProject
                     {
                         point.MarkerColor = series.Color;
 
-                        //series.
-                        //Console.WriteLine("Test2: " + series.Color);
 
                     point.MarkerSize = 3;
                         point.MarkerStyle = MarkerStyle.Square;
@@ -498,7 +489,6 @@ namespace IndustrialProject
                     for (int u = count; u < currIndex; u++)
                     {
                         dataGridView1.Rows[u].Cells[0].Style.BackColor = graphColors[y];
-                        Console.WriteLine("lll " + graphColors.Count);
                     }
 
                     count = count + errorOnlyFileIndex[y];
