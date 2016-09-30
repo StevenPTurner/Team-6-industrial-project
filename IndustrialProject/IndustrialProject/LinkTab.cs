@@ -498,11 +498,10 @@ namespace IndustrialProject
                     for (int u = count; u < currIndex; u++)
                     {
                         dataGridView1.Rows[u].Cells[0].Style.BackColor = graphColors[y];
+                        Console.WriteLine("lll " + graphColors.Count);
                     }
 
                     count = count + errorOnlyFileIndex[y];
-
-                    //Console.WriteLine("Count is.. " + count);
                 }
 
             }
@@ -700,7 +699,7 @@ namespace IndustrialProject
                 { 
                     for (int p = 0; p < allFiles.Count; p++)
                     {
-                        //allFiles.ElementAt
+                        
                         packetsBind = packetsBind.Concat(this.allFiles[p].ElementAt(0).Value.packets).ToList();
                         if (this.allFiles[p].ElementAt(0).Value.stats.totalNoOfErrors != 0)
                         {
@@ -713,11 +712,6 @@ namespace IndustrialProject
                     packetsBind = this.file.packets;
                 }
 
-                for(int l = 0; l < errorOnlyFileIndex.Count; l++)
-                {
-                    Console.WriteLine("... " + errorOnlyFileIndex[l]);
-                }
-
                 for (int i = 0; i < errorOnlyIndexRefs.Count; i++)
                 {
                     bindingListErrs.Add(packetsBind[errorOnlyIndexRefs[i].Item1]); 
@@ -727,7 +721,6 @@ namespace IndustrialProject
                 dataGridView1.DataSource = errorSource;
 
                 manageTable();
-                //PostAdding();
             }
             else
             {

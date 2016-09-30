@@ -82,8 +82,6 @@ namespace IndustrialProject
             {
                 this.error = Packet.ErrorType.ERROR_TRUNCATED;
                 displayErrorType = error.ToString();
-
-                //Console.WriteLine("BAM BADA BAAAA... BADABA BAM BADA BAAAA.... " + this.error);
             }
             else if (this.epm != "EOP")
             {
