@@ -28,14 +28,9 @@ namespace IndustrialProject
                     date = DateTime.Parse(sr.ReadLine());
    
                     file.startDate = date;
-                    //Console.WriteLine('\n');
-                    //Console.WriteLine("File: " + fname);
-                    //Console.WriteLine("File Start Date: " + date);
 
                     port = Convert.ToInt32(sr.ReadLine());
                     file.port = port;
-
-                    //Console.WriteLine("Port: " + port + '\n');
                     
                     sr.ReadLine();
 
@@ -110,7 +105,6 @@ namespace IndustrialProject
                                 sr.ReadLine();
                                 break;
                             default:
-                                //Console.WriteLine('\n' + "File end date: " + date.ToString("dd-MM-yyyy HH:mm:ss:fff"));
                                 sr.ReadLine();
                                 break;
                         }
@@ -126,11 +120,6 @@ namespace IndustrialProject
             }
 
             file.stats = new Stats(file);
-            
-            //Console.WriteLine("No of packets: " + file.stats.noOfPackets);
-            //Console.WriteLine("No. of data chars: " + file.stats.noOfDataChars);
-            //Console.WriteLine("Avg. Packet Rate: " + file.stats.avgPacketRate);
-            //Console.WriteLine("Avg. Data Rate: " + file.stats.avgDataRate);
 
             return file;
         }
