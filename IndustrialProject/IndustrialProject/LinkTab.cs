@@ -72,7 +72,7 @@ namespace IndustrialProject
             if (tabType.Equals("Link"))
             {
                 setVals(true, file, 0.ToString());
-                totalErrorLabel.Text = " Parity: " + file.parityErrs + "\n Seq: " + file.outOfSeqErrs + "\n Header CRC " + file.headCRCErrs + "\n Body CRC " + file.bodyCRCErrs + "\n Too Many Bytes: " + file.tooManyBytesErrs + "\n Not Enough Bytes: " + file.notEnoughBytesErrs + "\n EEPs and timeout: " + file.eepAndTimeoutErrs;
+                //totalErrorLabel.Text = " Parity: " + file.parityErrs + "\n Seq: " + file.outOfSeqErrs + "\n Header CRC " + file.headCRCErrs + "\n Body CRC " + file.bodyCRCErrs + "\n Too Many Bytes: " + file.tooManyBytesErrs + "\n Not Enough Bytes: " + file.notEnoughBytesErrs + "\n EEPs and timeout: " + file.eepAndTimeoutErrs;
             }
             else if (tabType.Equals("Overview"))
             {
@@ -100,7 +100,7 @@ namespace IndustrialProject
                     totalEepAndTimeoutErrs = totalEepAndTimeoutErrs + allFiles[i].ElementAt(0).Value.eepAndTimeoutErrs;
                 }
 
-                totalErrorLabel.Text = " Parity: N/A\n Seq: N/A\n Header CRC: N/A\n Body CRC: N/A\n Too ManyBytes: N/A\n Not Enough Bytes: N/A\n EEPs and timeouts: N/A";
+                //totalErrorLabel.Text = " Parity: N/A\n Seq: N/A\n Header CRC: N/A\n Body CRC: N/A\n Too ManyBytes: N/A\n Not Enough Bytes: N/A\n EEPs and timeouts: N/A";
                 //totalOutOfSeqErrs + "\n Header CRC " + totalHeadCRCErrs + "\n Body CRC " + totalBodyCRCErrs + "\n Too Many Bytes: " + totalTooManyBytesErrs + "\n Not Enough Bytes: " + totalNotEnoughBytesErrs + "\n EEPs and timeout: " + totalEepAndTimeoutErrs;
             }
         }
