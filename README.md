@@ -16,7 +16,7 @@ It was created as part of the Dundee University
 4th year industrial project module by a team of 6 students including.
 
 - [Katarzyna Pruś](https://github.com/patarzynak)
-- [Mantas Vogulis](https://github.com/crazyhatfish)
+- [Mantas Vogulis](https://github.com/mvogulis)
 - [Jonathan Rose](https://github.com/purplegoat53)
 - [Nathan Cassidy](https://github.com/NazCassidy)
 - [Connor Sewell](https://github.com/ConnorSewell)
